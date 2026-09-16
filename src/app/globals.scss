@@ -6,6 +6,14 @@
 @import 'slick-carousel/slick/slick.css';
 @import 'slick-carousel/slick/slick-theme.css';
 
+html { scroll-behavior: auto !important; }
+html, body { overflow-x: clip; }
+
+#main-content > :nth-child(n + 4) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+
 .mediadustry-wordmark {
   color: #111;
   font-family: var(--font-space-grotesk);
@@ -15,6 +23,45 @@
 }
 
 .mediadustry-wordmark span { color: #b8ff3d; }
+
+.mediadustry-client-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid rgba(17, 17, 17, .14);
+  border-left: 1px solid rgba(17, 17, 17, .14);
+}
+
+.mediadustry-client-grid span {
+  min-height: 120px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-end;
+  color: #111;
+  font-family: var(--font-space-grotesk);
+  font-size: clamp(18px, 1.5vw, 25px);
+  font-weight: 600;
+  line-height: 1.15;
+  border-right: 1px solid rgba(17, 17, 17, .14);
+  border-bottom: 1px solid rgba(17, 17, 17, .14);
+}
+
+@media (max-width: 991px) {
+  .mediadustry-client-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 575px) {
+  .mediadustry-client-grid { grid-template-columns: 1fr; }
+  .mediadustry-client-grid span { min-height: 88px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
 
 /* Video modal style */
 .video-modal-overlay {

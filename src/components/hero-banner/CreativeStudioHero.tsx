@@ -1,5 +1,5 @@
 import heroShape from "../../../public/assets/img/home-04/hero/hero-shape-1.png";
-import VideoPlayer from "../shared/VideoPlayer/VideoPlayer";
+import heroBanner from "../../../public/assets/img/home-04/hero/hero-banner-img.jpg";
 import { ArrowSvg, ButtonBlurFilter } from "@/svg";
 import { ArrowTwelve } from "@/svg/ArrowIcons";
 import Image from "next/image";
@@ -14,7 +14,7 @@ const CreativeStudioHero = () => {
                         <div className="col-xl-6">
                             <div className="creative-2-hero-title-box">
                                 <h2 className="creative-2-hero-title">
-                                    Laat je merk gr<Image className="d-none d-md-inline-block" src={heroShape} alt="" />eien
+                                    Digitaal gr<Image className="d-none d-md-inline-block" src={heroShape} alt="" />eien
                                 </h2>
                             </div>
                         </div>
@@ -61,7 +61,7 @@ const CreativeStudioHero = () => {
                         <div className="col-xl-12">
                             <div className="creative-hero-banner-wrap">
                                 <div className="creative-hero-banner">
-                                    <VideoPlayer videoUrl="https://html.aqlova.com/videos/liko/liko.mp4" />
+                                    <Image src={heroBanner} alt="Creatieve digitale compositie" priority sizes="100vw" style={{ width: "100%", height: "auto" }} />
                                 </div>
                             </div>
                         </div>

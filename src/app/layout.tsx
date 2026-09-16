@@ -1,5 +1,4 @@
-
-import { Inter, Besley, Space_Grotesk, Playfair_Display, Satisfy, Teko, Phudu, Poppins, Onest } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import GlobalVideoModal from "@/components/Popup/GlobalVideoModal";
 import { VideoProvider } from "@/provider/VideoProvider";
 import AppProvider from "@/provider/AppProvider";
@@ -8,103 +7,42 @@ import type { Metadata } from "next";
 import "swiper/css/bundle";
 import "./globals.scss";
 
-// Inter font – Supports weights from 100 to 900, including italic styles
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
 });
 
-// Besley font – Supports weights from 400 to 900, including italic styles
-const besley = Besley({
-  subsets: ["latin"],
-  variable: "--font-besley",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-});
-
-// Space Grotesk font – Supports weights from 300 to 700
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-// Playfair Display font – Supports weights from 400 to 900, including italic styles
-const playfairDisplay = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair-display",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-});
-
-// Satisfy font – Only available in regular weight (400)
-const satisfy = Satisfy({
-  subsets: ["latin"],
-  variable: "--font-satisfy",
-  weight: "400",
-  display: "swap",
-});
-
-// Teko font – Supports weights from 300 to 700
-const teko = Teko({
-  subsets: ["latin"],
-  variable: "--font-teko",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-// Phudu font – Supports weights from 300 to 900
-const phudu = Phudu({
-  subsets: ["latin"],
-  variable: "--font-phudu",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
-
-// Poppins font – Supports weights from 100 to 900, including italic styles
-const poppins = Poppins({
-  subsets: ["latin"],
-  variable: "--font-poppins",
-  display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-});
-
-// Onest font – Supports weights from 100 to 900
-const onest = Onest({
-  subsets: ["latin"],
-  variable: "--font-onest",
-  display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Mediadustry — Digital agency & headless commerce",
+  metadataBase: new URL("https://www.mediadustry.com"),
+  title: "MEDIADUSTRY — Digital agency & headless commerce",
   description: "Strategie, webdesign, development en headless Shopify voor organisaties die digitaal willen groeien.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "MEDIADUSTRY — Digitale groei zonder ruis",
+    description: "Strategie, webdesign, development en headless Shopify vanuit Zuid-Limburg.",
+    url: "/",
+    siteName: "MEDIADUSTRY",
+    locale: "nl_NL",
+    type: "website",
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="nl" className="no-js agntix-light" suppressHydrationWarning={true}>
-      <body  suppressHydrationWarning={true} className={`tp-magic-cursor ${inter.variable}
-     ${besley.variable} ${spaceGrotesk.variable} ${playfairDisplay.variable}
-      ${satisfy.variable} ${teko.variable} ${phudu.variable} ${poppins.variable}
-       ${onest.variable}`}>
+    <html lang="nl" className="no-js agntix-light" suppressHydrationWarning>
+      <body suppressHydrationWarning className={`${inter.className} ${inter.variable} ${spaceGrotesk.variable}`}>
         <AppProvider>
           <Wrapper>
-            <VideoProvider>
-                {children}
-            </VideoProvider>
+            <VideoProvider>{children}</VideoProvider>
             <GlobalVideoModal />
           </Wrapper>
         </AppProvider>

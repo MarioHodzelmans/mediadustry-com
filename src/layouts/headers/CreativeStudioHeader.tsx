@@ -1,12 +1,9 @@
 "use client"
-import OffCanvasPanel from "@/components/offcanvas/OffCanvasPanel";
 import useStickyHeader from "@/hooks/useStickyHeader";
 import { ArrowSvg, ButtonBlurFilter } from "@/svg";
-import { useState } from 'react';
 import Link from 'next/link';
 
 const CreativeStudioHeader = () => {
-    const [openOffCanvas, setOpenOffCanvas] = useState(false);
     const isSticky = useStickyHeader(20);
 
     return (
@@ -15,27 +12,12 @@ const CreativeStudioHeader = () => {
                 <div id="header-sticky" className={`tp-header-area tp-header-ptb tp-header-4-style header-4-light-style tp-header-blur header-transparent tp-header-border sticky-white-bg ${isSticky ? 'header-sticky' : ''}`}>
                     <div className="container-fluid">
                         <div className="row align-items-center">
-                            <div className="col-xl-2 col-lg-6 col-md-6 col-6">
+                            <div className="col-6">
                                 <Link className="mediadustry-wordmark" href="/" aria-label="Mediadustry home">
                                     MEDIADUSTRY<span>.</span>
                                 </Link>
                             </div>
-                            <div className="col-xl-8 col-lg-7 d-none d-xl-block">
-                                <div className="tp-header-box d-flex align-items-center justify-content-center">
-                                    <div className="tp-header-menu tp-header-dropdown dropdown-white-bg">
-                                        <nav className="tp-mobile-menu-active">
-                                            <ul>
-                                                <li><Link href="/">Home</Link></li>
-                                                <li><Link href="/about-us-light">Over ons</Link></li>
-                                                <li><Link href="/service-3-light">Diensten</Link></li>
-                                                <li><Link href="/portfolio-col-2-light">Projecten</Link></li>
-                                                <li><Link href="https://shop.mediadustry.com">Shop</Link></li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-xl-2 col-lg-6 col-md-6 col-6">
+                            <div className="col-6">
                                 <div className="tp-header-right d-flex align-items-center justify-content-end">
                                     <div className="tp-header-btn-box">
                                         <Link href="/contact-us-light" className="tp-btn-black btn-green-light-bg">
@@ -50,23 +32,12 @@ const CreativeStudioHeader = () => {
                                             </span>
                                         </Link>
                                     </div>
-                                    <div className="tp-header-bar ml-20 d-xl-none">
-                                        <button onClick={() => setOpenOffCanvas(true)} className="tp-offcanvas-open-btn">
-                                            <i></i>
-                                            <i></i>
-                                            <i></i>
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </header>
-
-            {/* off canvas */}
-            <OffCanvasPanel openOffcanvas={openOffCanvas} setOpenOffcanvas={setOpenOffCanvas} />
-            {/* off canvas */}
         </>
     );
 };

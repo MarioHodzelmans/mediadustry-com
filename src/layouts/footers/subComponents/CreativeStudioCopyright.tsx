@@ -8,7 +8,7 @@ const CreativeStudioCopyright = () => {
                 <div className="row">
                     <div className="col-xl-12">
                         <div className="tp-copyright-content text-center">
-                            <h2 className="tp-copyright-big-text">mediadustry.com</h2>
+                            <h2 className="tp-copyright-big-text">MEDIADUSTRY</h2>
                         </div>
                     </div>
                 </div>

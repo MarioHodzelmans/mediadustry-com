@@ -9,11 +9,6 @@
 html { scroll-behavior: auto !important; }
 html, body { overflow-x: clip; }
 
-#main-content > :nth-child(n + 4) {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 800px;
-}
-
 .mediadustry-wordmark {
   color: #111;
   font-family: var(--font-space-grotesk);

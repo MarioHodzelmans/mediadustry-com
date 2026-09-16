@@ -25,9 +25,9 @@ export default async function Home() {
         <p className="sectionIntro">Geen standaardoplossingen, maar digitaal werk dat precies past bij je ambitie, organisatie en klant.</p>
       </section>
       <section className="shop shell" id="shop">
-        <div className="sectionHeader"><div><p className="eyebrow dark">SHOPIFY LIVE DATA</p><h2>Direct uit de <em>shop.</em></h2></div><a className="textLink darkLink" href="https://mediadustry.com/collections/all">Alles bekijken <span>↗</span></a></div>
+        <div className="sectionHeader"><div><p className="eyebrow dark">SHOPIFY LIVE DATA</p><h2>Direct uit de <em>shop.</em></h2></div><a className="textLink darkLink" href="https://shop.mediadustry.com/collections/all">Alles bekijken <span>↗</span></a></div>
         {products.length ? <div className="productGrid">{products.map((product) => (
-          <a className="product" href={product.onlineStoreUrl ?? `https://mediadustry.com/products/${product.handle}`} key={product.id}>
+          <a className="product" href={`https://shop.mediadustry.com/products/${product.handle}`} key={product.id}>
             <div className="productImage">{product.featuredImage ? <Image src={product.featuredImage.url} alt={product.featuredImage.altText ?? product.title} fill sizes="(max-width: 760px) 100vw, 33vw" /> : <span>MEDIADUSTRY</span>}</div>
             <div className="productMeta"><h3>{product.title}</h3><p>Vanaf {euro.format(Number(product.priceRange.minVariantPrice.amount))}</p></div>
           </a>

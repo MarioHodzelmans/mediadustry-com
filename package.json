@@ -1,24 +1,52 @@
 {
-  "name": "mediadustry-com",
+  "name": "agntix-react-nextjs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "clean": "rm -rf node_modules package-lock.json yarn.lock",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "next": "16.3.5",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "@gsap/react": "^2.1.2",
+    "@types/jquery": "^3.5.32",
+    "atropos": "^2.0.2",
+    "bootstrap": "5.3.6",
+    "gsap": "^3.13.0",
+    "hover-effect": "^1.2.1",
+    "imagesloaded": "^5.0.0",
+    "isotope-layout": "^3.0.6",
+    "jquery": "^3.7.1",
+    "next": "^16.3.5",
+    "next-themes": "^0.4.6",
+    "react": "^19.2.8",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.2.8",
+    "react-photo-view": "^1.2.7",
+    "react-slick": "^0.30.3",
+    "sass": "^1.89.0",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^12.1.2",
+    "three": "^0.179.1"
+  },
+  "resolutions": {
+    "three": "^0.179.1",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2"
   },
   "devDependencies": {
+    "@types/imagesloaded": "^4.1.7",
+    "@types/isotope-layout": "^3.0.15",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-slick": "^0.23.13",
+    "@types/splitting": "^1.0.6",
+    "@types/three": "^0.179.0",
     "eslint": "^9",
-    "eslint-config-next": "16.3.5",
+    "eslint-config-next": "^16.3.5",
     "typescript": "^5"
   }
 }

@@ -25,6 +25,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.mediadustry.com"),
   title: "MEDIADUSTRY — Digital agency & headless commerce",
   description: "Strategie, webdesign, development en headless Shopify voor organisaties die digitaal willen groeien.",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: "/icon.svg",
+  },
   alternates: { canonical: "/" },
   openGraph: {
     title: "MEDIADUSTRY — Digitale groei zonder ruis",

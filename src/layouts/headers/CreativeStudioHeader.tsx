@@ -1,6 +1,7 @@
 "use client"
 import useStickyHeader from "@/hooks/useStickyHeader";
 import { ArrowSvg, ButtonBlurFilter } from "@/svg";
+import Image from "next/image";
 import Link from 'next/link';
 
 const CreativeStudioHeader = () => {
@@ -14,7 +15,8 @@ const CreativeStudioHeader = () => {
                         <div className="row align-items-center">
                             <div className="col-6">
                                 <Link className="mediadustry-wordmark" href="/" aria-label="Mediadustry home">
-                                    MEDIADUSTRY<span>.</span>
+                                    <Image src="/assets/img/brand/mediadustry-icon.svg" alt="" width={38} height={38} priority />
+                                    <span className="mediadustry-wordmark-text">MEDIADUSTRY<span>.</span></span>
                                 </Link>
                             </div>
                             <div className="col-6">

@@ -20,12 +20,12 @@ const CreativeStudioAbout = () => {
                             </div>
                             <div className="creative-about-btn-box d-flex align-items-center">
                                 <div className="tp_fade_anim" data-fade-from="top" data-delay=".3" data-ease="bounce">
-                                    <Link href="/about-us-light" className="tp-btn-black btn-green-light-bg mb-20 pr-15">
+                                    <Link href="/contact-us-light" className="tp-btn-black btn-green-light-bg mb-20 pr-15">
                                         <span className="tp-btn-black-filter-blur">
                                             <ButtonBlurFilter />
                                         </span>
                                         <span className="tp-btn-black-filter d-inline-flex align-items-center" style={{ filter: 'url(#buttonFilter1)' }}>
-                                            <span className="tp-btn-black-text">Over Mediadustry</span>
+                                            <span className="tp-btn-black-text">Maak kennis</span>
                                             <span className="tp-btn-black-circle">
                                                 <ArrowSvg />
                                             </span>

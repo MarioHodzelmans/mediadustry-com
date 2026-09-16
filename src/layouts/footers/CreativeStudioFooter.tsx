@@ -1,4 +1,5 @@
 import CreativeStudioCopyright from './subComponents/CreativeStudioCopyright';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const CreativeStudioFooter = ({ buttonCls = "" }) => {
@@ -14,6 +15,7 @@ const CreativeStudioFooter = ({ buttonCls = "" }) => {
                     <div className="row align-items-center">
                         <div className="col-xl-4 col-lg-4">
                             <div className="tp-footer-widget tp-footer-col-1 pb-40 tp_fade_anim" data-delay=".3">
+                                <Image className="mediadustry-footer-mark" src="/assets/img/brand/mediadustry-icon.svg" alt="MEDIADUSTRY beeldmerk" width={118} height={117} />
                                 <h4 className="tp-footer-widget-title">Digitale groei <br /> zonder ruis.</h4>
                             </div>
                         </div>
@@ -23,9 +25,6 @@ const CreativeStudioFooter = ({ buttonCls = "" }) => {
                                 <div className="tp-footer-widget-menu">
                                     <ul>
                                         <li><Link href="/">Home</Link></li>{" "}
-                                        <li><Link href="/about-us-light">Over ons</Link></li>{" "}
-                                        <li><Link href="/service-3-light">Diensten</Link></li>{" "}
-                                        <li><Link href="/portfolio-col-2-light">Projecten</Link></li>{" "}
                                         <li><Link href="https://shop.mediadustry.com">Shop</Link></li>{" "}
                                         <li><Link href="/contact-us-light">Contact</Link></li>
                                         <li><Link href="/imprint">Imprint</Link></li>{" "}

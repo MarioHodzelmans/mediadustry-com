@@ -1,5 +1,3 @@
-"use client"
-
 import { ButtonBlurFilter, ArrowSvg } from '@/svg';
 import { projectsDT } from '@/types/project-d-t';
 import projectsData from '@/data/projectData';
@@ -12,10 +10,8 @@ const CreativeStudioProject = () => {
         <div className="col-lg-6" key={project.id}>
             <div className="creative-project-item mb-100">
                 <div className="creative-project-thumb anim-zoomin-wrap p-relative">
-                    <div className="anim-zoomin not-hide-cursor" data-cursor="View<br/>Demo">
-                        <Link className="cursor-hide" href={project.link}>
-                            <Image style={{ width: "100%", height: "auto" }} src={project.image} alt={project.title} />
-                        </Link>
+                    <div className="anim-zoomin">
+                        <Image style={{ width: "100%", height: "auto" }} src={project.image} alt={project.title} />
                     </div>
                     <div className="creative-project-category">
                         {project.categories?.map((category, index) => (
@@ -28,7 +24,7 @@ const CreativeStudioProject = () => {
                         <span>{project.year}</span>
                         <span>{project.client}</span>
                     </div>
-                    <h4 className="creative-project-title-sm"><Link className="tp-line-white" href={project.link}>{project.title}</Link></h4>
+                    <h4 className="creative-project-title-sm">{project.title}</h4>
                 </div>
             </div>
         </div>
@@ -51,12 +47,12 @@ const CreativeStudioProject = () => {
                         </div>
                         <div className="col-lg-4">
                             <div className="creative-project-2-btn text-lg-end tp_fade_anim" data-fade-from="top" data-delay=".3" data-ease="bounce">
-                                <Link href="/about-us-light" className="tp-btn-black btn-green-light-bg mb-20">
+                                <Link href="/contact-us-light" className="tp-btn-black btn-green-light-bg mb-20">
                                     <span className="tp-btn-black-filter-blur">
                                         <ButtonBlurFilter filterId="buttonFilter1" />
                                     </span>
                                     <span className="tp-btn-black-filter d-inline-flex align-items-center" style={{ filter: 'url(#buttonFilter3)' }}>
-                                        <span className="tp-btn-black-text">Over Mediadustry</span>
+                                        <span className="tp-btn-black-text">Bespreek een project</span>
                                         <span className="tp-btn-black-circle">
                                             <ArrowSvg />
                                         </span>

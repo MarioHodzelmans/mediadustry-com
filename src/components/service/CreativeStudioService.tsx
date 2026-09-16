@@ -24,12 +24,12 @@ const CreativeStudioService = () => {
                         </div>
                         <div className="col-xl-3 col-lg-5">
                             <div className="creative-blog-top-content">
-                                <Link href="/service-3-light" className="tp-btn-black btn-green-light-bg pr-15">
+                                <Link href="/contact-us-light" className="tp-btn-black btn-green-light-bg pr-15">
                                     <span className="tp-btn-black-filter-blur">
                                         <ButtonBlurFilter filterId="buttonFilter5" />
                                     </span>
                                     <span className="tp-btn-black-filter d-inline-flex align-items-center" style={{ filter: 'url(#buttonFilter5)' }}>
-                                        <span className="tp-btn-black-text">Bekijk alle diensten</span>
+                                        <span className="tp-btn-black-text">Bespreek jouw vraag</span>
                                         <span className="tp-btn-black-circle">
                                             <ArrowSvg />
                                         </span>

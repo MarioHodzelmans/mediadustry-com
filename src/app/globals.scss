@@ -10,6 +10,9 @@ html { scroll-behavior: auto !important; }
 html, body { overflow-x: clip; }
 
 .mediadustry-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   color: #111;
   font-family: var(--font-space-grotesk);
   font-size: 22px;
@@ -17,7 +20,20 @@ html, body { overflow-x: clip; }
   letter-spacing: -1.4px;
 }
 
-.mediadustry-wordmark span { color: #b8ff3d; }
+.mediadustry-wordmark > img { width: 38px; height: 38px; }
+.mediadustry-wordmark-text > span { color: #78b900; }
+
+.mediadustry-footer-mark {
+  width: clamp(72px, 7vw, 118px);
+  height: auto;
+  margin-bottom: 28px;
+  opacity: .92;
+}
+
+@media (max-width: 575px) {
+  .mediadustry-wordmark { gap: 8px; font-size: 17px; letter-spacing: -1px; }
+  .mediadustry-wordmark > img { width: 30px; height: 30px; }
+}
 
 .mediadustry-client-grid {
   display: grid;

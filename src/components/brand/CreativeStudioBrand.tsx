@@ -13,25 +13,25 @@ const CreativeStudioBrand = () => {
             id: 1,
             delay: ".3",
             image: brand1,
-            description: "#1 Team in the world on Dribbble"
+            description: "Strategie die keuzes helder maakt"
         },
         {
             id: 2,
             delay: ".4",
             image: brand2,
-            description: "Top 100 Global Companies on Clutch"
+            description: "Design dat past bij merk en mens"
         },
         {
             id: 3,
             delay: ".5",
             image: brand3,
-            description: <>5 Stars Rating on <br /> GoodFirms</>
+            description: <>Techniek die snel, stabiel <br /> en schaalbaar is</>
         },
         {
             id: 4,
             delay: ".6",
             image: brand4,
-            description: "100% Job Success on Upwork"
+            description: "Eén betrokken partner van idee tot groei"
         }
     ];
 
@@ -44,15 +44,15 @@ const CreativeStudioBrand = () => {
                         <div className="row">
                             <div className="col-xl-4">
                                 <div className="creative-work-title-box">
-                                    <span className="tp-section-subtitle fs-17 pre-circle tp_fade_anim" data-delay=".3">Sharing the love</span>
+                                    <span className="tp-section-subtitle fs-17 pre-circle tp_fade_anim" data-delay=".3">Waarom MEDIADUSTRY</span>
                                 </div>
                             </div>
                             <div className="col-xl-7">
                                 <div className="creative-work-title-box mb-30">
                                     <h4 className="tp-section-title fs-44 tp_fade_anim" data-delay=".5">
-                                        Speak up in a crowded digital
-                                        world. Build a reputation on the voice
-                                        of your brand.
+                                        Geen standaardoplossing, maar digitaal werk
+                                        dat past bij je ambitie, organisatie
+                                        en klant.
                                     </h4>
                                 </div>
                                 <div className="creative-work-btn tp_fade_anim" data-delay=".5" data-fade-from="top" data-ease="bounce">
@@ -61,7 +61,7 @@ const CreativeStudioBrand = () => {
                                             <ButtonBlurFilter filterId="buttonFilter7" />
                                         </span>
                                         <span className="tp-btn-black-filter d-inline-flex align-items-center" style={{ filter: 'url(#buttonFilter7)' }}>
-                                            <span className="tp-btn-black-text">Let’s chat</span>
+                                            <span className="tp-btn-black-text">Maak kennis</span>
                                             <span className="tp-btn-black-circle">
                                                 <ArrowSvg />
                                             </span>

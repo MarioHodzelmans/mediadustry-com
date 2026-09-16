@@ -13,22 +13,22 @@ const CreativeStudioBlog = () => {
                     <div className="row align-items-end">
                         <div className="col-xl-3">
                             <div className="creative-blog-subtitle-box">
-                                <span className="tp-section-subtitle mb-20 fs-17 pre-circle">Featured Works</span>
+                                <span className="tp-section-subtitle mb-20 fs-17 pre-circle">Kennis & ideeën</span>
                             </div>
                         </div>
                         <div className="col-xl-5 col-lg-6">
                             <div className="creative-blog-title-box">
-                                <h4 className="tp-section-title fs-44">Newest trends and <br /> insights from our team.</h4>
+                                <h4 className="tp-section-title fs-44">Slimmer kiezen voor <br /> je digitale organisatie.</h4>
                             </div>
                         </div>
                         <div className="col-xl-4 col-lg-6">
                             <div className="creative-blog-top-content text-lg-end">
-                                <Link href="/blog-masonry-light" className="tp-btn-black btn-green-light-bg pr-15">
+                                <Link href="/contact-us-light" className="tp-btn-black btn-green-light-bg pr-15">
                                     <span className="tp-btn-black-filter-blur">
                                         <ButtonBlurFilter filterId="buttonFilter8" />
                                     </span>
                                     <span className="tp-btn-black-filter d-inline-flex align-items-center" style={{ filter: 'url(#buttonFilter8)' }}>
-                                        <span className="tp-btn-black-text">See all Articles</span>
+                                        <span className="tp-btn-black-text">Praat met ons</span>
                                         <span className="tp-btn-black-circle">
                                             <ArrowSvg />
                                         </span>

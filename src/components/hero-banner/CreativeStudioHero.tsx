@@ -35,22 +35,11 @@ const CreativeStudioHero = () => {
                                     <div className="col-xl-8">
                                         <div className="creative-2-hero-btn-wrap text-xl-end">
                                             <div className="creative-2-hero-btn">
-                                                <Link href="/portfolio-details-classic-stack-light" className="tp-btn-black btn-green-light-bg pb-10 pr-15">
+                                                <Link href="/contact-us-light" className="tp-btn-black btn-green-light-bg pb-10 pr-15">
                                                     <span className="tp-btn-black-filter-blur">
                                                         <ButtonBlurFilter filterId="buttonFilter3" />
                                                     </span>
                                                     <span className="tp-btn-black-filter d-inline-flex align-items-center" style={{ filter: 'url(#buttonFilter3)' }}>
-                                                        <span className="tp-btn-black-text">Bekijk ons werk</span>
-                                                        <span className="tp-btn-black-circle">
-                                                            <ArrowSvg />
-                                                        </span>
-                                                    </span>
-                                                </Link>
-                                                <Link href="mailto:info@mediadustry.com" className="tp-btn-black btn-transparent-bg pb-10">
-                                                    <span className="tp-btn-black-filter-blur">
-                                                        <ButtonBlurFilter filterId="buttonFilter11" />
-                                                    </span>
-                                                    <span className="tp-btn-black-filter d-inline-flex align-items-center" style={{ filter: 'url(#buttonFilter11)' }}>
                                                         <span className="tp-btn-black-text">Maak kennis</span>
                                                         <span className="tp-btn-black-circle">
                                                             <ArrowSvg />

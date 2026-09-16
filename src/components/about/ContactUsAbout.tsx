@@ -8,9 +8,8 @@ const ContactUsAbout = () => {
                     <div className="col-xl-10">
                         <div className="cn-contactform-support-bg d-flex align-items-center justify-content-center" style={{ backgroundImage: `url(${contactShape.src})` }}>
                             <div className="cn-contactform-support-text text-center">
-                                <span>Or, you can contact one of our studios
-                                    directly below. We aim to respond
-                                    within 24 hours.</span>
+                                <span>Liever direct contact? Bel Mario Hodzelmans of stuur een e-mail.
+                                    KvK 54271932 · btw NL062176468B02</span>
                             </div>
                         </div>
                     </div>

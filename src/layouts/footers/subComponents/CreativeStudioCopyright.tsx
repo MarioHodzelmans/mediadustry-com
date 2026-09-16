@@ -8,7 +8,7 @@ const CreativeStudioCopyright = () => {
                 <div className="row">
                     <div className="col-xl-12">
                         <div className="tp-copyright-content text-center">
-                            <h2 className="tp-copyright-big-text">Agntix.studio</h2>
+                            <h2 className="tp-copyright-big-text">mediadustry.com</h2>
                         </div>
                     </div>
                 </div>
@@ -16,13 +16,13 @@ const CreativeStudioCopyright = () => {
                     <div className="row">
                         <div className="col-lg-5">
                             <div className="tp-copyright-left text-center text-lg-start">
-                                <span>©{getCurrentYear()} Agntix Design Studio.</span>
+                                <span>©{getCurrentYear()} MEDIADUSTRY.</span>
                             </div>
                         </div>
                         <div className="col-lg-7">
                             <div className="tp-copyright-right text-center text-lg-end">
-                                <Link href="#">Terms and Conditions</Link>
-                                <Link href="#">Privacy Policy</Link>
+                                <Link href="/terms-and-conditions">Algemene voorwaarden</Link>
+                                <Link href="/privacy-cookies">Privacy & cookies</Link>
                             </div>
                         </div>
                     </div>

@@ -90,34 +90,34 @@ const testimonialsData: TestimonialDT[] = [
     {
         id: 8,
         avatar: avater7,
-        name: "Bradley Gordon",
-        position: "Co-Founder of Agntix",
+        name: "Luisteren",
+        position: "Stap 1 — Richting",
         rating: 5,
-        quote: "Agntix went above and beyond to make sure we got something we were happy with."
+        quote: "We beginnen bij jouw organisatie, doelgroep en ambitie. Zo lossen we het juiste digitale vraagstuk op."
     },
     {
         id: 9,
         avatar: avater8,
-        name: "Tisha Norton",
-        position: "Co-Founder of Agntix",
+        name: "Ontwerpen",
+        position: "Stap 2 — Creatie",
         rating: 5,
-        quote: "The team at Agntix was incredibly attentive and made sure every detail was perfect."
+        quote: "We vertalen de gekozen koers naar een helder ontwerp dat eigen voelt en prettig werkt."
     },
     {
         id: 10,
         avatar: avater9,
-        name: "Emma Berger",
-        position: "Co-Founder of Agntix",
+        name: "Bouwen",
+        position: "Stap 3 — Techniek",
         rating: 5,
-        quote: "We're beyond satisfied — Agntix made the entire process seamless and rewarding."
+        quote: "Met moderne technologie bouwen we een snelle, schaalbare website of commerce-ervaring."
     },
     {
         id: 11,
         avatar: avater10,
-        name: "Mary Cruz",
-        position: "Co-Founder of Agntix",
+        name: "Groeien",
+        position: "Stap 4 — Doorontwikkeling",
         rating: 5,
-        quote: "From start to finish, Agntix went the extra mile to ensure we were thrilled with the result."
+        quote: "Na de livegang blijven we meten, verbeteren en ondersteunen waar jouw organisatie dat nodig heeft."
     },
     //home four testimonial data end
 

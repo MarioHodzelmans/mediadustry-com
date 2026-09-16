@@ -1,33 +1,9 @@
-import { FacebookTwo, TwitterTwo, DribbleTwo, InstagramTwo } from '@/svg';
 import CreativeStudioCopyright from './subComponents/CreativeStudioCopyright';
 import Link from 'next/link';
 
 const CreativeStudioFooter = ({ buttonCls = "" }) => {
     return (
         <footer className={`creative-footer-style ${buttonCls} p-relative z-index-1`} style={{ backgroundColor: "#F6F6F9" }}>
-            <div className="tp-footer-widget-social">
-                <div className="tp_fade_anim" data-delay=".9" data-fade-from="top" data-ease="bounce">
-                    <Link href="#">
-                        <span><FacebookTwo /></span>
-                    </Link>
-                </div>
-                <div className="tp_fade_anim" data-delay=".7" data-fade-from="top" data-ease="bounce">
-                    <Link href="#">
-                        <span><TwitterTwo /></span>
-                    </Link>
-                </div>
-                <div className="tp_fade_anim" data-delay=".5" data-fade-from="top" data-ease="bounce">
-                    <Link href="#">
-                        <span><DribbleTwo /></span>
-                    </Link>
-                </div>
-                <div className="tp_fade_anim" data-delay=".3" data-fade-from="top" data-ease="bounce">
-                    <Link href="#">
-                        <span><InstagramTwo /></span>
-                    </Link>
-                </div>
-            </div>
-
             <div className="creative-footer-text d-none d-lg-block">
                 <p>Mediadustry — terug naar boven 👆</p>
             </div>
@@ -51,7 +27,9 @@ const CreativeStudioFooter = ({ buttonCls = "" }) => {
                                         <li><Link href="/service-3-light">Diensten</Link></li>{" "}
                                         <li><Link href="/portfolio-col-2-light">Projecten</Link></li>{" "}
                                         <li><Link href="https://shop.mediadustry.com">Shop</Link></li>{" "}
-                                        <li><Link href="mailto:info@mediadustry.com">Contact</Link></li>
+                                        <li><Link href="/contact-us-light">Contact</Link></li>
+                                        <li><Link href="/imprint">Imprint</Link></li>{" "}
+                                        <li><Link href="/disclaimer">Disclaimer</Link></li>
                                     </ul>
                                 </div>
                             </div>
@@ -64,6 +42,12 @@ const CreativeStudioFooter = ({ buttonCls = "" }) => {
                                 </div>
                                 <div className="tp-footer-widget-info">
                                     <Link href="https://mediadustry.com">mediadustry.com</Link>
+                                </div>
+                                <div className="tp-footer-widget-info">
+                                    <Link href="tel:+31624383998">+31 6 24 38 39 98</Link>
+                                </div>
+                                <div className="tp-footer-widget-info">
+                                    <span>Tenelenweg 11<br />6367 VR Voerendaal</span>
                                 </div>
                             </div>
                         </div>

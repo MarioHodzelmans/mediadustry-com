@@ -7,30 +7,30 @@ import Link from "next/link";
 const ContactUsArea = () => {
   const contactData = [
     {
-      title: "San Francisco",
+      title: "Direct contact",
       img: thumb1,
-      email: "sydney@contact.com",
-      phone: "(+91) 76001726",
-      mapLink: "https://www.google.com/maps",
+      email: "info@mediadustry.com",
+      phone: "+31 6 24 38 39 98",
+      mapLink: "mailto:info@mediadustry.com",
       btnClass: "tp-btn-yellow-green w-100",
       speed: "1.2",
     },
     {
-      title: "Germany",
+      title: "Studio Voerendaal",
       img: thumb2,
-      email: "sydney@contact.com",
-      phone: "(+91) 76001726",
-      mapLink: "https://www.google.com/maps",
+      email: "Tenelenweg 11",
+      phone: "6367 VR Voerendaal",
+      mapLink: "https://www.google.com/maps/search/?api=1&query=Tenelenweg+11+6367+VR+Voerendaal",
       btnClass: "tp-btn-yellow-green active w-100",
       speed: ".9",
       extraClass: "mt-60",
     },
     {
-      title: "New Zealand",
+      title: "Online",
       img: thumb3,
-      email: "sydney@contact.com",
-      phone: "(+91) 76001726",
-      mapLink: "https://www.google.com/maps",
+      email: "mediadustry.com",
+      phone: "shop.mediadustry.com",
+      mapLink: "https://shop.mediadustry.com",
       btnClass: "tp-btn-yellow-green w-100",
       speed: "1.2",
     },
@@ -53,8 +53,8 @@ const ContactUsArea = () => {
                 <div className="tp-contact-us-bottom">
                   <div className="tp-contact-us-info-details">
                     <h4 className="tp-contact-us-info-title">{item.title}</h4>
-                    <Link href={`mailto:${item.email}`}>{item.email}</Link>
-                    <Link href={`tel:${item.phone}`}>{item.phone}</Link>
+                    <span>{item.email}</span>
+                    <span>{item.phone}</span>
                   </div>
                   <div className="tp-contact-us-btn">
                     <Link
@@ -63,8 +63,8 @@ const ContactUsArea = () => {
                       href={item.mapLink}
                     >
                       <span>
-                        <span className="text-1">View Location</span>
-                        <span className="text-2">View Location</span>
+                        <span className="text-1">Bekijk</span>
+                        <span className="text-2">Bekijk</span>
                       </span>
                     </Link>
                   </div>

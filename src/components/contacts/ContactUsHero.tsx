@@ -20,13 +20,13 @@ const ContactUsHero = () => {
                         <div className="col-xl-12">
                             <div className="tp-contact-us-heading tp_fade_anim" data-delay=".3">
                                 <div className="ar-about-us-4-title-box d-flex align-items-center mb-20">
-                                    <span className="tp-section-subtitle pre tp_fade_anim">contact us</span>
+                                    <span className="tp-section-subtitle pre tp_fade_anim">Contact</span>
                                     <div className="ar-about-us-4-icon">
                                         <ArrowTwenty />
                                     </div>
                                 </div>
-                                <h3 className="tp-career-title pb-30">Your creative{" "}
-                                    <span className="shape-1"><Image src={shape} alt="shape" /></span> <br />journey starts here
+                                <h3 className="tp-career-title pb-30">Jouw volgende{" "}
+                                    <span className="shape-1"><Image src={shape} alt="" /></span> <br />digitale stap begint hier
                                 </h3>
                             </div>
                         </div>
@@ -35,7 +35,7 @@ const ContactUsHero = () => {
                         <div className="col-lg-4"></div>
                         <div className="col-lg-8">
                             <div className="tp-faq-text tp_fade_anim">
-                                <p className="m-0">Agntix is a beacon of best innovation and the dynamic <br /> parent a company of wealcoder and many other subsidiaries.</p>
+                                <p className="m-0">Vertel waar je naartoe wilt. MEDIADUSTRY helpt met strategie, <br /> webdesign, development en headless commerce.</p>
                             </div>
                         </div>
                     </div>
@@ -51,13 +51,13 @@ const ContactUsHero = () => {
                                     gsap.to(window, { duration: 1, scrollTo: "#down" });
                                 }}>
                                     <p>  <ArrowTwentySeven />{" "}
-                                        Scroll to explore</p>
+                                        Bekijk de contactopties</p>
                                 </Link>
                             </div>
                         </div>
                         <div className="col-md-6">
                             <div className="tp-contact-us-text d-none d-md-block text-md-end">
-                                <p>See in Map our Office</p>
+                                <p>Voerendaal, Zuid-Limburg</p>
                             </div>
                         </div>
                     </div>

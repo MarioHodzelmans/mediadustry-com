@@ -20,7 +20,7 @@ const CreativeStudioAbout = () => {
                             </div>
                             <div className="creative-about-btn-box d-flex align-items-center">
                                 <div className="tp_fade_anim" data-fade-from="top" data-delay=".3" data-ease="bounce">
-                                    <Link href="mailto:info@mediadustry.com" className="tp-btn-black btn-green-light-bg mb-20 pr-15">
+                                    <Link href="/about-us-light" className="tp-btn-black btn-green-light-bg mb-20 pr-15">
                                         <span className="tp-btn-black-filter-blur">
                                             <ButtonBlurFilter />
                                         </span>
@@ -33,7 +33,7 @@ const CreativeStudioAbout = () => {
                                     </Link>
                                 </div>
                                 <div className="tp_fade_anim" data-fade-from="top" data-delay=".5" data-ease="bounce">
-                                    <Link href="mailto:info@mediadustry.com" className="tp-btn-black btn-transparent-bg mb-20">
+                                    <Link href="/contact-us-light" className="tp-btn-black btn-transparent-bg mb-20">
                                         <span className="tp-btn-black-filter-blur">
                                             <ButtonBlurFilter filterId='buttonFilter2' />
                                         </span>

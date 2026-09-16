@@ -11,8 +11,8 @@ const CreativeStudioChoose = () => {
                         <div className="tp-service-5-feature-content">
                             <span><ChooseArrow /></span>
                             <h3 className="tp-service-5-feature-title">
-                                We provide <br /> special offers for <br />
-                                the best customers
+                                Geen ruis. <br /> Wel richting, creatie <br />
+                                en resultaat.
                             </h3>
                         </div>
                     </div>

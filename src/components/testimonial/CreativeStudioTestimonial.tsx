@@ -9,16 +9,16 @@ const CreativeStudioTestimonial = () => {
                 <div className="row align-items-center">
                     <div className="col-xl-3 col-lg-4">
                         <div className="creative-testimonial-title-box mb-25">
-                            <span className="tp-section-subtitle mb-20 fs-17 pre-circle tp_fade_anim" data-delay=".3">Testimonials</span>
-                            <h4 className="tp-section-title fs-44 tp_fade_anim" data-delay=".5">What our <br /> happy clients <br /> say about us.</h4>
+                            <span className="tp-section-subtitle mb-20 fs-17 pre-circle tp_fade_anim" data-delay=".3">Onze aanpak</span>
+                            <h4 className="tp-section-title fs-44 tp_fade_anim" data-delay=".5">Van ambitie <br /> naar een sterk <br /> digitaal resultaat.</h4>
                         </div>
                         <div className="creative-testimonial-btn mb-55 tp_fade_anim" data-delay=".7" data-fade-from="top" data-ease="bounce">
-                            <Link href="/contact" className="tp-btn-black btn-green-light-bg pr-15">
+                            <Link href="/contact-us-light" className="tp-btn-black btn-green-light-bg pr-15">
                                 <span className="tp-btn-black-filter-blur">
                                     <ButtonBlurFilter filterId="buttonFilter6" />
                                 </span>
                                 <span className="tp-btn-black-filter d-inline-flex align-items-center" style={{ filter: 'url(#buttonFilter6)' }}>
-                                    <span className="tp-btn-black-text">Let’s chat</span>
+                                    <span className="tp-btn-black-text">Plan een gesprek</span>
                                     <span className="tp-btn-black-circle">
                                         <ArrowSvg />
                                     </span>

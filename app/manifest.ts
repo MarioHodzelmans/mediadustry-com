@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "MEDIADUSTRY",
     short_name: "MEDIADUSTRY",
     description:
-      "Strategie, design en development voor merken die digitaal vooruit willen.",
+      "Strategie, AI, design en development voor merken die digitaal vooruit willen.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

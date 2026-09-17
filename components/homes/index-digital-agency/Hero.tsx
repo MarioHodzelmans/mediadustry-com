@@ -203,63 +203,57 @@ export default function Hero() {
                   <ul className="mxd-socials-line">
                     <li>
                       <CommonLoadItem index={0}>
-                        <Link
+                        <span
                           className="mxd-socials-line__link permanent loading-item"
-                          href="/"
                         >
                           <TextScramble className="mxd-scramble">
-                            MEDIADUSTRY
+                            AI strategy
                           </TextScramble>
-                        </Link>
+                        </span>
                       </CommonLoadItem>
                     </li>
                     <li>
                       <CommonLoadItem index={1}>
-                        <a
+                        <span
                           className="mxd-socials-line__link permanent loading-item"
-                          href="/contact"
                         >
                           <TextScramble className="mxd-scramble">
-                            Contact
+                            Branding
                           </TextScramble>
-                        </a>
+                        </span>
                       </CommonLoadItem>
                     </li>
                     <li>
                       <CommonLoadItem index={2}>
-                        <a
+                        <span
                           className="mxd-socials-line__link permanent loading-item"
-                          href="mailto:info@mediadustry.com"
                         >
                           <TextScramble className="mxd-scramble">
-                            E-mail
+                            Webdesign
                           </TextScramble>
-                        </a>
+                        </span>
                       </CommonLoadItem>
                     </li>
                     <li>
                       <CommonLoadItem index={3}>
-                        <a
+                        <span
                           className="mxd-socials-line__link permanent loading-item"
-                          href="tel:+31624383998"
                         >
                           <TextScramble className="mxd-scramble">
-                            Bel ons
+                            Development
                           </TextScramble>
-                        </a>
+                        </span>
                       </CommonLoadItem>
                     </li>
                     <li>
                       <CommonLoadItem index={4}>
-                        <a
+                        <span
                           className="mxd-socials-line__link permanent loading-item"
-                          href="https://maps.google.com/?q=Tenelenweg+11+Voerendaal"
-                          target="_blank"
                         >
                           <TextScramble className="mxd-scramble">
-                            Voerendaal
+                            Shopify
                           </TextScramble>
-                        </a>
+                        </span>
                       </CommonLoadItem>
                     </li>
                   </ul>
@@ -299,7 +293,7 @@ export default function Hero() {
             <div className="mxd-hero-02__intro">
               <CommonHero3DIntroText>
                 <h1 className="medium permanent">
-                  Strategie, design &amp; digitale impact
+                  Strategie, AI &amp; digitale impact
                 </h1>
               </CommonHero3DIntroText>
             </div>

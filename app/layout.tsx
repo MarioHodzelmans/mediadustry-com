@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | MEDIADUSTRY",
   },
   description:
-    "Strategie, design en development voor merken die digitaal vooruit willen.",
+    "Strategie, AI, design en development voor merken die digitaal vooruit willen.",
   alternates: { canonical: "/" },
   icons: {
     icon: [
@@ -41,14 +41,14 @@ export const metadata: Metadata = {
     siteName: "MEDIADUSTRY",
     title: "MEDIADUSTRY | Digital design & development",
     description:
-      "Strategie, design en development voor merken die digitaal vooruit willen.",
+      "Strategie, AI, design en development voor merken die digitaal vooruit willen.",
     images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "MEDIADUSTRY | Digital design & development",
     description:
-      "Strategie, design en development voor merken die digitaal vooruit willen.",
+      "Strategie, AI, design en development voor merken die digitaal vooruit willen.",
     images: ["/opengraph-image.png"],
   },
   robots: { index: true, follow: true },
@@ -63,7 +63,6 @@ const organizationJsonLd = {
   logo: "https://mediadustry.com/icon-512.png",
   image: "https://mediadustry.com/opengraph-image.png",
   email: "info@mediadustry.com",
-  telephone: "+31624383998",
   vatID: "NL062176468B02",
   taxID: "54271932",
   address: {

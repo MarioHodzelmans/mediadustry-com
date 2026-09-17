@@ -24,7 +24,6 @@ export default function Footer3({ name = "MEDIADUSTRY" }: { name?: string }) {
             <div className="footer-blocks__column mxd-grid-item justify-start">
               <div className="footer-blocks__data justify-start">
                 <p className="footer-data"><CommonScrollAnimated className="anim-uni-slide-down" href="mailto:info@mediadustry.com" as="a" animation="slideDownLine"><TextScramble className="mxd-scramble">info@mediadustry.com</TextScramble></CommonScrollAnimated></p>
-                <p className="footer-data"><CommonScrollAnimated className="anim-uni-slide-down" href="tel:+31624383998" as="a" animation="slideDownLine"><TextScramble className="mxd-scramble">+31 (0)6 243 83 998</TextScramble></CommonScrollAnimated></p>
                 <CommonScrollAnimated className="footer-data anim-uni-slide-down" as="p" animation="slideDownLine"><span>Tenelenweg 11, 6367 VR Voerendaal</span></CommonScrollAnimated>
               </div>
             </div>

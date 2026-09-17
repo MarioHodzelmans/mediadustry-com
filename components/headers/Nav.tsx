@@ -75,7 +75,6 @@ export default function Nav({ navNode, toggleNode, hamburgerNode, setNavNode, re
               <div className="mxd-menu__right"><div className="menu-contact">
                 <div className="menu-contact__item"><ul className="menu-contact__list">
                   <li><a ref={contactSlots[0]} className="tag tag-m" href="mailto:info@mediadustry.com"><TextScramble ref={contactRevealSlots[0]} className="mxd-scramble">info@mediadustry.com</TextScramble></a></li>
-                  <li><a ref={contactSlots[1]} className="tag tag-m" href="tel:+31624383998"><TextScramble ref={contactRevealSlots[1]} className="mxd-scramble">+31 (0)6 243 83 998</TextScramble></a></li>
                 </ul></div>
                 <div className="menu-contact__item"><ul className="menu-contact__list"><li><a ref={contactSlots[2]} className="tag tag-m" href="https://maps.google.com/?q=Tenelenweg+11+Voerendaal" target="_blank"><span ref={contactRevealSlots[2]}>Tenelenweg 11<br />6367 VR Voerendaal<br />The Netherlands</span></a></li></ul></div>
               </div></div>

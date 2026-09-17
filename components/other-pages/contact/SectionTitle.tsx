@@ -79,20 +79,6 @@ export default function SectionTitle() {
                               animation="inUp"
                             >
                               <a
-                                href="tel:+31624383998"
-                                className="tag tag-s-mobile"
-                              >
-                                <TextScramble className="mxd-scramble">
-                                  +31 (0)6 243 83 998
-                                </TextScramble>
-                              </a>
-                            </CommonScrollAnimated>
-                            <CommonScrollAnimated
-                              className="anim-uni-in-up"
-                              as="li"
-                              animation="inUp"
-                            >
-                              <a
                                 href="mailto:info@mediadustry.com?subject=Message%20from%20your%20site"
                                 className="tag tag-s-mobile"
                               >

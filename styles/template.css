@@ -47,3 +47,17 @@
 .no-touch .mxd-menu .main-menu__item.main-menu__item--current .main-menu__toggle:hover svg {
   fill: var(--accent);
 }
+
+/* MEDIADUSTRY brand mark follows the active light/dark theme through currentColor. */
+.mxd-logo__image,
+.menu-logo__image {
+  width: auto;
+  color: currentColor;
+  fill: currentColor;
+  transition: color 0.35s ease, fill 0.35s ease;
+}
+
+.mxd-logo__text,
+.menu-logo__text {
+  white-space: nowrap;
+}

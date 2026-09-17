@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import type { MutableRefObject } from "react";
-import AutoplayLoopVideo from "@/components/media/AutoplayLoopVideo";
 import TextScramble from "@/components/animations/TextScramble";
 import { useMxdMenuGsap, useMxdMenuGsapRefs } from "@/hooks/useMxdMenuGsap";
 import MediadustryMark from "@/components/brand/MediadustryMark";
@@ -47,7 +46,11 @@ export default function Nav({ navNode, toggleNode, hamburgerNode, setNavNode, re
           </div>
           <div className="mxd-menu__media">
             <div ref={g.mediaWrapper} className="menu-media__wrapper">
-              <AutoplayLoopVideo activation="interaction" poster="video/900x1280_menu.webp" sources={[{ type: "video/mp4", src: "video/900x1280_menu.mp4" }, { type: "video/webm", src: "video/900x1280_menu.webm" }]} />
+              <div
+                className="mxd-video-poster"
+                style={{ backgroundImage: 'url("/video/900x1280_menu.webp")' }}
+                aria-hidden="true"
+              />
             </div>
           </div>
           <div className="mxd-menu__navigation">

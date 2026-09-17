@@ -39,6 +39,15 @@ export default async function RootLayout({
       color-scheme={initialTheme}
       suppressHydrationWarning
     >
+      <head>
+        <link
+          rel="preload"
+          href="/video/1280x720_hero-02.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
+        />
+      </head>
       <body
         className={`${manrope.variable} ${jetbrainsMono.variable}`}
         style={

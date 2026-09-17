@@ -1,9 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import AutoplayLoopVideo from "@/components/media/AutoplayLoopVideo";
 import CommonLoadAnimation, {
-  CommonLoadFade,
   CommonLoadItem,
 } from "@/components/animations/CommonLoadAnimation";
 import TextScramble from "@/components/animations/TextScramble";
@@ -23,13 +21,10 @@ export default function Hero() {
           <CommonHero3DImages className="mxd-hero-02">
             {/* background group */}
             <div className="mxd-hero-02__background">
-              <AutoplayLoopVideo
-                activation="interaction"
-                poster="video/1280x720_hero-02.webp"
-                sources={[
-                  { src: "video/1280x720_hero-02.mp4", type: "video/mp4" },
-                  { src: "video/1280x720_hero-02.webm", type: "video/webm" },
-                ]}
+              <div
+                className="mxd-video-poster"
+                style={{ backgroundImage: 'url("/video/1280x720_hero-02.webp")' }}
+                aria-hidden="true"
               />
               <div className="mxd-hero-02__cover" />
             </div>
@@ -269,8 +264,7 @@ export default function Hero() {
                     </li>
                   </ul>
                 </div>
-                <CommonLoadFade index={0}>
-                  <div className="mxd-hero-02__controls mxd-grid-item loading-fade">
+                  <div className="mxd-hero-02__controls mxd-grid-item">
                     <SmoothAnchorLink
                       className="btn btn-line-icon btn-line-permanent slide-down"
                       targetId="about"
@@ -289,7 +283,6 @@ export default function Hero() {
                       </i>
                     </SmoothAnchorLink>
                   </div>
-                </CommonLoadFade>
               </div>
             </div>
             {/* cover image */}

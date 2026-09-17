@@ -79,3 +79,12 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.mxd-process-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.2em;
+  font: inherit;
+  line-height: 1;
+}

@@ -57,7 +57,7 @@ export default function AboutProcess() {
                     <div className="mxd-process-points__divider top accent" />
                     <div className="mxd-process-points__title">
                       <div className="mxd-process-points__icon accent">
-                        <i className="ph ph-crosshair" />
+                        <span className="mxd-process-symbol" aria-hidden="true">✦</span>
                       </div>
                       <p className="accent">Strategy</p>
                     </div>
@@ -86,7 +86,7 @@ export default function AboutProcess() {
                     />
                     <div className="mxd-process-points__title">
                       <div className="mxd-process-points__icon accent">
-                        <i className="ph ph-bezier-curve" />
+                        <span className="mxd-process-symbol" aria-hidden="true">◇</span>
                       </div>
                       <p className="accent">Design</p>
                     </div>
@@ -115,7 +115,7 @@ export default function AboutProcess() {
                     />
                     <div className="mxd-process-points__title">
                       <div className="mxd-process-points__icon accent">
-                        <i className="ph ph-codesandbox-logo" />
+                        <span className="mxd-process-symbol" aria-hidden="true">{`{ }`}</span>
                       </div>
                       <p className="accent">Development</p>
                     </div>

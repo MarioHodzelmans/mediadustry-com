@@ -50,7 +50,7 @@ export default function TemplateRuntimeProvider({
         pageTransitionRevealCompleted = true;
         transitionTween = gsap.to(transitionEl, {
           y: "-100%",
-          duration: 0.7,
+          duration: 0.35,
           ease: "hop",
           onComplete: () => {
             gsap.set(transitionEl, { pointerEvents: "none" });
@@ -169,6 +169,7 @@ export default function TemplateRuntimeProvider({
           <div
             ref={pageTransitionRef}
             className="mxd-page-transition"
+            style={{ transform: "translateY(-100%)", pointerEvents: "none" }}
             aria-hidden
           />
           <CustomCursor />

@@ -1,5 +1,4 @@
 import UkiyoParallax from "@/components/animations/UkiyoParallax";
-import AutoplayLoopVideo from "@/components/media/AutoplayLoopVideo";
 import BlurSection from "@/components/animations/BlurSection";
 
 export default function ParallaxDividerVideo() {
@@ -21,12 +20,10 @@ export default function ParallaxDividerVideo() {
                   height: "100%",
                 }}
               >
-                <AutoplayLoopVideo
-                  poster="video/1280x720_bus.webp"
-                  sources={[
-                    { type: "video/mp4", src: "video/1280x720_bus.mp4" },
-                    { type: "video/webm", src: "video/1280x720_bus.webm" },
-                  ]}
+                <div
+                  className="mxd-video-poster"
+                  style={{ backgroundImage: 'url("/video/1280x720_bus.webp")' }}
+                  aria-hidden="true"
                 />
               </UkiyoParallax>
             </div>

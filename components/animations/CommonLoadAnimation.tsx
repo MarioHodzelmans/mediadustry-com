@@ -73,13 +73,13 @@ export default function CommonLoadAnimation({
       gsap.set(loadingItems, { opacity: 0 });
       animations.push(
         gsap.to(loadingItems, {
-          duration: 0.3,
+          duration: 0.2,
           ease: "none",
           startAt: { y: 10 },
           y: 0,
           opacity: 1,
-          delay: 0.6,
-          stagger: 0.08,
+          delay: 0.1,
+          stagger: 0.04,
         }),
       );
     }
@@ -88,10 +88,10 @@ export default function CommonLoadAnimation({
       gsap.set(fadeInItems, { opacity: 0 });
       animations.push(
         gsap.to(fadeInItems, {
-          duration: 0.8,
+          duration: 0.3,
           ease: "none",
           opacity: 1,
-          delay: 1,
+          delay: 0.1,
         }),
       );
     }

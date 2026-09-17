@@ -4,7 +4,6 @@ import Header1 from "@/components/headers/Header1";
 import TemplateRuntimeProvider from "@/components/common/TemplateRuntimeProvider";
 import MenuRuntimeShell from "@/components/headers/MenuRuntimeShell";
 import { Metadata } from "next";
-import { cookies } from "next/headers";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -75,20 +74,16 @@ const organizationJsonLd = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  const cookieTheme = cookieStore.get("template.theme")?.value;
-  const initialTheme = cookieTheme === "dark" ? "dark" : "light";
-
   return (
     <html
       lang="nl"
       className="no-touch"
-      color-scheme={initialTheme}
+      color-scheme="light"
       suppressHydrationWarning
     >
       <head>
@@ -110,11 +105,17 @@ export default async function RootLayout({
         }
       >
         <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{document.documentElement.setAttribute('color-scheme',localStorage.getItem('template.theme')==='dark'?'dark':'light')}catch(e){}",
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <TemplateRuntimeProvider>
-          <Header1 initialTheme={initialTheme} />
+          <Header1 initialTheme="light" />
           <MenuRuntimeShell />
           {children}
         </TemplateRuntimeProvider>

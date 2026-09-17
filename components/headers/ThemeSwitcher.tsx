@@ -23,14 +23,21 @@ export default function ThemeSwitcher({
   const [theme, setTheme] = useState<Theme>(initialTheme);
 
   useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
+    let stored: string | null = null;
+    try {
+      stored = window.localStorage.getItem(STORAGE_KEY);
+    } catch {}
+    const preferred = stored === "dark" ? "dark" : "light";
+    applyTheme(preferred);
+    const timer = window.setTimeout(() => setTheme(preferred), 0);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   const toggle = useCallback(() => {
     setTheme((t) => {
       const next = t === "dark" ? "light" : "dark";
       safeLocalSet(STORAGE_KEY, next);
-      document.cookie = `${STORAGE_KEY}=${next}; path=/; max-age=31536000; samesite=lax`;
+      applyTheme(next);
       return next;
     });
   }, []);

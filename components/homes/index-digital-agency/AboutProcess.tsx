@@ -27,7 +27,7 @@ export default function AboutProcess() {
                             className="manifest manifest-m manifest-accent mxd-split-lines active-cursor-permanent"
                             animation="splitLines"
                           >
-                            Vanuit Voerendaal bouwt MEDIADUSTRY aan
+                            MEDIADUSTRY bouwt aan
                             sterke merken en doordachte digitale producten.
                             <span>
                               Wij combineren strategie, design en development voor blijvende impact in het

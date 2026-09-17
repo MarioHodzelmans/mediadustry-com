@@ -65,13 +65,6 @@ const organizationJsonLd = {
   email: "info@mediadustry.com",
   vatID: "NL062176468B02",
   taxID: "54271932",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Tenelenweg 11",
-    postalCode: "6367 VR",
-    addressLocality: "Voerendaal",
-    addressCountry: "NL",
-  },
 };
 
 export default async function RootLayout({

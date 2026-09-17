@@ -20,7 +20,7 @@ export default function SectionTitle() {
                         className="mxd-split-lines"
                         animation="splitLines"
                       >
-                        MEDIADUSTRY in Voerendaal
+                        MEDIADUSTRY — 50.8824° N, 5.9241° E
                       </CommonAnimatedText>
                     </div>
                   </div>
@@ -59,17 +59,11 @@ export default function SectionTitle() {
                               as="li"
                               animation="inUp"
                             >
-                              <a
-                                className="tag tag-s-mobile"
-                                href="https://maps.google.com/?q=Tenelenweg+11+Voerendaal"
-                                target="_blank"
-                              >
-                                Tenelenweg 11,
+                              <span className="tag tag-s-mobile">
+                                50.8824° N
                                 <br />
-                                6367 VR Voerendaal
-                                <br />
-                                The Netherlands
-                              </a>
+                                5.9241° E
+                              </span>
                             </CommonScrollAnimated>
                           </ul>
                           <ul>

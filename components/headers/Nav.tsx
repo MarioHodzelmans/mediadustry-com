@@ -76,7 +76,7 @@ export default function Nav({ navNode, toggleNode, hamburgerNode, setNavNode, re
                 <div className="menu-contact__item"><ul className="menu-contact__list">
                   <li><a ref={contactSlots[0]} className="tag tag-m" href="mailto:info@mediadustry.com"><TextScramble ref={contactRevealSlots[0]} className="mxd-scramble">info@mediadustry.com</TextScramble></a></li>
                 </ul></div>
-                <div className="menu-contact__item"><ul className="menu-contact__list"><li><a ref={contactSlots[2]} className="tag tag-m" href="https://maps.google.com/?q=Tenelenweg+11+Voerendaal" target="_blank"><span ref={contactRevealSlots[2]}>Tenelenweg 11<br />6367 VR Voerendaal<br />The Netherlands</span></a></li></ul></div>
+                <div className="menu-contact__item"><ul className="menu-contact__list"><li><span ref={contactRevealSlots[2]} className="tag tag-m">50.8824° N<br />5.9241° E</span></li></ul></div>
               </div></div>
               <div className="mxd-menu__footer"><p ref={footerSlots[0]}>© {new Date().getFullYear()} MEDIADUSTRY</p><p ref={footerSlots[1]}>KVK 54271932 · BTW NL062176468B02</p></div>
             </div>

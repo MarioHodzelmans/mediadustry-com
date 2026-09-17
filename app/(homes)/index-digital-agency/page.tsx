@@ -9,7 +9,7 @@ import Divider from "@/components/homes/index-digital-agency/Divider";
 export const metadata: Metadata = {
   title: "MEDIADUSTRY | Digital design & development",
   description:
-    "MEDIADUSTRY creëert onderscheidende merken, websites, webshops en digitale ervaringen vanuit Voerendaal.",
+    "MEDIADUSTRY creëert onderscheidende merken, websites, webshops en digitale ervaringen.",
 };
 export default function IndexDigitalAgencyPage() {
   return (

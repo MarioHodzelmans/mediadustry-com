@@ -68,60 +68,6 @@
   min-height: 1100svh;
 }
 
-.mxd-hero-section:has(.mxd-hero-02--static) {
-  min-height: 100svh;
-}
-
-.mxd-hero-02--static .mxd-hero-02__background img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* The original template expected JavaScript to define --vh. Keep the hero
-   full-height before hydration so below-the-fold code is not pulled forward. */
-.mxd-hero-02--static {
-  height: 100svh;
-}
-
-.mxd-menu__footer p {
-  color: #98999d;
-}
-
-.menu-contact__list li a {
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  padding-block: 10px;
-}
-
-.md-menu-toggle {
-  position: fixed; top: 2rem; right: 2rem; z-index: 1200; width: 44px; height: 44px;
-  display: grid; place-content: center; gap: 7px; border: 0; border-radius: 50%;
-  background: var(--base-opp); color: var(--t-opp-bright); cursor: pointer;
-}
-.md-menu-toggle span { width: 18px; height: 2px; background: currentColor; transition: transform .25s ease; }
-.md-menu-toggle.is-open span:first-child { transform: translateY(4.5px) rotate(45deg); }
-.md-menu-toggle.is-open span:last-child { transform: translateY(-4.5px) rotate(-45deg); }
-.md-menu { position: fixed; inset: 0; z-index: 1100; display: grid; grid-template-columns: 1fr 1fr;
-  padding: clamp(2rem, 6vw, 7rem); background: #0f0f0f; color: #fff; opacity: 0; visibility: hidden;
-  transform: translateY(-1rem); transition: opacity .25s ease, transform .25s ease, visibility .25s; }
-.md-menu.is-open { opacity: 1; visibility: visible; transform: none; }
-.md-menu__brand { display: flex; align-items: center; gap: 1rem; align-self: start; font-weight: 700; }
-.md-menu__brand svg { width: 30px; height: 30px; fill: currentColor; }
-.md-menu__links { grid-column: 1 / -1; display: grid; align-content: center; }
-.md-menu__links a { display: flex; align-items: baseline; gap: 2rem; padding: 1rem 0; border-bottom: 1px solid #444; color: inherit; font-size: clamp(3rem, 8vw, 8rem); line-height: 1; }
-.md-menu__links small { font-size: 1.1rem; color: #aaa; }
-.md-menu__contact { align-self: end; display: flex; flex-direction: column; gap: .5rem; color: #fff; }
-.md-menu__contact a { min-height: 44px; display: flex; align-items: center; color: inherit; }
-.md-menu__legal { align-self: end; justify-self: end; color: #aaa; text-align: right; }
-@media (max-width: 767px) {
-  .md-menu-toggle { top: 1.5rem; right: 1.5rem; }
-  .md-menu { grid-template-columns: 1fr; padding: 2rem; }
-  .md-menu__links { grid-column: 1; }
-  .md-menu__legal { justify-self: start; text-align: left; }
-}
-
 .mxd-hero-02__outro {
   visibility: hidden;
 }

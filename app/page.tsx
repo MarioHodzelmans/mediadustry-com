@@ -5,5 +5,5 @@ import IndexDigitalAgencyPage, {
 export { metadata };
 
 export default function Home() {
-  return <main><IndexDigitalAgencyPage /></main>;
+  return <IndexDigitalAgencyPage />;
 }

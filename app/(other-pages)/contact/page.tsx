@@ -17,13 +17,13 @@ export const metadata: Metadata = {
 };
 export default function ContactPage() {
   return (
-    <main>
+    <>
       <div className="mxd-page-content inner-page-content">
         <InnerHeadline />
         <ParallaxDividerImage />
         <SectionTitle />
         <CTAWithMarquee />
       </div>
-    </main>
+    </>
   );
 }

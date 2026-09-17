@@ -1,19 +1,8 @@
 import "@/styles/template.css";
-import { JetBrains_Mono, Manrope } from "next/font/google";
 import Header1 from "@/components/headers/Header1";
 import TemplateRuntimeProvider from "@/components/common/TemplateRuntimeProvider";
 import MenuRuntimeShell from "@/components/headers/MenuRuntimeShell";
 import { Metadata } from "next";
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mediadustry.com"),
@@ -96,11 +85,10 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${manrope.variable} ${jetbrainsMono.variable}`}
         style={
           {
-            "--_font-default": "var(--font-manrope)",
-            "--_font-accent": "var(--font-jetbrains-mono)",
+            "--_font-default": "Arial, Helvetica, sans-serif",
+            "--_font-accent": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
           } as React.CSSProperties
         }
       >

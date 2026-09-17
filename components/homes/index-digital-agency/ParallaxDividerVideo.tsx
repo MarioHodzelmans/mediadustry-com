@@ -22,7 +22,10 @@ export default function ParallaxDividerVideo() {
               >
                 <div
                   className="mxd-video-poster"
-                  style={{ backgroundImage: 'url("/video/1280x720_bus.webp")' }}
+                  style={{
+                    backgroundImage:
+                      'url("/img/mediadustry/human-ai-touch.webp")',
+                  }}
                   aria-hidden="true"
                 />
               </UkiyoParallax>

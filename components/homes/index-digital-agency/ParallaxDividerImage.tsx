@@ -11,6 +11,10 @@ export default function ParallaxDividerImage() {
               scale={1.4}
               speed={1.5}
               externalRAF={false}
+              style={{
+                backgroundImage:
+                  'url("/img/mediadustry/ai-connected-world.webp")',
+              }}
             />
           </div>
         </div>

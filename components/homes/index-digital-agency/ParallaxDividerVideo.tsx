@@ -10,7 +10,7 @@ export default function ParallaxDividerVideo() {
             <div className="mxd-divider__video">
               <UkiyoParallax
                 className="video parallax-video"
-                scale={1.4}
+                scale={1.12}
                 speed={1.5}
                 externalRAF={false}
                 style={{

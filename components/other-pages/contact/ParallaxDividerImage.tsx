@@ -8,9 +8,13 @@ export default function ParallaxDividerImage() {
           <div className="mxd-divider">
             <UkiyoParallax
               className="mxd-divider__image divider-image-9 parallax-img"
-              scale={1.4}
+              scale={1.12}
               speed={1.5}
               externalRAF={false}
+              style={{
+                backgroundImage:
+                  'url("/img/mediadustry/ai-connected-world.webp")',
+              }}
             />
           </div>
         </div>

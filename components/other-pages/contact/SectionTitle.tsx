@@ -20,7 +20,7 @@ export default function SectionTitle() {
                         className="mxd-split-lines"
                         animation="splitLines"
                       >
-                        MEDIADUSTRY — 50.8824° N, 5.9241° E
+                        MEDIADUSTRY
                       </CommonAnimatedText>
                     </div>
                   </div>
@@ -43,48 +43,7 @@ export default function SectionTitle() {
                     <div className="container-fluid p-0">
                       <div className="row g-0">
                         {/* contact data item */}
-                        <div className="col-12 col-md-6 col-xl-5 datalist__item">
-                          <div className="datalist__title">
-                            <CommonScrollAnimated
-                              className="t-bold t-large anim-uni-in-up"
-                              as="p"
-                              animation="inUp"
-                            >
-                              Bezoek &amp; contact
-                            </CommonScrollAnimated>
-                          </div>
-                          <ul>
-                            <CommonScrollAnimated
-                              className="anim-uni-in-up"
-                              as="li"
-                              animation="inUp"
-                            >
-                              <span className="tag tag-s-mobile">
-                                50.8824° N
-                                <br />
-                                5.9241° E
-                              </span>
-                            </CommonScrollAnimated>
-                          </ul>
-                          <ul>
-                            <CommonScrollAnimated
-                              className="anim-uni-in-up"
-                              as="li"
-                              animation="inUp"
-                            >
-                              <a
-                                href="mailto:info@mediadustry.com?subject=Message%20from%20your%20site"
-                                className="tag tag-s-mobile"
-                              >
-                                <TextScramble className="mxd-scramble">
-                                  info@mediadustry.com
-                                </TextScramble>
-                              </a>
-                            </CommonScrollAnimated>
-                          </ul>
-                        </div>
-                        {/* contact data item */}
-                        <div className="col-12 col-md-6 col-xl-5 datalist__item">
+                        <div className="col-12 col-xl-10 datalist__item">
                           <div className="datalist__title">
                             <CommonScrollAnimated
                               className="t-bold t-large t-caption anim-uni-in-up"

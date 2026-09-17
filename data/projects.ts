@@ -1,7 +1,6 @@
 import type { ProjectShowcaseItem, ProjectStackItem } from "@/types/project";
 
 const commonTags = ["Design", "Illustrations", "Packaging", "marketing"];
-const showcaseCommonTags = ["Design", "Illustrations", "Packaging", "Marketing"];
 
 export const brandingStudioProjects: ProjectStackItem[] = [
   {

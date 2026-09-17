@@ -203,14 +203,14 @@ export default function Hero() {
                   <ul className="mxd-socials-line">
                     <li>
                       <CommonLoadItem index={0}>
-                        <a
+                        <Link
                           className="mxd-socials-line__link permanent loading-item"
                           href="/"
                         >
                           <TextScramble className="mxd-scramble">
                             MEDIADUSTRY
                           </TextScramble>
-                        </a>
+                        </Link>
                       </CommonLoadItem>
                     </li>
                     <li>

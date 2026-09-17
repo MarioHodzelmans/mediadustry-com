@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable react-hooks/refs -- GSAP owns these callback/ref registries outside render. */
+
 import Link from "next/link";
 import { useMemo } from "react";
 import type { MutableRefObject } from "react";

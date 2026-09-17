@@ -18,9 +18,61 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mediadustry.com"),
-  title: "MEDIADUSTRY | Digital design & development",
+  applicationName: "MEDIADUSTRY",
+  title: {
+    default: "MEDIADUSTRY | Digital design & development",
+    template: "%s | MEDIADUSTRY",
+  },
   description:
     "Strategie, design en development voor merken die digitaal vooruit willen.",
+  alternates: { canonical: "/" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  manifest: "/manifest.webmanifest",
+  openGraph: {
+    type: "website",
+    locale: "nl_NL",
+    url: "https://mediadustry.com",
+    siteName: "MEDIADUSTRY",
+    title: "MEDIADUSTRY | Digital design & development",
+    description:
+      "Strategie, design en development voor merken die digitaal vooruit willen.",
+    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MEDIADUSTRY | Digital design & development",
+    description:
+      "Strategie, design en development voor merken die digitaal vooruit willen.",
+    images: ["/opengraph-image.png"],
+  },
+  robots: { index: true, follow: true },
+  category: "digital agency",
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "MEDIADUSTRY",
+  url: "https://mediadustry.com",
+  logo: "https://mediadustry.com/icon-512.png",
+  image: "https://mediadustry.com/opengraph-image.png",
+  email: "info@mediadustry.com",
+  telephone: "+31624383998",
+  vatID: "NL062176468B02",
+  taxID: "54271932",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Tenelenweg 11",
+    postalCode: "6367 VR",
+    addressLocality: "Voerendaal",
+    addressCountry: "NL",
+  },
 };
 
 export default async function RootLayout({
@@ -57,6 +109,10 @@ export default async function RootLayout({
           } as React.CSSProperties
         }
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <TemplateRuntimeProvider>
           <Header1 initialTheme={initialTheme} />
           <MenuRuntimeShell />

@@ -61,3 +61,21 @@
 .menu-logo__text {
   white-space: nowrap;
 }
+
+/* Reserve the 10-viewport pinned hero timeline in the server-rendered layout.
+   ScrollTrigger can now pin without injecting late layout space (CLS). */
+.mxd-hero-section:has(.mxd-hero-02) {
+  min-height: 1100svh;
+}
+
+.mxd-hero-02__outro {
+  visibility: hidden;
+}
+
+.mxd-video-poster {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

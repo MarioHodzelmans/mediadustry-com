@@ -47,7 +47,7 @@ export default function Nav({ navNode, toggleNode, hamburgerNode, setNavNode, re
           </div>
           <div className="mxd-menu__media">
             <div ref={g.mediaWrapper} className="menu-media__wrapper">
-              <AutoplayLoopVideo poster="video/900x1280_menu.webp" sources={[{ type: "video/mp4", src: "video/900x1280_menu.mp4" }, { type: "video/webm", src: "video/900x1280_menu.webm" }]} />
+              <AutoplayLoopVideo activation="interaction" poster="video/900x1280_menu.webp" sources={[{ type: "video/mp4", src: "video/900x1280_menu.mp4" }, { type: "video/webm", src: "video/900x1280_menu.webm" }]} />
             </div>
           </div>
           <div className="mxd-menu__navigation">

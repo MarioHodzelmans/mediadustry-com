@@ -24,6 +24,7 @@ export default function Hero() {
             {/* background group */}
             <div className="mxd-hero-02__background">
               <AutoplayLoopVideo
+                activation="interaction"
                 poster="video/1280x720_hero-02.webp"
                 sources={[
                   { src: "video/1280x720_hero-02.mp4", type: "video/mp4" },

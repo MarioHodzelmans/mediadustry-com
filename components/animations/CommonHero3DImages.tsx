@@ -118,7 +118,7 @@ export default function CommonHero3DImages({
     const outroHeaderSplit = SplitText.create(outroHeader, { type: "words, chars" });
     gsap.set(introHeaderSplit.chars, { opacity: 1 });
     gsap.set(outroHeaderSplit.chars, { opacity: 0 });
-    gsap.set(outroHeader, { opacity: 1 });
+    gsap.set(outroHeader, { opacity: 1, visibility: "hidden" });
 
     const getRuntime = () => {
       const screenWidth = window.innerWidth;
@@ -153,7 +153,7 @@ export default function CommonHero3DImages({
       start: "top top",
       end: `+=${window.innerHeight * 10}px`,
       pin: true,
-      pinSpacing: true,
+      pinSpacing: false,
       scrub: 1,
       invalidateOnRefresh: true,
       onRefresh: () => {
@@ -216,6 +216,7 @@ export default function CommonHero3DImages({
 
         if (outroHeaderSplit.chars.length > 0) {
           if (progress >= 0.8 && progress <= 0.95) {
+            gsap.set(outroHeader, { visibility: "visible" });
             const outroRevealProgress = (progress - 0.8) / 0.15;
             const totalChars = outroHeaderSplit.chars.length;
             outroHeaderSplit.chars.forEach((char, index) => {
@@ -232,8 +233,10 @@ export default function CommonHero3DImages({
               }
             });
           } else if (progress < 0.8) {
+            gsap.set(outroHeader, { visibility: "hidden" });
             gsap.set(outroHeaderSplit.chars, { opacity: 0 });
           } else {
+            gsap.set(outroHeader, { visibility: "visible" });
             gsap.set(outroHeaderSplit.chars, { opacity: 1 });
           }
         }

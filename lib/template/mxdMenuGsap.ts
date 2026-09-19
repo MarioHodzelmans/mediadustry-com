@@ -131,7 +131,7 @@ export function bindMxdMenuGsap(
   gsap.set(contactRevealTargets, { display: "inline-block", y: "-114%" });
 
   gsap.set(menuDividers, { clipPath: "inset(0% 100% 0% 0%)" });
-  if (menuArrows.length) gsap.set(menuArrows, { opacity: 0 });
+  gsap.set(menuArrows, { opacity: 0 });
   if (menuMediaWrapper) {
     gsap.set(menuMediaWrapper, { scale: 1.4 });
   }
@@ -175,7 +175,7 @@ export function bindMxdMenuGsap(
     ]).forEach((line) => gsap.set(line, { y: "-114%" }));
     gsap.set(contactRevealTargets, { display: "inline-block", y: "-114%" });
     gsap.set(menuDividers, { clipPath: "inset(0% 100% 0% 0%)" });
-    if (menuArrows.length) gsap.set(menuArrows, { opacity: 0 });
+    gsap.set(menuArrows, { opacity: 0 });
 
     hamburgerIcon?.classList.remove("active");
     resetSubmenus(menuRows);
@@ -232,7 +232,7 @@ export function bindMxdMenuGsap(
         ]).forEach((line) => gsap.set(line, { y: "-114%" }));
         gsap.set(contactRevealTargets, { display: "inline-block", y: "-114%" });
         gsap.set(menuDividers, { clipPath: "inset(0% 100% 0% 0%)" });
-        if (menuArrows.length) gsap.set(menuArrows, { opacity: 0 });
+        gsap.set(menuArrows, { opacity: 0 });
         if (menuMediaWrapper) {
           gsap.set(menuMediaWrapper, { scale: 1.4 });
         }
@@ -331,15 +331,12 @@ export function bindMxdMenuGsap(
           headerSplits.flatMap((s) => s.lines),
           { y: "0%", stagger: -0.05, ease: "hop", duration: 0.75 },
           0.45,
-        );
-
-      if (menuArrows.length) {
-        tl.to(
+        )
+        .to(
           menuArrows,
           { opacity: 1, stagger: -0.05, ease: "hop", duration: 0.75 },
           0.45,
         );
-      }
 
       isMenuOpen = true;
     } else {

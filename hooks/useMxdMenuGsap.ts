@@ -12,12 +12,12 @@ import {
 } from "@/lib/template/mxdMenuGsap";
 
 const N_HEADER = 3;
-const N_MAIN_SPANS = 4;
-const N_CONTACT = 3;
-const N_FOOTER = 2;
-const N_DIVIDERS = 3;
-const N_ARROWS = 0;
-const N_ROWS = 2;
+const N_MAIN_SPANS = 10;
+const N_CONTACT = 8;
+const N_FOOTER = 4;
+const N_DIVIDERS = 6;
+const N_ARROWS = 4;
+const N_ROWS = 5;
 
 function compact<T>(arr: (T | null | undefined)[]): T[] {
   return arr.filter((x): x is T => x != null);
@@ -27,11 +27,22 @@ function buildMenuRows(
   lis: (HTMLLIElement | null)[],
   toggles: (HTMLDivElement | null)[],
   subs: (HTMLUListElement | null)[],
-): MxdMenuGsapMenuRow[] {
-  return toggles.flatMap((toggle, index) => {
-    const item = lis[index];
-    return item && toggle ? [{ item, toggle, submenu: subs[index] }] : [];
-  });
+): MxdMenuGsapMenuRow[] | null {
+  if (
+    lis.length !== N_ROWS ||
+    toggles.length !== N_ROWS ||
+    subs.length !== N_ROWS
+  ) {
+    return null;
+  }
+  const rows: MxdMenuGsapMenuRow[] = [];
+  for (let i = 0; i < N_ROWS; i++) {
+    const item = lis[i];
+    const toggle = toggles[i];
+    if (!item || !toggle) return null;
+    rows.push({ item, toggle, submenu: subs[i] });
+  }
+  return rows;
 }
 
 function collectElements(
@@ -74,7 +85,15 @@ function collectElements(
   const divs = compact(dividers.current);
   const ars = compact(arrows.current);
 
-  if (!headerEls.length || !mainSpans.length || !footers.length) {
+  if (
+    headerEls.length !== N_HEADER ||
+    mainSpans.length !== N_MAIN_SPANS ||
+    contacts.length !== N_CONTACT ||
+    contactRevealEls.length !== N_CONTACT ||
+    footers.length !== N_FOOTER ||
+    divs.length !== N_DIVIDERS ||
+    ars.length !== N_ARROWS
+  ) {
     return null;
   }
 
@@ -83,6 +102,8 @@ function collectElements(
     menuToggles.current,
     menuSubmenus.current,
   );
+  if (!rows) return null;
+
   return {
     nav,
     toggle,

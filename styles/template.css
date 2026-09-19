@@ -88,12 +88,3 @@
   font: inherit;
   line-height: 1;
 }
-
-.md-coordinates {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-align: left;
-  text-overflow: clip;
-}

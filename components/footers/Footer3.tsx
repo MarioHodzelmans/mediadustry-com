@@ -24,7 +24,7 @@ export default function Footer3({ name = "MEDIADUSTRY" }: { name?: string }) {
             <div className="footer-blocks__column mxd-grid-item justify-start">
               <div className="footer-blocks__data justify-start">
                 <p className="footer-data"><CommonScrollAnimated className="anim-uni-slide-down" href="mailto:info@mediadustry.com" as="a" animation="slideDownLine"><TextScramble className="mxd-scramble">info@mediadustry.com</TextScramble></CommonScrollAnimated></p>
-                <CommonScrollAnimated className="footer-data anim-uni-slide-down" as="p" animation="slideDownLine"><span className="md-coordinates">50.8824° N · 5.9241° E</span></CommonScrollAnimated>
+                <CommonScrollAnimated className="footer-data anim-uni-slide-down" as="p" animation="slideDownLine"><span>50.8824° N · 5.9241° E</span></CommonScrollAnimated>
               </div>
             </div>
             <div className="footer-blocks__column mxd-grid-item justify-end">

@@ -8500,6 +8500,11 @@ form textarea:required:valid {
 /* ------------------------------------------------*/
 /* Hero - Hero #02 Start */
 /* ------------------------------------------------*/
+body:has(.showcase-page) > .mxd-header,
+body:has(.showcase-page) > .mxd-menu__contain,
+body:has(.showcase-page) > .mxd-menu {
+  display: none;
+}
 .mxd-hero-02 {
   background-color: var(--dark);
   color: var(--light);
@@ -8519,6 +8524,10 @@ form textarea:required:valid {
   width: 100%;
   height: 100%;
 }
+.mxd-hero-02__kinetic {
+  position: absolute;
+  inset: 0;
+}
 .mxd-hero-02__background video {
   position: absolute;
   width: 100%;
@@ -8535,8 +8544,12 @@ form textarea:required:valid {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(var(--nl-black-rgb), 0.4);
+  background-color: rgba(var(--nl-black-rgb), 0.12);
   mix-blend-mode: multiply;
+}
+[color-scheme="light"] .mxd-hero-02__cover {
+  background-color: rgba(var(--base-rgb--light), 0.06);
+  mix-blend-mode: normal;
 }
 
 .mxd-hero-02__images,
@@ -8619,6 +8632,73 @@ form textarea:required:valid {
 
 .mxd-hero-02__intro {
   z-index: 1;
+}
+.mxd-hero-02__intro h1 > span {
+  display: block;
+  white-space: nowrap;
+}
+[color-scheme="dark"] .mxd-hero-02__intro {
+  mix-blend-mode: normal;
+}
+[color-scheme="light"] .mxd-hero-02__intro {
+  mix-blend-mode: normal;
+}
+[color-scheme="dark"] .mxd-hero-02__intro h1 {
+  color: #ffffff;
+}
+[color-scheme="light"] .mxd-hero-02__intro h1 {
+  color: #000000;
+}
+@media only screen and (max-width: 767px) {
+  .mxd-hero-02__kinetic {
+    background-color: #07080d;
+    background-image:
+      radial-gradient(circle at 28% 45%, rgba(85, 112, 245, 0.38), transparent 43%),
+      radial-gradient(circle at 62% 45%, rgba(197, 66, 218, 0.3), transparent 42%),
+      radial-gradient(circle at 78% 62%, rgba(255, 118, 71, 0.22), transparent 38%);
+  }
+  .mxd-hero-02__kinetic::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.075) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.075) 1px, transparent 1px);
+    background-size: 38px 38px;
+    -webkit-mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.72));
+    mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.72));
+  }
+  [color-scheme="light"] .mxd-hero-02__kinetic {
+    background-color: #f2efed;
+    background-image:
+      radial-gradient(circle at 25% 43%, rgba(85, 112, 245, 0.2), transparent 42%),
+      radial-gradient(circle at 61% 45%, rgba(197, 66, 218, 0.15), transparent 40%),
+      radial-gradient(circle at 80% 61%, rgba(255, 118, 71, 0.14), transparent 36%);
+  }
+  [color-scheme="light"] .mxd-hero-02__kinetic::after {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.09) 1px, transparent 1px);
+  }
+  .mxd-hero-02__intro {
+    z-index: 20;
+    mix-blend-mode: normal;
+    padding-inline: 2.4rem;
+  }
+  .mxd-hero-02__intro h1 {
+    font-size: clamp(3.8rem, 11vw, 5.2rem);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+  }
+  [color-scheme="dark"] .mxd-hero-02__intro h1 {
+    color: #ffffff;
+  }
+  [color-scheme="light"] .mxd-hero-02__intro h1 {
+    color: #000000;
+  }
+  .mxd-hero-02__cover {
+    display: none;
+  }
 }
 @media only screen and (min-width: 1200px) {
   .mxd-hero-02__intro h1 {

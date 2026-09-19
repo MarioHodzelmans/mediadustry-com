@@ -13,6 +13,7 @@ import CommonHero3DImages, {
   CommonHero3DIntroText,
   CommonHero3DOutroText,
 } from "@/components/animations/CommonHero3DImages";
+import KineticGrid from "@/components/ui/KineticGrid";
 export default function Hero() {
   return (
     <CommonLoadAnimation>
@@ -21,11 +22,7 @@ export default function Hero() {
           <CommonHero3DImages className="mxd-hero-02">
             {/* background group */}
             <div className="mxd-hero-02__background">
-              <div
-                className="mxd-video-poster"
-                style={{ backgroundImage: 'url("/video/1280x720_hero-02.webp")' }}
-                aria-hidden="true"
-              />
+              <KineticGrid className="mxd-hero-02__kinetic" />
               <div className="mxd-hero-02__cover" />
             </div>
             {/* scroll images */}
@@ -38,7 +35,7 @@ export default function Hero() {
               >
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_1.webp"
+                  src="/img/cta/mediadustry-services/service-01.webp"
                   width={1280}
                   height={800}
                 />
@@ -46,7 +43,7 @@ export default function Hero() {
               <CommonHero3DImage index={1} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_2.webp"
+                  src="/img/cta/mediadustry-services/service-02.webp"
                   width={1280}
                   height={800}
                 />
@@ -54,7 +51,7 @@ export default function Hero() {
               <CommonHero3DImage index={2} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_3.webp"
+                  src="/img/cta/mediadustry-services/service-03.webp"
                   width={1280}
                   height={800}
                 />
@@ -62,7 +59,7 @@ export default function Hero() {
               <CommonHero3DImage index={3} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_4.webp"
+                  src="/img/cta/mediadustry-services/service-04.webp"
                   width={1280}
                   height={800}
                 />
@@ -70,7 +67,7 @@ export default function Hero() {
               <CommonHero3DImage index={4} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_5.webp"
+                  src="/img/cta/mediadustry-services/service-05.webp"
                   width={1280}
                   height={800}
                 />
@@ -78,7 +75,7 @@ export default function Hero() {
               <CommonHero3DImage index={5} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_6.webp"
+                  src="/img/cta/mediadustry-services/service-06.webp"
                   width={1280}
                   height={800}
                 />
@@ -86,7 +83,7 @@ export default function Hero() {
               <CommonHero3DImage index={6} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_7.webp"
+                  src="/img/cta/mediadustry-services/service-07.webp"
                   width={1280}
                   height={800}
                 />
@@ -94,7 +91,7 @@ export default function Hero() {
               <CommonHero3DImage index={7} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_8.webp"
+                  src="/img/cta/mediadustry-services/service-08.webp"
                   width={1280}
                   height={800}
                 />
@@ -102,7 +99,7 @@ export default function Hero() {
               <CommonHero3DImage index={8} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_9.webp"
+                  src="/img/cta/mediadustry-services/service-09.webp"
                   width={1280}
                   height={800}
                 />
@@ -110,7 +107,7 @@ export default function Hero() {
               <CommonHero3DImage index={9} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_10.webp"
+                  src="/img/cta/mediadustry-services/service-10.webp"
                   width={1280}
                   height={800}
                 />
@@ -118,7 +115,7 @@ export default function Hero() {
               <CommonHero3DImage index={10} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_11.webp"
+                  src="/img/cta/mediadustry-services/service-11.webp"
                   width={1280}
                   height={800}
                 />
@@ -126,7 +123,7 @@ export default function Hero() {
               <CommonHero3DImage index={11} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_12.webp"
+                  src="/img/cta/mediadustry-services/service-12.webp"
                   width={1280}
                   height={800}
                 />
@@ -134,7 +131,7 @@ export default function Hero() {
               <CommonHero3DImage index={12} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_13.webp"
+                  src="/img/cta/mediadustry-services/service-01.webp"
                   width={1280}
                   height={800}
                 />
@@ -142,7 +139,7 @@ export default function Hero() {
               <CommonHero3DImage index={13} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_14.webp"
+                  src="/img/cta/mediadustry-services/service-02.webp"
                   width={1280}
                   height={800}
                 />
@@ -150,7 +147,7 @@ export default function Hero() {
               <CommonHero3DImage index={14} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_15.webp"
+                  src="/img/cta/mediadustry-services/service-03.webp"
                   width={1280}
                   height={800}
                 />
@@ -158,7 +155,7 @@ export default function Hero() {
               <CommonHero3DImage index={15} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_16.webp"
+                  src="/img/cta/mediadustry-services/service-04.webp"
                   width={1280}
                   height={800}
                 />
@@ -166,7 +163,7 @@ export default function Hero() {
               <CommonHero3DImage index={16} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_17.webp"
+                  src="/img/cta/mediadustry-services/service-05.webp"
                   width={1280}
                   height={800}
                 />
@@ -174,7 +171,7 @@ export default function Hero() {
               <CommonHero3DImage index={17} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_18.webp"
+                  src="/img/cta/mediadustry-services/service-06.webp"
                   width={1280}
                   height={800}
                 />
@@ -182,7 +179,7 @@ export default function Hero() {
               <CommonHero3DImage index={18} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_19.webp"
+                  src="/img/cta/mediadustry-services/service-07.webp"
                   width={1280}
                   height={800}
                 />
@@ -190,7 +187,7 @@ export default function Hero() {
               <CommonHero3DImage index={19} className="hero-02__img">
                 <Image
                   alt="MEDIADUSTRY creatief werk"
-                  src="/img/hero/hero-03_20.webp"
+                  src="/img/cta/mediadustry-services/service-08.webp"
                   width={1280}
                   height={800}
                 />
@@ -245,17 +242,6 @@ export default function Hero() {
                         </span>
                       </CommonLoadItem>
                     </li>
-                    <li>
-                      <CommonLoadItem index={4}>
-                        <span
-                          className="mxd-socials-line__link permanent loading-item"
-                        >
-                          <TextScramble className="mxd-scramble">
-                            Shopify
-                          </TextScramble>
-                        </span>
-                      </CommonLoadItem>
-                    </li>
                   </ul>
                 </div>
                   <div className="mxd-hero-02__controls mxd-grid-item">
@@ -293,7 +279,8 @@ export default function Hero() {
             <div className="mxd-hero-02__intro">
               <CommonHero3DIntroText>
                 <h1 className="medium permanent">
-                  Strategie, AI &amp; digitale impact
+                  <span>Strategie, AI</span>
+                  <span>&amp; Digital impact.</span>
                 </h1>
               </CommonHero3DIntroText>
             </div>

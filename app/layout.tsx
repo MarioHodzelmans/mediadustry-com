@@ -83,24 +83,7 @@ export default async function RootLayout({
       color-scheme={initialTheme}
       suppressHydrationWarning
     >
-      <head>
-        <link
-          rel="preload"
-          href="/video/1280x720_hero-02.webp"
-          as="image"
-          type="image/webp"
-          fetchPriority="high"
-        />
-      </head>
-      <body
-        className={`${manrope.variable} ${jetbrainsMono.variable}`}
-        style={
-          {
-            "--_font-default": "var(--font-manrope)",
-            "--_font-accent": "var(--font-jetbrains-mono)",
-          } as React.CSSProperties
-        }
-      >
+      <body className={`${manrope.variable} ${jetbrainsMono.variable}`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

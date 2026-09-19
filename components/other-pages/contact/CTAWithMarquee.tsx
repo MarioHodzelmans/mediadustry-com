@@ -70,8 +70,8 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_01.webp"
+                            alt="Lichtpad door een digitaal berglandschap"
+                            src="/img/cta/mediadustry-services/service-01.webp"
                             width={1200}
                             height={1200}
                           />
@@ -86,10 +86,10 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_02.webp"
-                            width={1200}
-                            height={685}
+                            alt="Abstract monolithisch merkobject"
+                            src="/img/cta/mediadustry-services/service-02.webp"
+                            width={1600}
+                            height={900}
                           />
                         </div>
                       </div>
@@ -102,10 +102,10 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_03.webp"
-                            width={700}
-                            height={700}
+                            alt="Gelaagde digitale interfaces"
+                            src="/img/cta/mediadustry-services/service-03.webp"
+                            width={1200}
+                            height={1200}
                           />
                         </div>
                       </div>
@@ -118,9 +118,9 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_04.webp"
-                            width={737}
+                            alt="Toekomstgericht webdesign in meerdere schermlagen"
+                            src="/img/cta/mediadustry-services/service-04.webp"
+                            width={800}
                             height={1200}
                           />
                         </div>
@@ -134,8 +134,8 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_05.webp"
+                            alt="Digitale sneaker in een verlichte portal"
+                            src="/img/cta/mediadustry-services/service-05.webp"
                             width={800}
                             height={1200}
                           />
@@ -150,8 +150,8 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_06.webp"
+                            alt="Abstract golvend digitaal materiaal"
+                            src="/img/cta/mediadustry-services/service-06.webp"
                             width={1200}
                             height={1200}
                           />
@@ -166,8 +166,8 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_07.webp"
+                            alt="Explosieve compositie van digitale beeldlagen"
+                            src="/img/cta/mediadustry-services/service-07.webp"
                             width={1200}
                             height={900}
                           />
@@ -182,9 +182,9 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_08.webp"
-                            width={737}
+                            alt="Bewegende neonlichtlijnen"
+                            src="/img/cta/mediadustry-services/service-08.webp"
+                            width={800}
                             height={1200}
                           />
                         </div>
@@ -198,8 +198,8 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_09.webp"
+                            alt="Wereldwijd digitaal netwerk"
+                            src="/img/cta/mediadustry-services/service-09.webp"
                             width={800}
                             height={1200}
                           />
@@ -214,10 +214,10 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_10.webp"
+                            alt="Projectie van een digitaal landschap"
+                            src="/img/cta/mediadustry-services/service-10.webp"
                             width={1200}
-                            height={873}
+                            height={900}
                           />
                         </div>
                       </div>
@@ -230,8 +230,8 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_01.webp"
+                            alt="Camera voor digitale fotografie en content"
+                            src="/img/cta/mediadustry-services/service-11.webp"
                             width={1200}
                             height={1200}
                           />
@@ -246,10 +246,10 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_02.webp"
-                            width={1200}
-                            height={685}
+                            alt="Abstract driedimensionaal digitaal object"
+                            src="/img/cta/mediadustry-services/service-12.webp"
+                            width={1600}
+                            height={900}
                           />
                         </div>
                       </div>
@@ -262,10 +262,10 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_03.webp"
-                            width={700}
-                            height={700}
+                            alt="Gelaagde digitale interfaces"
+                            src="/img/cta/mediadustry-services/service-03.webp"
+                            width={1200}
+                            height={1200}
                           />
                         </div>
                       </div>
@@ -278,9 +278,9 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_04.webp"
-                            width={737}
+                            alt="Toekomstgericht webdesign in meerdere schermlagen"
+                            src="/img/cta/mediadustry-services/service-04.webp"
+                            width={800}
                             height={1200}
                           />
                         </div>
@@ -294,8 +294,8 @@ export default function CTAWithMarquee() {
                         </div>
                         <div className="marquee__image">
                           <Image
-                            alt=""
-                            src="/img/cta/mar_05.webp"
+                            alt="Digitale sneaker in een verlichte portal"
+                            src="/img/cta/mediadustry-services/service-05.webp"
                             width={800}
                             height={1200}
                           />

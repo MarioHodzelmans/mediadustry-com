@@ -4,6 +4,12 @@
 @import "../public/css/plugins.css";
 @import "../public/css/main.css";
 @import "./menu-open.css";
+
+body {
+  --_font-default: var(--font-manrope);
+  --_font-accent: var(--font-jetbrains-mono);
+}
+
 .image-auto {
   /* width: auto !important; */
   height: auto !important;
@@ -72,6 +78,33 @@
   visibility: hidden;
 }
 
+/* SplitText creates nested spans/divs that carried the template's permanent
+   white tint. Keep every rendered hero letter strictly theme-correct. */
+[color-scheme="light"] .mxd-hero-02__intro h1,
+[color-scheme="light"] .mxd-hero-02__intro h1 *,
+[color-scheme="light"] .mxd-hero-02__outro h2,
+[color-scheme="light"] .mxd-hero-02__outro h2 * {
+  color: #000000 !important;
+}
+
+[color-scheme="dark"] .mxd-hero-02__intro h1,
+[color-scheme="dark"] .mxd-hero-02__intro h1 *,
+[color-scheme="dark"] .mxd-hero-02__outro h2,
+[color-scheme="dark"] .mxd-hero-02__outro h2 * {
+  color: #ffffff !important;
+}
+
+/* Showcase pages use the same site header, theme switcher and overlay menu. */
+body:has(.showcase-page) > .mxd-header {
+  display: flex;
+  z-index: 40;
+}
+
+body:has(.showcase-page) > .mxd-menu__contain,
+body:has(.showcase-page) > .mxd-menu {
+  display: block;
+}
+
 .mxd-video-poster {
   width: 100%;
   height: 100%;
@@ -96,4 +129,214 @@
   white-space: nowrap;
   text-align: left;
   text-overflow: clip;
+}
+
+/* Shared MEDIADUSTRY header and menu --------------------------------------- */
+:root {
+  --md-shell-gutter: 3rem;
+}
+
+@media only screen and (min-width: 768px) {
+  :root { --md-shell-gutter: 6rem; }
+}
+
+@media only screen and (min-width: 1600px) {
+  :root { --md-shell-gutter: 10rem; }
+}
+
+/* One position on every route; the active theme alone determines contrast. */
+.mxd-header {
+  left: var(--md-shell-gutter);
+  right: calc(var(--md-shell-gutter) + 7rem);
+  width: auto;
+  padding-top: 3rem;
+  z-index: 10;
+}
+
+.mxd-header .mxd-logo,
+.mxd-header .mxd-logo__text,
+.mxd-header .mxd-color-switcher {
+  color: var(--t-bright);
+}
+
+.mxd-header__controls { padding-right: 0; }
+
+.mxd-menu__contain {
+  right: var(--md-shell-gutter);
+  mix-blend-mode: normal;
+}
+
+.hamburger__line { background-color: var(--t-bright); }
+
+/* Oversized display words stay inside their own contact/footer viewport. */
+.fullwidth-text__wrap,
+.fw-mark__wrap {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* The open menu follows, rather than inverts, the selected site theme. */
+[color-scheme="light"] .mxd-menu {
+  --md-menu-bg: #eeeae8;
+  --md-menu-fg: #0f0f0f;
+  --md-menu-muted: #575960;
+  --md-menu-rule: rgba(15, 15, 15, 0.22);
+}
+
+[color-scheme="dark"] .mxd-menu {
+  --md-menu-bg: #0f0f0f;
+  --md-menu-fg: #ffffff;
+  --md-menu-muted: #a1a4ad;
+  --md-menu-rule: rgba(255, 255, 255, 0.24);
+}
+
+.mxd-menu__overlay,
+.mxd-menu__content,
+.mxd-menu__navigation,
+.mxd-menu__inner {
+  background-color: var(--md-menu-bg);
+  color: var(--md-menu-fg);
+}
+
+.mxd-menu__media { display: none !important; }
+.mxd-menu__navigation { flex: 1 1 100%; }
+
+.mxd-menu__logo {
+  left: var(--md-shell-gutter);
+}
+
+.mxd-menu__logo .menu-logo,
+.mxd-menu__logo .menu-logo__text,
+.mxd-menu__logo .menu-logo svg {
+  color: var(--md-menu-fg);
+  fill: currentColor;
+  mix-blend-mode: normal;
+}
+
+.mxd-menu__inner {
+  padding-left: var(--md-shell-gutter);
+  padding-right: var(--md-shell-gutter);
+  padding-bottom: 3rem;
+}
+
+.mxd-menu__caption p,
+.main-menu__number,
+.menu-contact__label,
+.mxd-menu__footer {
+  color: var(--md-menu-muted);
+}
+
+.main-menu__item,
+.main-menu__caption,
+.main-menu__link,
+.menu-contact__value {
+  color: var(--md-menu-fg);
+}
+
+.main-menu__divider { background-color: var(--md-menu-rule); }
+
+.mxd-menu__caption {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.mxd-menu__shadow,
+.mxd-menu__shadow.shadow-top {
+  background: linear-gradient(to bottom, var(--md-menu-bg) 0%, var(--md-menu-bg) 24%, transparent 100%);
+}
+
+.menu-contact {
+  display: grid;
+  gap: 2.4rem;
+  margin-top: 5rem;
+  padding: 0;
+}
+
+.menu-contact__item {
+  border-bottom: 1px solid var(--md-menu-rule);
+  gap: 0.8rem;
+  min-width: 0;
+  padding-bottom: 1.8rem;
+}
+
+.menu-contact__label {
+  font: normal 600 1.1rem/1 var(--_font-accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.menu-contact__value {
+  display: block;
+  font: normal 600 clamp(1.6rem, 1.5vw, 2.2rem)/1.25 var(--_font-default);
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+.menu-contact__value.md-coordinates {
+  overflow: visible;
+  text-overflow: unset;
+  white-space: nowrap;
+}
+
+.mxd-menu__footer {
+  display: flex;
+  flex: 0 0 auto;
+  font: normal 600 1.1rem/1.2 var(--_font-accent);
+  justify-content: space-between;
+  letter-spacing: 0.04em;
+  margin-top: auto;
+  padding-top: 4rem;
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 1200px) {
+  .mxd-menu__caption {
+    padding-left: calc(var(--md-shell-gutter) + 23rem);
+    padding-right: calc(var(--md-shell-gutter) + 7rem);
+  }
+
+  .mxd-menu__inner {
+    padding-left: var(--md-shell-gutter);
+    padding-right: var(--md-shell-gutter);
+    padding-bottom: 3rem;
+  }
+
+  .mxd-menu__left {
+    padding-right: clamp(3rem, 5vw, 8rem);
+    width: 66.67%;
+  }
+
+  .mxd-menu__right {
+    padding-left: clamp(3rem, 5vw, 8rem);
+    padding-right: 7rem;
+    padding-top: 14rem;
+    width: 33.33%;
+  }
+
+  .menu-contact {
+    gap: 2.8rem;
+    margin-top: 0;
+  }
+
+  .mxd-menu__footer {
+    bottom: 3rem;
+    left: var(--md-shell-gutter);
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: calc(var(--md-shell-gutter) + 7rem);
+    z-index: 3;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .mxd-menu__inner {
+    padding-bottom: 2.5rem;
+    padding-top: 10rem;
+  }
+
+  .mxd-menu__caption { display: none; }
+  .menu-contact { margin-top: 5rem; }
+  .menu-contact__value { font-size: 1.7rem; }
+  .mxd-menu__footer { padding-bottom: 1rem; }
 }

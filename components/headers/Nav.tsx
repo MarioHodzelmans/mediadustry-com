@@ -8,6 +8,7 @@ import type { MutableRefObject } from "react";
 import TextScramble from "@/components/animations/TextScramble";
 import { useMxdMenuGsap, useMxdMenuGsapRefs } from "@/hooks/useMxdMenuGsap";
 import MediadustryMark from "@/components/brand/MediadustryMark";
+import { usePathname } from "next/navigation";
 
 function makeSlotters<T>(arr: MutableRefObject<(T | null)[]>, len: number) {
   return Array.from({ length: len }, (_, index) => (element: T | null) => {
@@ -24,12 +25,15 @@ type NavProps = {
 };
 
 export default function Nav({ navNode, toggleNode, hamburgerNode, setNavNode, registerMenuReset }: NavProps) {
+  const pathname = usePathname();
+  const homeIsActive = pathname === "/";
+  const contactIsActive = pathname === "/contact" || pathname.startsWith("/contact/");
   const g = useMxdMenuGsapRefs();
   const headerSlots = useMemo(() => makeSlotters(g.headerSplitTargets, 3), [g]);
   const mainSlots = useMemo(() => makeSlotters(g.mainMenuLinkSpans, 4), [g]);
-  const contactSlots = useMemo(() => makeSlotters(g.contactAnchors, 3), [g]);
-  const contactRevealSlots = useMemo(() => makeSlotters(g.contactRevealTargets, 3), [g]);
-  const footerSlots = useMemo(() => makeSlotters(g.footerSplitTargets, 2), [g]);
+  const contactSlots = useMemo(() => makeSlotters(g.contactAnchors, 4), [g]);
+  const contactRevealSlots = useMemo(() => makeSlotters(g.contactRevealTargets, 4), [g]);
+  const footerSlots = useMemo(() => makeSlotters(g.footerSplitTargets, 1), [g]);
   const dividerSlots = useMemo(() => makeSlotters(g.dividers, 3), [g]);
   const liSlots = useMemo(() => makeSlotters(g.menuItemLis, 2), [g]);
 
@@ -61,24 +65,38 @@ export default function Nav({ navNode, toggleNode, hamburgerNode, setNavNode, re
               <div className="mxd-menu__caption"><p ref={headerSlots[2]}>Strategie, design en development<br />voor digitale vooruitgang.</p></div>
               <div className="mxd-menu__left"><div className="main-menu"><div className="main-menu__content">
                 <ul id="main-menu" className="main-menu__accordion">
-                  <li ref={liSlots[0]} className="main-menu__item">
+                  <li ref={liSlots[0]} className={`main-menu__item${homeIsActive ? " main-menu__item--current" : ""}`}>
                     <div ref={dividerSlots[0]} className="main-menu__divider divider-top" />
-                    <Link className="main-menu__link" href="/"><span ref={mainSlots[0]} className="main-menu__number">/ 01</span><span ref={mainSlots[1]} className="main-menu__caption">Home</span></Link>
+                    <Link className="main-menu__link" href="/" aria-current={homeIsActive ? "page" : undefined}><span ref={mainSlots[0]} className="main-menu__number">/ 01</span><span ref={mainSlots[1]} className="main-menu__caption">Home</span></Link>
                     <div ref={dividerSlots[1]} className="main-menu__divider divider-bottom" />
                   </li>
-                  <li ref={liSlots[1]} className="main-menu__item">
-                    <Link className="main-menu__link" href="/contact"><span ref={mainSlots[2]} className="main-menu__number">/ 02</span><span ref={mainSlots[3]} className="main-menu__caption">Contact</span></Link>
+                  <li ref={liSlots[1]} className={`main-menu__item${contactIsActive ? " main-menu__item--current" : ""}`}>
+                    <Link className="main-menu__link" href="/contact" aria-current={contactIsActive ? "page" : undefined}><span ref={mainSlots[2]} className="main-menu__number">/ 02</span><span ref={mainSlots[3]} className="main-menu__caption">Contact</span></Link>
                     <div ref={dividerSlots[2]} className="main-menu__divider divider-bottom" />
                   </li>
                 </ul>
               </div></div></div>
-              <div className="mxd-menu__right"><div className="menu-contact">
-                <div className="menu-contact__item"><ul className="menu-contact__list">
-                  <li><a ref={contactSlots[0]} className="tag tag-m" href="mailto:info@mediadustry.com"><TextScramble ref={contactRevealSlots[0]} className="mxd-scramble">info@mediadustry.com</TextScramble></a></li>
-                </ul></div>
-                <div className="menu-contact__item"><ul className="menu-contact__list"><li><span ref={contactRevealSlots[2]} className="tag tag-m md-coordinates">50.8824° N · 5.9241° E</span></li></ul></div>
-              </div></div>
-              <div className="mxd-menu__footer"><p ref={footerSlots[0]}>© {new Date().getFullYear()} MEDIADUSTRY</p><p ref={footerSlots[1]}>KVK 54271932 · BTW NL062176468B02</p></div>
+              <div className="mxd-menu__right">
+                <div className="menu-contact" aria-label="Bedrijfsgegevens">
+                  <div className="menu-contact__item">
+                    <span className="menu-contact__label">E-mail</span>
+                    <a ref={contactSlots[0]} className="menu-contact__value" href="mailto:info@mediadustry.com"><TextScramble ref={contactRevealSlots[0]} className="mxd-scramble">info@mediadustry.com</TextScramble></a>
+                  </div>
+                  <div className="menu-contact__item">
+                    <span className="menu-contact__label">Coördinaten</span>
+                    <span ref={contactRevealSlots[1]} className="menu-contact__value md-coordinates">50.8824° N · 5.9241° E</span>
+                  </div>
+                  <div className="menu-contact__item">
+                    <span className="menu-contact__label">KVK</span>
+                    <span ref={contactRevealSlots[2]} className="menu-contact__value">54271932</span>
+                  </div>
+                  <div className="menu-contact__item">
+                    <span className="menu-contact__label">BTW</span>
+                    <span ref={contactRevealSlots[3]} className="menu-contact__value">NL062176468B02</span>
+                  </div>
+                </div>
+              </div>
+              <div className="mxd-menu__footer"><p ref={footerSlots[0]}>© {new Date().getFullYear()} MEDIADUSTRY</p></div>
             </div>
           </div>
         </div>

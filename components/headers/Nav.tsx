@@ -3,6 +3,7 @@
 /* eslint-disable react-hooks/refs -- GSAP owns these callback/ref registries outside render. */
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import type { MutableRefObject } from "react";
 import TextScramble from "@/components/animations/TextScramble";
@@ -24,6 +25,7 @@ type NavProps = {
 };
 
 export default function Nav({ navNode, toggleNode, hamburgerNode, setNavNode, registerMenuReset }: NavProps) {
+  const pathname = usePathname();
   const g = useMxdMenuGsapRefs();
   const headerSlots = useMemo(() => makeSlotters(g.headerSplitTargets, 3), [g]);
   const mainSlots = useMemo(() => makeSlotters(g.mainMenuLinkSpans, 4), [g]);
@@ -61,13 +63,13 @@ export default function Nav({ navNode, toggleNode, hamburgerNode, setNavNode, re
               <div className="mxd-menu__caption"><p ref={headerSlots[2]}>Strategie, design en development<br />voor digitale vooruitgang.</p></div>
               <div className="mxd-menu__left"><div className="main-menu"><div className="main-menu__content">
                 <ul id="main-menu" className="main-menu__accordion">
-                  <li ref={liSlots[0]} className="main-menu__item">
+                  <li ref={liSlots[0]} className={`main-menu__item ${pathname === "/" ? "main-menu__item--current" : ""}`}>
                     <div ref={dividerSlots[0]} className="main-menu__divider divider-top" />
-                    <Link className="main-menu__link" href="/"><span ref={mainSlots[0]} className="main-menu__number">/ 01</span><span ref={mainSlots[1]} className="main-menu__caption">Home</span></Link>
+                    <Link className="main-menu__link" href="/" aria-current={pathname === "/" ? "page" : undefined}><span ref={mainSlots[0]} className="main-menu__number">/ 01</span><span ref={mainSlots[1]} className="main-menu__caption">Home</span></Link>
                     <div ref={dividerSlots[1]} className="main-menu__divider divider-bottom" />
                   </li>
-                  <li ref={liSlots[1]} className="main-menu__item">
-                    <Link className="main-menu__link" href="/contact"><span ref={mainSlots[2]} className="main-menu__number">/ 02</span><span ref={mainSlots[3]} className="main-menu__caption">Contact</span></Link>
+                  <li ref={liSlots[1]} className={`main-menu__item ${pathname === "/contact" ? "main-menu__item--current" : ""}`}>
+                    <Link className="main-menu__link" href="/contact" aria-current={pathname === "/contact" ? "page" : undefined}><span ref={mainSlots[2]} className="main-menu__number">/ 02</span><span ref={mainSlots[3]} className="main-menu__caption">Contact</span></Link>
                     <div ref={dividerSlots[2]} className="main-menu__divider divider-bottom" />
                   </li>
                 </ul>

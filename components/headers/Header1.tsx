@@ -22,6 +22,7 @@ export default function Header1({ initialTheme }: Header1Props) {
   useHeaderScrollHidden(headerRef, lenis);
   const pathname = usePathname();
   const isPermanent =
+    pathname === "/" ||
     pathname === "/index-branding-studio" ||
     pathname === "/index-digital-agency" ||
     pathname === "/index-web-studio" ||

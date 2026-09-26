@@ -20,7 +20,7 @@
   min-height: 100svh;
   padding: clamp(8.5rem, 13vw, 13rem) clamp(1.25rem, 4.5vw, 5rem) 5rem;
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(28rem, 1.08fr);
+  grid-template-columns: minmax(0, 0.88fr) minmax(28rem, 1.12fr);
   align-items: center;
   gap: clamp(3rem, 6vw, 8rem);
   isolation: isolate;
@@ -34,13 +34,14 @@
   top: 22%;
   right: 14%;
   z-index: -1;
-  background: radial-gradient(circle, rgba(77, 120, 255, 0.16), transparent 68%);
-  filter: blur(30px);
+  background: radial-gradient(circle, rgba(77, 120, 255, 0.1), transparent 68%);
+  filter: blur(40px);
 }
 
 .heroCopy {
   position: relative;
   z-index: 3;
+  animation: heroFade 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 .eyebrow,
@@ -55,10 +56,10 @@
 }
 
 .heroTitle {
-  max-width: 10.5ch;
+  max-width: 9.5ch;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(4.7rem, 7.3vw, 9.4rem);
+  font-size: clamp(4.5rem, 6.8vw, 8.7rem);
   font-weight: 420;
   line-height: 0.88;
   letter-spacing: -0.072em;
@@ -72,7 +73,7 @@
 }
 
 .heroIntro {
-  max-width: 40rem;
+  max-width: 36rem;
   margin: clamp(1.7rem, 3vw, 3rem) 0 0;
   color: #c8ced8;
   font-size: clamp(1.15rem, 1.48vw, 1.6rem);
@@ -137,73 +138,51 @@
 
 .heroVisual {
   position: relative;
-  min-height: min(66vw, 50rem);
+  min-height: min(57vw, 44rem);
+  animation: visualFade 850ms 120ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-.browserFrame {
+.projectVisual {
   position: absolute;
-  inset: 7% 0 0 0;
+  inset: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0.75rem;
   background: var(--night);
   box-shadow:
-    0 2rem 7rem rgba(0, 0, 0, 0.5),
+    0 2rem 6rem rgba(0, 0, 0, 0.38),
     0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
-.browserBar {
+.visualCaption {
   position: absolute;
-  inset: 0 0 auto;
+  inset: auto 1rem 1rem;
   z-index: 2;
-  height: 2.7rem;
-  padding: 0 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.42rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.11);
-  background: rgba(13, 13, 15, 0.92);
-  backdrop-filter: blur(10px);
-}
-
-.browserBar span {
-  width: 0.48rem;
-  height: 0.48rem;
-  border-radius: 50%;
-  background: #5a5a60;
-}
-
-.browserBar p {
-  margin: 0 0 0 0.6rem;
-  color: #9c9ca2;
+  width: fit-content;
+  max-width: calc(100% - 2rem);
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.82);
   font-family: var(--font-jetbrains-mono), monospace;
-  font-size: 1.1rem;
+  font-size: clamp(0.82rem, 0.85vw, 1rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .heroImage {
   object-fit: cover;
   object-position: top;
-  padding-top: 2.7rem;
 }
 
-.mobileFrame {
-  position: absolute;
-  z-index: 3;
-  width: min(14vw, 12rem);
-  aspect-ratio: 0.56;
-  right: 1.5%;
-  bottom: 2%;
-  overflow: hidden;
-  border: 0.42rem solid #111;
-  border-radius: 1.7rem;
-  background: #111;
-  box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.6);
-  transform: none;
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(1rem); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.mobileImage {
-  object-fit: cover;
-  object-position: 48% top;
+@keyframes visualFade {
+  from { opacity: 0; transform: translateY(1.25rem) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .work,
@@ -527,15 +506,11 @@
   }
 
   .heroTitle {
-    max-width: 12ch;
+    max-width: 10ch;
   }
 
   .heroVisual {
-    min-height: 63vw;
-  }
-
-  .mobileFrame {
-    width: 23vw;
+    min-height: 58vw;
   }
 
   .sectionHeading {
@@ -567,8 +542,8 @@
   }
 
   .heroTitle {
-    max-width: 11ch;
-    font-size: clamp(3.8rem, 16.5vw, 6.2rem);
+    max-width: 9ch;
+    font-size: clamp(3.8rem, 15.5vw, 5.8rem);
   }
 
   .heroIntro {
@@ -589,28 +564,12 @@
   }
 
   .heroVisual {
-    min-height: 73vw;
+    min-height: 64vw;
   }
 
-  .browserFrame {
-    inset: 2% 0 0;
+  .projectVisual {
+    inset: 0;
     border-radius: 0.55rem;
-    transform: none;
-  }
-
-  .browserBar {
-    height: 2rem;
-  }
-
-  .heroImage {
-    padding-top: 2rem;
-  }
-
-  .mobileFrame {
-    right: 0;
-    width: 26vw;
-    border-width: 0.25rem;
-    border-radius: 1rem;
   }
 
   .sectionHeading,
@@ -661,8 +620,11 @@
 @media (prefers-reduced-motion: reduce) {
   .primaryAction,
   .secondaryAction,
-  .caseImage {
+  .caseImage,
+  .heroCopy,
+  .heroVisual {
     transition: none;
+    animation: none;
   }
 
   .primaryAction:hover,

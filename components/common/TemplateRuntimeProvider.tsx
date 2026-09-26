@@ -63,39 +63,6 @@ export default function TemplateRuntimeProvider({
     lenisRef.current = instance;
     instance.on("scroll", ScrollTrigger.update);
 
-    ScrollTrigger.scrollerProxy(document.documentElement, {
-      scrollTop(value) {
-        const l = lenisRef.current;
-        if (!l) {
-          if (arguments.length) {
-            window.scrollTo(0, value as number);
-          }
-          return window.pageYOffset || document.documentElement.scrollTop;
-        }
-        if (arguments.length) {
-          l.scrollTo(value ?? 0, { immediate: true });
-        }
-        return l.scroll;
-      },
-      getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
-      pinType: document.documentElement.style.transform ? "transform" : "fixed",
-    });
-
-    const prevScrollTriggerDefaults = (
-      ScrollTrigger.defaults as unknown as () => ScrollTrigger.StaticVars
-    )();
-    ScrollTrigger.defaults({
-      ...prevScrollTriggerDefaults,
-      scroller: document.documentElement,
-    });
-
     const tickerFn = (time: number) => {
       instance.raf(time * 1000);
     };
@@ -112,7 +79,14 @@ export default function TemplateRuntimeProvider({
 
     void document.fonts.ready.then(() => ScrollTrigger.refresh());
 
-    const onResize = () => ScrollTrigger.refresh();
+    let viewportWidth = window.innerWidth;
+    const onResize = () => {
+      // Mobile browser chrome changes the viewport height while scrolling.
+      // Refreshing every trigger at that moment creates visible jumps.
+      if (window.innerWidth === viewportWidth) return;
+      viewportWidth = window.innerWidth;
+      ScrollTrigger.refresh();
+    };
     window.addEventListener("resize", onResize);
 
     const onPageShow = (event: PageTransitionEvent) => {
@@ -137,7 +111,6 @@ export default function TemplateRuntimeProvider({
       window.removeEventListener("pageshow", onPageShow);
       window.history.scrollRestoration = prevScrollRestoration;
       ScrollTrigger.getAll().forEach((st) => st.kill());
-      ScrollTrigger.defaults(prevScrollTriggerDefaults);
       lenisRef.current = null;
       gsap.ticker.remove(tickerFn);
       instance.destroy();

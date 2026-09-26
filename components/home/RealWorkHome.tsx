@@ -68,8 +68,8 @@ export default function RealWorkHome() {
           </div>
           <div className={styles.mobileFrame}>
             <Image
-              src={realCases[2].image}
-              alt={realCases[2].imageAlt}
+              src="/img/cases/bouwservice-peskens-mobile.webp"
+              alt="Mobiele homepage van Bouwservice Peskens"
               fill
               sizes="(max-width: 900px) 34vw, 16vw"
               className={styles.mobileImage}

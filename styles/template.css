@@ -422,6 +422,13 @@ body:has(.md-real-home) .mxd-menu__hamburger {
   color: #07090c;
 }
 
+[color-scheme="light"] body:has(.md-real-home) .mxd-header .mxd-logo,
+[color-scheme="light"] body:has(.md-real-home) .mxd-header .mxd-color-switcher,
+[color-scheme="light"] body:has(.md-real-home) .mxd-menu__hamburger {
+  border-color: rgba(7, 9, 12, 0.15);
+  background: rgba(255, 255, 255, 0.68);
+}
+
 body:has(.md-real-home) .mxd-header svg,
 body:has(.md-case-page) .mxd-header svg {
   fill: currentColor;

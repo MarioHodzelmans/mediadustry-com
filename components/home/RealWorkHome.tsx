@@ -30,23 +30,27 @@ export default function RealWorkHome() {
     <main className={`${styles.page} md-real-home`}>
       <section className={styles.hero} aria-labelledby="home-title">
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>Snelheid · vindbaarheid · resultaat</p>
+          <p className={styles.eyebrow}>Strategie · design · development</p>
           <h1 id="home-title" className={styles.heroTitle}>
-            Websites die <em>sneller</em> werken en beter worden gevonden.
+            Websites die beter worden gevonden én <em>gekozen</em>.
           </h1>
           <p className={styles.heroIntro}>
-            Geoptimaliseerd voor Google PageSpeed, technische SEO en
-            AI-vindbaarheid. Een snelle UI zonder overbodige plug-ins, scripts
-            of ongebruikte ballast.
+            Werk rechtstreeks met Mario aan een snelle website die vertrouwen
+            wekt, jouw verhaal scherp vertelt en bezoekers helpt kiezen.
           </p>
           <div className={styles.actions}>
-            <Link href="#werk" className={styles.primaryAction}>
-              Bekijk recente projecten <ArrowIcon />
+            <Link href="/contact" className={styles.primaryAction}>
+              Ontdek wat beter kan <ArrowIcon />
             </Link>
-            <Link href="/contact" className={styles.secondaryAction}>
-              Bespreek je project <ArrowIcon />
+            <Link href="#werk" className={styles.secondaryAction}>
+              Bekijk echt werk <ArrowIcon />
             </Link>
           </div>
+          <ul className={styles.heroProof} aria-label="Waarom MEDIADUSTRY">
+            <li>PageSpeed-geoptimaliseerd</li>
+            <li>SEO & AI-ready</li>
+            <li>Zonder onnodige plug-ins</li>
+          </ul>
         </div>
 
         <div className={styles.heroVisual}>

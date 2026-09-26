@@ -116,6 +116,39 @@
   margin-top: 2.2rem;
 }
 
+.heroProof {
+  max-width: 42rem;
+  margin: 1.35rem 0 0;
+  padding: 1.1rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  color: #aeb5c0;
+  list-style: none;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: clamp(0.82rem, 0.82vw, 1rem);
+  line-height: 1.45;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.heroProof li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.heroProof li::before {
+  content: "";
+  width: 0.32rem;
+  height: 0.32rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0.7rem rgba(77, 120, 255, 0.65);
+}
+
 .primaryAction,
 .secondaryAction {
   min-height: 4.6rem;
@@ -657,6 +690,11 @@
     flex-direction: column;
   }
 
+  .heroProof {
+    gap: 0.55rem 0.9rem;
+    font-size: 0.78rem;
+  }
+
   .primaryAction,
   .secondaryAction {
     width: 100%;
@@ -780,9 +818,14 @@
 }
 
 :global(html[color-scheme="light"]) .heroIntro,
+:global(html[color-scheme="light"]) .heroProof,
 :global(html[color-scheme="light"]) .processCard > p:last-child,
 :global(html[color-scheme="light"]) .cta > p {
   color: #333a44;
+}
+
+:global(html[color-scheme="light"]) .heroProof {
+  border-color: rgba(7, 9, 12, 0.16);
 }
 
 :global(html[color-scheme="light"]) .secondaryAction {

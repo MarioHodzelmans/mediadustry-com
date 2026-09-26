@@ -14,7 +14,7 @@ export default function Nav({ isOpen, onClose }: NavProps) {
   const contactIsActive = pathname === "/contact" || pathname.startsWith("/contact/");
   const item = (href: string, number: string, label: string, active = false) => (
     <li className={`main-menu__item${active ? " main-menu__item--current" : ""}`}>
-      <Link className="main-menu__link" href={href} onClick={onClose} tabIndex={isOpen ? 0 : -1} aria-current={active ? "page" : undefined}>
+      <Link className="main-menu__link" href={href} prefetch={false} onClick={onClose} tabIndex={isOpen ? 0 : -1} aria-current={active ? "page" : undefined}>
         <span className="main-menu__number">/ {number}</span><span className="main-menu__caption">{label}</span>
       </Link>
       <div className="main-menu__divider divider-bottom" />
@@ -26,7 +26,7 @@ export default function Nav({ isOpen, onClose }: NavProps) {
       <button className="mxd-menu__backdrop" onClick={onClose} aria-label="Menu sluiten" tabIndex={isOpen ? 0 : -1} />
       <div className="mxd-menu__overlay"><div className="mxd-menu__content" data-lenis-prevent="">
         <div className="mxd-menu__logo">
-          <Link href="/" className="menu-logo" onClick={onClose} tabIndex={isOpen ? 0 : -1}>
+          <Link href="/" prefetch={false} className="menu-logo" onClick={onClose} tabIndex={isOpen ? 0 : -1}>
             <MediadustryMark className="menu-logo__image" /><div className="menu-logo__text"><span>MEDIADUSTRY</span></div>
           </Link>
         </div>

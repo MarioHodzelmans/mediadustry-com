@@ -6,9 +6,6 @@ import ThemeSwitcher from "@/components/headers/ThemeSwitcher";
 import TextScramble from "@/components/animations/TextScramble";
 import { useLenis } from "@/components/common/LenisContext";
 import { useHeaderScrollHidden } from "@/hooks/useHeaderScrollHidden";
-import CommonLoadAnimation, {
-  CommonLoadFade,
-} from "@/components/animations/CommonLoadAnimation";
 import MediadustryMark from "@/components/brand/MediadustryMark";
 
 type Header1Props = {
@@ -20,28 +17,18 @@ export default function Header1({ initialTheme }: Header1Props) {
   const lenis = useLenis();
   useHeaderScrollHidden(headerRef, lenis);
   return (
-    <CommonLoadAnimation>
-      <header
-        id="header"
-        ref={headerRef}
-        className="mxd-header"
-      >
-        <CommonLoadFade index={0}>
-          <div className="mxd-header__logo loading-fade">
-            <Link className="mxd-logo" href={`/`}>
-              <MediadustryMark className="mxd-logo__image" />
-              <div className="mxd-logo__text">
-                <TextScramble className="mxd-scramble">MEDIADUSTRY</TextScramble>
-              </div>
-            </Link>
+    <header id="header" ref={headerRef} className="mxd-header">
+      <div className="mxd-header__logo">
+        <Link className="mxd-logo" href={`/`} prefetch={false}>
+          <MediadustryMark className="mxd-logo__image" />
+          <div className="mxd-logo__text">
+            <TextScramble className="mxd-scramble">MEDIADUSTRY</TextScramble>
           </div>
-        </CommonLoadFade>
-        <CommonLoadFade index={1}>
-          <div className="mxd-header__controls loading-fade">
-            <ThemeSwitcher initialTheme={initialTheme} />
-          </div>
-        </CommonLoadFade>
-      </header>
-    </CommonLoadAnimation>
+        </Link>
+      </div>
+      <div className="mxd-header__controls">
+        <ThemeSwitcher initialTheme={initialTheme} />
+      </div>
+    </header>
   );
 }

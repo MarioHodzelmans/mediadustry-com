@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import RealWorkHome from "@/components/home/RealWorkHome";
-import Footer3 from "@/components/footers/Footer3";
+import HomeFooter from "@/components/home/HomeFooter";
 
 export const metadata: Metadata = {
   title: "MEDIADUSTRY | Strategie, webdesign & development",
@@ -12,7 +12,7 @@ export default function IndexDigitalAgencyPage() {
   return (
     <>
       <RealWorkHome />
-      <Footer3 />
+      <HomeFooter />
     </>
   );
 }

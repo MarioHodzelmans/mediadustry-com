@@ -1,12 +1,110 @@
 /* Template styles — same order as the original HTML link tags. */
 /* Paths are relative to this file; assets in url() inside those CSS files resolve from public/css/. */
 @import "../public/css/loader.css";
-@import "../public/css/plugins.css";
-@import "../public/css/main.css";
 @import "./menu-open.css";
 
+/* Critical shell styles. The complete legacy template styles load
+   asynchronously on the homepage so they cannot delay its first paint. */
+:root {
+  --_size: 1.6rem;
+  --font-inter: Inter, Arial, Helvetica, sans-serif;
+  --font-jetbrains-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --_font-default: var(--font-inter);
+  --_font-accent: var(--font-jetbrains-mono);
+  --_animspeed-medium: 0.3s;
+  --_animbezier: cubic-bezier(0.23, 0.65, 0.74, 1.09);
+  --base: #e9eceb;
+  --base-rgb: 233, 236, 235;
+  --base-opp: #000;
+  --t-bright: #07090c;
+  --t-medium: #505864;
+}
+
+[color-scheme="dark"] {
+  --base: #000;
+  --base-rgb: 0, 0, 0;
+  --base-opp: #e9eceb;
+  --t-bright: #fff;
+  --t-medium: #a1a4ad;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  width: 100%;
+  min-height: 100%;
+  font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
-  --_font-default: var(--font-manrope);
+  width: 100%;
+  min-width: 36rem;
+  margin: 0;
+  font: normal 400 var(--_size)/1.6 var(--_font-default);
+  color: var(--t-medium);
+  background: var(--base);
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+
+.mxd-header {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  opacity: 1;
+  transition: opacity var(--_animspeed-medium) var(--_animbezier);
+}
+
+.mxd-header.is-hidden { opacity: 0; }
+.mxd-header__logo,
+.mxd-header__controls { position: relative; }
+.mxd-header__controls { display: flex; color: var(--t-bright); }
+.mxd-logo { display: flex; align-items: center; gap: 1.2rem; color: var(--t-bright); }
+.mxd-logo__image { display: inline-flex; width: auto; height: 3.6rem; fill: currentColor; }
+.mxd-logo__text { display: flex; font: 700 1.8rem/1 var(--_font-accent); text-transform: uppercase; }
+
+.mxd-color-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 3.6rem;
+  height: 3.6rem;
+  padding: 0;
+  border: 0;
+  color: var(--t-bright);
+  background: transparent;
+}
+
+.mxd-color-switcher span,
+.mxd-color-switcher svg { display: inline-flex; }
+.mxd-color-switcher svg { width: 2.1rem; height: 2.1rem; fill: currentColor; }
+.mxd-color-switcher .switcher-text { display: none; }
+
+.mxd-menu { position: fixed; inset: 0; height: 100svh; pointer-events: none; overflow: hidden; z-index: 11; }
+.mxd-menu__overlay,
+.mxd-menu__content { position: fixed; inset: 0; height: 100svh; overflow: hidden; }
+.mxd-menu__overlay { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); }
+.mxd-menu__content { transform: translateY(-50%); pointer-events: all; }
+.mxd-menu__contain { position: fixed; top: 3rem; right: 3rem; pointer-events: all; z-index: 12; }
+.mxd-menu__hamburger { display: flex; flex-direction: column; justify-content: center; gap: 0.8rem; width: 5.5rem; height: 3.6rem; }
+.hamburger__line { width: 100%; height: 0.2rem; background: currentColor; }
+
+@media (min-width: 768px) {
+  .mxd-logo__image { height: 4rem; }
+  .mxd-logo__text { font-size: 2rem; }
+  .mxd-color-switcher { width: auto; height: 4rem; }
+  .mxd-color-switcher .switcher-text { display: inline-flex; font: 700 1.8rem var(--_font-accent); text-transform: uppercase; }
+  .mxd-color-switcher .switcher-text::after { content: "/"; margin: 0 1rem; }
+  .mxd-menu__contain { right: 6rem; }
+}
+
+body {
+  --_font-default: var(--font-inter);
   --_font-accent: var(--font-jetbrains-mono);
 }
 

@@ -50,6 +50,10 @@ export default function RealWorkHome() {
         </div>
 
         <div className={styles.heroVisual}>
+          <div className={styles.visualMeta} aria-hidden="true">
+            <span>Case 01</span>
+            <span>Live project</span>
+          </div>
           <div className={styles.browserFrame}>
             <div className={styles.browserBar} aria-hidden="true">
               <span />
@@ -75,6 +79,9 @@ export default function RealWorkHome() {
               className={styles.mobileImage}
             />
           </div>
+          <p className={styles.visualNote} aria-hidden="true">
+            Strategie · design · development
+          </p>
         </div>
       </section>
 

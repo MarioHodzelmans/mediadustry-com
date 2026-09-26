@@ -32,30 +32,48 @@ export default function RealWorkHome() {
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}>Snelheid · vindbaarheid · resultaat</p>
           <h1 id="home-title" className={styles.heroTitle}>
-            <em>Snelle</em> websites. Beter gevonden.
+            Websites die <em>sneller</em> werken en beter worden gevonden.
           </h1>
           <p className={styles.heroIntro}>
-            PageSpeed, technische SEO en AI-vindbaarheid — zonder overbodige
-            plug-ins, scripts of ongebruikte ballast.
+            Geoptimaliseerd voor Google PageSpeed, technische SEO en
+            AI-vindbaarheid. Een snelle UI zonder overbodige plug-ins, scripts
+            of ongebruikte ballast.
           </p>
           <div className={styles.actions}>
             <Link href="#werk" prefetch={false} className={styles.primaryAction}>
               Bekijk recente projecten <ArrowIcon />
             </Link>
+            <Link href="/contact" prefetch={false} className={styles.secondaryAction}>
+              Bespreek je project <ArrowIcon />
+            </Link>
           </div>
         </div>
 
         <div className={styles.heroVisual}>
-          <div className={styles.projectVisual}>
+          <div className={styles.browserFrame}>
+            <div className={styles.browserBar} aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <p>bouwservicepeskens.nl</p>
+            </div>
             <Image
               src={featured.image}
               alt={featured.imageAlt}
               fill
-              priority
-              sizes="(max-width: 700px) 92vw, (max-width: 1050px) 88vw, 50vw"
+              loading="lazy"
+              sizes="(max-width: 900px) 94vw, 57vw"
               className={styles.heroImage}
             />
-            <p className={styles.visualCaption}>Bouwservice Peskens · webdesign & development</p>
+          </div>
+          <div className={styles.mobileFrame}>
+            <Image
+              src="/img/cases/bouwservice-peskens-mobile.webp"
+              alt="Mobiele homepage van Bouwservice Peskens"
+              fill
+              sizes="(max-width: 900px) 34vw, 16vw"
+              className={styles.mobileImage}
+            />
           </div>
         </div>
       </section>

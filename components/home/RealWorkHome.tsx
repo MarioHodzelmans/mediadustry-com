@@ -40,10 +40,10 @@ export default function RealWorkHome() {
             of ongebruikte ballast.
           </p>
           <div className={styles.actions}>
-            <Link href="#werk" prefetch={false} className={styles.primaryAction}>
+            <Link href="#werk" className={styles.primaryAction}>
               Bekijk recente projecten <ArrowIcon />
             </Link>
-            <Link href="/contact" prefetch={false} className={styles.secondaryAction}>
+            <Link href="/contact" className={styles.secondaryAction}>
               Bespreek je project <ArrowIcon />
             </Link>
           </div>
@@ -61,7 +61,7 @@ export default function RealWorkHome() {
               src={featured.image}
               alt={featured.imageAlt}
               fill
-              loading="lazy"
+              loading="eager"
               sizes="(max-width: 900px) 94vw, 57vw"
               className={styles.heroImage}
             />
@@ -89,7 +89,7 @@ export default function RealWorkHome() {
         </div>
 
         <article className={styles.featuredCase}>
-          <Link href={`/werk/${featured.slug}`} prefetch={false} className={styles.caseMedia}>
+          <Link href={`/werk/${featured.slug}`} className={styles.caseMedia}>
             <Image
               src={featured.image}
               alt={featured.imageAlt}
@@ -110,7 +110,7 @@ export default function RealWorkHome() {
                 <li key={service}>{service}</li>
               ))}
             </ul>
-            <Link href={`/werk/${featured.slug}`} prefetch={false} className={styles.textLink}>
+            <Link href={`/werk/${featured.slug}`} className={styles.textLink}>
               Bekijk de case <ArrowIcon />
             </Link>
           </div>
@@ -119,7 +119,7 @@ export default function RealWorkHome() {
         <div className={styles.caseGrid}>
           {supporting.map((item, index) => (
             <article className={styles.caseCard} key={item.slug}>
-              <Link href={`/werk/${item.slug}`} prefetch={false} className={styles.cardMedia}>
+              <Link href={`/werk/${item.slug}`} className={styles.cardMedia}>
                 <Image
                   src={item.image}
                   alt={item.imageAlt}
@@ -135,7 +135,7 @@ export default function RealWorkHome() {
                 </p>
                 <h3>{item.title}</h3>
                 <p>{item.statement}</p>
-                <Link href={`/werk/${item.slug}`} prefetch={false} className={styles.textLink}>
+                <Link href={`/werk/${item.slug}`} className={styles.textLink}>
                   Bekijk de case <ArrowIcon />
                 </Link>
               </div>
@@ -195,7 +195,7 @@ export default function RealWorkHome() {
           eerlijk eerste beeld van de kansen, aanpak en passende vervolgstap.
         </p>
         <div className={styles.actions}>
-          <Link href="/contact" prefetch={false} className={styles.primaryAction}>
+          <Link href="/contact" className={styles.primaryAction}>
             Plan een kennismaking <ArrowIcon />
           </Link>
           <a href="mailto:info@mediadustry.com" className={styles.secondaryAction}>

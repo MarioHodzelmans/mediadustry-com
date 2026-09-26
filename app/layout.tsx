@@ -1,6 +1,20 @@
 import "@/styles/template.css";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import Header1 from "@/components/headers/Header1";
+import TemplateRuntimeProvider from "@/components/common/TemplateRuntimeProvider";
+import MenuRuntimeShell from "@/components/headers/MenuRuntimeShell";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mediadustry.com"),
@@ -70,18 +84,32 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var loaded=false;var apply=function(){if(loaded)return;loaded=true;['plugins','main'].forEach(function(name){var link=document.createElement('link');link.rel='stylesheet';link.href='/css/'+name+'.css';document.head.appendChild(link)});removeEventListener('pointerdown',apply);removeEventListener('keydown',apply);removeEventListener('scroll',apply)};if(location.pathname!=='/'){apply();return;}addEventListener('pointerdown',apply,{once:true,passive:true});addEventListener('keydown',apply,{once:true});addEventListener('scroll',apply,{once:true,passive:true});})();`,
-          }}
+        <link
+          rel="preload"
+          href="/img/cases/bouwservice-peskens.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
         />
       </head>
-      <body>
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable}`}
+        style={
+          {
+            "--_font-default": "var(--font-inter)",
+            "--_font-accent": "var(--font-jetbrains-mono)",
+          } as React.CSSProperties
+        }
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
-        {children}
+        <TemplateRuntimeProvider>
+          <Header1 initialTheme={initialTheme} />
+          <MenuRuntimeShell />
+          {children}
+        </TemplateRuntimeProvider>
       </body>
     </html>
   );

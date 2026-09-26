@@ -26,30 +26,16 @@
   isolation: isolate;
 }
 
-.grid {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
-  background-size: 5.7vw 5.7vw;
-  mask-image: linear-gradient(to bottom, #000 0%, #000 74%, transparent 100%);
-}
-
 .hero::after {
   content: "";
   position: absolute;
-  width: 50vw;
-  height: 50vw;
-  top: 10%;
-  left: 14%;
+  width: min(52rem, 42vw);
+  height: min(52rem, 42vw);
+  top: 22%;
+  right: 14%;
   z-index: -1;
-  background:
-    radial-gradient(circle at 35% 38%, rgba(77, 120, 255, 0.32), transparent 36%),
-    radial-gradient(circle at 68% 58%, rgba(176, 70, 255, 0.28), transparent 38%),
-    radial-gradient(circle at 78% 30%, rgba(255, 100, 56, 0.18), transparent 30%);
-  filter: blur(24px);
+  background: radial-gradient(circle, rgba(77, 120, 255, 0.16), transparent 68%);
+  filter: blur(30px);
 }
 
 .heroCopy {
@@ -165,10 +151,8 @@
   border-radius: 1rem;
   background: var(--night);
   box-shadow:
-    0 2rem 7rem rgba(0, 0, 0, 0.58),
-    -1.6rem -1.2rem 6rem rgba(77, 120, 255, 0.13),
-    1.4rem 1.8rem 5rem rgba(176, 70, 255, 0.12);
-  transform: rotate(2deg);
+    0 2rem 7rem rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 .browserBar {
@@ -208,38 +192,21 @@
 .mobileFrame {
   position: absolute;
   z-index: 3;
-  width: min(17vw, 15rem);
+  width: min(14vw, 12rem);
   aspect-ratio: 0.56;
-  right: -3%;
-  bottom: -1%;
+  right: 1.5%;
+  bottom: 2%;
   overflow: hidden;
   border: 0.42rem solid #111;
   border-radius: 1.7rem;
   background: #111;
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.6);
-  transform: rotate(-4deg);
+  transform: none;
 }
 
 .mobileImage {
   object-fit: cover;
   object-position: 48% top;
-}
-
-.heroCaption {
-  position: absolute;
-  z-index: 4;
-  bottom: 1%;
-  left: 3%;
-  margin: 0;
-  padding: 0.8rem 1rem;
-  color: #fff;
-  background: linear-gradient(100deg, var(--blue), var(--violet), var(--orange));
-  font-family: var(--font-jetbrains-mono), monospace;
-  font-size: clamp(1.05rem, 1.1vw, 1.3rem);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  transform: rotate(-2deg);
 }
 
 .work,
@@ -631,7 +598,7 @@
   .browserFrame {
     inset: 2% 0 0;
     border-radius: 0.55rem;
-    transform: rotate(1deg);
+    transform: none;
   }
 
   .browserBar {
@@ -647,11 +614,6 @@
     width: 26vw;
     border-width: 0.25rem;
     border-radius: 1rem;
-  }
-
-  .heroCaption {
-    left: 0;
-    font-size: 0.95rem;
   }
 
   .sectionHeading,
@@ -723,14 +685,8 @@
   background: #e9eceb;
 }
 
-:global(html[color-scheme="light"]) .grid {
-  background-image:
-    linear-gradient(rgba(7, 9, 12, 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(7, 9, 12, 0.09) 1px, transparent 1px);
-}
-
 :global(html[color-scheme="light"]) .hero::after {
-  opacity: 0.14;
+  opacity: 0.2;
 }
 
 :global(html[color-scheme="light"]) .heroTitle,

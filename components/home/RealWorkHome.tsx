@@ -29,15 +29,15 @@ export default function RealWorkHome() {
   return (
     <main className={`${styles.page} md-real-home`}>
       <section className={styles.hero} aria-labelledby="home-title">
-        <div className={styles.grid} aria-hidden="true" />
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>Strategie · design · development</p>
+          <p className={styles.eyebrow}>Snelheid · vindbaarheid · resultaat</p>
           <h1 id="home-title" className={styles.heroTitle}>
-            Digitale merken en websites die <em>zichtbaar</em> beter werken.
+            Websites die <em>sneller</em> werken en beter worden gevonden.
           </h1>
           <p className={styles.heroIntro}>
-            MEDIADUSTRY helpt organisaties en ondernemers vooruit met scherpe
-            positionering, herkenbaar design en snelle, toegankelijke websites.
+            Geoptimaliseerd voor Google PageSpeed, technische SEO en
+            AI-vindbaarheid. Een snelle UI zonder overbodige plug-ins, scripts
+            of ongebruikte ballast.
           </p>
           <div className={styles.actions}>
             <Link href="#werk" className={styles.primaryAction}>
@@ -75,7 +75,6 @@ export default function RealWorkHome() {
               className={styles.mobileImage}
             />
           </div>
-          <p className={styles.heroCaption}>Echt werk. Echte ondernemers. Geen stock.</p>
         </div>
       </section>
 

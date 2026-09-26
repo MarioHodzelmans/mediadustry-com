@@ -340,3 +340,141 @@ body:has(.showcase-page) > .mxd-menu {
   .menu-contact__value { font-size: 1.7rem; }
   .mxd-menu__footer { padding-bottom: 1rem; }
 }
+/* The portfolio-first homepage opens on a dark hero in both stored themes. */
+body:has(.md-real-home) .mxd-header {
+  color: #fff;
+}
+
+[color-scheme="dark"] body:has(.md-real-home) .mxd-header .mxd-logo,
+[color-scheme="dark"] body:has(.md-real-home) .mxd-header .mxd-header__link,
+[color-scheme="dark"] body:has(.md-real-home) .mxd-header .mxd-color-switcher,
+[color-scheme="dark"] body:has(.md-case-page) .mxd-header .mxd-logo,
+[color-scheme="dark"] body:has(.md-case-page) .mxd-header .mxd-header__link,
+[color-scheme="dark"] body:has(.md-case-page) .mxd-header .mxd-color-switcher {
+  color: #fff;
+}
+
+[color-scheme="light"] body:has(.md-real-home) .mxd-header .mxd-logo,
+[color-scheme="light"] body:has(.md-real-home) .mxd-header .mxd-header__link,
+[color-scheme="light"] body:has(.md-real-home) .mxd-header .mxd-color-switcher,
+[color-scheme="light"] body:has(.md-case-page) .mxd-header .mxd-logo,
+[color-scheme="light"] body:has(.md-case-page) .mxd-header .mxd-header__link,
+[color-scheme="light"] body:has(.md-case-page) .mxd-header .mxd-color-switcher {
+  color: #07090c;
+}
+
+body:has(.md-real-home) .mxd-header svg,
+body:has(.md-case-page) .mxd-header svg {
+  fill: currentColor;
+}
+
+body:has(.md-real-home) .mxd-header .btn-caption,
+body:has(.md-real-home) .mxd-header .switcher-text,
+body:has(.md-case-page) .mxd-header .btn-caption,
+body:has(.md-case-page) .mxd-header .switcher-text {
+  font-size: clamp(1.4rem, 1.25vw, 1.65rem);
+  font-weight: 600;
+}
+
+body:has(.md-real-home) .mxd-logo__text,
+body:has(.md-case-page) .mxd-logo__text {
+  font-size: clamp(1.5rem, 1.5vw, 1.9rem);
+}
+
+/* Contact and other public depth content use the same moodboard system. */
+.md-contact-page {
+  overflow-x: clip;
+}
+
+[color-scheme="dark"] body:has(.md-contact-page) {
+  --base: #07090c;
+  --base-rgb: 7, 9, 12;
+  --base-tint: #101722;
+  --base-tint-rgb: 16, 23, 34;
+  --base-bright: #101722;
+  --base-bright-rgb: 16, 23, 34;
+  --accent: #4d78ff;
+  --highlight: #b046ff;
+  --base-opp: #e9eceb;
+  --base-opp-rgb: 233, 236, 235;
+  --t-bright: #e9eceb;
+  --t-medium: #c5ccd6;
+  --t-muted: #9da7b6;
+  --t-opp-bright: #07090c;
+  --t-opp-medium: #101722;
+}
+
+[color-scheme="light"] body:has(.md-contact-page) {
+  --base: #e9eceb;
+  --base-rgb: 233, 236, 235;
+  --base-tint: #ffffff;
+  --base-tint-rgb: 255, 255, 255;
+  --base-bright: #ffffff;
+  --base-bright-rgb: 255, 255, 255;
+  --accent: #4d78ff;
+  --highlight: #b046ff;
+  --base-opp: #07090c;
+  --base-opp-rgb: 7, 9, 12;
+  --t-bright: #07090c;
+  --t-medium: #252b35;
+  --t-muted: #505864;
+  --t-opp-bright: #e9eceb;
+  --t-opp-medium: #c5ccd6;
+}
+
+body:has(.md-contact-page) .mxd-header .btn-caption,
+body:has(.md-contact-page) .mxd-header .switcher-text,
+body:has(.md-contact-page) .breadcrumbs__nav,
+body:has(.md-contact-page) .tag,
+body:has(.md-contact-page) .btn-caption {
+  font-size: clamp(1.35rem, 1.2vw, 1.6rem);
+}
+
+body:has(.md-contact-page) .inner-headline h1.medium {
+  font-size: clamp(7.2rem, 10vw, 14rem);
+  line-height: 0.86;
+  letter-spacing: -0.065em;
+}
+
+body:has(.md-contact-page) .inner-headline__caption p,
+body:has(.md-contact-page) .mxd-section-title__paragraph p {
+  font-size: clamp(2.2rem, 2.3vw, 3.4rem);
+  line-height: 1.35;
+}
+
+body:has(.md-contact-page) .mxd-section-title h2,
+body:has(.md-contact-page) .mxd-promo__caption h2 {
+  font-size: clamp(6.4rem, 9vw, 12rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+body:has(.md-contact-page) .headline-email-text .fullwidth-text__content {
+  background: linear-gradient(100deg, #4d78ff, #b046ff 58%, #ff6438);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body:has(.md-contact-page) input,
+body:has(.md-contact-page) textarea,
+body:has(.md-contact-page) select {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(1.6rem, 1.4vw, 2rem);
+}
+
+@media (max-width: 767px) {
+  body:has(.md-contact-page) .inner-headline h1.medium {
+    font-size: clamp(5.2rem, 17vw, 8rem);
+  }
+
+  body:has(.md-contact-page) .inner-headline__caption p,
+  body:has(.md-contact-page) .mxd-section-title__paragraph p {
+    font-size: 2rem;
+  }
+
+  body:has(.md-contact-page) .mxd-section-title h2,
+  body:has(.md-contact-page) .mxd-promo__caption h2 {
+    font-size: clamp(5rem, 15vw, 7.5rem);
+  }
+}

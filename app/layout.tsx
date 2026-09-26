@@ -1,14 +1,14 @@
 import "@/styles/template.css";
-import { JetBrains_Mono, Manrope } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import Header1 from "@/components/headers/Header1";
 import TemplateRuntimeProvider from "@/components/common/TemplateRuntimeProvider";
 import MenuRuntimeShell from "@/components/headers/MenuRuntimeShell";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-inter",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -83,7 +83,24 @@ export default async function RootLayout({
       color-scheme={initialTheme}
       suppressHydrationWarning
     >
-      <body className={`${manrope.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <link
+          rel="preload"
+          href="/img/cases/bouwservice-peskens.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
+        />
+      </head>
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable}`}
+        style={
+          {
+            "--_font-default": "var(--font-inter)",
+            "--_font-accent": "var(--font-jetbrains-mono)",
+          } as React.CSSProperties
+        }
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

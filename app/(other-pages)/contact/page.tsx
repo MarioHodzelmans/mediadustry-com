@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <div className="mxd-page-content inner-page-content">
+      <div className="mxd-page-content inner-page-content md-contact-page">
         <InnerHeadline />
         <ParallaxDividerImage />
         <SectionTitle />

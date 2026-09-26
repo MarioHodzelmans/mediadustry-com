@@ -5,28 +5,30 @@ import CommonLoadAnimation, {
 } from "@/components/animations/CommonLoadAnimation";
 
 type NavTriggerProps = {
-  setToggleNode: (el: HTMLDivElement | null) => void;
-  setHamburgerNode: (el: HTMLElement | null) => void;
+  isOpen: boolean;
+  onToggle: () => void;
 };
 
 export default function NavTrigger({
-  setToggleNode,
-  setHamburgerNode,
+  isOpen,
+  onToggle,
 }: NavTriggerProps) {
   return (
     <CommonLoadAnimation>
       <CommonLoadFade index={0}>
         <div className="mxd-menu__contain loading-fade">
-          <div className="mxd-menu__toggle" ref={setToggleNode}>
-            <a
-              href="#0"
-              className="mxd-menu__hamburger"
+          <div className="mxd-menu__toggle">
+            <button
+              type="button"
+              className={`mxd-menu__hamburger ${isOpen ? "active" : ""}`}
               aria-label="Menu"
-              ref={setHamburgerNode}
+              aria-expanded={isOpen}
+              aria-controls="site-menu"
+              onClick={onToggle}
             >
               <div className="hamburger__line" />
               <div className="hamburger__line" />
-            </a>
+            </button>
           </div>
         </div>
       </CommonLoadFade>

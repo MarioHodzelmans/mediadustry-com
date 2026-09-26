@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { realCases } from "@/data/realCases";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -15,5 +16,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.8,
     },
+    ...realCases.map((item) => ({
+      url: `https://mediadustry.com/werk/${item.slug}`,
+      lastModified,
+      changeFrequency: "yearly" as const,
+      priority: 0.75,
+    })),
   ];
 }

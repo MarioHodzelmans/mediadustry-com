@@ -1,4 +1,4 @@
-/* Legacy CSS open state (unused when `.mxd-menu--gsap` drives tweens in `mxdMenuGsap.ts`). */
+/* Accessible CSS-driven menu state. */
 
 .mxd-menu.mxd-menu--gsap .mxd-menu__backdrop,
 .mxd-menu.mxd-menu--gsap .mxd-menu__overlay,
@@ -8,10 +8,22 @@
 }
 
 .mxd-menu .mxd-menu__backdrop {
+  padding: 0;
+  border: 0;
   transition:
     background 0.5s ease,
     backdrop-filter 0.5s ease,
     -webkit-backdrop-filter 0.5s ease;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+.mxd-menu__hamburger {
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 .mxd-menu .mxd-menu__overlay {

@@ -1,27 +1,17 @@
-import Footer3 from "@/components/footers/Footer3";
 import { Metadata } from "next";
-import Hero from "@/components/homes/index-digital-agency/Hero";
-import AboutProcess from "@/components/homes/index-digital-agency/AboutProcess";
-import ProjectsShowcase from "@/components/homes/index-digital-agency/ProjectsShowcase";
-import ServicesList from "@/components/homes/index-digital-agency/ServicesList";
-import ParallaxDividerVideo from "@/components/homes/index-digital-agency/ParallaxDividerVideo";
-import Divider from "@/components/homes/index-digital-agency/Divider";
+import RealWorkHome from "@/components/home/RealWorkHome";
+import Footer3 from "@/components/footers/Footer3";
+
 export const metadata: Metadata = {
-  title: "MEDIADUSTRY | Digital design & development",
+  title: "MEDIADUSTRY | Strategie, webdesign & development",
   description:
-    "MEDIADUSTRY creëert onderscheidende merken, websites, webshops en digitale ervaringen.",
+    "MEDIADUSTRY helpt organisaties en ondernemers met positionering, webdesign en development. Bekijk recente cases uit Limburg.",
 };
+
 export default function IndexDigitalAgencyPage() {
   return (
     <>
-      <>
-        <Hero />
-        <AboutProcess />
-        <ProjectsShowcase />
-        <ServicesList />
-        <ParallaxDividerVideo />
-        <Divider />
-      </>
+      <RealWorkHome />
       <Footer3 />
     </>
   );

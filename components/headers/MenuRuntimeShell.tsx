@@ -5,42 +5,28 @@ import Nav from "@/components/headers/Nav";
 import NavTrigger from "@/components/headers/NavTrigger";
 
 export default function MenuRuntimeShell() {
-  const [toggleNode, setToggleNode] = useState<HTMLDivElement | null>(null);
-  const [navNode, setNavNode] = useState<HTMLElement | null>(null);
-  const [hamburgerNode, setHamburgerNode] = useState<HTMLElement | null>(null);
-  const [menuReset, setMenuReset] = useState<(() => void) | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const registerMenuReset = useCallback((fn: (() => void) | null) => {
-    setMenuReset(() => fn);
-  }, []);
+  const closeMenu = useCallback(() => setIsOpen(false), []);
+  const toggleMenu = useCallback(() => setIsOpen((open) => !open), []);
 
   useEffect(() => {
-    const onPageShow = (event: PageTransitionEvent) => {
-      const navEntry = performance.getEntriesByType(
-        "navigation",
-      )[0] as PerformanceNavigationTiming | undefined;
-      const isBackForward = navEntry?.type === "back_forward";
-      if (event.persisted || isBackForward) {
-        menuReset?.();
-      }
+    if (!isOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeMenu();
     };
-    window.addEventListener("pageshow", onPageShow);
-    return () => window.removeEventListener("pageshow", onPageShow);
-  }, [menuReset]);
+    document.body.classList.add("menu-open");
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.classList.remove("menu-open");
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isOpen, closeMenu]);
 
   return (
     <>
-      <NavTrigger
-        setToggleNode={setToggleNode}
-        setHamburgerNode={setHamburgerNode}
-      />
-      <Nav
-        navNode={navNode}
-        toggleNode={toggleNode}
-        hamburgerNode={hamburgerNode}
-        setNavNode={setNavNode}
-        registerMenuReset={registerMenuReset}
-      />
+      <NavTrigger isOpen={isOpen} onToggle={toggleMenu} />
+      <Nav isOpen={isOpen} onClose={closeMenu} />
     </>
   );
 }

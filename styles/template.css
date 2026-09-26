@@ -175,6 +175,21 @@ body:has(.showcase-page) > .mxd-menu {
   overflow: hidden;
 }
 
+/* Keep the complete footer wordmark visible at every viewport width. */
+.mxd-footer .fw-mark__wrap {
+  overflow: visible;
+  padding-block: 1rem;
+}
+
+.mxd-footer .fw-mark__content {
+  font-size: min(12.4cqw, 18rem);
+  line-height: 0.88;
+}
+
+.mxd-footer .fw-mark__content span {
+  line-height: 0.88;
+}
+
 /* The open menu follows, rather than inverts, the selected site theme. */
 [color-scheme="light"] .mxd-menu {
   --md-menu-bg: #eeeae8;
@@ -184,7 +199,7 @@ body:has(.showcase-page) > .mxd-menu {
 }
 
 [color-scheme="dark"] .mxd-menu {
-  --md-menu-bg: #0f0f0f;
+  --md-menu-bg: #000000;
   --md-menu-fg: #ffffff;
   --md-menu-muted: #a1a4ad;
   --md-menu-rule: rgba(255, 255, 255, 0.24);
@@ -387,8 +402,8 @@ body:has(.md-case-page) .mxd-logo__text {
 }
 
 [color-scheme="dark"] body:has(.md-contact-page) {
-  --base: #07090c;
-  --base-rgb: 7, 9, 12;
+  --base: #000000;
+  --base-rgb: 0, 0, 0;
   --base-tint: #101722;
   --base-tint-rgb: 16, 23, 34;
   --base-bright: #101722;

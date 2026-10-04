@@ -85,3 +85,5 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 
 - Commit9ca29aa via GitHub gepusht; deployment dpl_HgM8NgY3Y8jYLGVxB65fp7ktMFfa faalde na succesvolle Next-build: Vercel onBuildComplete had .next/server/app/index.html verplaatst (ENOENT). De bestaande live versie bleef intact.
 - Generator ondersteunt nu zowel lokaal Next-output als verplaatste Vercel-output, met gecontroleerde homepageherkenning en dezelfde inhoudsvalidaties. Lokale generatie en scoped lint opnieuw geslaagd. Alleen buildkoppeling gewijzigd; geen nieuwe optimalisatieronde.
+
+- Aanvullende broncontrole: Next.js gebruikt bij adapterPath gehashte route-cachebestandsnamen. De generator zoekt daarom de inhoudsgevalideerde homepage ook in .next/server en schrijft waar aanwezig rechtstreeks naar de statische adapteroutput. Lokale generatie geslaagd; definitieve hostingcontrole volgt.

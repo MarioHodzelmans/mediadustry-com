@@ -46,7 +46,10 @@ if (!source) {
       }
     }
   }
-  source = await findHomepage(resolve(projectRoot, ".vercel/output"));
+  // Adapter builds use hashed route-cache filenames instead of index.html.
+  source = await findHomepage(resolve(projectRoot, ".next/server"));
+  if (!source)
+    source = await findHomepage(resolve(projectRoot, ".vercel/output"));
 }
 if (!source)
   throw new Error(

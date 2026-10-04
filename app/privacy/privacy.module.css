@@ -1,0 +1,97 @@
+.page {
+  min-height: 100svh;
+  padding: clamp(13rem, 15vw, 20rem) clamp(2rem, 4vw, 7rem)
+    clamp(6rem, 10vw, 13rem);
+  background: #0b0e14;
+  color: #f5f7fb;
+}
+
+.hero,
+.content {
+  width: min(100%, 96rem);
+  margin-inline: auto;
+}
+
+.eyebrow {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hero h1 {
+  margin: 2.5rem 0;
+  font-size: clamp(3.8rem, 7vw, 9rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  overflow-wrap: anywhere;
+}
+
+.intro {
+  max-width: 74rem;
+  margin: 0;
+  font-size: clamp(1.9rem, 2.3vw, 2.6rem);
+  line-height: 1.6;
+}
+
+.content {
+  padding-top: clamp(4rem, 6vw, 8rem);
+  font-size: 1.7rem;
+  line-height: 1.75;
+}
+
+.content section {
+  padding: 3rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.content h2 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.3rem, 3vw, 3.2rem);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.content p {
+  margin: 0 0 1.5rem;
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}
+
+.content a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  overflow-wrap: anywhere;
+}
+
+.content a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.content code {
+  color: inherit;
+  font-size: 0.95em;
+  overflow-wrap: anywhere;
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 4.4rem;
+  margin-top: 2rem;
+}
+
+:global(html[color-scheme="light"]) .page {
+  background: #f1f2ef;
+  color: #07090c;
+}
+
+:global(html[color-scheme="light"]) .content section {
+  border-color: rgba(7, 9, 12, 0.2);
+}

@@ -2,23 +2,29 @@ import type { MetadataRoute } from "next";
 import { realCases } from "@/data/realCases";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
   return [
     {
-      url: "https://mediadustry.com",
-      lastModified,
+      url: "https://www.mediadustry.com/",
       changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: "https://mediadustry.com/contact",
-      lastModified,
+      url: "https://www.mediadustry.com/contact",
       changeFrequency: "yearly",
       priority: 0.8,
     },
+    {
+      url: "https://www.mediadustry.com/website-check",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.mediadustry.com/privacy",
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
     ...realCases.map((item) => ({
-      url: `https://mediadustry.com/werk/${item.slug}`,
-      lastModified,
+      url: `https://www.mediadustry.com/werk/${item.slug}`,
       changeFrequency: "yearly" as const,
       priority: 0.75,
     })),

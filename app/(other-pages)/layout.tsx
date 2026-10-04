@@ -1,12 +1,15 @@
-import Footer3 from "@/components/footers/Footer3";
+import SiteFooter from "@/components/footers/SiteFooter";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: true },
+};
 
 export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      {/* <div className="mxd-page-content inner-page-content"> */}
       {children}
-      {/* </div> */}
-      <Footer3 />
+      <SiteFooter />
     </>
   );
 }

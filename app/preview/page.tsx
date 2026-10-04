@@ -11,6 +11,8 @@ import DemoCTA from "@/components/preview/DemoCTA";
 export const metadata: Metadata = {
   title: "Preview | Azurio - Digital Agency & Portfolio NextJs Template",
   description: "Azurio - Digital Agency & Portfolio NextJs Template",
+  alternates: { canonical: "https://www.mediadustry.com/preview" },
+  robots: { index: false, follow: true },
 };
 export default function PreviewPage() {
   return (

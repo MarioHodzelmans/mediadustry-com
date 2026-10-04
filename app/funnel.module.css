@@ -1,0 +1,230 @@
+.page {
+  min-height: 100svh;
+  padding: clamp(13rem, 15vw, 20rem) clamp(2rem, 4vw, 7rem)
+    clamp(7rem, 10vw, 14rem);
+  background: #0b0e14;
+  color: #f5f7fb;
+}
+.hero,
+.grid,
+.faq {
+  width: min(100%, 132rem);
+  margin-inline: auto;
+}
+.eyebrow {
+  margin: 0 0 2.5rem;
+  font:
+    500 1.2rem/1.7 var(--font-jetbrains-mono),
+    monospace;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.hero h1 {
+  max-width: 110rem;
+  margin: 0 0 3rem;
+  font-size: clamp(4.2rem, 7.5vw, 10.6rem);
+  line-height: 0.98;
+  font-weight: 600;
+  letter-spacing: -0.065em;
+  text-wrap: balance;
+}
+.intro {
+  max-width: 76rem;
+  margin: 0;
+  font-size: clamp(1.9rem, 2.1vw, 2.6rem);
+  line-height: 1.6;
+}
+.benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 3rem;
+  padding: 2.8rem 0 0;
+  margin: 0;
+  list-style: none;
+  font-size: 1.5rem;
+}
+.benefits li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.benefits li::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: #97adff;
+  flex: 0 0 auto;
+}
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  gap: clamp(3rem, 6vw, 9rem);
+  padding-top: clamp(4.5rem, 7vw, 10rem);
+}
+.aside,
+.formSection {
+  min-width: 0;
+}
+
+.aside {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.formSection {
+  grid-column: 2;
+  grid-row: 1;
+}
+.card {
+  padding: clamp(2.5rem, 3.3vw, 4.5rem);
+  background: #171d28;
+  border: 1px solid #384153;
+}
+.card h2,
+.secondaryCard h2,
+.formSection h2,
+.faq h2 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.7rem, 3vw, 4rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+.card p,
+.secondaryCard p,
+.formIntro,
+.asideNote,
+.faq p {
+  font-size: 1.7rem;
+  line-height: 1.65;
+  margin: 0 0 2rem;
+}
+.card .eyebrow {
+  font-size: 1.15rem;
+  margin-bottom: 2rem;
+}
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 4.4rem;
+  gap: 1rem;
+  color: inherit;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  overflow-wrap: anywhere;
+}
+.textLink svg {
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+}
+.card .companyDetails {
+  margin: 3rem 0 0;
+  font-size: 1.3rem;
+  line-height: 1.8;
+}
+.secondaryCard {
+  padding-top: 4rem;
+}
+.secondaryCard h2 {
+  font-size: 2.5rem;
+}
+.steps {
+  padding: 0 0 0 2rem;
+  margin: 2.5rem 0 0;
+}
+.steps li {
+  padding-left: 1rem;
+  font-size: 1.6rem;
+}
+.steps li + li {
+  margin-top: 2.5rem;
+}
+.steps strong {
+  font-size: 1.8rem;
+  line-height: 1.5;
+}
+.steps p {
+  margin: 0.8rem 0 0;
+  font-size: 1.6rem;
+}
+.asideNote {
+  margin: 2rem 0 0;
+  font-size: 1.4rem;
+}
+.formIntro {
+  max-width: 60rem;
+  margin-bottom: 3rem;
+}
+.faq {
+  padding-top: clamp(6rem, 8vw, 12rem);
+}
+.faq h2 {
+  margin-bottom: 3rem;
+}
+.faq details {
+  max-width: 96rem;
+  padding-block: 2.3rem;
+  border-top: 1px solid #384153;
+}
+.faq details:last-child {
+  border-bottom: 1px solid #384153;
+}
+.faq summary {
+  cursor: pointer;
+  font-size: 1.9rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.faq p {
+  max-width: 76rem;
+  margin: 2rem 0 0;
+}
+.faq a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.page a:focus-visible,
+.faq summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+}
+:global(html[color-scheme="light"]) .page {
+  background: #f1f2ef;
+  color: #07090c;
+}
+:global(html[color-scheme="light"]) .card {
+  background: #fff;
+  border-color: #c1c6cc;
+}
+:global(html[color-scheme="light"]) .faq details {
+  border-color: #c1c6cc;
+}
+:global(html[color-scheme="light"]) .benefits li::before {
+  background: #315ddc;
+}
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  .formSection {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .aside {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .hero h1 {
+    font-size: clamp(4rem, 10.5vw, 6rem);
+  }
+  .intro {
+    font-size: 1.9rem;
+  }
+}

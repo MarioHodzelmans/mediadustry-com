@@ -412,9 +412,8 @@
   box-sizing: border-box;
 }
 
-button:active,
-button:focus {
-  outline: none !important;
+button:focus:not(:focus-visible) {
+  outline: none;
 }
 
 button::-moz-focus-inner {
@@ -8653,9 +8652,21 @@ body:has(.showcase-page) > .mxd-menu {
   .mxd-hero-02__kinetic {
     background-color: #07080d;
     background-image:
-      radial-gradient(circle at 28% 45%, rgba(85, 112, 245, 0.38), transparent 43%),
-      radial-gradient(circle at 62% 45%, rgba(197, 66, 218, 0.3), transparent 42%),
-      radial-gradient(circle at 78% 62%, rgba(255, 118, 71, 0.22), transparent 38%);
+      radial-gradient(
+        circle at 28% 45%,
+        rgba(85, 112, 245, 0.38),
+        transparent 43%
+      ),
+      radial-gradient(
+        circle at 62% 45%,
+        rgba(197, 66, 218, 0.3),
+        transparent 42%
+      ),
+      radial-gradient(
+        circle at 78% 62%,
+        rgba(255, 118, 71, 0.22),
+        transparent 38%
+      );
   }
   .mxd-hero-02__kinetic::after {
     content: "";
@@ -8671,9 +8682,21 @@ body:has(.showcase-page) > .mxd-menu {
   [color-scheme="light"] .mxd-hero-02__kinetic {
     background-color: #f2efed;
     background-image:
-      radial-gradient(circle at 25% 43%, rgba(85, 112, 245, 0.2), transparent 42%),
-      radial-gradient(circle at 61% 45%, rgba(197, 66, 218, 0.15), transparent 40%),
-      radial-gradient(circle at 80% 61%, rgba(255, 118, 71, 0.14), transparent 36%);
+      radial-gradient(
+        circle at 25% 43%,
+        rgba(85, 112, 245, 0.2),
+        transparent 42%
+      ),
+      radial-gradient(
+        circle at 61% 45%,
+        rgba(197, 66, 218, 0.15),
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 80% 61%,
+        rgba(255, 118, 71, 0.14),
+        transparent 36%
+      );
   }
   [color-scheme="light"] .mxd-hero-02__kinetic::after {
     background-image:

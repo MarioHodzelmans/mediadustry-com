@@ -1,4 +1,6 @@
-# Contact and opt-in funnel
+# Contact and opt-in funnel — historical archive
+
+**Archived on 4 October 2026:** the owner requested restoration of the earlier website, retaining only the improved proposal. The website-check, opt-in, unsubscribe and thank-you pages, API handlers, backend code and funnel tests described below have been removed. The current `/contact` page uses its original Web3Forms implementation. Existing external Resend resources and hosting variables were not changed. The following content records the earlier implementation and must not be treated as current activation instructions.
 
 The website offers a project inquiry at `/contact` and a personal website-review request at `/website-check`. The website-check is reviewed by Mario; it does not generate an automatic scan report. Both forms use `/api/contact`.
 

@@ -8,8 +8,9 @@ The Showcase Engine is a repository-driven presentation system for public cases,
 - `/werk/[slug]` — indexable completed case
 - `/concept/[slug]` — personalised proposal, always `noindex, nofollow`
 - `/demo/[slug]` — reusable industry direction; indexing is configured per item
+- `/work` and `/work/[slug]` — restored original showcase routes
 
-Concept and demo routes render the `Showcase` and `ShowcaseBlocks` architecture. Public case pages use the current site case layout; old `/work` routes redirect in production.
+After the owner-requested restoration on 4 October 2026, concept routes use `Proposal`, `ProposalBlocks` and `proposal.module.css`. Demos and the original `/work` routes use the restored `Showcase`, `ShowcaseBlocks` and `showcase.module.css`. Public `/werk` cases use their original case layout. There are no production redirects for these original routes. The main site retains the original template runtime; concept routes skip its Lenis scrolling and custom cursor so the preserved preview uses native scrolling.
 
 ## Content
 
@@ -44,7 +45,7 @@ Supported block types:
 
 `hero`, `intro`, `statement`, `problem`, `solution`, `gallery`, `image`, `browserDemo`, `mobileDemo`, `beforeAfter`, `services`, `process`, `timeline`, `results`, `testimonial`, `pricing`, `options`, `acceptance`, `cta`.
 
-The renderer is `components/showcase/ShowcaseBlocks.tsx`. Add a type to the union first, then add its rendering branch and responsive styles.
+The concept renderer is `components/showcase/ProposalBlocks.tsx`; original demo/showcase content uses `components/showcase/ShowcaseBlocks.tsx`. Add a type to the union first, then add its rendering branch and responsive styles to the relevant renderer.
 
 ## Interactive demos and iframe safety
 

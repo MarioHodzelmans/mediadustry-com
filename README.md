@@ -1,6 +1,8 @@
 # MEDIADUSTRY
 
-Website voor [www.mediadustry.com](https://www.mediadustry.com), gebouwd met Next.js App Router en React. De homepage, echte portfoliozaken, website-check, contact en privacyverklaring gebruiken een lichte eigen vormgeving. De oorspronkelijke templatevoorbeelden blijven lokaal beschikbaar; productieroutes leiden naar de relevante MEDIADUSTRY-pagina's.
+Website voor [www.mediadustry.com](https://www.mediadustry.com), gebouwd met Next.js App Router en React.
+
+Op verzoek van de eigenaar is de vormgeving van vóór de optimalisatieronde teruggezet (broncommit `0310fef`). De oorspronkelijke homepage, navigatie, cases, contactpagina en templatepagina’s zijn hersteld. Het verbeterde Alex Kamsma-websitevoorstel blijft beschikbaar via het hoofdmenu en de Alex-case.
 
 ## Lokaal werken
 
@@ -10,23 +12,24 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Vul alleen beschikbare serverconfiguratie in. Zonder Resend en Redis tonen de formulieren een duidelijke melding en een e-mailalternatief. Geheimen blijven in `.env.local` of de hostingomgeving en komen nooit in Git.
+De herstelde contactpagina gebruikt de oorspronkelijke Web3Forms-koppeling. Zonder `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` wordt geen bericht verstuurd en verschijnt het e-mailalternatief `info@mediadustry.com`. Sla geheimen alleen op in `.env.local` of de hostingomgeving.
 
 ## Controleren
 
 ```bash
 npm run lint
-npm run test:funnel
 npm run build
 npm run start
 ```
 
-De funneltests gebruiken nagebootste Resend- en Redis-antwoorden en versturen geen echte e-mail. Controleer de productieversie ook op mobiel, met toetsenbord en in beide kleurthema's. Template-redirects zijn actief in productie, niet in `next dev`.
+Controleer de productieversie ook op mobiel, met toetsenbord en in beide kleurthema’s. Controleer de voorstelpreview met autoscroll, handmatige bediening, volledig scherm en Escape. Next.js en React behouden de reeds geïnstalleerde patchversies.
 
-## Publiceren en e-mail activeren
+## Voorstel en publicatie
 
-Publiceer via de gekoppelde GitHub-repository `MarioHodzelmans/mediadustry-com`. De hostingomgeving bouwt de productiebranch `main` vanuit Git. Voer geen directe Vercel-deployment uit.
+De conceptpagina gebruikt een eigen `Proposal`-renderer en afgeschermde CSS. De oorspronkelijke demo’s en showcasepagina’s gebruiken `Showcase`. Zo blijft het voorstel werken naast de herstelde templatevormgeving. De conceptpagina gebruikt native scroll; de overige site behoudt de oorspronkelijke template-runtime.
 
-De contact- en double opt-inflow, verplichte configuratie en opslag staan in [docs/contact-funnel.md](docs/contact-funnel.md). De DNS-records voor `mail.mediadustry.com` staan in [docs/resend-dns.md](docs/resend-dns.md). Na een wijziging in omgevingsvariabelen is een nieuwe Git-deployment nodig om de formuliermelding bij te werken.
+Zie [docs/showcase-engine.md](docs/showcase-engine.md) en [public/previews/alex-kamsma/SOURCE.md](public/previews/alex-kamsma/SOURCE.md) voor de lokale ontwerppreview en de bediening.
 
-Bevestiging en afmelding vereisen een bewuste knopactie. Een aanvraag wordt los van de optionele e-mailaanmelding behandeld. Alleen bevestigde aanmeldingen gaan naar het aparte MEDIADUSTRY-segment. De welkomstmail is ingericht; terugkerende marketingcampagnes vereisen eigen inhoud en planning.
+Publiceer via GitHub `MarioHodzelmans/mediadustry-com`, productiebranch `main`. De verbonden hosting bouwt vanuit Git; gebruik geen directe Vercel-deployment.
+
+De nieuwe website-check en opt-infunnel zijn bij deze terugzetting verwijderd. [docs/contact-funnel.md](docs/contact-funnel.md) blijft bewaard als historische documentatie. Eerder ingerichte externe e-mailresources zijn niet gewijzigd; zij vormen geen actieve koppeling met deze website. [docs/resend-dns.md](docs/resend-dns.md) bewaart de eerdere DNS-informatie.

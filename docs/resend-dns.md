@@ -1,5 +1,7 @@
 # Resend afzenderdomein
 
+**Bewaarde configuratie, 4 oktober 2026:** de website is teruggezet naar de eerdere versie. De Resend-funnel is uit de applicatie verwijderd; deze DNS-informatie is alleen een archief van de eerder ingerichte externe resource. Er is bij de terugzetting geen DNS-wijziging of nieuwe afzenderverificatie uitgevoerd.
+
 Domein: **mail.mediadustry.com**. Regio: EU (Ierland). Aangemaakt op 4 oktober 2026.
 
 Voeg onderstaande records toe bij de huidige DNS-beheerder van mediadustry.com. Nameservers: webhostingserver.g1-dns.com en webhostingserver.g1-dns.one. Gebruik in een DNS-paneel dat de domeinnaam automatisch toevoegt alleen de relatieve naam. TTL: standaard/automatisch.

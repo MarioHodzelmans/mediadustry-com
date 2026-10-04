@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "test:funnel": "node scripts/test-funnel.mjs"
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@phosphor-icons/web": "^2.1.2",

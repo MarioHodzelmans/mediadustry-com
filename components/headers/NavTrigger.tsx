@@ -1,27 +1,37 @@
 "use client";
 
+import CommonLoadAnimation, {
+  CommonLoadFade,
+} from "@/components/animations/CommonLoadAnimation";
+
 type NavTriggerProps = {
   isOpen: boolean;
   onToggle: () => void;
 };
 
-export default function NavTrigger({ isOpen, onToggle }: NavTriggerProps) {
+export default function NavTrigger({
+  isOpen,
+  onToggle,
+}: NavTriggerProps) {
   return (
-    <div className="mxd-menu__contain md-menu-trigger">
-      <div className="mxd-menu__toggle">
-        <button
-          type="button"
-          className={`mxd-menu__hamburger ${isOpen ? "active" : ""}`}
-          id="site-menu-trigger"
-          aria-label={isOpen ? "Menu sluiten" : "Menu openen"}
-          aria-expanded={isOpen}
-          aria-controls="site-menu"
-          onClick={onToggle}
-        >
-          <span className="hamburger__line" aria-hidden="true" />
-          <span className="hamburger__line" aria-hidden="true" />
-        </button>
-      </div>
-    </div>
+    <CommonLoadAnimation>
+      <CommonLoadFade index={0}>
+        <div className="mxd-menu__contain loading-fade">
+          <div className="mxd-menu__toggle">
+            <button
+              type="button"
+              className={`mxd-menu__hamburger ${isOpen ? "active" : ""}`}
+              aria-label="Menu"
+              aria-expanded={isOpen}
+              aria-controls="site-menu"
+              onClick={onToggle}
+            >
+              <div className="hamburger__line" />
+              <div className="hamburger__line" />
+            </button>
+          </div>
+        </div>
+      </CommonLoadFade>
+    </CommonLoadAnimation>
   );
 }

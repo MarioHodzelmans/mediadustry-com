@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getShowcase, getShowcases } from "@/content/showcases";
-import Showcase from "@/components/showcase/Showcase";
+import Proposal from "@/components/showcase/Proposal";
 
 export function generateStaticParams() {
   return getShowcases("concept").map(({ slug }) => ({ slug }));
@@ -17,7 +17,7 @@ export async function generateMetadata({
     title: item.seo.title,
     description: item.seo.description,
     alternates: {
-      canonical: `https://www.mediadustry.com/concept/${item.slug}`,
+      canonical: `/concept/${item.slug}`,
     },
     robots: { index: false, follow: false, nocache: true },
   };
@@ -29,5 +29,5 @@ export default async function ConceptPage({
 }) {
   const item = getShowcase("concept", (await params).slug);
   if (!item) notFound();
-  return <Showcase showcase={item} />;
+  return <Proposal showcase={item} />;
 }

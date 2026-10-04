@@ -1,8 +1,8 @@
-import ArrowIcon from "@/components/brand/ArrowIcon";
 import Image from "next/image";
 import Link from "next/link";
 import type { Showcase, ShowcaseBlock } from "@/lib/showcase/types";
 import { isAllowedShowcaseUrl } from "@/lib/showcase/iframe";
+import ArrowIcon from "@/components/brand/ArrowIcon";
 import ShowcaseBrowserDemo from "./ShowcaseBrowserDemo";
 
 const Heading = ({ block }: { block: ShowcaseBlock }) => (
@@ -12,7 +12,7 @@ const Heading = ({ block }: { block: ShowcaseBlock }) => (
   </header>
 );
 
-export default function ShowcaseBlocks({ showcase }: { showcase: Showcase }) {
+export default function ProposalBlocks({ showcase }: { showcase: Showcase }) {
   const proposalPrice = showcase.blocks.find(
     (block): block is Extract<ShowcaseBlock, { type: "pricing" }> =>
       block.type === "pricing",
@@ -79,7 +79,7 @@ export default function ShowcaseBlocks({ showcase }: { showcase: Showcase }) {
                     )}
                     <a href="#concept-demo">
                       Bekijk het concept{" "}
-                      <ArrowIcon className="showcase-arrow showcase-arrow-down" />
+                      <ArrowIcon className="showcase-arrow-down" />
                     </a>
                   </div>
                 </div>
@@ -155,11 +155,14 @@ export default function ShowcaseBlocks({ showcase }: { showcase: Showcase }) {
               {(block.eyebrow || block.title) && <Heading block={block} />}
               <ShowcaseBrowserDemo
                 demoUrl={block.demoUrl}
+                previewUrl={block.previewUrl}
                 externalUrl={block.externalUrl ?? block.demoUrl}
-                title={block.title ?? "Live website"}
+                title={block.title ?? `${showcase.client} — websiteontwerp`}
                 height={block.height ?? 720}
                 allowInteraction={block.allowInteraction ?? true}
-                allowed={isAllowedShowcaseUrl(block.demoUrl)}
+                allowed={isAllowedShowcaseUrl(
+                  block.previewUrl ?? block.demoUrl,
+                )}
                 slug={showcase.slug}
                 showcaseType={showcase.type}
               />
@@ -284,20 +287,12 @@ export default function ShowcaseBlocks({ showcase }: { showcase: Showcase }) {
               {showcase.type === "concept" ? (
                 <div className="showcase-cta__actions">
                   <Link className="showcase-cta__contact" href={block.href}>
-                    Neem contact op{" "}
-                    <ArrowIcon
-                      className="showcase-arrow"
-                      direction="down-right"
-                    />
+                    Neem contact op <ArrowIcon direction="down-right" />
                   </Link>
                 </div>
               ) : (
                 <Link href={block.href}>
-                  {block.label}{" "}
-                  <ArrowIcon
-                    className="showcase-arrow"
-                    direction="down-right"
-                  />
+                  {block.label} <ArrowIcon direction="down-right" />
                 </Link>
               )}
             </section>

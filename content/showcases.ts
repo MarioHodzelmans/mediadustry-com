@@ -6,8 +6,8 @@ const constructionTheme = {
   accent: "#c7592f",
   muted: "#716d65",
   surface: "#f8f4ec",
-  headingFont: "var(--font-inter)",
-  bodyFont: "var(--font-inter)",
+  headingFont: "var(--font-manrope)",
+  bodyFont: "var(--font-manrope)",
   radius: "0px",
   direction: "light" as const,
 };

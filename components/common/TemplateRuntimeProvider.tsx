@@ -34,6 +34,8 @@ export default function TemplateRuntimeProvider({
 }) {
   useViewportHeight();
   const pathname = usePathname();
+  const isShowcaseRoute =
+    pathname === "/concept" || pathname.startsWith("/concept/");
 
   const pageTransitionRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
@@ -41,6 +43,13 @@ export default function TemplateRuntimeProvider({
   const isFirstPathRef = useRef(true);
 
   useEffect(() => {
+    // The preserved proposal controls its own native iframe scrolling.
+    if (isShowcaseRoute) {
+      document.getElementById("header")?.classList.remove("is-hidden");
+      return;
+    }
+
+    let active = true;
     const transitionEl = pageTransitionRef.current;
     let transitionTween: gsap.core.Tween | null = null;
     if (transitionEl) {
@@ -77,7 +86,9 @@ export default function TemplateRuntimeProvider({
       ScrollTrigger.refresh(true);
     });
 
-    void document.fonts.ready.then(() => ScrollTrigger.refresh());
+    void document.fonts.ready.then(() => {
+      if (active) ScrollTrigger.refresh();
+    });
 
     let viewportWidth = window.innerWidth;
     const onResize = () => {
@@ -104,6 +115,7 @@ export default function TemplateRuntimeProvider({
     window.history.scrollRestoration = "manual";
 
     return () => {
+      active = false;
       transitionTween?.kill();
       cancelAnimationFrame(lenisStateRafId);
       cancelAnimationFrame(rafId);
@@ -112,10 +124,11 @@ export default function TemplateRuntimeProvider({
       window.history.scrollRestoration = prevScrollRestoration;
       ScrollTrigger.getAll().forEach((st) => st.kill());
       lenisRef.current = null;
+      setLenis(null);
       gsap.ticker.remove(tickerFn);
       instance.destroy();
     };
-  }, []);
+  }, [isShowcaseRoute]);
 
   useLayoutEffect(() => {
     if (isFirstPathRef.current) {
@@ -124,19 +137,21 @@ export default function TemplateRuntimeProvider({
     }
 
     const l = lenisRef.current;
-    if (l) {
+    if (l && !isShowcaseRoute) {
       l.scrollTo(0, { immediate: true, force: true });
     } else {
       window.scrollTo(0, 0);
     }
 
-    requestAnimationFrame(() => {
+    if (isShowcaseRoute) return;
+    const rafId = requestAnimationFrame(() => {
       ScrollTrigger.refresh();
     });
-  }, [pathname]);
+    return () => cancelAnimationFrame(rafId);
+  }, [pathname, isShowcaseRoute]);
 
   return (
-    <LenisContext.Provider value={lenis}>
+    <LenisContext.Provider value={isShowcaseRoute ? null : lenis}>
       <CursorProvider>
         <BlurScrollRoot>
           <div
@@ -145,7 +160,7 @@ export default function TemplateRuntimeProvider({
             style={{ transform: "translateY(-100%)", pointerEvents: "none" }}
             aria-hidden
           />
-          <CustomCursor />
+          {!isShowcaseRoute && <CustomCursor />}
           {children}
         </BlurScrollRoot>
       </CursorProvider>

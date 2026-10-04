@@ -24,14 +24,14 @@ Leesvolgorde: AGENTS.md, [instructions.md](instructions.md), [status.md](status.
 Project: Next.js-website www.mediadustry.com, publicatie via GitHub `MarioHodzelmans/mediadustry-com`, productiebranch `main`. Raadpleeg voor de actuele opdracht status.md en de laatste gebruikersinstructie.
 
 - [README.md](README.md)
-- [docs/showcase-engine.md](docs/showcase-engine.md): conceptvoorstellen, lokale ontwerpvoorbeelden en bediening.
-- [docs/contact-funnel.md](docs/contact-funnel.md): contact, double opt-in, configuratie en activeringsvoorwaarden.
-- [docs/resend-dns.md](docs/resend-dns.md): DNS voor de eigen e-mailafzender.
+- [docs/showcase-engine.md](docs/showcase-engine.md): conceptvoorstellen, lokale ontwerpvoorbeelden, afzonderlijke Proposal-renderer en bediening.
+- [docs/contact-funnel.md](docs/contact-funnel.md): historisch archief van de verwijderde opt-infunnel; geen actuele websitekoppeling.
+- [docs/resend-dns.md](docs/resend-dns.md): bewaarde DNS-informatie voor eerder ingerichte externe e-mailresources.
 
 ## Beschikbare projectcommando’s
 
 Bron: [package.json](package.json). Aanwezige lockfiles: `package-lock.json`. Kies de package-manager volgens README en lockfile; bij meerdere lockfiles eerst de bedoelde werkwijze vaststellen.
 
-Gedefinieerde scriptnamen: `dev`, `build`, `start`, `lint`, `format`, `format:check`, `test:funnel`.
+Gedefinieerde scriptnamen: `dev`, `build`, `start`, `lint`, `format`, `format:check`.
 
-Voer scripts uit via de vastgestelde package-manager. Beschikbaarheid is geen bewijs dat ze werken. Lees de implementatie vóór build-, migratie-, import- of publicatiecommando’s; die kunnen neveneffecten hebben. Voor deze overdracht zijn geen applicatiecommando’s uitgevoerd.
+Voer scripts uit via de vastgestelde package-manager. Beschikbaarheid is geen bewijs dat ze werken. Lees de implementatie vóór build-, migratie-, import- of publicatiecommando’s; die kunnen neveneffecten hebben. Raadpleeg status.md en log.md voor werkelijk uitgevoerde controles.

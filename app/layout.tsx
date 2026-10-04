@@ -1,8 +1,10 @@
-import "@/styles/site.css";
+import "@/styles/template.css";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import Header1 from "@/components/headers/Header1";
+import TemplateRuntimeProvider from "@/components/common/TemplateRuntimeProvider";
 import MenuRuntimeShell from "@/components/headers/MenuRuntimeShell";
 import { Metadata } from "next";
+import { cookies } from "next/headers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,12 +13,11 @@ const inter = Inter({
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "600"],
   variable: "--font-jetbrains-mono",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.mediadustry.com"),
+  metadataBase: new URL("https://mediadustry.com"),
   applicationName: "MEDIADUSTRY",
   title: {
     default: "MEDIADUSTRY | Digital design & development",
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "nl_NL",
-    url: "https://www.mediadustry.com",
+    url: "https://mediadustry.com",
     siteName: "MEDIADUSTRY",
     title: "MEDIADUSTRY | Digital design & development",
     description:
@@ -58,32 +59,38 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "MEDIADUSTRY",
-  url: "https://www.mediadustry.com",
-  logo: "https://www.mediadustry.com/icon-512.png",
-  image: "https://www.mediadustry.com/opengraph-image.png",
+  url: "https://mediadustry.com",
+  logo: "https://mediadustry.com/icon-512.png",
+  image: "https://mediadustry.com/opengraph-image.png",
   email: "info@mediadustry.com",
   vatID: "NL062176468B02",
   taxID: "54271932",
 };
 
-// Read the optional display preference before paint while keeping pages cacheable.
-const themeBootstrap = `var t;try{t=localStorage.getItem('template.theme')}catch{}try{if(t!=='light'&&t!=='dark'){var m=document.cookie.match(/(?:^|; )template\\.theme=(light|dark)(?:;|$)/);t=m&&m[1]}if(t==='light'||t==='dark')document.documentElement.setAttribute('color-scheme',t)}catch{}`;
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const cookieTheme = cookieStore.get("template.theme")?.value;
+  const initialTheme = cookieTheme === "dark" ? "dark" : "light";
+
   return (
     <html
       lang="nl"
       className="no-touch"
-      color-scheme="light"
-      data-scroll-behavior="smooth"
+      color-scheme={initialTheme}
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeBootstrap }} />
+        <link
+          rel="preload"
+          href="/img/cases/bouwservice-peskens.webp"
+          as="image"
+          type="image/webp"
+          fetchPriority="high"
+        />
       </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable}`}
@@ -96,18 +103,13 @@ export default function RootLayout({
       >
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
-        <a href="#site-content" className="md-skip-link">
-          Direct naar inhoud
-        </a>
-        <Header1 />
-        <MenuRuntimeShell />
-        <div id="site-content" tabIndex={-1}>
+        <TemplateRuntimeProvider>
+          <Header1 initialTheme={initialTheme} />
+          <MenuRuntimeShell />
           {children}
-        </div>
+        </TemplateRuntimeProvider>
       </body>
     </html>
   );

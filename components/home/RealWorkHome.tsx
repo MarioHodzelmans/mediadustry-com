@@ -27,7 +27,7 @@ export default function RealWorkHome() {
   const supporting = realCases.slice(1);
 
   return (
-    <main id="main-content" className={`${styles.page} md-real-home`}>
+    <main className={`${styles.page} md-real-home`}>
       <section className={styles.hero} aria-labelledby="home-title">
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}>Strategie · design · development</p>
@@ -39,17 +39,17 @@ export default function RealWorkHome() {
             wekt, jouw verhaal scherp vertelt en bezoekers helpt kiezen.
           </p>
           <div className={styles.actions}>
-            <Link href="/website-check" className={styles.primaryAction}>
-              Vraag je gratis websitecheck <ArrowIcon />
+            <Link href="/contact" className={styles.primaryAction}>
+              Ontdek wat beter kan <ArrowIcon />
             </Link>
             <Link href="#werk" className={styles.secondaryAction}>
               Bekijk echt werk <ArrowIcon />
             </Link>
           </div>
           <ul className={styles.heroProof} aria-label="Waarom MEDIADUSTRY">
-            <li>Direct contact met Mario</li>
-            <li>Vrijblijvend eerste advies</li>
-            <li>Geen nieuwsbrief zonder toestemming</li>
+            <li>PageSpeed-geoptimaliseerd</li>
+            <li>SEO & AI-ready</li>
+            <li>Zonder onnodige plug-ins</li>
           </ul>
         </div>
 
@@ -69,8 +69,8 @@ export default function RealWorkHome() {
               src={featured.image}
               alt={featured.imageAlt}
               fill
-              preload
-              sizes="(max-width: 1050px) 94vw, 50vw"
+              loading="eager"
+              sizes="(max-width: 900px) 94vw, 57vw"
               className={styles.heroImage}
             />
           </div>
@@ -79,38 +79,12 @@ export default function RealWorkHome() {
               src="/img/cases/bouwservice-peskens-mobile.webp"
               alt="Mobiele homepage van Bouwservice Peskens"
               fill
-              sizes="(max-width: 700px) 26vw, (max-width: 1050px) 23vw, 14vw"
+              sizes="(max-width: 900px) 34vw, 16vw"
               className={styles.mobileImage}
             />
           </div>
           <p className={styles.visualNote} aria-hidden="true">
             Strategie · design · development
-          </p>
-        </div>
-      </section>
-
-      <section className={styles.check} aria-labelledby="check-title">
-        <div>
-          <p className={styles.eyebrow}>Een duidelijke eerste stap</p>
-          <h2 id="check-title">Waar laat jouw website kansen liggen?</h2>
-          <p>
-            Mario kijkt persoonlijk naar je website, boodschap en route naar een
-            aanvraag. Je ontvangt een eerste advies per e-mail met concrete
-            verbeterpunten. Vrijblijvend, zonder verkoopverplichting.
-          </p>
-        </div>
-        <div className={styles.checkDetails}>
-          <ul>
-            <li>Een heldere blik op vindbaarheid en snelheid</li>
-            <li>Advies over vertrouwen, inhoud en gebruik op mobiel</li>
-            <li>Een passende vervolgstap voor meer aanvragen</li>
-          </ul>
-          <Link href="/website-check" className={styles.primaryAction}>
-            Ontvang je persoonlijke websitecheck <ArrowIcon />
-          </Link>
-          <p>
-            Een persoonlijke beoordeling, geen automatische scan. E-mailupdates
-            zijn optioneel.
           </p>
         </div>
       </section>
@@ -181,16 +155,10 @@ export default function RealWorkHome() {
         </div>
       </section>
 
-      <section
-        id="aanpak"
-        className={styles.process}
-        aria-labelledby="process-title"
-      >
+      <section id="aanpak" className={styles.process} aria-labelledby="process-title">
         <div className={styles.sectionHeading}>
           <p className={styles.eyebrow}>Zo ontstaat goed digitaal werk</p>
-          <h2 id="process-title">
-            Van scherpe positionering naar een site die klopt.
-          </h2>
+          <h2 id="process-title">Van scherpe positionering naar een site die klopt.</h2>
         </div>
         <div className={styles.processGrid}>
           {process.map((step) => (
@@ -203,91 +171,27 @@ export default function RealWorkHome() {
         </div>
       </section>
 
-      <section
-        id="diensten"
-        className={styles.services}
-        aria-labelledby="services-title"
-      >
+      <section id="diensten" className={styles.services} aria-labelledby="services-title">
         <div>
           <p className={styles.eyebrow}>Waarmee MEDIADUSTRY helpt</p>
-          <h2 id="services-title">
-            Eén digitale partner van verhaal tot lancering.
-          </h2>
+          <h2 id="services-title">Eén digitale partner van verhaal tot lancering.</h2>
         </div>
         <div className={styles.serviceList}>
           <article>
             <span>01</span>
             <h3>Merk & positionering</h3>
-            <p>
-              Een helder verhaal, herkenbare identiteit en visuele richting.
-            </p>
+            <p>Een helder verhaal, herkenbare identiteit en visuele richting.</p>
           </article>
           <article>
             <span>02</span>
             <h3>Webdesign & development</h3>
-            <p>
-              Responsive UX, sterk ontwerp en een snelle, toegankelijke
-              realisatie.
-            </p>
+            <p>Responsive UX, sterk ontwerp en een snelle, toegankelijke realisatie.</p>
           </article>
           <article>
             <span>03</span>
             <h3>Groei & doorontwikkeling</h3>
-            <p>
-              Content, SEO-basis, optimalisatie en technische ondersteuning.
-            </p>
+            <p>Content, SEO-basis, optimalisatie en technische ondersteuning.</p>
           </article>
-        </div>
-      </section>
-
-      <section id="faq" className={styles.faq} aria-labelledby="faq-title">
-        <div className={styles.sectionHeading}>
-          <p className={styles.eyebrow}>Goed om vooraf te weten</p>
-          <h2 id="faq-title">Van eerste vraag naar een helder plan.</h2>
-        </div>
-        <div className={styles.faqList}>
-          <details>
-            <summary>Is de websitecheck echt gratis?</summary>
-            <p>
-              Ja. Het eerste persoonlijke advies is gratis en vrijblijvend.
-              Eventueel vervolgwerk bespreken we apart. Je meldt je alleen aan
-              voor e-mailupdates als je dat zelf aanvinkt en daarna via e-mail
-              bevestigt.
-            </p>
-          </details>
-          <details>
-            <summary>Kun je ook mijn bestaande website verbeteren?</summary>
-            <p>
-              Ja. We bekijken eerst de inhoud, techniek en doelen van je
-              bestaande website. Vervolgens bepalen we of gerichte verbeteringen
-              voldoende zijn of een nieuwe opbouw meer oplevert.
-            </p>
-          </details>
-          <details>
-            <summary>Wat kost een nieuwe website?</summary>
-            <p>
-              Dat hangt af van de inhoud, functies en benodigde begeleiding. Na
-              een kennismaking ontvang je een voorstel met een duidelijke scope
-              en prijs. Werk begint pas na jouw akkoord.
-            </p>
-          </details>
-          <details>
-            <summary>Hoe weet ik of mijn website resultaat oplevert?</summary>
-            <p>
-              We kiezen vooraf wat voor jouw bedrijf telt, zoals relevante
-              aanvragen of afspraken. Snelheid, vindbaarheid en gebruik
-              ondersteunen dat doel. Indien nodig bespreken we passende meting
-              en toestemming voor aanvullende meetdiensten.
-            </p>
-          </details>
-          <details>
-            <summary>Met wie werk ik samen?</summary>
-            <p>
-              Je werkt rechtstreeks met Mario Hodzelmans van MEDIADUSTRY aan
-              strategie, ontwerp en development. Eén aanspreekpunt voor je
-              vragen en de volgende stap.
-            </p>
-          </details>
         </div>
       </section>
 
@@ -296,20 +200,18 @@ export default function RealWorkHome() {
           <span aria-hidden="true" />
           Een nieuwe website of een bestaande site die beter moet?
         </div>
-        <h2 id="cta-title">
-          Laten we scherp krijgen wat jouw volgende stap is.
-        </h2>
+        <h2 id="cta-title">Laten we scherp krijgen wat jouw volgende stap is.</h2>
         <p>
           Vertel kort waar je nu staat en wat je wilt bereiken. Je krijgt een
           eerlijk eerste beeld van de kansen, aanpak en passende vervolgstap.
         </p>
         <div className={styles.actions}>
           <Link href="/contact" className={styles.primaryAction}>
-            Bespreek jouw project <ArrowIcon />
+            Plan een kennismaking <ArrowIcon />
           </Link>
-          <Link href="/website-check" className={styles.secondaryAction}>
-            Eerst een gratis websitecheck <ArrowIcon />
-          </Link>
+          <a href="mailto:info@mediadustry.com" className={styles.secondaryAction}>
+            Mail MEDIADUSTRY <ArrowIcon />
+          </a>
         </div>
       </section>
     </main>

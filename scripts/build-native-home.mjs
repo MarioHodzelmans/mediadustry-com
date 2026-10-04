@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir, readdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, readdir, access } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { load } from "cheerio";
@@ -206,6 +206,14 @@ assert(
 );
 await mkdir(dirname(outputPath), { recursive: true });
 await writeFile(outputPath, output, "utf8");
+// The adapter has already collected public assets, so add the new HTML to its output too.
+const adapterStatic = resolve(projectRoot, ".vercel/output/static");
+try {
+  await access(adapterStatic);
+  await writeFile(resolve(adapterStatic, "native-home.html"), output, "utf8");
+} catch (error) {
+  if (error.code !== "ENOENT") throw error;
+}
 console.log(
   `Generated native homepage: ${Buffer.byteLength(source)} → ${Buffer.byteLength(output)} bytes; five cases, metadata, CSS, theme and no-JS pictures preserved.`,
 );

@@ -4,12 +4,12 @@ The Showcase Engine is a repository-driven presentation system for public cases,
 
 ## Routes
 
-- `/work` — public portfolio overview
-- `/work/[slug]` — indexable completed case
+- `/#werk` — public portfolio overview
+- `/werk/[slug]` — indexable completed case
 - `/concept/[slug]` — personalised proposal, always `noindex, nofollow`
 - `/demo/[slug]` — reusable industry direction; indexing is configured per item
 
-All detail routes render the same `Showcase` and `ShowcaseBlocks` architecture.
+Concept and demo routes render the `Showcase` and `ShowcaseBlocks` architecture. Public case pages use the current site case layout; old `/work` routes redirect in production.
 
 ## Content
 
@@ -48,7 +48,13 @@ The renderer is `components/showcase/ShowcaseBlocks.tsx`. Add a type to the unio
 
 ## Interactive demos and iframe safety
 
-`ShowcaseBrowserDemo` supports an inline iframe and an accessible fullscreen dialog with Escape handling, focus return and scroll restoration.
+`ShowcaseBrowserDemo` renders separate desktop and mobile viewports and a native fullscreen dialog with Escape handling, focus return and body scroll locking. Inline frames only receive pointer and keyboard interaction after explicit activation, so normal page scrolling passes over inactive previews. Activating a preview pauses the automatic demo; Escape or “Terug naar voorstel” returns control to the proposal.
+
+The return control sits below the device frame, keeping client navigation unobstructed. The floating proposal acceptance link is hidden while the preview is visible and returns when the visitor leaves that section.
+
+An optional `previewUrl` identifies a same-origin, repository-owned snapshot. Only this local preview receives an automatic tour: one scroll through the page, a safe in-page navigation demonstration and a return to the top. The tour pauses offscreen or in a hidden tab, stops after completion, and is disabled for reduced-motion preferences. “Pauzeer demo” and “Herstart demo” provide explicit controls. External frames are never polled or controlled across origins.
+
+The Alex Kamsma snapshot is under `public/previews/alex-kamsma`, with source provenance in `SOURCE.md`. It preserves the client homepage content and local assets without loading its framework, tracking or remote assets. The proposal labels it as an interactive design preview and links separately to the actual live website. Update the snapshot from the client project when the approved design changes.
 
 Relative URLs are allowed. Absolute iframe URLs must match `SHOWCASE_IFRAME_HOSTS`. Add trusted hosts as a comma-separated list:
 
@@ -82,7 +88,7 @@ Acceptance is deliberately presentation-only. Future form/data logic must live o
 2. Add optimised WebP/AVIF assets under `public/img`.
 3. Set accurate title, description, alt text, category and year.
 4. Compose only relevant blocks; omit pricing and acceptance.
-5. Verify `/work` and `/work/[slug]`.
+5. Verify `/#werk` and `/werk/[slug]`.
 
 ## Creating a demo
 
@@ -103,13 +109,13 @@ Acceptance is deliberately presentation-only. Future form/data logic must live o
 7. Add pricing and validity information.
 8. Confirm the page emits `noindex, nofollow`.
 9. Test at 375px, 768px and 1440px, including fullscreen and Escape.
-10. Deploy through the normal repository/Vercel workflow.
+10. Publish through GitHub so the connected hosting platform builds from Git.
 
 ## Current examples
 
-- `/work/mediadustry-digital-foundation`
+- `/werk/alex-kamsma-design-parket`
 - `/demo/construction-01`
-- `/concept/example-construction-x82k`
+- `/concept/alex-kamsma-parket` — linked from the site menu and the Alex case
 
 ## Next steps
 

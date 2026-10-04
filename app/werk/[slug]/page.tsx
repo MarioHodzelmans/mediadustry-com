@@ -122,6 +122,19 @@ export default async function CasePage({ params }: CasePageProps) {
           <Link href="/contact" className={styles.secondaryLink}>
             Bespreek een vergelijkbaar project <ArrowIcon />
           </Link>
+          {item.slug === "alex-kamsma-design-parket" && (
+            <Link
+              href="/concept/alex-kamsma-parket"
+              className={`${styles.secondaryLink} ${styles.proposalLink}`}
+              aria-label="Bekijk het persoonlijke websitevoorstel voor Alex Kamsma Design Parket"
+            >
+              <span>
+                Bekijk het websitevoorstel
+                <small>Persoonlijk voorstel voor Alex Kamsma</small>
+              </span>
+              <ArrowIcon />
+            </Link>
+          )}
         </section>
 
         <Link href={`/werk/${next.slug}`} className={styles.nextCase}>

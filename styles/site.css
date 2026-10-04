@@ -442,3 +442,6 @@ html[color-scheme="dark"] .md-site-menu {
   outline: 2px solid currentColor !important;
   outline-offset: 5px;
 }
+body.preview-fullscreen-open {
+  overflow: hidden;
+}

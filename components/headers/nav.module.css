@@ -1,0 +1,5 @@
+.proposalLabel {
+  min-width: 0;
+  font-size: clamp(2.5rem, 5vw, 7rem);
+  overflow-wrap: anywhere;
+}

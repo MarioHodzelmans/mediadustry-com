@@ -145,6 +145,7 @@ export const showcases: Showcase[] = [
       },
       {
         type: "browserDemo",
+        previewUrl: "/previews/alex-kamsma/index.html",
         demoUrl: "https://www.alexkamsmaparket.nl/",
         externalUrl: "https://www.alexkamsmaparket.nl/",
         height: 560,

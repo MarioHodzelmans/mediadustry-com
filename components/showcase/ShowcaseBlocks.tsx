@@ -155,11 +155,14 @@ export default function ShowcaseBlocks({ showcase }: { showcase: Showcase }) {
               {(block.eyebrow || block.title) && <Heading block={block} />}
               <ShowcaseBrowserDemo
                 demoUrl={block.demoUrl}
+                previewUrl={block.previewUrl}
                 externalUrl={block.externalUrl ?? block.demoUrl}
-                title={block.title ?? "Live website"}
+                title={block.title ?? `${showcase.client} — websiteontwerp`}
                 height={block.height ?? 720}
                 allowInteraction={block.allowInteraction ?? true}
-                allowed={isAllowedShowcaseUrl(block.demoUrl)}
+                allowed={isAllowedShowcaseUrl(
+                  block.previewUrl ?? block.demoUrl,
+                )}
                 slug={showcase.slug}
                 showcaseType={showcase.type}
               />

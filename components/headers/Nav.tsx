@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import MediadustryMark from "@/components/brand/MediadustryMark";
 import ArrowIcon from "@/components/brand/ArrowIcon";
+import styles from "./nav.module.css";
 
 type NavProps = { isOpen: boolean; onClose: () => void };
 
@@ -13,6 +14,11 @@ export default function Nav({ isOpen, onClose }: NavProps) {
     { href: "/", label: "Home", active: pathname === "/" },
     { href: "/#werk", label: "Werk", active: pathname.startsWith("/werk") },
     { href: "/#diensten", label: "Diensten", active: false },
+    {
+      href: "/concept/alex-kamsma-parket",
+      label: "Websitevoorstel",
+      active: pathname === "/concept/alex-kamsma-parket",
+    },
     {
       href: "/contact",
       label: "Contact",
@@ -73,7 +79,15 @@ export default function Nav({ isOpen, onClose }: NavProps) {
                   aria-current={item.active ? "page" : undefined}
                 >
                   <span className="md-menu-number">/ 0{index + 1}</span>
-                  <span>{item.label}</span>
+                  <span
+                    className={
+                      item.label === "Websitevoorstel"
+                        ? styles.proposalLabel
+                        : undefined
+                    }
+                  >
+                    {item.label}
+                  </span>
                   <ArrowIcon />
                 </Link>
               </li>

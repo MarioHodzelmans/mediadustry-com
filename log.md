@@ -87,3 +87,11 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Generator ondersteunt nu zowel lokaal Next-output als verplaatste Vercel-output, met gecontroleerde homepageherkenning en dezelfde inhoudsvalidaties. Lokale generatie en scoped lint opnieuw geslaagd. Alleen buildkoppeling gewijzigd; geen nieuwe optimalisatieronde.
 
 - Aanvullende broncontrole: Next.js gebruikt bij adapterPath gehashte route-cachebestandsnamen. De generator zoekt daarom de inhoudsgevalideerde homepage ook in .next/server en schrijft waar aanwezig rechtstreeks naar de statische adapteroutput. Lokale generatie geslaagd; definitieve hostingcontrole volgt.
+
+## 2026-10-04 — definitieve publicatie en afsluiting
+
+- Codecommit6255fab4e8d5507cc1624538c33672fbd67c5f43 via GitHub; deploymentdpl_DDvJ6JKEPpfAeMXHenMycwGmLWTA READY en gekoppeld aan www.mediadustry.com/mediadustry.com. Native live HTML bevestigd; geen React-payload. Adapter-gehashte NextHTML herkend en waar aanwezig native HTML ook naar adapter-static-output geschreven.
+- Live Lighthouse13.5.0: mobiel98/100/100/100 (FCP1.3 s/LCP1.7 s/SI4.0 s/TBT0 ms/CLS0); desktop100/100/100/100 (FCP0.3 s/LCP0.4 s/SI0.3 s/TBT0 ms/CLS0). Lokaal beide apparaten100/100/100/100. Geen live mobiele100-score of officiële Google-cloudscore verzonnen.
+- Laatste onafhankelijke native verhaalcontrole geslaagd: contact, bfcache-thema, native terug-home, menufocus/Escape, daadwerkelijk scrollend Alex-voorstel, fullscreen en Escape vanuit iframe; geen consolefouten/waarschuwingen. Nieuwe JavaScript-uitcontrole op definitieve HTML bevestigt vijf geladen zichtbare beelden, verborgen placeholders, breedte390.
+- Alle resultaten en grenzen opgeslagen in Markdown, volledige live-rapporten naar lokale artifacts gekopieerd. Op expliciet verzoek eigenaar afgesloten wegens resterende credits, zonder extra optimalisatieronde.
+- Eigen productieproces op3000 gestopt en root/subagent-browserprofielen gesloten. Andere projecten en de in-app-browser van de eigenaar niet gesloten. Documentatie-update wordt via GitHub opgeslagen; deze nieuwe docs-build heeft nog geen afzonderlijk geverifieerde deploymentstatus.

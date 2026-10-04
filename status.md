@@ -1,15 +1,15 @@
 # MEDIADUSTRY — status
 
-Bijgewerkt: 2026-10-04 23:24 Europe/Amsterdam.
+Bijgewerkt: 2026-10-04, afsluiting na verzoek eigenaar wegens resterende credits.
 
-**Opdracht:** herstelde homepage ongeveer gelijk houden, light/dark behouden, menuknop eenvoudiger en optimaliseren naar vier 100-scores. De eigenaar vraagt nu om afronden en alles in Markdown opslaan.
+**Gepubliceerd:** geoptimaliseerde homepage via GitHub main, codecommit `6255fab4e8d5507cc1624538c33672fbd67c5f43`; deployment `dpl_DDvJ6JKEPpfAeMXHenMycwGmLWTA` READY op www.mediadustry.com. Geen directe Vercel-deployment. Bestaande vormgeving/light/dark en het Alex-offertevoorstel behouden; eenvoudiger SVG-menu.
 
-**Lokaal gereed:** dezelfde ontwerp-/inhoudsbronnen, native vooraf gebouwde productiehomepage, lichte menu/themabediening, beperkte CSS en losse legacy-runtime, responsive AVIF’s met native/nabije lazy loading, gevalideerde kleinere fonts, juiste www-canonical, focus/skiplink en mobiele case/404-correcties. Het Alex-voorstel blijft behouden. Geen nieuwe e-mailfunnel geactiveerd.
+**Gemeten:** lokaal Lighthouse13.5.0 mobiel én desktop100/100/100/100. Laatste live meting: mobiel98/100/100/100 (FCP1.3 s,LCP1.7 s,SI4.0 s,TBT0 ms,CLS0); desktop100/100/100/100. Vier live100-scores op mobiel nog niet bevestigd. Officiële Google-API429/webinterface Unable to resolve (ookweb.dev); geen Google-cloudscore geclaimd.
 
-**Werkelijk gemeten:** Lighthouse 13.5.0, lokale productiehomepage: mobiel **100/100/100/100**, FCP1,1s/LCP1,7s/TBT0/CLS0; desktop **100/100/100/100**, FCP0,3s/LCP0,4s/TBT0/CLS0. Uitgangspunt live mobiel86/100/100/100. De officiële Google-API HTTP429 en webinterface Unable to resolve (ook web.dev): Google-cloudscore nog onbevestigd.
+**Gecontroleerd:** volledige lint/TypeScript/productiebuild/native-generator;320/390/1280px light/dark, focus/Tab/Escape/inert/bodyherstel, themageheugen en bfcache, contact↔home zonder RSC-fouten, alle21 assets200, vijf AVIF-casebeelden ook zonderJavaScript, native404/casebacklink. Voorstelautoscroll/fullscreen/Escape/focusherstel werken. Geen browserfouten. Hostingadapterbestandsnaam hersteld; laatste codebuild geslaagd.
 
-**Controles:** volledige ESLint, TypeScript/productiebuild en native HTML-generator geslaagd. Onafhankelijke320/390px-QA light/dark, opslag/herladen, focuscyclus/Escape/inert/scrollherstel, alle vijf beelden, contact→home→Back/Forward zonder RSC-fouten en alle21 lokale assets HTTP200. Voorstelautoscroll/fullscreen/Escape behouden. Afzonderlijk JavaScript-uitcontrole: alle vijf noscript-beelden zichtbaar/geladen, geen overflow. Geen browserfouten. Laatste native verhaalcontrole bevestigt ook bfcache-thema, contactterugkeer, daadwerkelijke voorstelautoscroll en fullscreen/Escape zonder consolewaarschuwingen. Alle subagenttestsessies zijn gesloten.
+**Opgeslagen:** README, instructions.md, log.md, [meetrapport](docs/homepage-performance.md), [fontdocumentatie](docs/font-subsets.md) en showcase-engine bijgewerkt. Volledige HTML/JSON-rapporten lokaal in artifacts/pagespeed/2026-10-04 buiten Git.
 
-**Opslag:** [docs/homepage-performance.md](docs/homepage-performance.md) bevat implementatie, scores, controles en open grenzen. [docs/font-subsets.md](docs/font-subsets.md), README, instructions en showcase-engine bijgewerkt. Volledige HTML/JSON-rapporten lokaal in artifacts/pagespeed/2026-10-04, buiten Git; historische logentries behouden.
+**Afgesloten:** alle eigen browser-/subagenttestsessies en lokale productiepoort3000 gestopt. Andere projecten niet gewijzigd. Documentatie wordt nog naar GitHub gepusht; een daardoor gestarte nieuwe build wordt niet als al gecontroleerd vermeld.
 
-**Volgende en laatste stap:** commit/push via GitHub main, verbonden deployment controleren en live mobiel/desktop meten; officiële PageSpeed één keer opnieuw proberen. Daarna publicatiebewijs in deze status/log/rapport opslaan en eigen testsessies/server afsluiten. Nog geen live100-score van de nieuwe versie geclaimd.
+**Open voor een latere opdracht:** officiële Google-meting en eventuele laatste mobiele98→100-verbetering. Geen actieve opt-in/e-mailopvolging toegevoegd; oude funnelhistorie en DNS-documenten bewaard. Vijf npm-advisories in bestaande ontwikkeltoolketen beschreven in het meetrapport.

@@ -60,4 +60,15 @@ Gebruik voor desktop aanvullend `--preset=desktop`. Meet productie ook op `https
 
 ## Publicatie
 
-Nog te verifiëren: Git-commit, verbonden deployment en live Lighthouse-resultaten. Geen directe Vercel-deployment gebruikt.
+Codecommit `6255fab4e8d5507cc1624538c33672fbd67c5f43` via GitHub gepubliceerd; verbonden productie-deployment `dpl_DDvJ6JKEPpfAeMXHenMycwGmLWTA` is READY met www.mediadustry.com/mediadustry.com. Live HTML gebruikt native-home.js en bevat geen React-payload. Geen directe Vercel-deployment gebruikt.
+
+| Live meting | Performance | Accessibility | Best practices | SEO | FCP   | LCP   | Speed Index | TBT  | CLS |
+| ----------- | ----------: | ------------: | -------------: | --: | ----- | ----- | ----------- | ---- | --- |
+| mobile      |          98 |           100 |            100 | 100 | 1.3 s | 1.7 s | 4.0 s       | 0 ms | 0   |
+| desktop     |         100 |           100 |            100 | 100 | 0.3 s | 0.4 s | 0.3 s       | 0 ms | 0   |
+
+**Vier keer100 is lokaal op beide apparaten en live op desktop gemeten. De laatste live mobiele meting is98/100/100/100; dus het volledige live100-doel is nog niet bevestigd.** Op verzoek van de eigenaar wordt nu afgerond vanwege resterende credits. Geen verdere optimalisatieronde gestart. Officiële Google-cloudmeting blijft onbevestigd.
+
+De eerste hostingbuilds faalden omdat adapter-builds gehashte route-cachebestandsnamen gebruiken. De generator herkent nu de homepage op gevalideerde inhoud in Next/Vercel-output en schrijft waar nodig ook naar adapter-static-output. De uiteindelijke build is geslaagd.
+
+Alle eigen browsersessies en het lokale productieproces zijn afgesloten. Documentatie-update wordt ook via GitHub opgeslagen; een daardoor gestarte nieuwe documentatiebuild is geen nieuwe bevestigde meting.

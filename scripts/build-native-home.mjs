@@ -1,12 +1,57 @@
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, readdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { load } from "cheerio";
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const sourcePath = resolve(projectRoot, ".next/server/app/index.html");
 const outputPath = resolve(projectRoot, "public/native-home.html");
-const source = await readFile(sourcePath, "utf8");
+// Vercel's Next adapter moves prerendered HTML before the npm post-build step.
+const candidates = [
+  ".next/server/app/index.html",
+  ".vercel/output/static/index.html",
+  ".vercel/output/static/index",
+  ".vercel/output/static/index-digital-agency.html",
+];
+let source;
+for (const file of candidates) {
+  try {
+    source = await readFile(resolve(projectRoot, file), "utf8");
+    break;
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
+}
+if (!source) {
+  async function findHomepage(directory) {
+    let entries;
+    try {
+      entries = await readdir(directory, { withFileTypes: true });
+    } catch (error) {
+      if (error.code === "ENOENT") return;
+      throw error;
+    }
+    for (const entry of entries) {
+      const file = resolve(directory, entry.name);
+      if (entry.isDirectory()) {
+        const match = await findHomepage(file);
+        if (match) return match;
+      } else if (/\.html$|\.body$|^index$/.test(entry.name)) {
+        const html = await readFile(file, "utf8");
+        if (
+          html.includes('id="home-title"') &&
+          html.includes('id="site-menu"') &&
+          html.includes("md-real-home")
+        )
+          return html;
+      }
+    }
+  }
+  source = await findHomepage(resolve(projectRoot, ".vercel/output"));
+}
+if (!source)
+  throw new Error(
+    "Native homepage: prerendered HTML missing from Next/Vercel build output",
+  );
 // With scripting enabled, noscript stays raw text: its fallback pictures must not
 // become live images/styles while building a page that uses JavaScript.
 const $ = load(source, { scriptingEnabled: true });

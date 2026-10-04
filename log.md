@@ -80,3 +80,8 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Controle: volledige ESLint, TypeScript/productiebuild en native-generator geslaagd. Onafhankelijke320/390px light/dark, menuTab/ShiftTab/Escape/focus/inert/body, voorkeur na reload, alle vijf beelden, contact→home→Back/Forward,21 lokale assets200, metadata/robots en behouden voorstel gecontroleerd. Geen browserfouten. Complete laatste native verhaalcontrole volgt nog.
 - Op verzoek van de eigenaar afronding ingezet en alles opgeslagen in README/instructions/status/log, docs/homepage-performance.md, docs/font-subsets.md en showcase-engine. Rapporten gekopieerd naar lokaal artifacts/pagespeed/2026-10-04 buiten Git. Npm-auditmeldingen betreffen vijf bestaande ontwikkeltoolketenmeldingen; geen force-downgrade of nieuwe e-mailactivering uitgevoerd.
 - Publicatie via GitHub main volgt; live-scores en deployment-ID zijn nog niet bevestigd voor deze nieuwe versie.
+
+## 2026-10-04 23:27 Europe/Amsterdam — hostingadapterpad hersteld
+
+- Commit9ca29aa via GitHub gepusht; deployment dpl_HgM8NgY3Y8jYLGVxB65fp7ktMFfa faalde na succesvolle Next-build: Vercel onBuildComplete had .next/server/app/index.html verplaatst (ENOENT). De bestaande live versie bleef intact.
+- Generator ondersteunt nu zowel lokaal Next-output als verplaatste Vercel-output, met gecontroleerde homepageherkenning en dezelfde inhoudsvalidaties. Lokale generatie en scoped lint opnieuw geslaagd. Alleen buildkoppeling gewijzigd; geen nieuwe optimalisatieronde.

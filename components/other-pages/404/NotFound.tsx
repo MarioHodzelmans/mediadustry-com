@@ -1,7 +1,6 @@
 "use client";
 
 import { initVelocityMarqueeRows } from "@/lib/template/stackCardsEffects";
-import Link from "next/link";
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 import CommonLoadAnimation, {
@@ -235,7 +234,7 @@ export default function NotFound() {
                       This page doesn&apos;t exist. <span>Sorry.</span>
                     </CommonAnimatedText>
                     <CommonLoadFade index={2}>
-                      <Link
+                      <a
                         className="btn btn-default-icon btn-default-icon-left btn-default-outline slide-left loading-fade"
                         href={`/`}
                       >
@@ -251,7 +250,7 @@ export default function NotFound() {
                         <TextScramble className="btn-caption mxd-scramble">
                           Go Home
                         </TextScramble>
-                      </Link>
+                      </a>
                     </CommonLoadFade>
                   </div>
                 </div>

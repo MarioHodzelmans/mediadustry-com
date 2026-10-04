@@ -1,0 +1,51 @@
+[
+  {
+    "family": "Inter",
+    "file": "inter-home-latin.woff2",
+    "sourceBytes": 48432,
+    "bytes": 21144,
+    "sourceSha256": "c940764593d0fe5d596be327ca7558855e018039fb78509aa21921fd3644c3e4",
+    "sha256": "f055d7b6eb137deb67cce3bc568850b857a74f3a00215bfabb34515750cec8d5",
+    "cmap": 76,
+    "glyphs": 136,
+    "axes": [["wght", 100.0, 400.0, 900.0]],
+    "validation": {
+      "cmapEqualToRequestedSourceCoverage": true,
+      "outlinesAndAdvancesEqual": true,
+      "harfbuzzShapingEqual": true,
+      "axesAndInterpolationEqual": true,
+      "lineMetricsAndAttributionEqual": true,
+      "weightsChecked": [100, 400, 420, 480, 520, 600, 700, 900],
+      "featureTagsChecked": [
+        "calt",
+        "ccmp",
+        "dnom",
+        "frac",
+        "locl",
+        "numr",
+        "pnum",
+        "tnum"
+      ]
+    }
+  },
+  {
+    "family": "JetBrains Mono",
+    "file": "jetbrains-mono-home-latin.woff2",
+    "sourceBytes": 40480,
+    "bytes": 14080,
+    "sourceSha256": "1e06740a02a443fb7f3eeda8fcaa685a0f6c620e3f01e6666e847295469ce3ad",
+    "sha256": "6ee5191e4f254e5ddd400073ba25fcb633de8983afd25cc832dbb95e9fcdc823",
+    "cmap": 76,
+    "glyphs": 122,
+    "axes": [["wght", 100.0, 400.0, 800.0]],
+    "validation": {
+      "cmapEqualToRequestedSourceCoverage": true,
+      "outlinesAndAdvancesEqual": true,
+      "harfbuzzShapingEqual": true,
+      "axesAndInterpolationEqual": true,
+      "lineMetricsAndAttributionEqual": true,
+      "weightsChecked": [100, 400, 420, 480, 520, 600, 700, 800],
+      "featureTagsChecked": ["calt", "ccmp", "frac", "locl"]
+    }
+  }
+]

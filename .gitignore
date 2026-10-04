@@ -16,6 +16,8 @@
 # next.js
 /.next/
 /out/
+/public/native-home.html
+/artifacts/pagespeed/
 
 # production
 /build

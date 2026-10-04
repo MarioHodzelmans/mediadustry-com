@@ -26,11 +26,11 @@ export default function InnerHeadlineArticle() {
                           <div className="inner-headline__breadcrumbs loading-fade">
                             <div className="breadcrumbs__nav permanent">
                               <span>
-                                <Link href={`/`}>
+                                <a href={`/`}>
                                   <TextScramble className="mxd-scramble">
                                     Home
                                   </TextScramble>
-                                </Link>
+                                </a>
                               </span>
                               <span className="current-item">Insights </span>
                             </div>

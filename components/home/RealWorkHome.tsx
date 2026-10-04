@@ -1,8 +1,17 @@
-import Image from "next/image";
+import CaseImage from "./CaseImage";
+import DeferredCaseImages from "./DeferredCaseImages";
 import Link from "next/link";
 import ArrowIcon from "@/components/brand/ArrowIcon";
 import { realCases } from "@/data/realCases";
 import styles from "./real-work-home.module.css";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { cwd } from "node:process";
+
+// Deliver the critical mobile photo with the static HTML; larger viewports use srcset.
+const mobileHero = `data:image/avif;base64,${readFileSync(
+  join(cwd(), "public/img/cases/responsive/bouwservice-peskens-1080.avif"),
+).toString("base64")}`;
 
 const process = [
   {
@@ -27,7 +36,12 @@ export default function RealWorkHome() {
   const supporting = realCases.slice(1);
 
   return (
-    <main className={`${styles.page} md-real-home`}>
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className={`${styles.page} md-real-home`}
+    >
+      <DeferredCaseImages />
       <section className={styles.hero} aria-labelledby="home-title">
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}>Strategie · design · development</p>
@@ -39,10 +53,18 @@ export default function RealWorkHome() {
             wekt, jouw verhaal scherp vertelt en bezoekers helpt kiezen.
           </p>
           <div className={styles.actions}>
-            <Link href="/contact" className={styles.primaryAction}>
+            <Link
+              prefetch={false}
+              href="/contact"
+              className={styles.primaryAction}
+            >
               Ontdek wat beter kan <ArrowIcon />
             </Link>
-            <Link href="#werk" className={styles.secondaryAction}>
+            <Link
+              prefetch={false}
+              href="#werk"
+              className={styles.secondaryAction}
+            >
               Bekijk echt werk <ArrowIcon />
             </Link>
           </div>
@@ -65,21 +87,21 @@ export default function RealWorkHome() {
               <span />
               <p>bouwservicepeskens.nl</p>
             </div>
-            <Image
+            <CaseImage
               src={featured.image}
               alt={featured.imageAlt}
-              fill
-              loading="eager"
-              sizes="(max-width: 900px) 94vw, 57vw"
+              eager
+              inlineMobileSrc={mobileHero}
+              sizes="(max-width: 1050px) 94vw, 50vw"
               className={styles.heroImage}
             />
           </div>
           <div className={styles.mobileFrame}>
-            <Image
+            <CaseImage
               src="/img/cases/bouwservice-peskens-mobile.webp"
               alt="Mobiele homepage van Bouwservice Peskens"
-              fill
-              sizes="(max-width: 900px) 34vw, 16vw"
+              nativeLazy
+              sizes="(max-width: 700px) 26vw, (max-width: 1050px) 23vw, 120px"
               className={styles.mobileImage}
             />
           </div>
@@ -100,11 +122,14 @@ export default function RealWorkHome() {
         </div>
 
         <article className={styles.featuredCase}>
-          <Link href={`/werk/${featured.slug}`} className={styles.caseMedia}>
-            <Image
+          <Link
+            prefetch={false}
+            href={`/werk/${featured.slug}`}
+            className={styles.caseMedia}
+          >
+            <CaseImage
               src={featured.image}
               alt={featured.imageAlt}
-              fill
               sizes="(max-width: 900px) 94vw, 62vw"
               className={styles.caseImage}
             />
@@ -121,7 +146,11 @@ export default function RealWorkHome() {
                 <li key={service}>{service}</li>
               ))}
             </ul>
-            <Link href={`/werk/${featured.slug}`} className={styles.textLink}>
+            <Link
+              prefetch={false}
+              href={`/werk/${featured.slug}`}
+              className={styles.textLink}
+            >
               Bekijk de case <ArrowIcon />
             </Link>
           </div>
@@ -130,11 +159,14 @@ export default function RealWorkHome() {
         <div className={styles.caseGrid}>
           {supporting.map((item, index) => (
             <article className={styles.caseCard} key={item.slug}>
-              <Link href={`/werk/${item.slug}`} className={styles.cardMedia}>
-                <Image
+              <Link
+                prefetch={false}
+                href={`/werk/${item.slug}`}
+                className={styles.cardMedia}
+              >
+                <CaseImage
                   src={item.image}
                   alt={item.imageAlt}
-                  fill
                   sizes="(max-width: 700px) 94vw, (max-width: 1100px) 46vw, 45vw"
                   className={styles.caseImage}
                 />
@@ -146,7 +178,11 @@ export default function RealWorkHome() {
                 </p>
                 <h3>{item.title}</h3>
                 <p>{item.statement}</p>
-                <Link href={`/werk/${item.slug}`} className={styles.textLink}>
+                <Link
+                  prefetch={false}
+                  href={`/werk/${item.slug}`}
+                  className={styles.textLink}
+                >
                   Bekijk de case <ArrowIcon />
                 </Link>
               </div>
@@ -155,10 +191,16 @@ export default function RealWorkHome() {
         </div>
       </section>
 
-      <section id="aanpak" className={styles.process} aria-labelledby="process-title">
+      <section
+        id="aanpak"
+        className={styles.process}
+        aria-labelledby="process-title"
+      >
         <div className={styles.sectionHeading}>
           <p className={styles.eyebrow}>Zo ontstaat goed digitaal werk</p>
-          <h2 id="process-title">Van scherpe positionering naar een site die klopt.</h2>
+          <h2 id="process-title">
+            Van scherpe positionering naar een site die klopt.
+          </h2>
         </div>
         <div className={styles.processGrid}>
           {process.map((step) => (
@@ -171,26 +213,39 @@ export default function RealWorkHome() {
         </div>
       </section>
 
-      <section id="diensten" className={styles.services} aria-labelledby="services-title">
+      <section
+        id="diensten"
+        className={styles.services}
+        aria-labelledby="services-title"
+      >
         <div>
           <p className={styles.eyebrow}>Waarmee MEDIADUSTRY helpt</p>
-          <h2 id="services-title">Eén digitale partner van verhaal tot lancering.</h2>
+          <h2 id="services-title">
+            Eén digitale partner van verhaal tot lancering.
+          </h2>
         </div>
         <div className={styles.serviceList}>
           <article>
             <span>01</span>
             <h3>Merk & positionering</h3>
-            <p>Een helder verhaal, herkenbare identiteit en visuele richting.</p>
+            <p>
+              Een helder verhaal, herkenbare identiteit en visuele richting.
+            </p>
           </article>
           <article>
             <span>02</span>
             <h3>Webdesign & development</h3>
-            <p>Responsive UX, sterk ontwerp en een snelle, toegankelijke realisatie.</p>
+            <p>
+              Responsive UX, sterk ontwerp en een snelle, toegankelijke
+              realisatie.
+            </p>
           </article>
           <article>
             <span>03</span>
             <h3>Groei & doorontwikkeling</h3>
-            <p>Content, SEO-basis, optimalisatie en technische ondersteuning.</p>
+            <p>
+              Content, SEO-basis, optimalisatie en technische ondersteuning.
+            </p>
           </article>
         </div>
       </section>
@@ -200,16 +255,25 @@ export default function RealWorkHome() {
           <span aria-hidden="true" />
           Een nieuwe website of een bestaande site die beter moet?
         </div>
-        <h2 id="cta-title">Laten we scherp krijgen wat jouw volgende stap is.</h2>
+        <h2 id="cta-title">
+          Laten we scherp krijgen wat jouw volgende stap is.
+        </h2>
         <p>
           Vertel kort waar je nu staat en wat je wilt bereiken. Je krijgt een
           eerlijk eerste beeld van de kansen, aanpak en passende vervolgstap.
         </p>
         <div className={styles.actions}>
-          <Link href="/contact" className={styles.primaryAction}>
+          <Link
+            prefetch={false}
+            href="/contact"
+            className={styles.primaryAction}
+          >
             Plan een kennismaking <ArrowIcon />
           </Link>
-          <a href="mailto:info@mediadustry.com" className={styles.secondaryAction}>
+          <a
+            href="mailto:info@mediadustry.com"
+            className={styles.secondaryAction}
+          >
             Mail MEDIADUSTRY <ArrowIcon />
           </a>
         </div>

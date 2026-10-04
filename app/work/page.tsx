@@ -13,7 +13,10 @@ export default function WorkPage() {
   const cases = getShowcases("case");
   return (
     <main className={`${styles.page} showcase-page`}>
-      <nav><Link href="/">MEDIADUSTRY</Link><Link href="/contact">Start een project</Link></nav>
+      <nav>
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- The homepage is served as standalone HTML. */}
+        <a href="/">MEDIADUSTRY</a><Link href="/contact">Start een project</Link>
+      </nav>
       <header><p>Selected work / 2026</p><h1>Werk dat digitaal vooruitgaat.</h1></header>
       <section aria-label="Portfolio cases">
         {cases.map((item, index) => (

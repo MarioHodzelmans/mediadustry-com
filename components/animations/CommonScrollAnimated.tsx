@@ -1,4 +1,5 @@
 "use client";
+import "@/components/common/LegacyEases";
 
 import {
   useLayoutEffect,

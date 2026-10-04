@@ -22,7 +22,7 @@ export default function robots(): MetadataRoute.Robots {
         "/works-",
       ],
     },
-    sitemap: "https://mediadustry.com/sitemap.xml",
-    host: "https://mediadustry.com",
+    sitemap: "https://www.mediadustry.com/sitemap.xml",
+    host: "https://www.mediadustry.com",
   };
 }

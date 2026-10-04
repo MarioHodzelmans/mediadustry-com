@@ -327,7 +327,7 @@ export default function DemoGrid() {
                         as="div"
                         columns={2}
                       >
-                        <Link
+                        <a
                           className="mxd-demo-grid__image active-cursor-permanent"
                           data-cursor-text="View Demo"
                           href={`/index-digital-agency`}
@@ -340,15 +340,15 @@ export default function DemoGrid() {
                             height={563}
                           />
                           <div className="mxd-demo-grid__screen screen-08" />
-                        </Link>
+                        </a>
                         <div className="mxd-demo-grid__caption">
                           <div className="mxd-demo-grid__name">
-                            <Link
+                            <a
                               className="project-name-s"
                               href={`/index-digital-agency`}
                             >
                               Digital agency
-                            </Link>
+                            </a>
                           </div>
                           <div className="mxd-demo-grid__tags">
                             <TextScramble className="tag tag-s tag-medium mxd-scramble">

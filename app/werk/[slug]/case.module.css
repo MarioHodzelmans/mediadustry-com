@@ -220,6 +220,11 @@
 @media (max-width: 760px) {
   .hero {
     min-height: 82svh;
+    padding-top: 14.5rem;
+  }
+
+  .backLink {
+    top: 10.5rem;
   }
 
   .visual {

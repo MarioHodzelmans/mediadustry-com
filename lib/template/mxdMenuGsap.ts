@@ -1,4 +1,5 @@
 "use client";
+import "@/components/common/LegacyEases";
 
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText.js";

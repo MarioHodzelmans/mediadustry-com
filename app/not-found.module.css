@@ -1,0 +1,31 @@
+.page {
+  min-height: 80svh;
+  padding: 16rem var(--md-shell-gutter, 3rem) 8rem;
+  color: var(--t-bright);
+  background: var(--base);
+}
+.label {
+  font: 600 1.5rem var(--font-jetbrains-mono);
+  color: var(--t-medium);
+}
+.page h1 {
+  max-width: 12ch;
+  font-size: clamp(4rem, 8vw, 10rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+.page > p {
+  max-width: 55rem;
+  margin-block: 3rem;
+}
+.link {
+  display: inline-flex;
+  gap: 1rem;
+  align-items: center;
+  border-bottom: 1px solid currentColor;
+  color: inherit;
+}
+.link svg {
+  width: 1em;
+  height: 1em;
+}

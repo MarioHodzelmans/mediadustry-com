@@ -12,7 +12,7 @@ export default function Footer3({ name = "MEDIADUSTRY" }: { name?: string }) {
           <div className="mxd-footer__footer-blocks mxd-grid-item">
             <div className="footer-blocks__nav-v01">
               <ul className="footer-nav-v01">
-                <li className="footer-nav-v01__item"><CommonScrollAnimatedLink className="anim-uni-slide-down" href="/" animation="slideDownLine"><TextScramble className="mxd-scramble mxd-slide-down">Home</TextScramble></CommonScrollAnimatedLink></li>
+                <li className="footer-nav-v01__item"><CommonScrollAnimated as="a" className="anim-uni-slide-down" href="/" animation="slideDownLine"><TextScramble className="mxd-scramble mxd-slide-down">Home</TextScramble></CommonScrollAnimated></li>
                 <li className="footer-nav-v01__item"><CommonScrollAnimatedLink className="anim-uni-slide-down" href="/contact" animation="slideDownLine"><TextScramble className="mxd-scramble mxd-slide-down">Contact</TextScramble></CommonScrollAnimatedLink></li>
               </ul>
             </div>

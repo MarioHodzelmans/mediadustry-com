@@ -2,7 +2,6 @@
 
 import AutoplayLoopVideo from "@/components/media/AutoplayLoopVideo";
 import PinnedSection from "@/components/animations/PinnedSection";
-import Link from "next/link";
 import CommonLoadAnimation, {
   CommonLoadFade,
 } from "@/components/animations/CommonLoadAnimation";
@@ -56,11 +55,11 @@ export default function InnerHeadline() {
                             <div className="inner-headline__breadcrumbs loading-fade">
                               <div className="breadcrumbs__nav permanent">
                                 <span>
-                                  <Link href={`/`}>
+                                  <a href={`/`}>
                                     <TextScramble className="mxd-scramble">
                                       Home
                                     </TextScramble>
-                                  </Link>
+                                  </a>
                                 </span>
                                 <span className="current-item">Services </span>
                               </div>

@@ -1,6 +1,5 @@
 import BlurSection from "@/components/animations/BlurSection";
 import CommonAnimatedText from "@/components/animations/CommonAnimatedText";
-import Link from "next/link";
 import Image from "next/image";
 import TextScramble from "@/components/animations/TextScramble";
 import FooterBackToTop from "@/components/footers/FooterBackToTop";
@@ -46,7 +45,7 @@ export default function Footer1() {
                   as="div"
                   animation="inUp"
                 >
-                  <Link className="mxd-logo" href={`/`}>
+                  <a className="mxd-logo" href={`/`}>
                     {/* logo icon */}
                     <svg
                       className="mxd-logo__image"
@@ -65,7 +64,7 @@ export default function Footer1() {
                         Template
                       </TextScramble>
                     </div>
-                  </Link>
+                  </a>
                 </CommonScrollAnimated>
                 <div className="mxd-demo-footer__slogan">
                   <CommonAnimatedText
@@ -152,13 +151,24 @@ export default function Footer1() {
                                 <ul>
                                   {block.links.map((link) => (
                                     <li key={`${block.title}-${link.href}`}>
-                                      <CommonScrollAnimatedLink
-                                        className={navLinkClass}
-                                        href={link.href}
-                                        animation="slideDownLine"
-                                      >
-                                        <span>{link.label}</span>
-                                      </CommonScrollAnimatedLink>
+                                      {link.href === "/" || link.href.startsWith("/#") || link.href === "/index-digital-agency" ? (
+                                        <CommonScrollAnimated
+                                          as="a"
+                                          className={navLinkClass}
+                                          href={link.href}
+                                          animation="slideDownLine"
+                                        >
+                                          <span>{link.label}</span>
+                                        </CommonScrollAnimated>
+                                      ) : (
+                                        <CommonScrollAnimatedLink
+                                          className={navLinkClass}
+                                          href={link.href}
+                                          animation="slideDownLine"
+                                        >
+                                          <span>{link.label}</span>
+                                        </CommonScrollAnimatedLink>
+                                      )}
                                     </li>
                                   ))}
                                 </ul>

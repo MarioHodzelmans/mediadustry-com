@@ -1,4 +1,5 @@
 "use client";
+import "@/components/common/LegacyEases";
 
 import { useCallback, useEffect, useRef, type ReactNode } from "react";
 import { gsap } from "gsap";

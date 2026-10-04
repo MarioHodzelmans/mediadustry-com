@@ -1,0 +1,648 @@
+/* Full styles, loaded only on the original template examples. */
+@import url("/css/loader.css");
+@import url("/css/plugins.css");
+@import url("/css/main.css");
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+  transition-property: overflow;
+  transition-duration: 1ms;
+  transition-behavior: allow-discrete;
+}
+
+/* Template styles — same order as the original HTML link tags. */
+/* Paths are relative to this file; assets in url() inside those CSS files resolve from public/css/. */
+body {
+  --_font-default: var(--font-manrope);
+  --_font-accent: var(--font-jetbrains-mono);
+}
+
+.image-auto {
+  /* width: auto !important; */
+  height: auto !important;
+}
+
+/* Services stack: main.css .line { translateY(100%) } applies vendor-prefixed transforms; GSAP’s
+   y uses unprefixed transform — boxes and painted text desync. Neutralize so only inline GSAP owns y. */
+.mxd-stack-services .services-card__title .line,
+.mxd-stack-services .services-card__descr .line {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+/* Preview / landing demo stack — same global .line + SplitText as services stack */
+.mxd-demo-stack .demo-card__title .line,
+.mxd-demo-stack .demo-card__descr .line {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+/* Overlay menu: active section — theme accent on label / index / arrow (no background) */
+.mxd-menu .main-menu__item.main-menu__item--current .main-menu__number {
+  color: var(--accent);
+}
+.mxd-menu .main-menu__item.main-menu__item--current .main-menu__caption {
+  color: var(--accent);
+}
+.mxd-menu .main-menu__item.main-menu__item--current .main-menu__toggle svg {
+  fill: var(--accent);
+}
+.mxd-menu .main-menu__item.main-menu__item--current.open .main-menu__caption {
+  color: var(--accent);
+}
+.no-touch .mxd-menu .main-menu__item.main-menu__item--current .main-menu__toggle:hover .main-menu__caption {
+  color: var(--accent);
+}
+.no-touch .mxd-menu .main-menu__item.main-menu__item--current .main-menu__toggle:hover svg {
+  fill: var(--accent);
+}
+
+/* MEDIADUSTRY brand mark follows the active light/dark theme through currentColor. */
+.mxd-logo__image,
+.menu-logo__image {
+  width: auto;
+  color: currentColor;
+  fill: currentColor;
+  transition: color 0.35s ease, fill 0.35s ease;
+}
+
+.mxd-logo__text,
+.menu-logo__text {
+  white-space: nowrap;
+}
+
+/* Reserve the 10-viewport pinned hero timeline in the server-rendered layout.
+   ScrollTrigger can now pin without injecting late layout space (CLS). */
+.mxd-hero-section:has(.mxd-hero-02) {
+  min-height: 1100svh;
+}
+
+.mxd-hero-02__outro {
+  visibility: hidden;
+}
+
+/* SplitText creates nested spans/divs that carried the template's permanent
+   white tint. Keep every rendered hero letter strictly theme-correct. */
+[color-scheme="light"] .mxd-hero-02__intro h1,
+[color-scheme="light"] .mxd-hero-02__intro h1 *,
+[color-scheme="light"] .mxd-hero-02__outro h2,
+[color-scheme="light"] .mxd-hero-02__outro h2 * {
+  color: #000000 !important;
+}
+
+[color-scheme="dark"] .mxd-hero-02__intro h1,
+[color-scheme="dark"] .mxd-hero-02__intro h1 *,
+[color-scheme="dark"] .mxd-hero-02__outro h2,
+[color-scheme="dark"] .mxd-hero-02__outro h2 * {
+  color: #ffffff !important;
+}
+
+/* Showcase pages use the same site header, theme switcher and overlay menu. */
+body:has(.showcase-page) > .mxd-header {
+  display: flex;
+  z-index: 40;
+}
+
+body:has(.showcase-page) > .mxd-menu__contain,
+body:has(.showcase-page) > .mxd-menu {
+  display: block;
+}
+
+.mxd-video-poster {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mxd-process-symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.2em;
+  font: inherit;
+  line-height: 1;
+}
+
+.md-coordinates {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: left;
+  text-overflow: clip;
+}
+
+/* Shared MEDIADUSTRY header and menu --------------------------------------- */
+:root {
+  --md-shell-gutter: 3rem;
+}
+
+@media only screen and (min-width: 768px) {
+  :root { --md-shell-gutter: 6rem; }
+}
+
+@media only screen and (min-width: 1600px) {
+  :root { --md-shell-gutter: 10rem; }
+}
+
+/* One position on every route; the active theme alone determines contrast. */
+.mxd-header {
+  left: var(--md-shell-gutter);
+  right: calc(var(--md-shell-gutter) + 7rem);
+  width: auto;
+  padding-top: 3rem;
+  z-index: 10;
+}
+
+.mxd-header .mxd-logo,
+.mxd-header .mxd-logo__text,
+.mxd-header .mxd-color-switcher {
+  color: var(--t-bright);
+}
+
+.mxd-header__controls { padding-right: 0; }
+
+.mxd-menu__contain {
+  right: var(--md-shell-gutter);
+  mix-blend-mode: normal;
+}
+
+.hamburger__line { background-color: var(--t-bright); }
+
+/* Oversized display words stay inside their own contact/footer viewport. */
+.fullwidth-text__wrap,
+.fw-mark__wrap {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Keep the complete footer wordmark visible at every viewport width. */
+.mxd-footer .fw-mark__wrap {
+  overflow: visible;
+  padding-block: 1rem;
+}
+
+.mxd-footer .fw-mark__content {
+  font-size: min(12.4cqw, 18rem);
+  line-height: 0.88;
+}
+
+.mxd-footer .fw-mark__content span {
+  line-height: 0.88;
+}
+
+/* The open menu follows, rather than inverts, the selected site theme. */
+[color-scheme="light"] .mxd-menu {
+  --md-menu-bg: #eeeae8;
+  --md-menu-fg: #0f0f0f;
+  --md-menu-muted: #575960;
+  --md-menu-rule: rgba(15, 15, 15, 0.22);
+}
+
+[color-scheme="dark"] .mxd-menu {
+  --md-menu-bg: #000000;
+  --md-menu-fg: #ffffff;
+  --md-menu-muted: #a1a4ad;
+  --md-menu-rule: rgba(255, 255, 255, 0.24);
+}
+
+.mxd-menu__overlay,
+.mxd-menu__content,
+.mxd-menu__navigation,
+.mxd-menu__inner {
+  background-color: var(--md-menu-bg);
+  color: var(--md-menu-fg);
+}
+
+.mxd-menu__media { display: none !important; }
+.mxd-menu__navigation { flex: 1 1 100%; }
+
+.mxd-menu__logo {
+  left: var(--md-shell-gutter);
+}
+
+.mxd-menu__logo .menu-logo,
+.mxd-menu__logo .menu-logo__text,
+.mxd-menu__logo .menu-logo svg {
+  color: var(--md-menu-fg);
+  fill: currentColor;
+  mix-blend-mode: normal;
+}
+
+.mxd-menu__inner {
+  padding-left: var(--md-shell-gutter);
+  padding-right: var(--md-shell-gutter);
+  padding-bottom: 3rem;
+}
+
+.mxd-menu__caption p,
+.main-menu__number,
+.menu-contact__label,
+.mxd-menu__footer {
+  color: var(--md-menu-muted);
+}
+
+.main-menu__item,
+.main-menu__caption,
+.main-menu__link,
+.menu-contact__value {
+  color: var(--md-menu-fg);
+}
+
+.main-menu__divider { background-color: var(--md-menu-rule); }
+
+.mxd-menu__caption {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.mxd-menu__shadow,
+.mxd-menu__shadow.shadow-top {
+  background: linear-gradient(to bottom, var(--md-menu-bg) 0%, var(--md-menu-bg) 24%, transparent 100%);
+}
+
+.menu-contact {
+  display: grid;
+  gap: 2.4rem;
+  margin-top: 5rem;
+  padding: 0;
+}
+
+.menu-contact__item {
+  border-bottom: 1px solid var(--md-menu-rule);
+  gap: 0.8rem;
+  min-width: 0;
+  padding-bottom: 1.8rem;
+}
+
+.menu-contact__label {
+  font: normal 600 1.1rem/1 var(--_font-accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.menu-contact__value {
+  display: block;
+  font: normal 600 clamp(1.6rem, 1.5vw, 2.2rem)/1.25 var(--_font-default);
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+.menu-contact__value.md-coordinates {
+  overflow: visible;
+  text-overflow: unset;
+  white-space: nowrap;
+}
+
+.mxd-menu__footer {
+  display: flex;
+  flex: 0 0 auto;
+  font: normal 600 1.1rem/1.2 var(--_font-accent);
+  justify-content: space-between;
+  letter-spacing: 0.04em;
+  margin-top: auto;
+  padding-top: 4rem;
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width: 1200px) {
+  .mxd-menu__caption {
+    padding-left: calc(var(--md-shell-gutter) + 23rem);
+    padding-right: calc(var(--md-shell-gutter) + 7rem);
+  }
+
+  .mxd-menu__inner {
+    padding-left: var(--md-shell-gutter);
+    padding-right: var(--md-shell-gutter);
+    padding-bottom: 3rem;
+  }
+
+  .mxd-menu__left {
+    padding-right: clamp(3rem, 5vw, 8rem);
+    width: 66.67%;
+  }
+
+  .mxd-menu__right {
+    padding-left: clamp(3rem, 5vw, 8rem);
+    padding-right: 7rem;
+    padding-top: 14rem;
+    width: 33.33%;
+  }
+
+  .menu-contact {
+    gap: 2.8rem;
+    margin-top: 0;
+  }
+
+  .mxd-menu__footer {
+    bottom: 3rem;
+    left: var(--md-shell-gutter);
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: calc(var(--md-shell-gutter) + 7rem);
+    z-index: 3;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .mxd-menu__inner {
+    padding-bottom: 2.5rem;
+    padding-top: 10rem;
+  }
+
+  .mxd-menu__caption { display: none; }
+  .menu-contact { margin-top: 5rem; }
+  .menu-contact__value { font-size: 1.7rem; }
+  .mxd-menu__footer { padding-bottom: 1rem; }
+}
+/* The portfolio-first homepage opens on a dark hero in both stored themes. */
+body:has(.md-real-home) .mxd-header {
+  color: #fff;
+}
+
+body:has(.md-real-home) .mxd-header .mxd-logo,
+body:has(.md-real-home) .mxd-header .mxd-color-switcher {
+  min-height: 4.4rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.32);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.14);
+}
+
+body:has(.md-real-home) .mxd-header .mxd-logo {
+  padding-right: 1.35rem;
+}
+
+body:has(.md-real-home) .mxd-menu__hamburger {
+  width: 6rem;
+  height: 4.4rem;
+  padding-inline: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.32);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+@media only screen and (max-width: 767px) {
+  body:has(.md-real-home) .mxd-header .mxd-logo,
+  body:has(.md-real-home) .mxd-header .mxd-color-switcher,
+  body:has(.md-real-home) .mxd-menu__hamburger {
+    min-height: 3.8rem;
+  }
+
+  body:has(.md-real-home) .mxd-header .mxd-logo {
+    padding: 0.45rem 0.8rem;
+  }
+
+  body:has(.md-real-home) .mxd-menu__hamburger {
+    width: 5.2rem;
+    height: 3.8rem;
+  }
+}
+
+[color-scheme="dark"] body:has(.md-real-home) .mxd-header .mxd-logo,
+[color-scheme="dark"] body:has(.md-real-home) .mxd-header .mxd-header__link,
+[color-scheme="dark"] body:has(.md-real-home) .mxd-header .mxd-color-switcher,
+[color-scheme="dark"] body:has(.md-case-page) .mxd-header .mxd-logo,
+[color-scheme="dark"] body:has(.md-case-page) .mxd-header .mxd-header__link,
+[color-scheme="dark"] body:has(.md-case-page) .mxd-header .mxd-color-switcher {
+  color: #fff;
+}
+
+[color-scheme="light"] body:has(.md-real-home) .mxd-header .mxd-logo,
+[color-scheme="light"] body:has(.md-real-home) .mxd-header .mxd-header__link,
+[color-scheme="light"] body:has(.md-real-home) .mxd-header .mxd-color-switcher,
+[color-scheme="light"] body:has(.md-case-page) .mxd-header .mxd-logo,
+[color-scheme="light"] body:has(.md-case-page) .mxd-header .mxd-header__link,
+[color-scheme="light"] body:has(.md-case-page) .mxd-header .mxd-color-switcher {
+  color: #07090c;
+}
+
+[color-scheme="light"] body:has(.md-real-home) .mxd-header .mxd-logo,
+[color-scheme="light"] body:has(.md-real-home) .mxd-header .mxd-color-switcher,
+[color-scheme="light"] body:has(.md-real-home) .mxd-menu__hamburger {
+  border-color: rgba(7, 9, 12, 0.15);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+body:has(.md-real-home) .mxd-header svg,
+body:has(.md-case-page) .mxd-header svg {
+  fill: currentColor;
+}
+
+body:has(.md-real-home) .mxd-header .btn-caption,
+body:has(.md-real-home) .mxd-header .switcher-text,
+body:has(.md-case-page) .mxd-header .btn-caption,
+body:has(.md-case-page) .mxd-header .switcher-text {
+  font-size: clamp(1.4rem, 1.25vw, 1.65rem);
+  font-weight: 600;
+}
+
+body:has(.md-real-home) .mxd-logo__text,
+body:has(.md-case-page) .mxd-logo__text {
+  font-size: clamp(1.5rem, 1.5vw, 1.9rem);
+}
+
+/* Contact and other public depth content use the same moodboard system. */
+.md-contact-page {
+  overflow-x: clip;
+}
+
+[color-scheme="dark"] body:has(.md-contact-page) {
+  --base: #000000;
+  --base-rgb: 0, 0, 0;
+  --base-tint: #101722;
+  --base-tint-rgb: 16, 23, 34;
+  --base-bright: #101722;
+  --base-bright-rgb: 16, 23, 34;
+  --accent: #4d78ff;
+  --highlight: #b046ff;
+  --base-opp: #e9eceb;
+  --base-opp-rgb: 233, 236, 235;
+  --t-bright: #e9eceb;
+  --t-medium: #c5ccd6;
+  --t-muted: #9da7b6;
+  --t-opp-bright: #07090c;
+  --t-opp-medium: #101722;
+}
+
+[color-scheme="light"] body:has(.md-contact-page) {
+  --base: #e9eceb;
+  --base-rgb: 233, 236, 235;
+  --base-tint: #ffffff;
+  --base-tint-rgb: 255, 255, 255;
+  --base-bright: #ffffff;
+  --base-bright-rgb: 255, 255, 255;
+  --accent: #4d78ff;
+  --highlight: #b046ff;
+  --base-opp: #07090c;
+  --base-opp-rgb: 7, 9, 12;
+  --t-bright: #07090c;
+  --t-medium: #252b35;
+  --t-muted: #505864;
+  --t-opp-bright: #e9eceb;
+  --t-opp-medium: #c5ccd6;
+}
+
+body:has(.md-contact-page) .mxd-header .btn-caption,
+body:has(.md-contact-page) .mxd-header .switcher-text,
+body:has(.md-contact-page) .breadcrumbs__nav,
+body:has(.md-contact-page) .tag,
+body:has(.md-contact-page) .btn-caption {
+  font-size: clamp(1.35rem, 1.2vw, 1.6rem);
+}
+
+body:has(.md-contact-page) .inner-headline h1.medium {
+  font-size: clamp(7.2rem, 10vw, 14rem);
+  line-height: 0.86;
+  letter-spacing: -0.065em;
+}
+
+body:has(.md-contact-page) .inner-headline__caption p,
+body:has(.md-contact-page) .mxd-section-title__paragraph p {
+  font-size: clamp(2.2rem, 2.3vw, 3.4rem);
+  line-height: 1.35;
+}
+
+body:has(.md-contact-page) .mxd-section-title h2,
+body:has(.md-contact-page) .mxd-promo__caption h2 {
+  font-size: clamp(6.4rem, 9vw, 12rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+body:has(.md-contact-page) .headline-email-text .fullwidth-text__content {
+  background: linear-gradient(100deg, #4d78ff, #b046ff 58%, #ff6438);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body:has(.md-contact-page) input,
+body:has(.md-contact-page) textarea,
+body:has(.md-contact-page) select {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(1.6rem, 1.4vw, 2rem);
+}
+
+@media (max-width: 767px) {
+  body:has(.md-contact-page) .inner-headline h1.medium {
+    font-size: clamp(5.2rem, 17vw, 8rem);
+  }
+
+  body:has(.md-contact-page) .inner-headline__caption p,
+  body:has(.md-contact-page) .mxd-section-title__paragraph p {
+    font-size: 2rem;
+  }
+
+  body:has(.md-contact-page) .mxd-section-title h2,
+  body:has(.md-contact-page) .mxd-promo__caption h2 {
+    font-size: clamp(5rem, 15vw, 7.5rem);
+  }
+}
+
+/* Accessible CSS-driven menu state. */
+
+.mxd-menu.mxd-menu--gsap .mxd-menu__backdrop,
+.mxd-menu.mxd-menu--gsap .mxd-menu__overlay,
+.mxd-menu.mxd-menu--gsap .mxd-menu__content,
+.mxd-menu.mxd-menu--gsap .menu-media__wrapper {
+  transition: none !important;
+}
+
+.mxd-menu .mxd-menu__backdrop {
+  padding: 0;
+  border: 0;
+  transition:
+    background 0.5s ease,
+    backdrop-filter 0.5s ease,
+    -webkit-backdrop-filter 0.5s ease;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+.mxd-menu__hamburger {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.mxd-menu .mxd-menu__overlay {
+  transition: clip-path 1s cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.mxd-menu .mxd-menu__content {
+  transition: transform 1s cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.mxd-menu .menu-media__wrapper {
+  -webkit-transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  -ms-transform: scale(1.4);
+  transform: scale(1.4);
+  transition: transform 0.75s cubic-bezier(0.23, 0.65, 0.74, 1.09);
+}
+
+.mxd-menu.mxd-menu--open .mxd-menu__backdrop {
+  background: rgba(var(--base-rgb), 0.8);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+@media only screen and (max-width: 1024px) {
+  .mxd-menu.mxd-menu--open .mxd-menu__backdrop {
+    background: rgba(var(--base-rgb), 0.6);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+.mxd-menu.mxd-menu--open .mxd-menu__overlay {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.mxd-menu.mxd-menu--open .mxd-menu__content {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.mxd-menu.mxd-menu--open .menu-media__wrapper {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}

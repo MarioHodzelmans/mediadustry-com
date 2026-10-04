@@ -1,6 +1,5 @@
 "use client";
 import BlurSection from "@/components/animations/BlurSection";
-import Link from "next/link";
 import CommonLoadAnimation, {
   CommonLoadFade,
   CommonLoadItem,
@@ -24,11 +23,11 @@ export default function InnerHeadline() {
                         <div className="inner-headline__breadcrumbs loading-fade">
                           <div className="breadcrumbs__nav">
                             <span>
-                              <Link href={`/`}>
+                              <a href={`/`}>
                                 <TextScramble className="mxd-scramble">
                                   Home
                                 </TextScramble>
-                              </Link>
+                              </a>
                             </span>
                             <span className="current-item">Works </span>
                           </div>

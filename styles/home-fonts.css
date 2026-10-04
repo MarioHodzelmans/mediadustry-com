@@ -1,0 +1,27 @@
+/* Exact homepage glyphs; the complete original fonts remain the fallback. */
+@font-face {
+  font-family: InterHome;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-home-latin.woff2") format("woff2");
+  unicode-range:
+    U+20, U+26, U+2C-39, U+3F-50, U+52-5A, U+61-70, U+72-7A, U+A9, U+B0, U+B7,
+    U+C9, U+D6, U+E9, U+F6, U+2014;
+}
+
+@font-face {
+  font-family: JetBrainsMonoHome;
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("/fonts/jetbrains-mono-home-latin.woff2") format("woff2");
+  unicode-range:
+    U+20, U+26, U+2C-39, U+3F-50, U+52-5A, U+61-70, U+72-7A, U+A9, U+B0, U+B7,
+    U+C9, U+D6, U+E9, U+F6, U+2014;
+}
+
+body:has(.md-real-home) {
+  --font-inter-page: InterHome, var(--font-inter-original);
+  --font-mono-page: JetBrainsMonoHome, var(--font-jetbrains-mono-original);
+}

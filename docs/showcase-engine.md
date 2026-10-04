@@ -10,7 +10,7 @@ The Showcase Engine is a repository-driven presentation system for public cases,
 - `/demo/[slug]` — reusable industry direction; indexing is configured per item
 - `/work` and `/work/[slug]` — restored original showcase routes
 
-After the owner-requested restoration on 4 October 2026, concept routes use `Proposal`, `ProposalBlocks` and `proposal.module.css`. Demos and the original `/work` routes use the restored `Showcase`, `ShowcaseBlocks` and `showcase.module.css`. Public `/werk` cases use their original case layout. There are no production redirects for these original routes. The main site retains the original template runtime; concept routes skip its Lenis scrolling and custom cursor so the preserved preview uses native scrolling.
+After the owner-requested restoration on 4 October 2026, concept routes use `Proposal`, `ProposalBlocks` and `proposal.module.css`. Demos and the original `/work` routes use the restored `Showcase`, `ShowcaseBlocks` and `showcase.module.css`. Public `/werk` cases use their original case layout. There are no production redirects for these original routes. The production homepage is a lightweight HTML document generated from the existing Next.js homepage after each build. Its menu/theme/image controls use native JavaScript; links back to it are normal anchors. Public cases, work/showcase, concept and demo routes use native scrolling. Contact and the explicitly listed legacy template examples load their complete stylesheet and motion runtime on demand; both are removed when leaving those routes. Concept previews retain their independent native iframe scrolling. Unknown paths use a lightweight native 404.
 
 ## Content
 

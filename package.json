@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/build-site-styles.mjs && next build && node scripts/build-native-home.mjs",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "optimize:images": "node scripts/build-case-images.mjs"
   },
   "dependencies": {
     "@phosphor-icons/web": "^2.1.2",
@@ -31,9 +32,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cheerio": "^1.2.0",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
+    "postcss": "^8.5.23",
     "prettier": "^3.5.3",
+    "sharp": "^0.35.5",
     "typescript": "^5"
   }
 }

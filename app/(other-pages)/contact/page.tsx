@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Neem contact op met MEDIADUSTRY voor branding, webdesign, development en digitale projecten.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    url: "https://mediadustry.com/contact",
+    url: "https://www.mediadustry.com/contact",
     title: "Contact | MEDIADUSTRY",
     description:
       "Neem contact op met MEDIADUSTRY voor branding, webdesign, development en digitale projecten.",

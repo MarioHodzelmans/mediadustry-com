@@ -24,6 +24,8 @@ Leesvolgorde: AGENTS.md, [instructions.md](instructions.md), [status.md](status.
 Project: Next.js-website www.mediadustry.com, publicatie via GitHub `MarioHodzelmans/mediadustry-com`, productiebranch `main`. Raadpleeg voor de actuele opdracht status.md en de laatste gebruikersinstructie.
 
 - [README.md](README.md)
+- [docs/font-subsets.md](docs/font-subsets.md): gevalideerde homepagefonts, licenties en hergeneratie.
+- [docs/homepage-performance.md](docs/homepage-performance.md): architectuur, meetresultaten, browsercontroles, beperkingen en publicatiebewijs.
 - [docs/showcase-engine.md](docs/showcase-engine.md): conceptvoorstellen, lokale ontwerpvoorbeelden, afzonderlijke Proposal-renderer en bediening.
 - [docs/contact-funnel.md](docs/contact-funnel.md): historisch archief van de verwijderde opt-infunnel; geen actuele websitekoppeling.
 - [docs/resend-dns.md](docs/resend-dns.md): bewaarde DNS-informatie voor eerder ingerichte externe e-mailresources.
@@ -32,6 +34,6 @@ Project: Next.js-website www.mediadustry.com, publicatie via GitHub `MarioHodzel
 
 Bron: [package.json](package.json). Aanwezige lockfiles: `package-lock.json`. Kies de package-manager volgens README en lockfile; bij meerdere lockfiles eerst de bedoelde werkwijze vaststellen.
 
-Gedefinieerde scriptnamen: `dev`, `build`, `start`, `lint`, `format`, `format:check`.
+Gedefinieerde scriptnamen: `dev`, `build`, `start`, `lint`, `format`, `format:check`, `optimize:images`. `build` genereert eerst de gefilterde CSS, bouwt Next.js en exporteert de native homepage; `optimize:images` regenereert AVIF-beelden. Fontsubsets zijn ingecheckt en gebruiken alleen bij hergeneratie het optionele Python-script in docs/font-subsets.md.
 
 Voer scripts uit via de vastgestelde package-manager. Beschikbaarheid is geen bewijs dat ze werken. Lees de implementatie vóór build-, migratie-, import- of publicatiecommando’s; die kunnen neveneffecten hebben. Raadpleeg status.md en log.md voor werkelijk uitgevoerde controles.

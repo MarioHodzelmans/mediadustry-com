@@ -28,7 +28,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${item.title} — case | MEDIADUSTRY`,
       description: item.summary,
-      url: `https://mediadustry.com/werk/${item.slug}`,
+      url: `https://www.mediadustry.com/werk/${item.slug}`,
       images: [
         { url: item.image, width: 1440, height: 1000, alt: item.imageAlt },
       ],
@@ -50,9 +50,10 @@ export default async function CasePage({ params }: CasePageProps) {
       style={{ "--case-accent": item.accent } as React.CSSProperties}
     >
       <section className={styles.hero}>
-        <Link href="/#werk" className={styles.backLink}>
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- The homepage is served as standalone HTML. */}
+        <a href="/#werk" className={styles.backLink}>
           <ArrowIcon /> Alle projecten
-        </Link>
+        </a>
         <p className={styles.eyebrow}>
           {item.sector} · {item.location} · {item.year}
         </p>

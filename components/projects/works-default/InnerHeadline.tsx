@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import PinnedSection from "@/components/animations/PinnedSection";
 import CommonLoadAnimation, {
@@ -38,11 +37,11 @@ export default function InnerHeadline() {
                             <div className="inner-headline__breadcrumbs loading-fade">
                               <div className="breadcrumbs__nav permanent">
                                 <span>
-                                  <Link href={`/`}>
+                                  <a href={`/`}>
                                     <TextScramble className="mxd-scramble">
                                       Home
                                     </TextScramble>
-                                  </Link>
+                                  </a>
                                 </span>
                                 <span className="current-item">Works </span>
                               </div>

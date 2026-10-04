@@ -1,47 +1,28 @@
-"use client";
-
-import Link from "next/link";
-import { useRef } from "react";
 import ThemeSwitcher from "@/components/headers/ThemeSwitcher";
-import TextScramble from "@/components/animations/TextScramble";
-import { useLenis } from "@/components/common/LenisContext";
-import { useHeaderScrollHidden } from "@/hooks/useHeaderScrollHidden";
-import CommonLoadAnimation, {
-  CommonLoadFade,
-} from "@/components/animations/CommonLoadAnimation";
 import MediadustryMark from "@/components/brand/MediadustryMark";
+import styles from "./header.module.css";
 
-type Header1Props = {
-  initialTheme: "light" | "dark";
-};
+type Header1Props = { initialTheme?: "light" | "dark" };
 
-export default function Header1({ initialTheme }: Header1Props) {
-  const headerRef = useRef<HTMLElement>(null);
-  const lenis = useLenis();
-  useHeaderScrollHidden(headerRef, lenis);
+export default function Header1({ initialTheme = "light" }: Header1Props) {
   return (
-    <CommonLoadAnimation>
-      <header
-        id="header"
-        ref={headerRef}
-        className="mxd-header"
-      >
-        <CommonLoadFade index={0}>
-          <div className="mxd-header__logo loading-fade">
-            <Link className="mxd-logo" href={`/`}>
-              <MediadustryMark className="mxd-logo__image" />
-              <div className="mxd-logo__text">
-                <TextScramble className="mxd-scramble">MEDIADUSTRY</TextScramble>
-              </div>
-            </Link>
-          </div>
-        </CommonLoadFade>
-        <CommonLoadFade index={1}>
-          <div className="mxd-header__controls loading-fade">
-            <ThemeSwitcher initialTheme={initialTheme} />
-          </div>
-        </CommonLoadFade>
-      </header>
-    </CommonLoadAnimation>
+    <header id="header" className={`mxd-header ${styles.header}`}>
+      <div className="mxd-header__logo">
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- The homepage is served as standalone HTML. */}
+        <a
+          className={`mxd-logo ${styles.logo}`}
+          href="/"
+          aria-label="MEDIADUSTRY — home"
+        >
+          <MediadustryMark className={`mxd-logo__image ${styles.mark}`} />
+          <span className={`mxd-logo__text ${styles.wordmark}`}>
+            MEDIADUSTRY
+          </span>
+        </a>
+      </div>
+      <div className={`mxd-header__controls ${styles.controls}`}>
+        <ThemeSwitcher initialTheme={initialTheme} />
+      </div>
+    </header>
   );
 }

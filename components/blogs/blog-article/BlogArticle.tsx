@@ -26,11 +26,11 @@ export default function BlogArticle() {
                         <div className="inner-headline__breadcrumbs loading-fade">
                           <div className="breadcrumbs__nav">
                             <span>
-                              <Link href={`/`}>
+                              <a href={`/`}>
                                 <TextScramble className="mxd-scramble">
                                   Home
                                 </TextScramble>
-                              </Link>
+                              </a>
                             </span>
                             <span>
                               <Link href={`/blog-standard`}>

@@ -36,3 +36,10 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Controle: laatste productiebuild inclusief TypeScript geslaagd; scoped ESLint en formatter geslaagd. Volledig scherm bij 320 px opnieuw gecontroleerd: geen overflow, fonts geladen, Escape sluit de dialoog en herstelt focus/body-scroll. Definitieve desktoppreview start en scrollt; geen browserfouten.
 - Meting op lokale productieversie na assetcompressie: transfer 817.787→569.127 bytes, beelden 420.451→195.625 bytes, idle animatiecallbacks nul; concept performance 84, accessibility/best practices 100. Scores voor de niet-indexeerbare conceptpagina zijn geen nieuwe homepage-score en geen gecontroleerde vergelijking met de oude live origin.
 - Publicatie: klaar voor commit/push via de verbonden GitHub-repository; live deployment wordt daarna gecontroleerd.
+
+## 2026-10-04 21:48 Europe/Amsterdam — via GitHub gepubliceerd en live geverifieerd
+
+- Commit f51fe82b288a93d8bdeaf128abbc948e12f2176c gepusht naar GitHub main. Hostingdeployment dpl_4NbEndcTaaPL6iTHSsNJqchnNT7o is READY, met www.mediadustry.com en mediadustry.com als aliases. Publicatie verliep uitsluitend via Git.
+- Live controle op www.mediadustry.com: hoofdmenu toont Websitevoorstel; Alex-caseknop opent het juiste concept. Desktop en mobiele preview laden dezelfde lokale snapshot en scrollen daadwerkelijk. Fonts geladen, akkoordknop verborgen tijdens preview, robots noindex/nofollow/nocache behouden.
+- Live 320px-controle: geen horizontale overflow; volledig-schermpreview past op 286 px, Escape sluit de dialoog; geen browserfouten. Lokale browsers en eigen productieproces op poort3000 opgeruimd; andere projecten/processen niet gestopt.
+- Websiteopdracht afgerond. Oorspronkelijke e-mailfunnel nog niet actief: persoonlijke Upstash-voorwaardenacceptatie en Redis-opslag ontbreken. Eigen maildomein-DNS en terugkerende campagnes blijven open zoals gedocumenteerd; geen volledige e-mailactivering geclaimd.

@@ -116,3 +116,9 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Gewijzigd: lichte hero is nu de betrouwbare standaard; de themastijlen gebruiken het echte `color-scheme`-attribuut. Hero, merkintro en teksten zijn herschreven voor een directe klantvraag. Het dienstenaanbod is uitgebreid naar vier overzichtelijke kaarten: strategie & merk, websites & platforms, content & vindbaarheid en optimalisatie & groei. De persoonlijke aanpak benoemt direct samenwerken met Mario. Eigen cases, kleurverloop, dark mode, menu en voorstel blijven behouden.
 - Controle: ESLint, TypeScript/productiebuild en native-home-generator geslaagd. Visuele browsercontrole op 1440 px van hero, merkintro en vier kaarten; 390 px hero en knoppen; geen horizontale overflow. Light mode start licht, dark mode schakelt naar de bestaande donkere kleurwereld. Lokale Lighthouse 13.5.0 mobiel: 99/100/100/100, FCP 1,7 s, LCP 1,9 s, CLS 0 en TBT 0 ms.
 - Publicatie: tweede versie lokaal gereed; GitHub-publicatie en live controle volgen.
+
+## 2026-10-05 — toegankelijkere tweede versie live
+
+- Commit `689065e383cb88487ddf145ed59c35da56fa824f` via GitHub `main` gepubliceerd; gekoppelde deployment `dpl_AGgK6WrTfUiVs4bKkE3Zxsv74zEb` is READY. Geen directe deployment gebruikt.
+- Live 390 px: `color-scheme` start op light, de nieuwe hero en alle vier oplossingskaarten staan in de HTML, en `scrollWidth` is gelijk aan `clientWidth` (390 px).
+- Live Lighthouse 13.5.0 mobiel: 99/100/100/100, FCP 1,4 s, LCP 1,7 s, CLS 0 en TBT 0 ms.

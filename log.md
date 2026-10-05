@@ -161,3 +161,10 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Officiële PSI-rapporten: https://pagespeed.web.dev/analysis/https-www-mediadustry-com/lz341wx5qi?form_factor=mobile en https://pagespeed.web.dev/analysis/https-www-mediadustry-com/lz341wx5qi?form_factor=desktop. De API-request zelf antwoordde met quota-HTTP429; de officiële PSI-webinterface leverde wél de hierboven genoemde rapporten.
 - Live-controle: HTTP200 voor `/`, `/index-digital-agency`, `/contact`, `/concept/alex-kamsma-parket`, de vier footerpagina’s, `/robots.txt`, `/sitemap.xml` en de lokale hero-afbeelding. HTML bevat vier zichtbare waarden100; de PSI-audit controleerde ook toegankelijkheid, best practices en SEO.
 - Documentatie/status bijgewerkt na de publicatie en metingen. Bestaande untracked `sites/` en `public/img/home/` blijven buiten de productiecommit. Juridische conceptpagina’s zijn noindex en hebben nog open bedrijfs-/verwerkingsgegevens.
+
+## 2026-10-06 — mobiele navigatie hersteld
+
+- De eigenaar meldde een foutieve mobiele weergave met screenshot. In `content/homepage/index.html` ontbraken basisregels voor het hamburgermenu, sluitknop, full-screen paneel en contactlink. Daardoor stond de navigatie als gewone documentinhoud boven de homepage en werd de menu-trigger als standaard rechthoek getoond.
+- Toegevoegd: zichtbare ronde hamburger/sluitknoppen, vaste opaak-donkere schermvullende overlay, scrollbare layout met dynamische viewport- en safe-area-padding, en mobiele typegrootte waarbij `MEDIADUSTRY` heel blijft. De buildgenerator controleert nu dat essentiële menu-CSS aanwezig is.
+- Lokale productiebuild, ESLint en Prettier geslaagd. Chrome mobiele tests320 en390px bevestigen viewportbreedte zonder overflow, volledige overlay, passende linkbreedtes, ronde knop, Escape/focus-state, herstelde scroll en geen browserfouten. Lighthouse lokaal na de wijziging blijft mobiel/desktop elk100/100/100/100 (LCP1,2s/0,3s).
+- Publicatie van deze correctie via GitHub `main` en herhaalde live-/Google PageSpeed-controle volgen. Eerdere ongecommitte wijzigingen aan studiofoto en `sites/`-draft zijn behouden.

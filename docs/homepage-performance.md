@@ -1,5 +1,11 @@
 # Homepageoptimalisatie — 4 oktober 2026
 
+## Mobiele navigatiefix — 6 oktober 2026
+
+De mobiele screenshot liet de navigatielinks als gewone paginainhoud zien en de menuknop als een ongestylede rechthoek. De productiebron miste de basisregels voor `.menu-panel`, `.menu-toggle`, `.menu-close` en `.menu-contact`; daardoor was de eerdere AX- en Lighthouse-controle niet genoeg om deze visuele fout te vinden. De ontbrekende CSS is aangevuld: het menu is een vaste, dekkende overlay, de menu- en sluitknop zijn rond, en padding/knop/contact houden rekening met safe areas en dynamische viewporthoogte. Op mobiel is de menutekst kleiner afgesteld zodat `MEDIADUSTRY` niet in losse letters afbreekt. `scripts/build-native-home.mjs` faalt nu als essentiële menustijlen ontbreken.
+
+Controle lokaal: productiebuild, ESLint en Prettier geslaagd. Chrome mobiele emulatie op320/390 px: documentbreedte exact gelijk aan viewport, full-screen menu-overlay, alle links passen, ronde trigger en Escape sluit het menu, maakt het inert en herstelt body-scroll. Geen browserfouten. Lighthouse na deze fix blijft mobiel en desktop **100/100/100/100** (mobiel LCP1,2s; desktop LCP0,3s). GitHub-publicatie en herhaalde livecontrole volgen.
+
 ## Productiewijziging — 6 oktober 2026
 
 De eigenaar vroeg om de nieuwe MEDIADUSTRY-homepage als vervanging van de huidige rootwebsite te publiceren, de SEO te optimaliseren en de vier categorieën op 100 te krijgen. De productiebron is nu `content/homepage/index.html`, met geoptimaliseerde lokale assets in `public/homepage-assets/`. `scripts/build-native-home.mjs` controleert de titel, omschrijving, taal, indexeerbaarheid, canonical, Open Graph/Twitter, JSON-LD, de vijf casebeelden met alt-tekst en alle lokale homepage-assets voordat de HTML wordt gegenereerd. De rewrite op `/` en `/index-digital-agency` is behouden; contact, cases en het Alex-concept blijven bestaande Next.js-routes.

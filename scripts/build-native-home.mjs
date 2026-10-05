@@ -54,6 +54,20 @@ assert(
   $("nav[aria-label]").length >= 1,
   "expected labelled primary navigation",
 );
+const homepageCss = $("style").text();
+for (const selector of [
+  ".menu-toggle,",
+  ".menu-panel {",
+  '.menu-panel[data-open="true"]',
+  ".menu-panel nav > a {",
+  ".menu-close {",
+  ".menu-contact {",
+]) {
+  assert(
+    homepageCss.includes(selector),
+    `missing essential menu style ${selector}`,
+  );
+}
 assert($("#werk img").length === 5, "expected five project examples");
 assert(
   $("#werk img")

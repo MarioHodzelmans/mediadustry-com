@@ -2,12 +2,12 @@
 
 Bijgewerkt: 2026-10-06.
 
-**Huidige opdracht:** vervang de root-homepage door de aangeleverde conceptsite, werk SEO bij, meet mobiel/desktop op vier Google PageSpeed-categorieën en publiceer via GitHub `main`.
+**Huidige opdracht:** herstel het mobiele hoofdmenu op de gepubliceerde nieuwe homepage.
 
-**Lokaal uitgevoerd:** productiebron `content/homepage/index.html`; generator controleert SEO-metadata, JSON-LD, cases en lokale assets. Lokale assets gekopieerd naar `public/homepage-assets/`; footerpagina’s geplaatst onder `public/` als noindex-documenten. Bestaande contact-, case- en concept-routes blijven actief.
+**Lokaal uitgevoerd:** ontbrekende basis-CSS voor het schermvullende menu, cirkelvormige menu-/sluitknoppen en safe-area-afstanden toegevoegd. Kleine mobiele schermen krijgen beter passende menutekst. De productiebuild controleert voortaan aanwezigheid van de essentiële menustijlen.
 
-**Gecontroleerd:** `npm run build`, `npm run lint` en Prettier geslaagd. Officiële Google PageSpeed Insights op live mobiel en desktop: allebei 100/100/100/100. Directe live Lighthouse ook 100/100/100/100 op beide. HTTP 200 voor homepage, contact, Alex-concept, vier juridische documenten, robots.txt, sitemap.xml en hero-asset. Browserstructuur bevat de vier scores, vijf portfolio-items en footerlinks.
+**Gecontroleerd:** productiebuild, ESLint en Prettier geslaagd. Chrome mobiele emulatie320/390 px: geen horizontale overflow; overlay vult de viewport; links passen; Escape sluit menu, herstelt scrollen en maakt het menu inert. Lighthouse mobiel/desktop: beide 100/100/100/100. Laatste mobiele LCP1,2s; desktop LCP0,3s.
 
-**Publicatie:** commit `83e80b35cc75df1b854b87406cab88df7b50b572` staat op GitHub `main`; gekoppelde productie-deployment `dpl_Gp3RydS58jb7d5YSVhtKLyN57N95` is `READY`, met `www.mediadustry.com`-alias. Geen directe Vercel-deployment.
+**Publicatie:** mobiele fix is lokaal en nog niet gepusht. Publiceer via GitHub `main`; verifieer daarna de productieversie en Google PageSpeed mobiel. Eerder gepubliceerde versie staat live.
 
-**Open:** de vier juridische pagina’s zijn concepten/noindex. Web3Forms-verwerkers-, retentie- en verwerkingslocatiegegevens en formele bedrijfsgegevens moeten nog definitief worden bevestigd. Een lokale Lighthouse-score is geen Google PageSpeed-live-uitslag. De bestaande `sites/`-map en studiofoto-PNG zijn behouden en niet onderdeel van deze publicatie.
+**Open:** de vier footerpagina’s blijven noindex-concepten zolang formele bedrijfs- en verwerkingsgegevens ontbreken. Bestaande losse wijzigingen aan Next-homepagefoto en de `sites/`-map zijn behouden.

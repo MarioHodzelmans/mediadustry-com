@@ -4,9 +4,9 @@ import NativeFooter3 from "@/components/footers/NativeFooter3";
 import "@/styles/home-fonts.css";
 
 export const metadata: Metadata = {
-  title: "MEDIADUSTRY | Strategie, webdesign & development",
+  title: "Webdesign & digitale groei voor organisaties | MEDIADUSTRY",
   description:
-    "MEDIADUSTRY helpt organisaties en ondernemers met positionering, webdesign en development. Bekijk recente cases uit Limburg.",
+    "MEDIADUSTRY combineert strategie, webdesign en development tot snelle, toegankelijke websites voor organisaties en ondernemers.",
 };
 
 export default function IndexDigitalAgencyPage() {

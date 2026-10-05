@@ -1,13 +1,13 @@
 # MEDIADUSTRY — status
 
-Bijgewerkt: 2026-10-05, screenshotgetrouwe Trustteam-opbouw live.
+Bijgewerkt: 2026-10-06.
 
-**Huidige opdracht:** de aangeleverde Trustteam-screenshot qua volledige paginaopbouw en schaal volgen, met eigen MEDIADUSTRY-content en kleuren. Light/dark, het eenvoudige menu, de vijf eigen cases en het Alex-offertevoorstel blijven behouden.
+**Huidige opdracht:** vervang de root-homepage door de aangeleverde conceptsite, werk SEO bij, meet mobiel/desktop op vier Lighthouse-categorieën en publiceer via GitHub `main`.
 
-**Lokaal uitgevoerd:** volledige compacte referentievolgorde: donkere afgeronde beeldhero, tweekolomsintro, 2×2 oplossingenraster met intro- en contacttegel, twee afwisselende beeld/tekstsecties, techniekstrook, afgeronde CTA, vijf compacte projectkaarten en bestaande footer. Eigen teksten, cases, beelden en blauw-paars-oranje kleuren; geen code of inhoud van Trustteam overgenomen.
+**Lokaal uitgevoerd:** productiebron `content/homepage/index.html`; generator controleert SEO-metadata, JSON-LD, cases en lokale assets. Lokale assets gekopieerd naar `public/homepage-assets/`; footerpagina’s geplaatst onder `public/` als noindex-documenten. Bestaande contact-, case- en concept-routes blijven actief.
 
-**Gecontroleerd:** ESLint, TypeScript/productiebuild en native-home-generator slagen. Volledige 1440px-pagina visueel vergeleken; mobiele hero op 390 px gecontroleerd zonder horizontale overflow. Definitieve lokale Lighthouse mobiel: **99/100/100/100**, FCP 1,5 s, LCP 2,0 s, CLS 0, TBT 0 ms. Live 390px-controle bevestigt acht secties, zes oplossingstegels en geen horizontale overflow.
+**Gecontroleerd:** `npm run build`, `npm run lint` en Prettier geslaagd. Lokale Lighthouse mobiel en desktop beide 100/100/100/100; FCP/LCP mobiel 0,8/1,2 s en desktop 0,2/0,3 s. HTTP 200 voor `/`, `/contact`, `/concept/alex-kamsma-parket` en `/privacy-policy.html`. Browserstructuur bevat de vier scores, vijf portfolio-items en footerlinks.
 
-**Publicatie:** commit `0bc71284182513eb7e01ee50111ab5b3cb95b514` via GitHub `main`; deployment `dpl_CAHjGkuwUosn78MVT3WtZfEpefjP` READY op www.mediadustry.com. Geen directe Vercel-deployment.
+**Publicatie:** nog lokaal; GitHub-commit/push, hostingdeployment en openbare live/PageSpeed-meting moeten nog worden uitgevoerd en bevestigd. Geen directe Vercel-deployment.
 
-**Open:** actieve opt-in/e-mailopvolging blijft buiten deze vormgevingsopdracht en is nog niet gekoppeld.
+**Open:** de vier juridische pagina’s zijn concepten/noindex. Web3Forms-verwerkers-, retentie- en verwerkingslocatiegegevens en formele bedrijfsgegevens moeten nog definitief worden bevestigd. Een lokale Lighthouse-score is geen Google PageSpeed-live-uitslag. De bestaande `sites/`-map en studiofoto-PNG zijn behouden en niet onderdeel van deze publicatie.

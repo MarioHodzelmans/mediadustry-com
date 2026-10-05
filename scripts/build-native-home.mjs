@@ -1,215 +1,104 @@
-import { readFile, writeFile, mkdir, readdir, access } from "node:fs/promises";
+import { readFile, writeFile, mkdir, access } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { load } from "cheerio";
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const sourcePath = resolve(projectRoot, "content/homepage/index.html");
 const outputPath = resolve(projectRoot, "public/native-home.html");
-// Vercel's Next adapter moves prerendered HTML before the npm post-build step.
-const candidates = [
-  ".next/server/app/index.html",
-  ".vercel/output/static/index.html",
-  ".vercel/output/static/index",
-  ".vercel/output/static/index-digital-agency.html",
-];
-let source;
-for (const file of candidates) {
-  try {
-    source = await readFile(resolve(projectRoot, file), "utf8");
-    break;
-  } catch (error) {
-    if (error.code !== "ENOENT") throw error;
-  }
-}
-if (!source) {
-  async function findHomepage(directory) {
-    let entries;
-    try {
-      entries = await readdir(directory, { withFileTypes: true });
-    } catch (error) {
-      if (error.code === "ENOENT") return;
-      throw error;
-    }
-    for (const entry of entries) {
-      const file = resolve(directory, entry.name);
-      if (entry.isDirectory()) {
-        const match = await findHomepage(file);
-        if (match) return match;
-      } else if (/\.html$|\.body$|^index$/.test(entry.name)) {
-        const html = await readFile(file, "utf8");
-        if (
-          html.includes('id="home-title"') &&
-          html.includes('id="site-menu"') &&
-          html.includes("md-real-home")
-        )
-          return html;
-      }
-    }
-  }
-  // Adapter builds use hashed route-cache filenames instead of index.html.
-  source = await findHomepage(resolve(projectRoot, ".next/server"));
-  if (!source)
-    source = await findHomepage(resolve(projectRoot, ".vercel/output"));
-}
-if (!source)
-  throw new Error(
-    "Native homepage: prerendered HTML missing from Next/Vercel build output",
-  );
-// With scripting enabled, noscript stays raw text: its fallback pictures must not
-// become live images/styles while building a page that uses JavaScript.
-const $ = load(source, { scriptingEnabled: true });
+const source = await readFile(sourcePath, "utf8");
+const $ = load(source);
 
 function assert(condition, message) {
   if (!condition) throw new Error(`Native homepage: ${message}`);
 }
 
-function normalizedText(element) {
-  return element.text().replace(/\s+/g, " ").trim();
-}
-
-assert($("h1").length === 1, "expected exactly one H1 in the built homepage");
+assert($("html").attr("lang") === "nl", "expected Dutch language metadata");
+assert($("h1").length === 1, "expected exactly one H1");
+assert($("h1").text().trim(), "H1 must contain descriptive text");
 assert(
-  $('template[id^="B:"], [id^="S:"]').length === 0,
-  "unresolved React stream segments need materializing before scripts are removed",
-);
-for (const id of [
-  "header",
-  "site-menu",
-  "site-menu-toggle",
-  "color-switcher",
-  "site-content",
-  "main-content",
-  "home-title",
-  "werk",
-  "diensten",
-]) {
-  assert($(`[id="${id}"]`).length === 1, `missing or duplicate #${id}`);
-}
-assert(
-  $("#werk picture > img").length === 5,
-  "expected all five portfolio case images",
+  $("meta[name=robots]").attr("content")?.includes("index"),
+  "homepage must be indexable",
 );
 assert(
-  $("#werk img[data-deferred-case-image]").length === 5,
-  "portfolio images must keep their near-viewport loading markers",
+  !$("meta[name=robots]").attr("content")?.includes("noindex"),
+  "homepage must not be noindex",
 );
+assert($("head title").text().trim().length >= 20, "missing descriptive title");
+assert(
+  $("meta[name=description]").attr("content")?.length >= 70,
+  "missing useful meta description",
+);
+assert(
+  $("link[rel=canonical]").attr("href") === "https://www.mediadustry.com/",
+  "unexpected canonical URL",
+);
+assert(
+  $("meta[property='og:title']").attr("content"),
+  "missing Open Graph title",
+);
+assert(
+  $("meta[property='og:description']").attr("content"),
+  "missing Open Graph description",
+);
+assert(
+  $("meta[property='og:image']").attr("content"),
+  "missing Open Graph image",
+);
+assert(
+  $("meta[name='twitter:card']").attr("content") === "summary_large_image",
+  "missing large Twitter card",
+);
+assert($("main").length === 1, "expected one main landmark");
+assert(
+  $("nav[aria-label]").length >= 1,
+  "expected labelled primary navigation",
+);
+assert($("#werk img").length === 5, "expected five project examples");
 assert(
   $("#werk img")
     .toArray()
     .every((image) => $(image).attr("alt")?.trim()),
-  "a portfolio image is missing its alt text",
-);
-assert($("head title").text().trim(), "missing title");
-assert(
-  $('meta[name="description"]').attr("content")?.trim(),
-  "missing description",
-);
-assert(
-  $('meta[property="og:title"]').attr("content")?.trim(),
-  "missing Open Graph title",
-);
-assert(
-  $('meta[name="twitter:card"]').attr("content")?.trim(),
-  "missing Twitter card",
-);
-assert(
-  $('link[rel="canonical"]').attr("href") === "https://www.mediadustry.com",
-  "unexpected canonical URL",
+  "every project example needs descriptive alternative text",
 );
 
-const originalContent = normalizedText($("#site-content"));
-const originalLinks = $("a[href]").length;
-const originalImages = $("#main-content picture img").length;
-const originalFallbacks = $("#main-content noscript").length;
-let themeScripts = 0;
-let jsonLdScripts = 0;
+const jsonLd = $("script[type='application/ld+json']");
+assert(jsonLd.length === 1, "expected one JSON-LD graph");
+const structuredData = JSON.parse(jsonLd.text());
+assert(
+  structuredData["@context"] === "https://schema.org",
+  "invalid JSON-LD context",
+);
+assert(Array.isArray(structuredData["@graph"]), "expected JSON-LD graph");
 
-$("script").each((_index, element) => {
-  const script = $(element);
-  const code = script.html() ?? "";
-  if (script.attr("type") === "application/ld+json") {
-    JSON.parse(code);
-    jsonLdScripts += 1;
-    return;
+const assetRefs = new Set();
+$("[src], [href]").each((_index, element) => {
+  for (const attribute of ["src", "href"]) {
+    const value = $(element).attr(attribute);
+    if (value?.startsWith("/homepage-assets/")) assetRefs.add(value);
   }
-  if (
-    !script.attr("src") &&
-    element.parent?.name === "head" &&
-    /^\s*\(function\(\)\{/.test(code) &&
-    /localStorage\.getItem\(['"]template\.theme['"]\)/.test(code) &&
-    code.includes("document.documentElement.setAttribute") &&
-    !code.includes("__next_")
-  ) {
-    themeScripts += 1;
-    return;
-  }
-  script.remove();
 });
-assert(themeScripts === 1, "expected the single early theme script");
-assert(jsonLdScripts > 0, "missing JSON-LD");
-$('link[rel="preload"][as="script"], link[rel="modulepreload"]').remove();
-
-function removeReactComments(parent) {
-  for (const child of [...(parent.children ?? [])]) {
-    if (
-      child.type === "comment" &&
-      /^(?:\/?\$[!?]?|)$/.test(child.data.trim())
-    ) {
-      $(child).remove();
-    } else {
-      removeReactComments(child);
-    }
-  }
+for (const asset of assetRefs) {
+  await access(resolve(projectRoot, "public", asset.slice(1)));
 }
-removeReactComments($.root()[0]);
 
-// The open state must survive CSS-module hash changes without editing source CSS.
-$("head").append(
-  '<style id="native-home-state">#site-menu[data-native-open="true"]{visibility:visible;opacity:1;pointer-events:auto;transition:opacity .22s ease}@media(prefers-reduced-motion:reduce){#site-menu[data-native-open="true"]{transition:none}}</style>',
-);
-$("body").append('<script src="/js/native-home.js" defer></script>');
+// Keep framework scripts out of the production homepage. Inline authored scripts
+// are retained; the original light/dark and accessible menu behavior lives here.
+$("script:not([type='application/ld+json'])").each((_index, element) => {
+  const script = $(element);
+  if (script.attr("src")) script.remove();
+});
 
-assert($("h1").length === 1, "H1 changed during generation");
-assert(
-  normalizedText($("#site-content")) === originalContent,
-  "homepage content changed",
-);
-assert($("a[href]").length === originalLinks, "homepage links changed");
-assert(
-  $("#main-content picture img").length === originalImages,
-  "homepage pictures changed",
-);
-assert(
-  $("#main-content noscript").length === originalFallbacks,
-  "no-JS image fallbacks changed",
-);
-assert(
-  $("script[src]").length === 1 &&
-    $("script[src]").attr("src") === "/js/native-home.js",
-  "framework scripts remain in generated homepage",
-);
-assert(
-  $('link[rel="preload"][as="script"], link[rel="modulepreload"]').length === 0,
-  "framework script preloads remain",
-);
 const output = $.html();
 assert(
   !output.includes("__next_f") && !output.includes("$RC("),
-  "React payload remains",
+  "unexpected framework payload",
 );
-const noJsDocument = load(output, { scriptingEnabled: false });
-assert(
-  noJsDocument("#main-content noscript picture img").length ===
-    originalFallbacks,
-  "serialized no-JS pictures are missing",
-);
-assert(
-  noJsDocument("#main-content noscript style").length === originalFallbacks,
-  "serialized no-JS placeholder guards are missing",
-);
+assert($("a[href]").length > 15, "homepage links were unexpectedly removed");
 await mkdir(dirname(outputPath), { recursive: true });
 await writeFile(outputPath, output, "utf8");
-// The adapter has already collected public assets, so add the new HTML to its output too.
+
+// The adapter has already collected public assets, so add the generated HTML there too.
 const adapterStatic = resolve(projectRoot, ".vercel/output/static");
 try {
   await access(adapterStatic);
@@ -217,6 +106,7 @@ try {
 } catch (error) {
   if (error.code !== "ENOENT") throw error;
 }
+
 console.log(
-  `Generated native homepage: ${Buffer.byteLength(source)} → ${Buffer.byteLength(output)} bytes; five cases, metadata, CSS, theme and no-JS pictures preserved.`,
+  `Generated native homepage from ${sourcePath}: ${Buffer.byteLength(output)} bytes; SEO metadata, structured data, five project images and ${assetRefs.size} local assets verified.`,
 );

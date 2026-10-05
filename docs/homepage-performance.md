@@ -1,5 +1,15 @@
 # Homepageoptimalisatie — 4 oktober 2026
 
+## Productiewijziging — 6 oktober 2026
+
+De eigenaar vroeg om de nieuwe MEDIADUSTRY-homepage als vervanging van de huidige rootwebsite te publiceren, de SEO te optimaliseren en de vier categorieën op 100 te krijgen. De productiebron is nu `content/homepage/index.html`, met geoptimaliseerde lokale assets in `public/homepage-assets/`. `scripts/build-native-home.mjs` controleert de titel, omschrijving, taal, indexeerbaarheid, canonical, Open Graph/Twitter, JSON-LD, de vijf casebeelden met alt-tekst en alle lokale homepage-assets voordat de HTML wordt gegenereerd. De rewrite op `/` en `/index-digital-agency` is behouden; contact, cases en het Alex-concept blijven bestaande Next.js-routes.
+
+De eerste lokale Lighthouse-meting vond toegankelijkheidsproblemen in de grijze tekst en focusbare links in het verborgen mobiele menu. Het contrast is verhoogd en het gesloten menu gebruikt `inert`. Na deze correcties zijn mobiel en desktop beide **100/100/100/100** (performance, toegankelijkheid, best practices, SEO). Mobiel: FCP 0,8 s en LCP 1,2 s. Desktop: FCP 0,2 s en LCP 0,3 s. Meting: Lighthouse op de lokale productiebuild; Google PageSpeed Insights op de openbare productie-URL en de nieuwe GitHub-deployment moeten na publicatie nog worden gecontroleerd. Deze lokale waarden zijn geen Google-cloudresultaat of livegarantie.
+
+De vier footerpagina’s zijn toegevoegd onder hun bestaande Nederlandstalige concept-URL’s en hebben `noindex,nofollow`. De cookie- en privacytekst weerspiegelt de themaopslag en het bestaande Web3Forms-contactformulier; de verwerker-/retentie-/vestigingsgegevens zijn nog niet volledig vastgesteld en blijven expliciet als open punt gemarkeerd. Behandel die teksten daarom niet als juridisch afgeronde documenten.
+
+Lokale controles op 6 oktober: `npm run build`, `npm run lint`, Prettier, lokale Lighthouse mobiel/desktop, en HTTP 200 voor homepage, contact, Alex-concept en privacyroute. Browser-AX-inspectie bevestigt de zichtbare vier scores en alle vijf cases. GitHub-publicatie en live controle volgen.
+
 ## Opdracht en resultaat
 
 De eigenaar wil de herstelde homepage ongeveer gelijk houden, de light/dark-vormgeving behouden, een eenvoudigere menuknop en vier PageSpeed-scores van 100. Vervolgens gevraagd om af te ronden en alles in Markdown vast te leggen.

@@ -134,3 +134,22 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 
 - Commit `0bc71284182513eb7e01ee50111ab5b3cb95b514` via GitHub `main`; deployment `dpl_CAHjGkuwUosn78MVT3WtZfEpefjP` READY. Geen directe deployment gebruikt.
 - Live 390px-controle bevestigt de nieuwe hero, acht hoofdsecties, zes oplossingstegels en een documentbreedte van exact 390 px zonder horizontale overflow.
+
+## 2026-10-06 — aangeleverde studiofoto op homepage
+
+- De foto is opgenomen in de tweede beeld/tekstsectie, “Expertise wanneer je die nodig hebt”, ruim onder de hero. De bovenste sectie bleef ongewijzigd.
+- Afbeelding opgeslagen als `public/img/home/mediadustry-studio-workspace.jpg`; originele PNG blijft daarnaast staan. De homepage gebruikt Next Image met beschrijvende alt-tekst, responsieve `sizes` en een uitsnede die op het onderwerp is gericht.
+- Gewijzigd: `components/home/RealWorkHome.tsx`, `components/home/real-work-home.module.css`, `public/img/home/`.
+- Controles: gerichte ESLint en Prettier-check geslaagd; `npm run build` geslaagd inclusief TypeScript en native-home-generator. Desktop-/mobiele browsercontrole niet uitgevoerd.
+- Lokaal werk, niet gepubliceerd. Geen commit of deployment gemaakt.
+
+## 2026-10-06 — conceptsite ingericht als vervangende homepage
+
+- Opdracht van eigenaar: publiceer de nieuwe digitale-groei-homepage ter vervanging van de rootpagina, optimaliseer de SEO en streef opnieuw naar vier scores van100.
+- Productiebron vastgelegd in `content/homepage/index.html`; bestaande buildgenerator aangepast om hiervan een zelfstandige native homepage te genereren. De productierewrites blijven `/` en `/index-digital-agency`; contact, case- en conceptpagina’s behouden hun bestaande Next-routes. De Next-paginametadata bijgewerkt met dezelfde titel en omschrijving.
+- SEO: indexeerbare Nederlandse homepage, specifieke title/description, www-canonical, Open Graph, Twitter large card, Organization/WebSite JSON-LD. Generator controleert deze velden, H1/landmarks, vijf casebeelden met alt-tekst, lokale assets en JSON-LD parse.
+- Lokale vier categorieën eerst 100/91/100/100 door onvoldoende tekstcontrast en focusbare inhoud in aria-hidden menu. Muted- en accentkleur aangepast; gesloten menu is inert gemaakt. Herhaalde Lighthouse 13.5.0-meting op lokale productiebuild: mobiel100/100/100/100 (FCP0,8 s, LCP1,2 s); desktop100/100/100/100 (FCP0,2 s, LCP0,3 s).
+- Vier eerder ontworpen juridische footerpagina’s geplaatst als noindex-documenten. Privacy/cookie-inhoud gecorrigeerd voor het feitelijke Web3Forms-formulier en de werkelijke `template.theme` cookie/storage. Verwerker-/bewaar-/bedrijfsgegevens zijn nog onvolledig; pagina’s blijven expliciet concepten.
+- Controles: `npm run build`, ESLint, Prettier, local Lighthouse mobiel/desktop en HTTP200 voor `/`, `/contact`, `/concept/alex-kamsma-parket` en `/privacy-policy.html`. Browser-AX-boom bevestigt scores, cases en footerlinks; Google PageSpeed en live browsercontrole wachten op GitHub-push.
+- `README.md`, `docs/homepage-performance.md`, `status.md` en deze log bijgewerkt. Bestaande wijzigingen aan Next-homepagefoto en `sites/`-map zijn behouden; deze worden niet meegestaged, evenmin de 5,7MB bron-PNG.
+- GitHub-publicatie en Vercel-hostingdeployment nog niet uitgevoerd; lokale meting niet als live- of Google-cloudscore voorstellen.

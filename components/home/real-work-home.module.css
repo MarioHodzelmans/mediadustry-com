@@ -363,12 +363,12 @@
 }
 .serviceGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
 
 .serviceCard {
-  min-height: 38rem;
+  min-height: 34rem;
   padding: 1.2rem clamp(1.25rem, 2vw, 2rem) 2rem;
   display: flex;
   flex-direction: column;
@@ -467,6 +467,27 @@
   right: 22%;
   top: 8rem;
   background: var(--blue);
+}
+
+.serviceArt[data-variant="4"]::before {
+  width: 18rem;
+  height: 18rem;
+  top: -5rem;
+  left: calc(50% - 9rem);
+}
+
+.serviceArt[data-variant="4"]::after {
+  top: auto;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  background: linear-gradient(135deg, var(--blue), var(--orange));
+}
+
+.serviceArt[data-variant="4"] span {
+  top: 4rem;
+  right: 2rem;
+  left: auto;
+  background: var(--violet);
 }
 
 .work {
@@ -788,9 +809,6 @@
   .serviceGrid {
     grid-template-columns: 1fr 1fr;
   }
-  .serviceCard:last-child {
-    grid-column: 1 / -1;
-  }
   .processVisual {
     position: absolute;
     width: 36rem;
@@ -932,35 +950,35 @@
   }
 }
 
-:global(html[data-theme="light"]) .page {
+:global(html[color-scheme="light"]) .page {
   --ink: #f5f6f3;
   color: #101114;
   background: var(--ink);
 }
 
-:global(html[data-theme="light"]) .hero::before {
+:global(html[color-scheme="light"]) .hero::before {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
 }
-:global(html[data-theme="light"]) .heroTitle {
+:global(html[color-scheme="light"]) .heroTitle {
   color: #0b0c0f;
 }
-:global(html[data-theme="light"]) .heroIntro {
+:global(html[color-scheme="light"]) .heroIntro {
   color: #565b64;
 }
-:global(html[data-theme="light"]) .heroRail {
+:global(html[color-scheme="light"]) .heroRail {
   color: #50545c;
   border-color: rgba(0, 0, 0, 0.18);
 }
-:global(html[data-theme="light"]) .secondaryAction {
+:global(html[color-scheme="light"]) .secondaryAction {
   border-color: #111;
 }
-:global(html[data-theme="light"]) .secondaryAction:hover {
+:global(html[color-scheme="light"]) .secondaryAction:hover {
   color: #fff;
   background: #111;
 }
-:global(html[data-theme="light"]) .visualMeta {
+:global(html[color-scheme="light"]) .visualMeta {
   color: #555b66;
 }
 

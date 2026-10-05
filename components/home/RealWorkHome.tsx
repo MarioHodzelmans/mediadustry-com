@@ -15,18 +15,23 @@ const mobileHero = `data:image/avif;base64,${readFileSync(
 const services = [
   {
     number: "01",
-    title: "Merk & richting",
-    body: "We maken je verhaal, doelgroep en onderscheid scherp voordat er één scherm wordt ontworpen.",
+    title: "Strategie & merk",
+    body: "Positionering, doelgroep en merkverhaal als duidelijke basis voor iedere digitale keuze.",
   },
   {
     number: "02",
-    title: "Webdesign & bouw",
-    body: "Een eigen visuele wereld, doordachte routes en razendsnelle techniek die op ieder scherm klopt.",
+    title: "Websites & platforms",
+    body: "Toegankelijke websites met een herkenbare uitstraling, logische routes en snelle techniek.",
   },
   {
     number: "03",
-    title: "Vindbaarheid & groei",
-    body: "Sterke content, een solide SEO-basis en doorontwikkeling op basis van wat bezoekers echt doen.",
+    title: "Content & vindbaarheid",
+    body: "Heldere teksten, sterke beelden en een technische SEO-basis waardoor klanten je begrijpen én vinden.",
+  },
+  {
+    number: "04",
+    title: "Optimalisatie & groei",
+    body: "Meten, verbeteren en doorbouwen op basis van gedrag, doelen en kansen in jouw markt.",
   },
 ];
 
@@ -62,13 +67,14 @@ export default function RealWorkHome() {
 
       <section className={styles.hero} aria-labelledby="home-title">
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>Digitale partner · Zuid-Limburg</p>
+          <p className={styles.eyebrow}>Strategie · design · development</p>
           <h1 id="home-title" className={styles.heroTitle}>
-            Websites met richting, karakter en <em>resultaat.</em>
+            Digitaal werk dat helder voelt en <em>resultaat oplevert.</em>
           </h1>
           <p className={styles.heroIntro}>
-            Werk rechtstreeks met Mario aan een digitale ervaring die jouw merk
-            herkenbaar maakt en bezoekers helpt om te kiezen.
+            MEDIADUSTRY helpt ondernemers en organisaties met een herkenbaar
+            merk, een gebruiksvriendelijke website en een digitale basis die kan
+            meegroeien.
           </p>
           <div className={styles.actions}>
             <Link
@@ -117,23 +123,24 @@ export default function RealWorkHome() {
         </div>
 
         <ul className={styles.heroRail} aria-label="Kernkwaliteiten">
-          <li>Persoonlijk</li>
-          <li>Onderscheidend</li>
-          <li>Razendsnel</li>
-          <li>Meetbaar beter</li>
+          <li>Direct contact</li>
+          <li>Heldere afspraken</li>
+          <li>Voor iedereen</li>
+          <li>Meetbaar resultaat</li>
         </ul>
       </section>
 
       <section className={styles.intro} aria-labelledby="intro-title">
-        <p className={styles.eyebrow}>Eerst begrijpen. Dan maken.</p>
+        <p className={styles.eyebrow}>Jouw digitale basis</p>
         <div className={styles.introGrid}>
           <h2 id="intro-title">
-            Goed digitaal werk begint met begrijpen wat jouw klant nodig heeft.
+            Je website is het hart van je merk. Daarom moet alles kloppen.
           </h2>
           <div>
             <p>
-              Geen losse laagjes design, techniek en marketing. MEDIADUSTRY
-              brengt ze samen in één helder verhaal en één soepele ervaring.
+              Van de eerste indruk tot het contactmoment: bezoekers moeten snel
+              begrijpen wie je bent, wat je doet en waarom ze voor jou kiezen.
+              Strategie, inhoud, ontwerp en techniek vormen daarom één geheel.
             </p>
             <Link prefetch={false} href="/about-us" className={styles.textLink}>
               Maak kennis met Mario <ArrowIcon />
@@ -148,8 +155,12 @@ export default function RealWorkHome() {
         aria-labelledby="services-title"
       >
         <div className={styles.sectionHeading}>
-          <p className={styles.eyebrow}>Alles wat je merk online nodig heeft</p>
-          <h2 id="services-title">Van eerste richting tot blijvende groei.</h2>
+          <p className={styles.eyebrow}>
+            Oplossingen voor iedere digitale stap
+          </p>
+          <h2 id="services-title">
+            Alles wat nodig is om online vooruit te gaan.
+          </h2>
         </div>
         <div className={styles.serviceGrid}>
           {services.map((service, index) => (
@@ -255,13 +266,14 @@ export default function RealWorkHome() {
         aria-labelledby="process-title"
       >
         <div className={styles.processLead}>
-          <p className={styles.eyebrow}>Persoonlijk samenwerken</p>
+          <p className={styles.eyebrow}>Persoonlijke aanpak</p>
           <h2 id="process-title">
-            Korte lijnen. Een scherp proces. Geen ruis.
+            Eén ervaren partner, van eerste vraag tot doorontwikkeling.
           </h2>
           <p>
-            Je werkt direct met de maker. Daardoor blijven beslissingen snel,
-            voelt het ontwerp eigen en weet je altijd waar het project staat.
+            Je werkt rechtstreeks met Mario. Samen maken we ingewikkelde keuzes
+            overzichtelijk, houden we vaart in het project en bouwen we een
+            oplossing die echt bij jouw organisatie past.
           </p>
           <Link prefetch={false} href="/services" className={styles.textLink}>
             Bekijk de werkwijze <ArrowIcon />

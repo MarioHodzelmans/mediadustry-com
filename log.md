@@ -109,3 +109,10 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Commit `6c199e4bcd62891ea3d7b7c631a8813a97867bce` naar GitHub `main` gepusht. De gekoppelde productie-deployment `dpl_H15NRgfXNvumiwNsteX8bhWafLEQ` is READY; geen directe Vercel-deployment gebruikt.
 - Live browsercontrole op 390 px bevestigt de nieuwe kop en hero, correcte grid-CSS, geladen 1080 px hero-afbeelding en `scrollWidth` gelijk aan `clientWidth` (390 px). De visuele hero komt overeen met de lokaal goedgekeurde versie.
 - Live Lighthouse 13.5.0 mobiel op de gepubliceerde www-origin: performance 100, accessibility 100, best practices 100, SEO 100; FCP 1,1 s, LCP 1,4 s, CLS 0, TBT 0 ms.
+
+## 2026-10-05 — homepage verder naar toegankelijke Trustteam-structuur gebracht
+
+- Nieuwe correctie van de eigenaar: de hele homepage moet veel duidelijker aansluiten op de lichte, rustige en toegankelijke informatieroute van Trustteam, met eigen content en bestaande MEDIADUSTRY-kleuren.
+- Gewijzigd: lichte hero is nu de betrouwbare standaard; de themastijlen gebruiken het echte `color-scheme`-attribuut. Hero, merkintro en teksten zijn herschreven voor een directe klantvraag. Het dienstenaanbod is uitgebreid naar vier overzichtelijke kaarten: strategie & merk, websites & platforms, content & vindbaarheid en optimalisatie & groei. De persoonlijke aanpak benoemt direct samenwerken met Mario. Eigen cases, kleurverloop, dark mode, menu en voorstel blijven behouden.
+- Controle: ESLint, TypeScript/productiebuild en native-home-generator geslaagd. Visuele browsercontrole op 1440 px van hero, merkintro en vier kaarten; 390 px hero en knoppen; geen horizontale overflow. Light mode start licht, dark mode schakelt naar de bestaande donkere kleurwereld. Lokale Lighthouse 13.5.0 mobiel: 99/100/100/100, FCP 1,7 s, LCP 1,9 s, CLS 0 en TBT 0 ms.
+- Publicatie: tweede versie lokaal gereed; GitHub-publicatie en live controle volgen.

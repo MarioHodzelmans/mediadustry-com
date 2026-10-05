@@ -1,15 +1,13 @@
 # MEDIADUSTRY — status
 
-Bijgewerkt: 2026-10-04, afsluiting na verzoek eigenaar wegens resterende credits.
+Bijgewerkt: 2026-10-05, Trustteam-geïnspireerde homepage lokaal gereed.
 
-**Gepubliceerd:** geoptimaliseerde homepage via GitHub main, codecommit `6255fab4e8d5507cc1624538c33672fbd67c5f43`; deployment `dpl_DDvJ6JKEPpfAeMXHenMycwGmLWTA` READY op www.mediadustry.com. Geen directe Vercel-deployment. Bestaande vormgeving/light/dark en het Alex-offertevoorstel behouden; eenvoudiger SVG-menu.
+**Huidige opdracht:** homepage opnieuw vormgeven met de rustige, ruime en kaartgedreven opbouw van Trustteam, binnen de eigen MEDIADUSTRY-stijl. Light/dark, het eenvoudige menu, de vijf eigen cases en het Alex-offertevoorstel blijven behouden.
 
-**Gemeten:** lokaal Lighthouse13.5.0 mobiel én desktop100/100/100/100. Laatste live meting: mobiel98/100/100/100 (FCP1.3 s,LCP1.7 s,SI4.0 s,TBT0 ms,CLS0); desktop100/100/100/100. Vier live100-scores op mobiel nog niet bevestigd. Officiële Google-API429/webinterface Unable to resolve (ookweb.dev); geen Google-cloudscore geclaimd.
+**Lokaal uitgevoerd:** nieuwe projecthero, merkintro, drie dienstenkaarten, uitgebreid caseoverzicht, persoonlijke werkwijze, techniekbewijs en grote contact-CTA. Eigen zwart/witbasis met blauw-paars-oranje verloop en uitsluitend CSS-vormen/inline SVG-iconen. Geen code, tekst of beeld van de referentiesite overgenomen.
 
-**Gecontroleerd:** volledige lint/TypeScript/productiebuild/native-generator;320/390/1280px light/dark, focus/Tab/Escape/inert/bodyherstel, themageheugen en bfcache, contact↔home zonder RSC-fouten, alle21 assets200, vijf AVIF-casebeelden ook zonderJavaScript, native404/casebacklink. Voorstelautoscroll/fullscreen/Escape/focusherstel werken. Geen browserfouten. Hostingadapterbestandsnaam hersteld; laatste codebuild geslaagd.
+**Gecontroleerd:** ESLint, TypeScript/productiebuild en native-home-generator slagen. Browsercontrole op 390 en 1440 px bevestigt correcte mobiele uitlijning, geen horizontale overflow, vijf geladen casebeelden na scroll, werkend light/dark-menu en toegankelijke focus-/menu-attributen. Lokale Lighthouse 13.5.0 mobiel: **100/100/100/100**, LCP 1,7 s, CLS 0, TBT 0 ms.
 
-**Opgeslagen:** README, instructions.md, log.md, [meetrapport](docs/homepage-performance.md), [fontdocumentatie](docs/font-subsets.md) en showcase-engine bijgewerkt. Volledige HTML/JSON-rapporten lokaal in artifacts/pagespeed/2026-10-04 buiten Git.
+**Publicatie:** lokaal gereed voor commit en push via GitHub `main`; live deployment en live visuele controle volgen. Geen directe Vercel-deployment.
 
-**Afgesloten:** alle eigen browser-/subagenttestsessies en lokale productiepoort3000 gestopt. Andere projecten niet gewijzigd. Documentatie wordt nog naar GitHub gepusht; een daardoor gestarte nieuwe build wordt niet als al gecontroleerd vermeld.
-
-**Open voor een latere opdracht:** officiële Google-meting en eventuele laatste mobiele98→100-verbetering. Geen actieve opt-in/e-mailopvolging toegevoegd; oude funnelhistorie en DNS-documenten bewaard. Vijf npm-advisories in bestaande ontwikkeltoolketen beschreven in het meetrapport.
+**Open:** actieve opt-in/e-mailopvolging blijft buiten deze vormgevingsopdracht en is nog niet gekoppeld. Vier live 100-scores worden pas geclaimd na een echte live meting.

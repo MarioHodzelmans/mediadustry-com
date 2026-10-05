@@ -1,33 +1,50 @@
-import CaseImage from "./CaseImage";
-import DeferredCaseImages from "./DeferredCaseImages";
-import Link from "next/link";
-import ArrowIcon from "@/components/brand/ArrowIcon";
-import { realCases } from "@/data/realCases";
-import styles from "./real-work-home.module.css";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { cwd } from "node:process";
+import Link from "next/link";
+import ArrowIcon from "@/components/brand/ArrowIcon";
+import { realCases } from "@/data/realCases";
+import CaseImage from "./CaseImage";
+import DeferredCaseImages from "./DeferredCaseImages";
+import styles from "./real-work-home.module.css";
 
-// Deliver the critical mobile photo with the static HTML; larger viewports use srcset.
 const mobileHero = `data:image/avif;base64,${readFileSync(
   join(cwd(), "public/img/cases/responsive/bouwservice-peskens-1080.avif"),
 ).toString("base64")}`;
 
-const process = [
+const services = [
   {
     number: "01",
-    title: "Richting",
-    body: "We maken doelgroep, aanbod en onderscheid scherp. Zo begint het ontwerp met een reden.",
+    title: "Merk & richting",
+    body: "We maken je verhaal, doelgroep en onderscheid scherp voordat er één scherm wordt ontworpen.",
   },
   {
     number: "02",
-    title: "Ontwerp",
-    body: "We brengen inhoud, identiteit en gebruik samen in een digitaal systeem dat herkenbaar voelt.",
+    title: "Webdesign & bouw",
+    body: "Een eigen visuele wereld, doordachte routes en razendsnelle techniek die op ieder scherm klopt.",
   },
   {
     number: "03",
-    title: "Realisatie",
-    body: "We bouwen snel, toegankelijk en beheersbaar — klaar voor lancering én doorontwikkeling.",
+    title: "Vindbaarheid & groei",
+    body: "Sterke content, een solide SEO-basis en doorontwikkeling op basis van wat bezoekers echt doen.",
+  },
+];
+
+const process = [
+  {
+    number: "01",
+    title: "Luisteren",
+    body: "We brengen doel, doelgroep en kansen terug tot een duidelijke digitale opdracht.",
+  },
+  {
+    number: "02",
+    title: "Vormgeven",
+    body: "We vertalen die richting naar inhoud, interactie en een herkenbare visuele stijl.",
+  },
+  {
+    number: "03",
+    title: "Versnellen",
+    body: "We bouwen, meten en verbeteren tot de ervaring snel, toegankelijk en overtuigend is.",
   },
 ];
 
@@ -42,15 +59,16 @@ export default function RealWorkHome() {
       className={`${styles.page} md-real-home`}
     >
       <DeferredCaseImages />
+
       <section className={styles.hero} aria-labelledby="home-title">
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>Strategie · design · development</p>
+          <p className={styles.eyebrow}>Digitale partner · Zuid-Limburg</p>
           <h1 id="home-title" className={styles.heroTitle}>
-            Websites die beter worden gevonden én <em>gekozen</em>.
+            Websites met richting, karakter en <em>resultaat.</em>
           </h1>
           <p className={styles.heroIntro}>
-            Werk rechtstreeks met Mario aan een snelle website die vertrouwen
-            wekt, jouw verhaal scherp vertelt en bezoekers helpt kiezen.
+            Werk rechtstreeks met Mario aan een digitale ervaring die jouw merk
+            herkenbaar maakt en bezoekers helpt om te kiezen.
           </p>
           <div className={styles.actions}>
             <Link
@@ -58,27 +76,18 @@ export default function RealWorkHome() {
               href="/contact"
               className={styles.primaryAction}
             >
-              Ontdek wat beter kan <ArrowIcon />
+              Vertel over je plan <ArrowIcon />
             </Link>
-            <Link
-              prefetch={false}
-              href="#werk"
-              className={styles.secondaryAction}
-            >
-              Bekijk echt werk <ArrowIcon />
-            </Link>
+            <a href="#werk" className={styles.secondaryAction}>
+              Bekijk het werk <ArrowIcon />
+            </a>
           </div>
-          <ul className={styles.heroProof} aria-label="Waarom MEDIADUSTRY">
-            <li>PageSpeed-geoptimaliseerd</li>
-            <li>SEO & AI-ready</li>
-            <li>Zonder onnodige plug-ins</li>
-          </ul>
         </div>
 
         <div className={styles.heroVisual}>
           <div className={styles.visualMeta} aria-hidden="true">
-            <span>Case 01</span>
-            <span>Live project</span>
+            <span>Uitgelicht project</span>
+            <span>Live</span>
           </div>
           <div className={styles.browserFrame}>
             <div className={styles.browserBar} aria-hidden="true">
@@ -92,7 +101,7 @@ export default function RealWorkHome() {
               alt={featured.imageAlt}
               eager
               inlineMobileSrc={mobileHero}
-              sizes="(max-width: 1050px) 94vw, 50vw"
+              sizes="(max-width: 1050px) 94vw, 52vw"
               className={styles.heroImage}
             />
           </div>
@@ -105,19 +114,68 @@ export default function RealWorkHome() {
               className={styles.mobileImage}
             />
           </div>
-          <p className={styles.visualNote} aria-hidden="true">
-            Strategie · design · development
-          </p>
+        </div>
+
+        <ul className={styles.heroRail} aria-label="Kernkwaliteiten">
+          <li>Persoonlijk</li>
+          <li>Onderscheidend</li>
+          <li>Razendsnel</li>
+          <li>Meetbaar beter</li>
+        </ul>
+      </section>
+
+      <section className={styles.intro} aria-labelledby="intro-title">
+        <p className={styles.eyebrow}>Eerst begrijpen. Dan maken.</p>
+        <div className={styles.introGrid}>
+          <h2 id="intro-title">
+            Goed digitaal werk begint met begrijpen wat jouw klant nodig heeft.
+          </h2>
+          <div>
+            <p>
+              Geen losse laagjes design, techniek en marketing. MEDIADUSTRY
+              brengt ze samen in één helder verhaal en één soepele ervaring.
+            </p>
+            <Link prefetch={false} href="/about-us" className={styles.textLink}>
+              Maak kennis met Mario <ArrowIcon />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="diensten"
+        className={styles.services}
+        aria-labelledby="services-title"
+      >
+        <div className={styles.sectionHeading}>
+          <p className={styles.eyebrow}>Alles wat je merk online nodig heeft</p>
+          <h2 id="services-title">Van eerste richting tot blijvende groei.</h2>
+        </div>
+        <div className={styles.serviceGrid}>
+          {services.map((service, index) => (
+            <article className={styles.serviceCard} key={service.number}>
+              <div
+                className={styles.serviceArt}
+                data-variant={index + 1}
+                aria-hidden="true"
+              >
+                <span />
+              </div>
+              <p>{service.number}</p>
+              <h3>{service.title}</h3>
+              <p>{service.body}</p>
+            </article>
+          ))}
         </div>
       </section>
 
       <section id="werk" className={styles.work} aria-labelledby="work-title">
         <div className={styles.sectionHeading}>
           <p className={styles.eyebrow}>Geselecteerd werk · 2026</p>
-          <h2 id="work-title">Recent werk, gemaakt voor echte ondernemers.</h2>
+          <h2 id="work-title">Werk dat helder voelt en hard werkt.</h2>
           <p>
-            Van positionering en content tot ontwerp en development. Iedere case
-            laat zien wat er is gemaakt, waarom en voor wie.
+            Eigen digitale werelden voor ondernemers die vooruit willen. Van
+            positionering en content tot ontwerp en development.
           </p>
         </div>
 
@@ -196,11 +254,21 @@ export default function RealWorkHome() {
         className={styles.process}
         aria-labelledby="process-title"
       >
-        <div className={styles.sectionHeading}>
-          <p className={styles.eyebrow}>Zo ontstaat goed digitaal werk</p>
+        <div className={styles.processLead}>
+          <p className={styles.eyebrow}>Persoonlijk samenwerken</p>
           <h2 id="process-title">
-            Van scherpe positionering naar een site die klopt.
+            Korte lijnen. Een scherp proces. Geen ruis.
           </h2>
+          <p>
+            Je werkt direct met de maker. Daardoor blijven beslissingen snel,
+            voelt het ontwerp eigen en weet je altijd waar het project staat.
+          </p>
+          <Link prefetch={false} href="/services" className={styles.textLink}>
+            Bekijk de werkwijze <ArrowIcon />
+          </Link>
+        </div>
+        <div className={styles.processVisual} aria-hidden="true">
+          <span />
         </div>
         <div className={styles.processGrid}>
           {process.map((step) => (
@@ -213,70 +281,32 @@ export default function RealWorkHome() {
         </div>
       </section>
 
-      <section
-        id="diensten"
-        className={styles.services}
-        aria-labelledby="services-title"
-      >
+      <section className={styles.proof} aria-labelledby="proof-title">
         <div>
-          <p className={styles.eyebrow}>Waarmee MEDIADUSTRY helpt</p>
-          <h2 id="services-title">
-            Eén digitale partner van verhaal tot lancering.
+          <p className={styles.eyebrow}>Gebouwd op een sterke basis</p>
+          <h2 id="proof-title">
+            Techniek die je bezoeker niet ziet, maar wel voelt.
           </h2>
         </div>
-        <div className={styles.serviceList}>
-          <article>
-            <span>01</span>
-            <h3>Merk & positionering</h3>
-            <p>
-              Een helder verhaal, herkenbare identiteit en visuele richting.
-            </p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Webdesign & development</h3>
-            <p>
-              Responsive UX, sterk ontwerp en een snelle, toegankelijke
-              realisatie.
-            </p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Groei & doorontwikkeling</h3>
-            <p>
-              Content, SEO-basis, optimalisatie en technische ondersteuning.
-            </p>
-          </article>
-        </div>
+        <ul>
+          <li>Next.js</li>
+          <li>React</li>
+          <li>Vercel</li>
+          <li>SEO</li>
+          <li>AI-ready</li>
+          <li>WCAG</li>
+        </ul>
       </section>
 
       <section className={styles.cta} aria-labelledby="cta-title">
-        <div className={styles.ctaLabel}>
-          <span aria-hidden="true" />
-          Een nieuwe website of een bestaande site die beter moet?
+        <div className={styles.ctaArt} aria-hidden="true">
+          <span />
         </div>
-        <h2 id="cta-title">
-          Laten we scherp krijgen wat jouw volgende stap is.
-        </h2>
-        <p>
-          Vertel kort waar je nu staat en wat je wilt bereiken. Je krijgt een
-          eerlijk eerste beeld van de kansen, aanpak en passende vervolgstap.
-        </p>
-        <div className={styles.actions}>
-          <Link
-            prefetch={false}
-            href="/contact"
-            className={styles.primaryAction}
-          >
-            Plan een kennismaking <ArrowIcon />
-          </Link>
-          <a
-            href="mailto:info@mediadustry.com"
-            className={styles.secondaryAction}
-          >
-            Mail MEDIADUSTRY <ArrowIcon />
-          </a>
-        </div>
+        <p className={styles.eyebrow}>Heb je een idee?</p>
+        <h2 id="cta-title">Laten we iets maken dat mensen bijblijft.</h2>
+        <Link prefetch={false} href="/contact" className={styles.ctaLink}>
+          Start een gesprek <ArrowIcon />
+        </Link>
       </section>
     </main>
   );

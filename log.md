@@ -153,3 +153,11 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Controles: `npm run build`, ESLint, Prettier, local Lighthouse mobiel/desktop en HTTP200 voor `/`, `/contact`, `/concept/alex-kamsma-parket` en `/privacy-policy.html`. Browser-AX-boom bevestigt scores, cases en footerlinks; Google PageSpeed en live browsercontrole wachten op GitHub-push.
 - `README.md`, `docs/homepage-performance.md`, `status.md` en deze log bijgewerkt. Bestaande wijzigingen aan Next-homepagefoto en `sites/`-map zijn behouden; deze worden niet meegestaged, evenmin de 5,7MB bron-PNG.
 - GitHub-publicatie en Vercel-hostingdeployment nog niet uitgevoerd; lokale meting niet als live- of Google-cloudscore voorstellen.
+
+## 2026-10-06 — homepage via GitHub gepubliceerd en live PageSpeed 100
+
+- Commit `83e80b35cc75df1b854b87406cab88df7b50b572` is via GitHub `main` gepusht. Vercel deployment `dpl_Gp3RydS58jb7d5YSVhtKLyN57N95` vanuit die commit is `READY` en heeft `www.mediadustry.com` en apex-alias.
+- Live Lighthouse 13.5.0 en officiële Google PageSpeed Insights: mobiel én desktop alle vier categorieën100. PSI mobiel FCP0,8s/LCP0,8s/TBT0ms/CLS0,013; desktop FCP0,2s/LCP0,3s/TBT0ms/CLS0. Live Lighthouse run mobiel FCP1,0s/LCP1,1s; desktop FCP0,3s/LCP0,3s. Meetmomenten kunnen variëren.
+- Officiële PSI-rapporten: https://pagespeed.web.dev/analysis/https-www-mediadustry-com/lz341wx5qi?form_factor=mobile en https://pagespeed.web.dev/analysis/https-www-mediadustry-com/lz341wx5qi?form_factor=desktop. De API-request zelf antwoordde met quota-HTTP429; de officiële PSI-webinterface leverde wél de hierboven genoemde rapporten.
+- Live-controle: HTTP200 voor `/`, `/index-digital-agency`, `/contact`, `/concept/alex-kamsma-parket`, de vier footerpagina’s, `/robots.txt`, `/sitemap.xml` en de lokale hero-afbeelding. HTML bevat vier zichtbare waarden100; de PSI-audit controleerde ook toegankelijkheid, best practices en SEO.
+- Documentatie/status bijgewerkt na de publicatie en metingen. Bestaande untracked `sites/` en `public/img/home/` blijven buiten de productiecommit. Juridische conceptpagina’s zijn noindex en hebben nog open bedrijfs-/verwerkingsgegevens.

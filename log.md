@@ -103,3 +103,9 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Besluit: alleen de compositieprincipes van de referentie gebruikt. Geen tekst, code, afbeeldingen of merkuitingen van Trustteam gekopieerd. De bestaande native homepage-architectuur en uitgestelde casebeelden blijven actief voor snelheid.
 - Controle: ESLint, TypeScript/productiebuild en native-home-generator geslaagd. Browsercontrole op 1440 en 390 px; geen horizontale overflow, vijf casebeelden geladen na scroll, menu opent met correcte aria-/inert-status en light/dark schakelt. Een eerste toegankelijkheidsmeting vond te laag contrast in het label van de donkere werkwijzesectie; kleur gecorrigeerd. Definitieve lokale Lighthouse 13.5.0 mobiel: performance 100, accessibility 100, best practices 100, SEO 100; LCP 1,7 s, CLS 0, TBT 0 ms.
 - Publicatie: lokaal gereed voor GitHub-publicatie. Live deployment en controle volgen; geen directe Vercel-deployment uitgevoerd.
+
+## 2026-10-05 — nieuwe homepage via GitHub gepubliceerd
+
+- Commit `6c199e4bcd62891ea3d7b7c631a8813a97867bce` naar GitHub `main` gepusht. De gekoppelde productie-deployment `dpl_H15NRgfXNvumiwNsteX8bhWafLEQ` is READY; geen directe Vercel-deployment gebruikt.
+- Live browsercontrole op 390 px bevestigt de nieuwe kop en hero, correcte grid-CSS, geladen 1080 px hero-afbeelding en `scrollWidth` gelijk aan `clientWidth` (390 px). De visuele hero komt overeen met de lokaal goedgekeurde versie.
+- Live Lighthouse 13.5.0 mobiel op de gepubliceerde www-origin: performance 100, accessibility 100, best practices 100, SEO 100; FCP 1,1 s, LCP 1,4 s, CLS 0, TBT 0 ms.

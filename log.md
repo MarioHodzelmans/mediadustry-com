@@ -122,3 +122,10 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Commit `689065e383cb88487ddf145ed59c35da56fa824f` via GitHub `main` gepubliceerd; gekoppelde deployment `dpl_AGgK6WrTfUiVs4bKkE3Zxsv74zEb` is READY. Geen directe deployment gebruikt.
 - Live 390 px: `color-scheme` start op light, de nieuwe hero en alle vier oplossingskaarten staan in de HTML, en `scrollWidth` is gelijk aan `clientWidth` (390 px).
 - Live Lighthouse 13.5.0 mobiel: 99/100/100/100, FCP 1,4 s, LCP 1,7 s, CLS 0 en TBT 0 ms.
+
+## 2026-10-05 — correctie naar aangeleverde volledige referentieopbouw
+
+- De eigenaar verduidelijkte met een volledige screenshot dat niet alleen sfeer, maar vooral paginaopbouw, schaal en ritme moesten overeenkomen. De eerdere vrije interpretatie is daarom vervangen.
+- Nieuwe structuur: donkere afgeronde beeldhero, compacte tweekolomsintro, oplossingenraster met zes tegels, twee afwisselende beeld/tekstsecties, techniekstrook, afgeronde contact-CTA, compacte projectkaarten en bestaande grote footer. Alle teksten, cases, kleuren en beelden zijn van MEDIADUSTRY.
+- De hero gebruikt een eigen studiofoto op desktop en een kleinere eigen digitale visual op mobiel; dit voorkomt de dubbele websitetekst die tijdens de eerste visuele controle zichtbaar werd. Decoratieve pijlen blijven inline SVG en de overige vormen zijn CSS.
+- Controle: ESLint, TypeScript/productiebuild en native-generator geslaagd. Volledige 1440px-pagina en mobiele 390px-hero visueel gecontroleerd, zonder horizontale overflow. Definitieve lokale Lighthouse na de mobiele beeldoptimalisatie: 99/100/100/100, FCP 1,5 s, LCP 2,0 s, CLS 0 en TBT 0 ms. Publicatie volgt.

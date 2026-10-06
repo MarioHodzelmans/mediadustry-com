@@ -2,12 +2,12 @@
 
 Bijgewerkt: 2026-10-06.
 
-**Huidige opdracht:** herstel de kapotte desktopopmaak van de nieuwe homepage en laat het menu de gekozen lichte of donkere kleurmodus volgen.
+**Huidige opdracht:** herstel de foutieve plaatsing van de sectie “Direct contact maakt het verschil”.
 
-**Lokaal uitgevoerd:** de ontbrekende desktop-basisstijlen voor hero, introductie, oplossingen, beeld-/tekstsecties, expertise, technologiestrook en kwaliteitsmeters zijn hersteld. Het menu gebruikt nu dezelfde lichte of donkere kleurmodus als de pagina. Tablet- en mobiele regels voor de kwaliteitsmeters voorkomen horizontale overflow. De productiebuild controleert voortaan ook de essentiële desktopselectoren.
+**Lokaal uitgevoerd:** `.image-story-inner` is weer het positioneringsanker voor de absoluut geplaatste tekstkaart en blauwe notitie. Daardoor staat de persoonlijke-aanpaksectie bij haar eigen wereldbeeld in plaats van boven in de homepage.
 
-**Gecontroleerd:** productiebuild, TypeScript, ESLint en Prettier geslaagd. Lokale productiebrowser op desktop: logo en hero-kop overlappen niet, alle hoofdsecties hebben hun layout terug en er zijn geen browserfouten. Licht menu is wit/donker schrift; donker menu is donker/licht schrift. Mobiel op 390 px heeft geen horizontale overflow en behoudt de bestaande hero-uitlijning.
+**Gecontroleerd:** productiebuild, TypeScript, ESLint en Prettier geslaagd. Lokale productiebrowser op desktop toont de kaart rechts over het wereldbeeld en de blauwe notitie linksonder. Op 390 px volgen beeld, tekstkaart en notitie elkaar zonder horizontale overflow.
 
-**Publicatie:** commit `8b95a5a` is naar GitHub `main` gepusht en door de gekoppelde hosting uitgerold. De live desktoplayout en beide live menuvarianten zijn gecontroleerd; er is geen directe Vercel-deployment uitgevoerd.
+**Publicatie:** de gerichte positioneringscorrectie is lokaal gereed voor GitHub-publicatie; live controle volgt. Er is geen directe Vercel-deployment uitgevoerd.
 
 **Open:** de vier footerpagina’s blijven noindex-concepten zolang formele bedrijfs- en verwerkingsgegevens ontbreken. Bestaande losse wijzigingen aan Next-homepagefoto en de `sites/`-map zijn behouden.

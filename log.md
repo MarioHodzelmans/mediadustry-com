@@ -179,3 +179,10 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - De responsieve kwaliteitslayout is aanvullend gecorrigeerd naar één kolom op tablet en mobiel. Daarmee is de gevonden mobiele horizontale overflow verwijderd.
 - Controle: productiebuild en TypeScript geslaagd; ESLint en Prettier geslaagd. Lokale productiebrowser desktop bevestigt geen overlap tussen logo en hero-kop, correcte sectielayout, correcte lichte en donkere menuvariant en geen browserlogs. Op 390 px is de documentbreedte binnen de viewport en blijft de hero correct uitgelijnd.
 - Commit `8b95a5a` is via GitHub `main` gepubliceerd; de gekoppelde hosting heeft de nieuwe native CSS uitgerold. Live desktopcontrole bevestigt `display:flex` voor de hero, grid-layout voor de introductie, geen logo/kop-overlap en geen browserfouten. Het live menu is donker bij dark mode en wit bij light mode. Geen directe Vercel-deployment uitgevoerd.
+
+## 2026-10-06 — persoonlijke-aanpaksectie opnieuw verankerd
+
+- De tekstkaart “Direct contact maakt het verschil” en de blauwe notitie waren absoluut gepositioneerd zonder gepositioneerde ouder. Daardoor werden ze ten opzichte van de pagina geplaatst en verschenen ze onterecht boven in de hero.
+- `position: relative` toegevoegd aan `.image-story-inner`, zodat beide overlays weer bij hun eigen wereldbeeldsectie horen.
+- Controle: productiebuild en TypeScript geslaagd; ESLint en Prettier geslaagd. Desktopbrowser toont beeld links, tekstkaart rechts en notitie linksonder. Mobiele controle op 390 px toont de drie onderdelen in de bedoelde volgorde zonder horizontale overflow.
+- Publicatie via GitHub volgt; geen directe Vercel-deployment uitgevoerd.

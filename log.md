@@ -185,4 +185,4 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - De tekstkaart “Direct contact maakt het verschil” en de blauwe notitie waren absoluut gepositioneerd zonder gepositioneerde ouder. Daardoor werden ze ten opzichte van de pagina geplaatst en verschenen ze onterecht boven in de hero.
 - `position: relative` toegevoegd aan `.image-story-inner`, zodat beide overlays weer bij hun eigen wereldbeeldsectie horen.
 - Controle: productiebuild en TypeScript geslaagd; ESLint en Prettier geslaagd. Desktopbrowser toont beeld links, tekstkaart rechts en notitie linksonder. Mobiele controle op 390 px toont de drie onderdelen in de bedoelde volgorde zonder horizontale overflow.
-- Publicatie via GitHub volgt; geen directe Vercel-deployment uitgevoerd.
+- Commit `38e7ca9` is via GitHub `main` gepubliceerd. De gekoppelde hosting bevat de correctie; live browsercontrole bevestigt `position: relative` op de sectiecontainer, correcte onderlinge beeld-/kaartposities, geen horizontale overflow en geen browserfouten. Geen directe Vercel-deployment uitgevoerd.

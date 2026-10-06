@@ -8,6 +8,6 @@ Bijgewerkt: 2026-10-06.
 
 **Gecontroleerd:** productiebuild, TypeScript, ESLint en Prettier geslaagd. Lokale productiebrowser op desktop toont de kaart rechts over het wereldbeeld en de blauwe notitie linksonder. Op 390 px volgen beeld, tekstkaart en notitie elkaar zonder horizontale overflow.
 
-**Publicatie:** de gerichte positioneringscorrectie is lokaal gereed voor GitHub-publicatie; live controle volgt. Er is geen directe Vercel-deployment uitgevoerd.
+**Publicatie:** commit `38e7ca9` is via GitHub `main` gepubliceerd en door de gekoppelde hosting uitgerold. De live CSS en browserlayout bevestigen dat de aanpaksectie nu haar eigen positioneringsanker gebruikt; geen directe Vercel-deployment uitgevoerd.
 
 **Open:** de vier footerpagina’s blijven noindex-concepten zolang formele bedrijfs- en verwerkingsgegevens ontbreken. Bestaande losse wijzigingen aan Next-homepagefoto en de `sites/`-map zijn behouden.

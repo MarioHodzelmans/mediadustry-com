@@ -8,6 +8,6 @@ Bijgewerkt: 2026-10-06.
 
 **Gecontroleerd:** productiebuild, TypeScript, ESLint en Prettier geslaagd. Lokale productiebrowser op desktop: logo en hero-kop overlappen niet, alle hoofdsecties hebben hun layout terug en er zijn geen browserfouten. Licht menu is wit/donker schrift; donker menu is donker/licht schrift. Mobiel op 390 px heeft geen horizontale overflow en behoudt de bestaande hero-uitlijning.
 
-**Publicatie:** de desktopcorrectie is lokaal gereed voor publicatie via GitHub. Live deployment en live browsercontrole volgen; er is geen directe Vercel-deployment uitgevoerd.
+**Publicatie:** commit `8b95a5a` is naar GitHub `main` gepusht en door de gekoppelde hosting uitgerold. De live desktoplayout en beide live menuvarianten zijn gecontroleerd; er is geen directe Vercel-deployment uitgevoerd.
 
 **Open:** de vier footerpagina’s blijven noindex-concepten zolang formele bedrijfs- en verwerkingsgegevens ontbreken. Bestaande losse wijzigingen aan Next-homepagefoto en de `sites/`-map zijn behouden.

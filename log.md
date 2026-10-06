@@ -178,4 +178,4 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Het navigatiemenu volgt nu de actuele kleurmodus: licht bij de lichte site en donker bij de donkere site. De sluitknop gebruikt in beide varianten passend contrast.
 - De responsieve kwaliteitslayout is aanvullend gecorrigeerd naar één kolom op tablet en mobiel. Daarmee is de gevonden mobiele horizontale overflow verwijderd.
 - Controle: productiebuild en TypeScript geslaagd; ESLint en Prettier geslaagd. Lokale productiebrowser desktop bevestigt geen overlap tussen logo en hero-kop, correcte sectielayout, correcte lichte en donkere menuvariant en geen browserlogs. Op 390 px is de documentbreedte binnen de viewport en blijft de hero correct uitgelijnd.
-- Publicatie via GitHub volgt; geen directe Vercel-deployment uitgevoerd.
+- Commit `8b95a5a` is via GitHub `main` gepubliceerd; de gekoppelde hosting heeft de nieuwe native CSS uitgerold. Live desktopcontrole bevestigt `display:flex` voor de hero, grid-layout voor de introductie, geen logo/kop-overlap en geen browserfouten. Het live menu is donker bij dark mode en wit bij light mode. Geen directe Vercel-deployment uitgevoerd.

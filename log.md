@@ -170,3 +170,12 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Commit `5ab5362d22d3f0f1813cb99d67fb02c8817d74a7` is via GitHub `main` gepubliceerd. Vercel deployment `dpl_EbTtuRCjv6NbNrfjvBnWtAxFi7kV` is `READY` en gekoppeld aan de publieke domeinen.
 - Live mobiele Chrome-emulatie320/390 px: geen overflow; full-screen overlay, linkbreedtes en ronde knop kloppen; Escape sluit het menu en herstelt scroll. Geen JS-fouten. Verse Google PSI mobile en desktop: beide vier categorieën100; PSI mobile FCP/LCP0,8s/0,8s, desktop0,2s/0,2s. Live Lighthouse mobile/desktop eveneens 100/100/100/100. [Mobiel](https://pagespeed.web.dev/analysis/https-www-mediadustry-com/k5tlcbzvac?form_factor=mobile) · [Desktop](https://pagespeed.web.dev/analysis/https-www-mediadustry-com/k5tlcbzvac?form_factor=desktop).
 - Eerdere niet-gecommitte homepagefoto-aanpassing en `sites/`-draft zijn behouden.
+
+## 2026-10-06 — desktopopmaak en menuthemas hersteld
+
+- De eigenaar meldde met een desktopscreenshot dat logo, hero-kop en vervolgsecties verkeerd over elkaar stonden. De native homepage bevatte wel mobiele overrides, maar vrijwel alle bijbehorende desktop-basisregels ontbraken.
+- Hersteld in `content/homepage/index.html`: volledige desktoplayouts voor hero, merkintro, oplossingen, persoonlijke aanpak, expertise, technologiestrook en kwaliteitsmeters. De buildgenerator breekt voortaan af wanneer een van de essentiële desktopselectoren ontbreekt.
+- Het navigatiemenu volgt nu de actuele kleurmodus: licht bij de lichte site en donker bij de donkere site. De sluitknop gebruikt in beide varianten passend contrast.
+- De responsieve kwaliteitslayout is aanvullend gecorrigeerd naar één kolom op tablet en mobiel. Daarmee is de gevonden mobiele horizontale overflow verwijderd.
+- Controle: productiebuild en TypeScript geslaagd; ESLint en Prettier geslaagd. Lokale productiebrowser desktop bevestigt geen overlap tussen logo en hero-kop, correcte sectielayout, correcte lichte en donkere menuvariant en geen browserlogs. Op 390 px is de documentbreedte binnen de viewport en blijft de hero correct uitgelijnd.
+- Publicatie via GitHub volgt; geen directe Vercel-deployment uitgevoerd.

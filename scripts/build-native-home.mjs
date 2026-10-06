@@ -56,6 +56,12 @@ assert(
 );
 const homepageCss = $("style").text();
 for (const selector of [
+  ".cover-copy {",
+  ".statement-grid {",
+  ".solutions-grid {",
+  ".image-story-inner {",
+  ".expertise {",
+  ".quality-grid {",
   ".menu-toggle,",
   ".menu-panel {",
   '.menu-panel[data-open="true"]',

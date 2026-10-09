@@ -411,4 +411,4 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - `lib/quotes/workflow.ts` voegt naam, akkoordmoment en subtotaal aan de klant- en interne acceptatie-outboxpayload toe. De bestaande losse aanbetalingsmail, interne melding, idempotency en ontvangers zijn niet veranderd.
 - Documentatie bijgewerkt: `docs/offerte-workflow-plan.md` en `status.md`. Homepage is niet gewijzigd.
 - Controles: Prettier, `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Geen echte acceptatie of e-mail verstuurd; verzending blijft afhankelijk van de bestaande database-, voorwaarden-, Resend- en betaalconfiguratie.
-- GitHub-publicatie en Vercel-deployment zijn nog niet uitgevoerd.
+- Eerst lokaal gecommit als `e695f8d`, daarna na integratie van twee nieuwere commits van `origin/main` gerebased tot `f60b862`. Via GitHub naar `main` gepusht. Vercel Production-deployment `dpl_ADwjYyvBFFebNQqroDUnrMCKuWCS` bouwde commit `f60b8625a892a133380cce4a49c2358044cde645` en is READY. Geen directe deployment gestart.

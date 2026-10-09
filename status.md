@@ -2,7 +2,7 @@
 
 Bijgewerkt: 2026-10-09.
 
-**Huidige opdracht — e-mailhandtekening en akkoordbevestiging:** er is een losse, Outlook-vriendelijke HTML-handtekening gemaakt in `docs/email-signature.html`. De Resend-klantbevestiging na offerteakkoord is vormgegeven met MEDIADUSTRY-logo/contactblok, akkoordmoment en uitsluitend het offertebedrag exclusief btw. De aanbetalingsmail blijft een aparte e-mail. Dit staat lokaal; GitHub-publicatie en hostingdeployment zijn nog niet uitgevoerd. Er is geen mail verstuurd; digitale acceptatie is door de nog ontbrekende configuratie nog niet beschikbaar.
+**Huidige opdracht — e-mailhandtekening en akkoordbevestiging:** er is een losse, Outlook-vriendelijke HTML-handtekening gemaakt in `docs/email-signature.html`. De Resend-klantbevestiging na offerteakkoord is vormgegeven met MEDIADUSTRY-logo/contactblok, akkoordmoment en uitsluitend het offertebedrag exclusief btw. De aanbetalingsmail blijft een aparte e-mail. Commit `f60b862` staat op GitHub `main`; Vercel Production-deployment `dpl_ADwjYyvBFFebNQqroDUnrMCKuWCS` is READY. Er is geen mail verstuurd; digitale acceptatie is door de nog ontbrekende configuratie nog niet beschikbaar.
 
 **Werkelijk gecontroleerd:** `npx prettier --write` voor de gewijzigde code- en documentbestanden, `npx tsc --noEmit`, `npm run build` en `git diff --check` zijn geslaagd. De bevestigingsmail is niet met een echte ontvanger of Resend verstuurd. Homepagebestanden in het aparte hoofdproject zijn niet gewijzigd.
 

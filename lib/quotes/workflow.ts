@@ -160,7 +160,10 @@ export async function acceptQuote(
       insert into quote_workflow_email_outbox(id, quote_id, event_type, recipient, payload)
       select ${outboxId}::uuid, a.id, 'quotation_accepted', a.customer_email,
         jsonb_build_object('payment_reference', p.payment_reference, 'down_payment_cents', p.amount_cents,
-          'quote_total_cents', a.accepted_amount_cents)
+          'quote_total_cents', a.accepted_amount_cents,
+          'quote_subtotal_cents', ${quoteConfig.websiteCents + quoteConfig.outlookCents},
+          'accepted_by', ${evidence.name},
+          'accepted_at', ${evidence.acceptedAt})
       from accepted a cross join payment p on conflict (quote_id, event_type) do nothing returning id
     ), payment_email as (
       insert into quote_workflow_email_outbox(id, quote_id, event_type, recipient, payload)
@@ -173,6 +176,7 @@ export async function acceptQuote(
       select ${internalEmailId}::uuid, a.id, 'quotation_accepted_internal', 'info@mediadustry.com',
         jsonb_build_object('customer_name', ${evidence.name}, 'customer_email', a.customer_email,
           'customer_phone', ${evidence.phone}, 'quote_total_cents', a.accepted_amount_cents,
+          'quote_subtotal_cents', ${quoteConfig.websiteCents + quoteConfig.outlookCents},
           'accepted_at', ${evidence.acceptedAt})
       from accepted a on conflict (quote_id, event_type) do nothing returning id
     ) select a.id from accepted a cross join payment p cross join audit

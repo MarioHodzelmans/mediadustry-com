@@ -2,7 +2,9 @@
 
 Bijgewerkt: 2026-10-09.
 
-**Huidige opdracht — offertebevestiging en akkoordtekst:** klantmail gebruikt alleen de voornaam, vermeldt de verwachte lange samenwerking en het vertrouwen dat de investering zich terugverdient. Bodytekst en “Met vriendelijke groet” delen dezelfde Arial-maatvoering. De klantweergave noemt het onderdeel “Akkoord” en de knop “Akkoord en doorgaan naar betaling”. TypeScript, productiebuild en `git diff --check` zijn nog te draaien. Headerlogo-verkleining is eveneens lokaal aangepast in de gedeelde headers en build-pariteitscontrole; publicatie nog niet bevestigd.
+**Huidige opdracht — offertebevestiging, akkoordtekst en headerlogo:** klantmail gebruikt alleen de voornaam, benoemt een lange samenwerking en vertrouwen in het rendement. De e-mailbody en “Met vriendelijke groet” delen dezelfde Arial-maatvoering. De klantweergave noemt het onderdeel “Akkoord” en de knop “Akkoord en doorgaan naar betaling”. Beeldmerk en woordmerk zijn verkleind op desktop en mobiel in beide gedeelde headerimplementaties; homepage-inhoud bleef ongemoeid. Commit `3d36d6c` staat op GitHub `main`; Vercel Production-deployment `dpl_Gow6pLmLAR8Z4x9MPUV3sRmnpVsx` is READY.
+
+**Werkelijk gecontroleerd:** Prettier, `npx tsc --noEmit`, `npm run build` inclusief header-pariteitscontrole en `git diff --check` geslaagd. Geen e-mail verzonden of offerte geaccepteerd.
 
 **Huidige opdracht — e-mailhandtekening en akkoordbevestiging:** er is een losse, Outlook-vriendelijke HTML-handtekening gemaakt in `docs/email-signature.html`. De Resend-klantbevestiging na offerteakkoord is vormgegeven met MEDIADUSTRY-logo/contactblok, akkoordmoment en uitsluitend het offertebedrag exclusief btw. De aanbetalingsmail blijft een aparte e-mail. Commit `f60b862` staat op GitHub `main`; Vercel Production-deployment `dpl_ADwjYyvBFFebNQqroDUnrMCKuWCS` is READY. Op verzoek is één expliciet als voorbeeld gemarkeerde mail via Resend verzonden; Resend meldt `delivered` (ID `01a12142-04c9-7b31-b710-6197d737743d`). Er heeft geen echte offerteacceptatie of betaling plaatsgevonden. De automatische acceptatieflow is nog niet beschikbaar door ontbrekende configuratie.
 

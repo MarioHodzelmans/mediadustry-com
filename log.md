@@ -429,4 +429,5 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 
 - Klantbevestiging gebruikt voortaan alleen de eerste naam uit de akkoordgeversnaam. De tekst spreekt de klant aan met “akkoord”, vermeldt dat we uitkijken naar een lange samenwerking en zegt dat we vertrouwen hebben dat de investering zich terugverdient via de vernieuwde website.
 - De e-mailbody en “Met vriendelijke groet” gebruiken dezelfde Arial-fontfamilie, 15 px tekstmaat en 24 px regelhoogte; naam en offertetotaal blijven visueel benadrukt. De knop/sectie in de offerte gebruikt nu “Akkoord” in plaats van “Digitaal akkoord”.
-- Nog geen acceptatie/e-mail/betaling uitgevoerd; buildcontrole en publicatie volgen.
+- Controles: Prettier, `npx tsc --noEmit`, `npm run build` inclusief header-pariteitscontrole en `git diff --check` geslaagd. Geen acceptatie, e-mail of betaling uitgevoerd.
+- Commit `3d36d6c` is naar GitHub `main` gepusht. Vercel Production-deployment `dpl_Gow6pLmLAR8Z4x9MPUV3sRmnpVsx` voor deze commit is READY, met aliassen `www.mediadustry.com` en `mediadustry.com`. Geen directe deployment gestart.

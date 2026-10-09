@@ -320,3 +320,10 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - De acceptatie-/betaalworkflow blijft geblokkeerd totdat Neon/database, voorwaarden, offerte-ID/contactgegevens, beheerlogin, bewaartermijn/cron en afzender-/betaalinstellingen zijn ingevuld. Er is geen klantbericht verstuurd en geen acceptatie of betaling verwerkt.
 - Homepagebestanden (`content/homepage/index.html`, `app/page.tsx`, native-home output en homepage-assets) zijn niet gewijzigd. De homepagebron-diff tegen de basiscommit was leeg; de homepage blijft via de bestaande native-home rewrite lopen. Rootpagina kon na deployment worden opgehaald.
 - Controles: `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd; Vercel-productiondeployment READY; live offertelink opgehaald en gecontroleerd.
+
+## 2026-10-09 — externe conceptpreview aangevraagd
+
+- De offertepreview is in `app/offerte/dietwiej/reservation-preview.tsx` gekoppeld aan `https://gastrobar-die-twie.chatgpt-busi-7152.chatgpt.site/?v=9`. Alleen deze exacte host is toegevoegd aan de toegestane iframe-hosts in `lib/showcase/iframe.ts`; de bestaande lokale previewtour wordt niet op de cross-origin pagina uitgevoerd.
+- Een zichtbare melding noemt de ingebedde website een interactief concept en zegt dat inhoud en reserveringen voorlopig zijn. Dit is nodig omdat de bron onder meer TODO-velden en een Guestplan-demo toont.
+- `npm run build` geslaagd. Git-diff bevat geen homepagebestanden. Rechtstreeks anoniem `curl` met browser User-Agent kreeg `401`; dat resultaat onderscheidt geen toegangsbeleid van botbescherming. De aangeleverde site staat niet in het ChatGPT Sites-overzicht van het actieve account, dus deelinstellingen konden niet worden gewijzigd.
+- Alleen lokaal; niet gepusht of gedeployed totdat de anonieme browsertoegang tot de bron bevestigd kan worden. Volgende stap: eigenaar schakelt publieke toegang in of bevestigt dat de `401` niet voor gewone externe browserbezoekers geldt; daarna embed/anonymous access verifiëren en publiceren via GitHub.

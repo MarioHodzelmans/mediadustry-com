@@ -3,6 +3,7 @@ const DEFAULT_HOSTS = [
   "www.mediadustry.com",
   "alexkamsmaparket.nl",
   "www.alexkamsmaparket.nl",
+  "gastrobar-die-twie.chatgpt-busi-7152.chatgpt.site",
   "localhost",
 ];
 

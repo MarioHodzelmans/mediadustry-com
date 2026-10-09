@@ -9,6 +9,15 @@
 .page :global(*) {
   box-sizing: border-box;
 }
+.conceptNotice {
+  background: var(--showcase-surface);
+  border-left: 3px solid var(--showcase-accent);
+  color: var(--showcase-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+  padding: 12px 16px;
+}
 .page :global(a) {
   color: inherit;
 }

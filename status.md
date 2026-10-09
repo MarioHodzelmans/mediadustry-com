@@ -2,15 +2,17 @@
 
 Bijgewerkt: 2026-10-09.
 
-**Huidige opdracht:** een heldere, eenvoudige klantofferte op de MEDIADUSTRY-site, met sitebrede gedeelde header, goed leesbare tekst en werkende licht-/donkerstand.
+**Huidige opdracht:** plaats de door de eigenaar aangeleverde Gastrobar Die Twie ChatGPT Site als interactieve conceptpreview in de offerte en maak deze bron extern toegankelijk.
 
-**Lokaal geïmplementeerd:** persoonlijke tokenroute en offerteworkflow. Klantofferte v1.6 gebruikt één pagina en één prijsoverzicht; top drie verbeterpunten staan bovenaan. De reserveringscijfers zijn direct zichtbaar; het technische rapport blijft inklapbaar. App-header hergebruikt de gedeelde headercomponenten en stemt merk-/menu-/thema-iconen en afmetingen af op de standalone homepage. De offertekleuren reageren nu op de gedeelde themaschakelaar. De klantofferte toont uitsluitend bedragen exclusief btw. Eenmalig totaal is € 1.950 excl. btw; 50%-betalingen zijn intern op het juiste bedrag berekend. Uitvoerings- en activatie-index: [docs/offerte-workflow-plan.md](docs/offerte-workflow-plan.md).
+**Lokaal geïmplementeerd:** de reserveringspreview verwijst nu naar de aangeleverde concept-URL; de host staat expliciet op de iframe-allowlist en de preview is als concept met voorlopige inhoud/reserveringen gelabeld. Productiebuild is op 9 oktober 2026 geslaagd. Homepagebronnen bleven ongewijzigd.
 
-**Werkelijk gecontroleerd:** `npm run test:quote` (3 geslaagd), `npx tsc --noEmit`, gerichte ESLint, `git diff --check` en `npm run build` geslaagd. Browsercontrole desktop 1440 px en mobiel 390 px zonder overflow; grotere tekstmaten; dark-toggle wijzigt kleurenschema/achtergrond en is teruggezet naar light; mobiel menu opent en sluit met Escape. Eén prijsoverzicht en ingeklapte lange toelichtingen bevestigd. Laatste productiebuild en typecontrole: 9 oktober 2026, offerte v1.6.
+**Werkelijk gecontroleerd:** `npm run build` geslaagd na de previewaanpassing. Anonieme HTTP-verzoeken naar de opgegeven bron kregen `401`; dit kan toegangsbeleid of botbescherming zijn. De ChatGPT Sites-lijst bevat deze Gastrobar-site niet, dus het deelbeleid kon vanuit dit account niet worden aangepast of bevestigd. Nog geen browsercontrole van de aangepaste productiepreview.
 
 **Nog nodig vóór digitale acceptatie:** Neon resource/schema; adminlogin; offerte-ID en klantmail; goedgekeurde voorwaarden en bewaartermijn; admin-/cronsecrets, Resend-afzender en ING-gegevens. Het privé offertetoegangstoken is uitsluitend in Vercel Production ingesteld. Acceptatie blijft uitgeschakeld tot de database en overige verplichte instellingen zijn ingericht. Resend gebruikt de API, geen SMTP.
 
-**Publicatie:** commit `4b3a359` staat op GitHub `main`; gekoppelde Vercel-productiondeployment `dpl_6qBQX9kwdduzbuMVkF3rL7JPyJQw` is READY. De privé offertelink is live en getest. Homepagebron `content/homepage/index.html` en root/homepageroutes zijn niet aangepast; homepagebestanden zijn gelijk aan de basiscommit.
+**Publicatie:** laatst bekende offertecommit `4b3a359` staat op GitHub `main`; gekoppelde Vercel-productiondeployment `dpl_6qBQX9kwdduzbuMVkF3rL7JPyJQw` is READY. De nieuwe externe previewwijziging is lokaal en nog niet gepusht, omdat openbare toegang tot de doelbron niet kon worden bevestigd. Homepagebron `content/homepage/index.html` en root/homepageroutes zijn niet aangepast.
+
+**Volgende stap/blokkade:** de eigenaar van de ChatGPT Site moet in de site-instellingen toegang voor bezoekers buiten de organisatie/account inschakelen en publiceren, of bevestigen dat `401` alleen botbescherming is. Daarna anonieme toegang en iframe laden controleren en de wijziging via GitHub publiceren.
 
 ## Update 2026-10-09 — vereenvoudigde klantweergave
 

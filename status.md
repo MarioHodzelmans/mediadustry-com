@@ -2,7 +2,7 @@
 
 Bijgewerkt: 2026-10-09.
 
-**Laatste wijziging — Resend-ontvangers:** bij digitale acceptatie wordt een ontvangstbevestiging naar de klant en een interne acceptatiemelding naar `info@mediadustry.com` klaargezet. Alle betaalstatusmails gaan alleen naar de klant. De server-side Resend-outbox gebruikt idempotency keys. Build en typecontrole zijn uitgevoerd; er is geen e-mail verstuurd. Werkelijke verzending vereist nog bevestiging dat `RESEND_API_KEY` en een geverifieerde `RESEND_FROM_EMAIL` in Vercel Production zijn ingesteld; ook overige eerder genoemde acceptatievoorwaarden/database-inrichting zijn nog open.
+**Laatste wijziging — Resend-ontvangers:** bij digitale acceptatie wordt een ontvangstbevestiging naar de klant en een interne acceptatiemelding naar `info@mediadustry.com` klaargezet. Alle betaalstatusmails gaan alleen naar de klant. De server-side Resend-outbox gebruikt idempotency keys. `npx tsc --noEmit`, `npm run build` en `git diff --check` zijn geslaagd; er is geen e-mail verstuurd. Commit `7e51b57` staat op GitHub `main`; de bijbehorende Vercel Production-deployment is READY. Werkelijke verzending vereist nog bevestiging dat `RESEND_API_KEY` en een geverifieerde `RESEND_FROM_EMAIL` in Vercel Production zijn ingesteld; ook overige eerder genoemde acceptatievoorwaarden/database-inrichting zijn nog open. Homepagebestanden zijn niet gewijzigd.
 
 **Huidige opdracht:** haal de opt-incheckboxes weg en maak de vooraf ingevulde naam, e-mail en telefoon verplichte akkoordgegevens.
 

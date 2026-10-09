@@ -6,9 +6,9 @@ Bijgewerkt: 2026-10-09.
 
 **Huidige stand:** offerteversie 1.7 staat lokaal op € 2.250 excl. btw (€ 2.150 websitevernieuwing + € 100 Outlook-inrichting). De interne betaalbasis is bijgewerkt; de klant ziet uitsluitend de bedragen excl. btw.
 
-**Akkoordknop:** de checkbox werkt, maar deze lokale preview heeft geen volledig ingerichte acceptatieomgeving. Daarom kan het akkoord nog niet worden ingediend of vastgelegd. De knop benoemt nu expliciet dat acceptatie tijdelijk niet beschikbaar is en welke configuratieblokken nog ontbreken.
+**Akkoordknop:** de checkbox werkt, maar de acceptatieomgeving is nog niet volledig ingericht. Daarom kan het akkoord nog niet worden ingediend of vastgelegd. De knop benoemt nu expliciet dat acceptatie tijdelijk niet beschikbaar is en welke configuratieblokken nog ontbreken. Deze UI-correctie staat op GitHub `main` als commit `8cdfaf4`; Vercel Production-deployment `dpl_XkyiHLDqg6iAdmBoWPc5f5qHxPkd` is READY.
 
-**Werkelijk gecontroleerd:** `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Lokale offerte op poort 3012 antwoordt HTTP 200; daarin staan € 2.150 en € 2.250 elk eenmaal als zichtbare prijs, de oude prijzen ontbreken en de hostingtoelichting herhaalt het totaal niet. Commit `4f7aa0b` staat op GitHub `main`; Vercel Production-deployment `dpl_GbBEzFH4nLAoqgUUfeJS5JasWuV8` is READY. Homepagebestanden zijn niet gewijzigd.
+**Werkelijk gecontroleerd:** `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Lokale offerte op poort 3012 antwoordt HTTP 200; daarin staan € 2.150 en € 2.250 elk eenmaal als zichtbare prijs, de oude prijzen ontbreken en de hostingtoelichting herhaalt het totaal niet. De pagina toont de disabled-state, de tijdelijke melding en uitleg. Homepagebestanden zijn niet gewijzigd.
 
 **Eerdere opdracht (afgerond):** haal de opt-incheckboxes weg en maak de vooraf ingevulde naam, e-mail en telefoon verplichte akkoordgegevens.
 

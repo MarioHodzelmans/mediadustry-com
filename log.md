@@ -418,3 +418,15 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Op expliciet verzoek een voorbeeld van de offertebevestigingsmail gestuurd naar de eigenaar. Het onderwerp vermeldt dat het een voorbeeld is; de mail zegt duidelijk dat geen echte offerteacceptatie heeft plaatsgevonden en gebruikt placeholders voor klantnaam en offertenummer.
 - De afzender is gecontroleerd tegen een geverifieerd Resend-domein. Resend retourneerde e-mail-ID `01a12142-04c9-7b31-b710-6197d737743d`; een vervolgaanvraag meldt `delivered`. Er is geen databaseacceptatie, klantmail of betaling uitgevoerd.
 - De productie-outbox gebruikt nog steeds `RESEND_FROM_EMAIL`; die variabele ontbreekt nog. De voorbeeldmail is een losse verzending via de reeds geconfigureerde afzender en maakt de acceptatieflow niet actief.
+
+## 2026-10-09 — MEDIADUSTRY-headerlogo verkleind
+
+- In de gedeelde app-header zijn het beeldmerk, de tussenruimte en het woordmerk verkleind op desktop en mobiel. De equivalente standalone homepage-header in `content/homepage/index.html` volgt dezelfde afmetingen; inhoud en andere homepage-elementen zijn niet aangepast. De build-pariteitscontrole is bijgewerkt naar de nieuwe mobiele beeldmerkomvang.
+- Controles: `npx tsc --noEmit`, `npm run build` (inclusief generatie standalone homepage) en `git diff --check` geslaagd. Lokale offerte op poort 3012 is geopend; toegangstekst en offerte-inhoud aanwezig. Geen echte acceptatie, e-mail of betaling uitgevoerd.
+- Publicatie naar GitHub en Vercel nog niet bevestigd.
+
+## 2026-10-09 — klantbevestiging en akkoordtekst vereenvoudigd
+
+- Klantbevestiging gebruikt voortaan alleen de eerste naam uit de akkoordgeversnaam. De tekst spreekt de klant aan met “akkoord”, vermeldt dat we uitkijken naar een lange samenwerking en zegt dat we vertrouwen hebben dat de investering zich terugverdient via de vernieuwde website.
+- De e-mailbody en “Met vriendelijke groet” gebruiken dezelfde Arial-fontfamilie, 15 px tekstmaat en 24 px regelhoogte; naam en offertetotaal blijven visueel benadrukt. De knop/sectie in de offerte gebruikt nu “Akkoord” in plaats van “Digitaal akkoord”.
+- Nog geen acceptatie/e-mail/betaling uitgevoerd; buildcontrole en publicatie volgen.

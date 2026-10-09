@@ -110,7 +110,7 @@ for (const [dimension, homepageValue, appValue] of [
   ],
   ["desktop icon size", "width: 3.2rem", "width: 3.2rem"],
   ["mobile icon size", "width: 2.9rem", "width: 2.9rem"],
-  ["mobile brand mark size", "width: 1.7rem", "width: 1.7rem"],
+  ["mobile brand mark size", "width: 1.35rem", "width: 1.35rem"],
 ]) {
   assert(
     homepageCss.includes(homepageValue) && headerCss.includes(appValue),

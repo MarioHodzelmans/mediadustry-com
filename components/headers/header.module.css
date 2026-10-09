@@ -24,7 +24,7 @@
 .logo.logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.58rem;
+  gap: 0.48rem;
   min-height: 2rem;
   padding: 0;
   color: var(--t-bright, #07090c);
@@ -38,8 +38,8 @@
 
 .mark.mark {
   display: block;
-  width: 2rem;
-  height: 2rem;
+  width: 1.6rem;
+  height: 1.6rem;
   color: inherit;
   fill: currentColor;
   flex: 0 0 auto;
@@ -49,7 +49,7 @@
   display: block;
   color: inherit;
   padding: 0;
-  font: 750 clamp(1.15rem, 1.8vw, 1.55rem)/1
+  font: 750 clamp(1.1rem, 1.65vw, 1.4rem)/1
     var(--font-inter, Arial, sans-serif);
   letter-spacing: -0.055em;
 }
@@ -144,8 +144,8 @@
 
 @media (min-width: 768px) {
   .mark.mark {
-    width: 2rem;
-    height: 2rem;
+    width: 1.6rem;
+    height: 1.6rem;
   }
 }
 
@@ -155,11 +155,11 @@
     --header-height: 78px;
   }
   .logo.logo {
-    gap: 0.58rem;
+    gap: 0.48rem;
   }
   .mark.mark {
-    width: 1.7rem;
-    height: 1.7rem;
+    width: 1.35rem;
+    height: 1.35rem;
   }
   .trigger.trigger {
     width: 2.9rem;
@@ -183,14 +183,14 @@
     gap: 0.6rem;
   }
   .logo.logo {
-    gap: 0.6rem;
+    gap: 0.48rem;
   }
   .mark.mark {
-    width: 1.7rem;
-    height: 1.7rem;
+    width: 1.35rem;
+    height: 1.35rem;
   }
   .wordmark.wordmark {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 }
 

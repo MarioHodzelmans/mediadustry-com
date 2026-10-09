@@ -74,8 +74,8 @@ export function Acceptance({
   return (
     <section className={styles.acceptance} id="digitaal-akkoord">
       <div>
-        <span className={styles.index}>DIGITAAL AKKOORD</span>
-        <h2>Past dit bij Die Twie?</h2>
+        <span className={styles.index}>AKKOORD</span>
+        <h2>Akkoord met de offerte?</h2>
         <p>
           Na acceptatie ontvang je direct de betaalinstructies voor de
           aanbetaling van 50%.{" "}
@@ -163,7 +163,7 @@ export function Acceptance({
           {busy
             ? "Akkoord vastleggen…"
             : ready
-              ? "Offerte accepteren en doorgaan naar betaling"
+              ? "Akkoord en doorgaan naar betaling"
               : "Akkoord tijdelijk niet beschikbaar"}
         </button>
         {!ready && (

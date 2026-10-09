@@ -361,3 +361,9 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 ### Publicatiestatus
 
 - Commit `baf022b` is naar GitHub `main` gepusht. GitHub rapporteert voor de gekoppelde Vercel-build status `success` en “Deployment has completed”; geen directe Vercel-deployment gestart. De homepage is niet gewijzigd.
+## 2026-10-09 — Resend-ontvangers voor offerteacceptatie
+
+- De bestaande Resend API-outbox maakt bij digitale offerteacceptatie nu een interne notificatie aan `info@mediadustry.com`, naast de ontvangstbevestiging en aanbetalingsmail aan het ingevulde klantadres. De interne melding bevat klantnaam, contactgegevens, offerte-ID en bedrag. Aanbetalings-/betaalstatusupdates blijven uitsluitend naar de klant gaan. Geen CC/BCC of andere ontvangers toegevoegd.
+- Verzendaanroepen blijven server-side, per bericht geïndexeerd/idempotent en vereisen `RESEND_API_KEY` plus een geverifieerde `RESEND_FROM_EMAIL`. Er is geen Resend-account- of afzenderconfiguratie bevestigd; geen echte e-mail verstuurd.
+- Controles: `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Productiebuild heeft geen homepagebestanden gewijzigd.
+- Wijzigingen zijn lokaal; GitHub/Vercel-publicatie nog niet uitgevoerd. Acceptatie blijft afhankelijk van database, voorwaarden en overige vereiste configuratie.

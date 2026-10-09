@@ -115,6 +115,7 @@ export async function acceptQuote(
   const eventId = randomUUID();
   const outboxId = randomUUID();
   const paymentEmailId = randomUUID();
+  const internalEmailId = randomUUID();
   const retentionDays = Number(process.env.QUOTE_EVIDENCE_RETENTION_DAYS);
   const amountCents = calculatePaymentSplit(
     quoteConfig.totalCents,
@@ -167,6 +168,13 @@ export async function acceptQuote(
         jsonb_build_object('payment_reference', p.payment_reference, 'down_payment_cents', p.amount_cents,
           'quote_total_cents', a.accepted_amount_cents)
       from accepted a cross join payment p on conflict (quote_id, event_type) do nothing returning id
+    ), internal_email as (
+      insert into quote_workflow_email_outbox(id, quote_id, event_type, recipient, payload)
+      select ${internalEmailId}::uuid, a.id, 'quotation_accepted_internal', 'info@mediadustry.com',
+        jsonb_build_object('customer_name', ${evidence.name}, 'customer_email', a.customer_email,
+          'customer_phone', ${evidence.phone}, 'quote_total_cents', a.accepted_amount_cents,
+          'accepted_at', ${evidence.acceptedAt})
+      from accepted a on conflict (quote_id, event_type) do nothing returning id
     ) select a.id from accepted a cross join payment p cross join audit
   `;
   return Boolean(rows[0]);

@@ -384,3 +384,9 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Werk op een nieuwe branch vanaf actuele `origin/main` (`codex/email-signature-logo`), omdat de bestaande lokale `main` 18 commits achterliep en ongerelateerde homepagewijzigingen bevat. Er is nog niets gepubliceerd; GitHub-push/PR en productie-URL-controle staan open.
 - Controle: PNG gegenereerd met de bestaande Sharp-installatie; dimensies 424×360 en bestandsgrootte 3129 bytes bevestigd. Externe bereikbaarheid en e-mailclientweergave nog niet geverifieerd.
 - Afrondingscontrole: `git diff --check` geslaagd; commit `f96f997` staat op GitHub branch `codex/email-signature-logo`. `https://www.mediadustry.com/logo.png` en `.svg` geven beide HTTP 404 (verwacht zolang niet in productie). In deze sessie is geen GitHub PR-tool beschikbaar; PR/merge en Vercel-productiepublicatie zijn dus niet bevestigd.
+
+## 2026-10-09 — logo via GitHub naar Vercel gepubliceerd
+
+- De logo-commits vanaf actuele GitHub `main` fast-forward naar `main` gepusht (geen force push); commit `7c79a8f` bevat PNG/SVG plus projectstatus. De bestaande lokale homepagewijzigingen in de oorspronkelijke werkmap zijn niet meegenomen.
+- Vercel Production-deployment `dpl_BW4JMKe772n3YdKyKnWZ1snd2ZLt` is READY, bron `main` / commit `7c79a8f`, aliassen bevatten `www.mediadustry.com` en `mediadustry.com`.
+- Live HTTP-controle: `/logo.png` → 200 `image/png` (3129 bytes); `/logo.svg` → 200 `image/svg+xml` (603 bytes); favicon blijft 200. De eerste requests tijdens build gaven 404; na deployment READY opnieuw gecontroleerd en beide logo-assets laden.

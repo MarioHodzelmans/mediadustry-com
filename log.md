@@ -397,3 +397,8 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Knoptekst is bij incomplete configuratie aangepast naar “Akkoord tijdelijk niet beschikbaar”; er staat nu een concrete toelichting onder de knop. Uitgeschakelde knoppen hebben een neutrale grijze stijl, terwijl de actieve knop de accentkleur behoudt. `aria-describedby` koppelt de knop aan de uitleg.
 - Controles: `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. De lokale offerte-preview op poort 3012 antwoordt HTTP 200; HTML toont de nieuwe knoptekst, uitleg en disabled-state. Geen acceptatie, databaseactie, e-mail of betaling uitgevoerd.
 - Commit `8cdfaf4` is via GitHub naar `main` gepusht; gekoppelde Vercel Production-deployment `dpl_XkyiHLDqg6iAdmBoWPc5f5qHxPkd` is READY. Geen directe Vercel-deployment gestart. Homepagebestanden zijn niet gewijzigd.
+
+## 2026-10-09 — aangeleverd MEDIADUSTRY-icon zwart gemaakt
+
+- Bron: `/Users/mariohodzelmans/Desktop/Logo - MEDIADUSTRY - Icon.svg`. De SVG bevat twee polygonen; beide zijn expliciet `fill="#000000"` gegeven. De bestaande publieke `public/logo.svg` is vervangen en daaruit is met Sharp een transparante PNG op 1110×1099 px gemaakt als `public/logo.png`.
+- De lokale SVG-bron is gelezen (421 bytes) en de gegenereerde PNG is als 1110×1099 RGBA gecontroleerd. GitHub/Vercel-publicatie en live controle staan nog open.

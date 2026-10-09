@@ -6,6 +6,8 @@ Bijgewerkt: 2026-10-09.
 
 **Huidige stand:** offerteversie 1.7 staat lokaal op € 2.250 excl. btw (€ 2.150 websitevernieuwing + € 100 Outlook-inrichting). De interne betaalbasis is bijgewerkt; de klant ziet uitsluitend de bedragen excl. btw.
 
+**Akkoordknop:** de checkbox werkt, maar deze lokale preview heeft geen volledig ingerichte acceptatieomgeving. Daarom kan het akkoord nog niet worden ingediend of vastgelegd. De knop benoemt nu expliciet dat acceptatie tijdelijk niet beschikbaar is en welke configuratieblokken nog ontbreken.
+
 **Werkelijk gecontroleerd:** `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Lokale offerte op poort 3012 antwoordt HTTP 200; daarin staan € 2.150 en € 2.250 elk eenmaal als zichtbare prijs, de oude prijzen ontbreken en de hostingtoelichting herhaalt het totaal niet. Commit `4f7aa0b` staat op GitHub `main`; Vercel Production-deployment `dpl_GbBEzFH4nLAoqgUUfeJS5JasWuV8` is READY. Homepagebestanden zijn niet gewijzigd.
 
 **Eerdere opdracht (afgerond):** haal de opt-incheckboxes weg en maak de vooraf ingevulde naam, e-mail en telefoon verplichte akkoordgegevens.

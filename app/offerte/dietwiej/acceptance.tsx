@@ -157,16 +157,25 @@ export function Acceptance({
         <button
           type="button"
           disabled={!done || !ready || busy}
+          aria-describedby={ready ? undefined : "acceptance-unavailable"}
           onClick={submit}
         >
           {busy
             ? "Akkoord vastleggen…"
-            : "Offerte accepteren en doorgaan naar betaling"}
+            : ready
+              ? "Offerte accepteren en doorgaan naar betaling"
+              : "Akkoord tijdelijk niet beschikbaar"}
         </button>
         {!ready && (
-          <p className={styles.acceptanceHint}>
-            De digitale acceptatie wordt beschikbaar zodra de toepasselijke
-            voorwaarden, contactgegevens en beveiligde workflow zijn ingericht.
+          <p
+            id="acceptance-unavailable"
+            className={styles.acceptanceHint}
+            role="status"
+          >
+            De knop is uitgeschakeld omdat de acceptatieomgeving nog niet
+            volledig is ingericht. Je akkoord kan hier nog niet worden ingediend
+            of vastgelegd; de database, voorwaarden en betaal- en
+            e-mailinstellingen moeten eerst klaarstaan.
           </p>
         )}
         {message && (

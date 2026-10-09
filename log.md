@@ -390,3 +390,10 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - De logo-commits vanaf actuele GitHub `main` fast-forward naar `main` gepusht (geen force push); commit `7c79a8f` bevat PNG/SVG plus projectstatus. De bestaande lokale homepagewijzigingen in de oorspronkelijke werkmap zijn niet meegenomen.
 - Vercel Production-deployment `dpl_BW4JMKe772n3YdKyKnWZ1snd2ZLt` is READY, bron `main` / commit `7c79a8f`, aliassen bevatten `www.mediadustry.com` en `mediadustry.com`.
 - Live HTTP-controle: `/logo.png` → 200 `image/png` (3129 bytes); `/logo.svg` → 200 `image/svg+xml` (603 bytes); favicon blijft 200. De eerste requests tijdens build gaven 404; na deployment READY opnieuw gecontroleerd en beide logo-assets laden.
+
+## 2026-10-09 — status van de offerteknop verduidelijkt
+
+- De acceptatieknop bleef disabled omdat `isAcceptanceReady()` niet voldaan is; de checkbox zelf functioneert. De knop gaf daardoor een blauwe uitgeschakelde indruk zonder direct uit te leggen dat database, voorwaarden en betaal-/e-mailconfiguratie nog ingericht moeten worden.
+- Knoptekst is bij incomplete configuratie aangepast naar “Akkoord tijdelijk niet beschikbaar”; er staat nu een concrete toelichting onder de knop. Uitgeschakelde knoppen hebben een neutrale grijze stijl, terwijl de actieve knop de accentkleur behoudt. `aria-describedby` koppelt de knop aan de uitleg.
+- Controles: `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. De lokale offerte-preview op poort 3012 antwoordt HTTP 200; HTML toont de nieuwe knoptekst, uitleg en disabled-state. Geen acceptatie, databaseactie, e-mail of betaling uitgevoerd.
+- Deze wijzigingen zijn lokaal; publicatie via GitHub volgt. Homepagebestanden zijn niet gewijzigd.

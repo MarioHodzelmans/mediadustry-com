@@ -412,3 +412,9 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Documentatie bijgewerkt: `docs/offerte-workflow-plan.md` en `status.md`. Homepage is niet gewijzigd.
 - Controles: Prettier, `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Geen echte acceptatie of e-mail verstuurd; verzending blijft afhankelijk van de bestaande database-, voorwaarden-, Resend- en betaalconfiguratie.
 - Eerst lokaal gecommit als `e695f8d`, daarna na integratie van twee nieuwere commits van `origin/main` gerebased tot `f60b862`. Via GitHub naar `main` gepusht. Vercel Production-deployment `dpl_ADwjYyvBFFebNQqroDUnrMCKuWCS` bouwde commit `f60b8625a892a133380cce4a49c2358044cde645` en is READY. Geen directe deployment gestart.
+
+## 2026-10-09 — voorbeeldbevestiging per Resend geleverd
+
+- Op expliciet verzoek een voorbeeld van de offertebevestigingsmail gestuurd naar de eigenaar. Het onderwerp vermeldt dat het een voorbeeld is; de mail zegt duidelijk dat geen echte offerteacceptatie heeft plaatsgevonden en gebruikt placeholders voor klantnaam en offertenummer.
+- De afzender is gecontroleerd tegen een geverifieerd Resend-domein. Resend retourneerde e-mail-ID `01a12142-04c9-7b31-b710-6197d737743d`; een vervolgaanvraag meldt `delivered`. Er is geen databaseacceptatie, klantmail of betaling uitgevoerd.
+- De productie-outbox gebruikt nog steeds `RESEND_FROM_EMAIL`; die variabele ontbreekt nog. De voorbeeldmail is een losse verzending via de reeds geconfigureerde afzender en maakt de acceptatieflow niet actief.

@@ -356,4 +356,8 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 
 - De eerdere vrijwillige opt-incheckboxes zijn verwijderd. Alleen de bestaande checkbox voor offerteakkoord blijft staan. Naam, e-mailadres en telefoonnummer zijn verplichte, vooraf ingevulde maar aanpasbare velden; het ingevulde e-mailadres wordt gebruikt voor acceptatie-/betaalberichten en de telefoon wordt opgenomen in aflopende acceptatiemetadata.
 - Validatie aan client- en serverzijde vereist naam, geldig e-mailadres en geldig telefoonnummer. Admin toont e-mail en telefoon bij de offertegegevens. Acceptatie blijft afhankelijk van de database, voorwaarden, retentie en overige activatie-instellingen.
-- Controles: `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. De lokale persoonlijke offertelink antwoordt HTTP 200; HTML bevat alle drie vooraf ingevulde waarden, precies één checkbox en geen opt-invelden/teksten. Geen acceptatie, databasewijziging, e-mail of betaling uitgevoerd. Deze correctie is nog niet gepubliceerd.
+- Controles: `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. De lokale persoonlijke offertelink antwoordt HTTP 200; HTML bevat alle drie vooraf ingevulde waarden, precies één checkbox en geen opt-invelden/teksten. Geen acceptatie, databasewijziging, e-mail of betaling uitgevoerd.
+
+### Publicatiestatus
+
+- Commit `baf022b` is naar GitHub `main` gepusht. GitHub rapporteert voor de gekoppelde Vercel-build status `success` en “Deployment has completed”; geen directe Vercel-deployment gestart. De homepage is niet gewijzigd.

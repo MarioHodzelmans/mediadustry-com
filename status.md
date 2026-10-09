@@ -6,7 +6,7 @@ Bijgewerkt: 2026-10-09.
 
 **Lokaal geïmplementeerd:** het akkoordformulier heeft alleen de bestaande checkbox voor offerteakkoord. Naam, e-mailadres en telefoonnummer zijn vooraf ingevuld en aanpasbaar; alle drie zijn verplicht. Acceptatie- en betaalberichten gaan naar het ingevulde e-mailadres. Het telefoonnummer verschijnt in het beveiligde offertedossier en volgt de acceptatiemetadataretentie.
 
-**Werkelijk gecontroleerd:** `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Lokale offertelink geeft HTTP 200; alle drie vooraf ingevulde velden staan erin, er is precies één checkbox en er zijn geen opt-invelden/teksten. Deze correctie is nog niet gepubliceerd. Geen acceptatie, databasewijziging, e-mail of betaling uitgevoerd. Homepagebestanden zijn niet gewijzigd.
+**Werkelijk gecontroleerd:** `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Lokale offertelink geeft HTTP 200; alle drie vooraf ingevulde velden staan erin, er is precies één checkbox en er zijn geen opt-invelden/teksten. Commit `baf022b` staat op GitHub `main`; Vercel meldt deployment completed. Geen acceptatie, databasewijziging, e-mail of betaling uitgevoerd. Homepagebestanden zijn niet gewijzigd.
 
 **Nog nodig vóór actief gebruik:** `db/schema.sql` toepassen op Neon, voorwaarden en bewaartermijn plus de overige eerder genoemde acceptatie-instellingen afronden. Geen Neon-integratietest uitgevoerd. De productiepagina blijft zonder deze configuratie ongeschikt voor een echte acceptatie.
 

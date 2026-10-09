@@ -347,3 +347,7 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - De gekozen contactgegevens en kanaalkeuzes komen in `quote_workflow_acceptance_metadata`, zijn zichtbaar op de beveiligde admin-offertepagina en verlopen met de bestaande vervaldatum van acceptatiemetadata. Een versieaanduiding, tijdstip en kanaalkeuzes komen in het append-only acceptatiebewijs/audit-event. De bestaande transactionele Resend-mail blijft naar het vooraf ingestelde offerteadres gaan; er zijn geen marketing- of automatische project-/sms-berichten toegevoegd.
 - `db/schema.sql` bevat voor nieuwe en bestaande installaties idempotente kolomtoevoegingen. Het Neon-schema is niet toegepast; de huidige acceptatie blijft uitgeschakeld totdat de database en overige configuratie gereed zijn.
 - Controles: Prettier, `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Lokale preview op poort 3012 toont beide opt-ins standaard uit. Geen offerte geaccepteerd, geen database benaderd, geen e-mail of betaling verstuurd. Geen homepagebestanden gewijzigd; wijzigingen zijn lokaal en nog niet gepubliceerd.
+
+### Publicatiestatus bijgewerkt
+
+- Commit `81ec275` is naar GitHub `main` gepusht. GitHub rapporteert voor de gekoppelde Vercel-build status `success` en “Deployment has completed”. Er is geen Vercel CLI-deployment gestart. Database-/end-to-endacceptatie blijft open zoals hierboven beschreven.

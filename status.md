@@ -6,9 +6,9 @@ Bijgewerkt: 2026-10-09.
 
 **Lokaal geïmplementeerd:** de akkoordgever kan e-mail en telefoon onafhankelijk invullen en vrijwillig aanvinken. Alleen gekozen contactgegevens worden opgeslagen; ze worden getoond in het beveiligde offertedossier en verlopen met de bestaande acceptatiemetadata. Acceptatie-/betaalberichten blijven naar het ingestelde offerteadres gaan; er worden geen projectupdates, sms-berichten of marketingmails automatisch verstuurd.
 
-**Werkelijk gecontroleerd:** TypeScript, Prettier, `npm run build` en `git diff --check` geslaagd. De lokale browserpreview toont de twee standaard-uitgeschakelde keuzes. Geen acceptatie, databasewijziging, e-mail of betaling uitgevoerd.
+**Werkelijk gecontroleerd:** TypeScript, Prettier, `npm run build` en `git diff --check` geslaagd. De lokale browserpreview toont de twee standaard-uitgeschakelde keuzes. Commit `81ec275` staat op GitHub `main`; de Vercel-status voor deze commit is `success` (deployment completed). Geen acceptatie, databasewijziging, e-mail of betaling uitgevoerd. Homepagebestanden zijn niet gewijzigd.
 
-**Nog nodig vóór actief gebruik:** `db/schema.sql` toepassen op Neon, contactretentie-/voorwaardeninstellingen en overige eerder genoemde acceptatie-instellingen afronden. Geen Neon-integratietest uitgevoerd. Nog niet gecommit of gepubliceerd.
+**Nog nodig vóór actief gebruik:** `db/schema.sql` toepassen op Neon, contactretentie-/voorwaardeninstellingen en overige eerder genoemde acceptatie-instellingen afronden. Geen Neon-integratietest uitgevoerd. De productiepagina blijft zonder deze configuratie ongeschikt voor een echte acceptatie.
 
 **Geïmplementeerd en gepubliceerd:** de PDF-knop, component en alleen daarvoor gebruikte CSS zijn verwijderd. Akkoordfunctionaliteit blijft staan. Commit `eae559d` staat op GitHub `main`; Vercel-productiondeployment `dpl_Dyma8Vs2FCrsQr3cxPVTGzjF5zMR` is READY.
 

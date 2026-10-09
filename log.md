@@ -376,4 +376,4 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - De interne betaalbasis is aangepast naar € 2.722,50 incl. btw, verdeeld in twee termijnen van € 1.361,25. Het btw-bedrag in het immutable snapshot is bijgewerkt; de klantweergave blijft exclusief btw.
 - Hostingtekst en offerteworkflowplan bijgewerkt. Alleen offerte-/workflowbestanden en projectdocumentatie gewijzigd; homepage ongemoeid.
 - Controles: `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Lokale offertepreview op poort 3012 antwoordt HTTP 200; in gerenderde inhoud worden de zichtbare websiteprijs en het eenmalige totaal elk éénmaal getoond, ontbreken de oude bedragen en herhaalt de hostingtoelichting het totaal niet.
-- Alleen offertecode en projectdocumentatie zijn gewijzigd; homepagebestanden zijn niet gewijzigd. Publicatie via GitHub volgt.
+- Alleen offertecode en projectdocumentatie zijn gewijzigd; homepagebestanden zijn niet gewijzigd. Commit `4f7aa0b` staat op GitHub `main`; gekoppelde Vercel Production-deployment `dpl_GbBEzFH4nLAoqgUUfeJS5JasWuV8` is READY. Geen directe Vercel-deployment gestart.

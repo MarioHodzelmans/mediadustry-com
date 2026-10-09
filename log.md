@@ -402,3 +402,4 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 
 - Bron: `/Users/mariohodzelmans/Desktop/Logo - MEDIADUSTRY - Icon.svg`. De SVG bevat twee polygonen; beide zijn expliciet `fill="#000000"` gegeven. De bestaande publieke `public/logo.svg` is vervangen en daaruit is met Sharp een transparante PNG op 1110×1099 px gemaakt als `public/logo.png`.
 - De lokale SVG-bron is gelezen (421 bytes) en de gegenereerde PNG is als 1110×1099 RGBA gecontroleerd. GitHub/Vercel-publicatie en live controle staan nog open.
+- Publicatie: commit `81be4b2` naar GitHub `main`; Vercel Production-deployment `dpl_9FPFyFK9bMaKp7mXEhefjqTe7cJY` READY met `www.mediadustry.com`-alias. Live `/logo.png` en `/logo.svg` geven 200 met respectievelijk `image/png` en `image/svg+xml`; beide zijn byte voor byte gelijk aan de nieuwe lokale bestanden. Een cache-busting controle bevestigde de nieuwe PNG op 1110×1099 px.

@@ -8,9 +8,9 @@ Bijgewerkt: 2026-10-09.
 
 **Werkelijk gecontroleerd:** `npm run test:quote` (3 geslaagd), `npx tsc --noEmit`, gerichte ESLint, `git diff --check` en `npm run build` geslaagd. Browsercontrole desktop 1440 px en mobiel 390 px zonder overflow; grotere tekstmaten; dark-toggle wijzigt kleurenschema/achtergrond en is teruggezet naar light; mobiel menu opent en sluit met Escape. Eén prijsoverzicht en ingeklapte lange toelichtingen bevestigd. Laatste productiebuild en typecontrole: 9 oktober 2026, offerte v1.6.
 
-**Nog nodig vóór productieacceptatie:** Neon resource/schema; adminlogin-keuze; offerte-ID en klantmail; goedgekeurde voorwaarden en bewaartermijn; secrets voor token, admin, Resend, ING en dagelijkse retentie-cron. Acceptatieknop is conditioneel uitgeschakeld tot verplichte settings bestaan. Resend is via API gebouwd; er is nog geen SMTP-transport ingericht.
+**Nog nodig vóór digitale acceptatie:** Neon resource/schema; adminlogin; offerte-ID en klantmail; goedgekeurde voorwaarden en bewaartermijn; admin-/cronsecrets, Resend-afzender en ING-gegevens. Het privé offertetoegangstoken is uitsluitend in Vercel Production ingesteld. Acceptatie blijft uitgeschakeld tot de database en overige verplichte instellingen zijn ingericht. Resend gebruikt de API, geen SMTP.
 
-**Publicatie:** alleen lokaal in worktree/branch `codex/offerte-dietwiej`; niet gecommit, gepusht of gedeployed. Oorspronkelijke checkout behouden.
+**Publicatie:** commit `4b3a359` staat op GitHub `main`; gekoppelde Vercel-productiondeployment `dpl_6qBQX9kwdduzbuMVkF3rL7JPyJQw` is READY. De privé offertelink is live en getest. Homepagebron `content/homepage/index.html` en root/homepageroutes zijn niet aangepast; homepagebestanden zijn gelijk aan de basiscommit.
 
 ## Update 2026-10-09 — vereenvoudigde klantweergave
 
@@ -46,4 +46,4 @@ De bovenruimte en het verticale ritme van de offerte zijn aangescherpt. Labels, 
 
 ## Aanvulling 2026-10-09 — offertebedrag en materialen
 
-Offerte v1.6: eenmalig totaal € 1.950 excl. btw (€ 1.850 websitevernieuwing + € 100 Outlook-inrichting). De interne 50/50-betaalsplitsing wordt berekend op basis van het tarief inclusief wettelijke btw: € 1.179,75 per termijn. Workflowtekst verduidelijkt dat beschikbare foto’s worden geïnventariseerd en eventuele extra fotografie met kosten vooraf wordt besproken. Hostingtoelichting heeft meer afstand tot de kortingsregel. Build en typecontrole geslaagd; desktoppreview vernieuwd op poort 3012. Lokaal, niet gepubliceerd.
+Offerte v1.6: eenmalig totaal € 1.950 excl. btw (€ 1.850 websitevernieuwing + € 100 Outlook-inrichting). De interne 50/50-betaalsplitsing wordt berekend op basis van het tarief inclusief wettelijke btw: € 1.179,75 per termijn. Workflowtekst verduidelijkt dat beschikbare foto’s worden geïnventariseerd en eventuele extra fotografie met kosten vooraf wordt besproken. Hostingtoelichting heeft meer afstand tot de kortingsregel. Build en typecontrole geslaagd; desktoppreview vernieuwd op poort 3012. Daarna via GitHub `main` gepubliceerd; Vercel-productiondeployment READY en live private route gecontroleerd.

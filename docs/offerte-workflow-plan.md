@@ -19,8 +19,9 @@ Bijgewerkt: 2026-10-09. Dit is de actuele implementatie- en configuratie-index v
 
 ## Lokaal geïmplementeerd
 
-- Persoonlijke offerte-URL, noindex-beveiliging, print-naar-PDF actie, onvooraf aangevinkte akkoordbevestigingen en voorwaardenpagina.
+- Persoonlijke offerte-URL, noindex-beveiliging, onvooraf aangevinkte akkoordbevestigingen en voorwaardenpagina. De PDF-knop is verwijderd.
 - Acceptatie wordt server-side als één databasehandeling vastgelegd: snapshot-/voorwaardenhash, versies, bedrag incl. btw, tijdstip in UTC, klantbevestigingen, gemaskeerd IP-adres en user-agent; dubbele acceptatie wordt geweigerd.
+- Het digitale akkoord bevat twee vrijwillige, standaard uitgeschakelde keuzes voor projectupdates per e-mail en telefoon. De gebruiker kan ze los van elkaar kiezen; alleen gekozen contactgegevens worden opgeslagen. De beheerdersweergave toont kanaal, bestemming, toestemmingsmoment en afloopdatum. Contactgegevens verlopen samen met de bestaande acceptatiemetadata. Dit zijn geen marketinginschrijvingen; er wordt geen sms- of projectupdate automatisch verstuurd. Acceptatie- en betaalberichten blijven naar het voor de offerte ingestelde e-mailadres gaan.
 - Het geaccepteerde betaalbedrag wordt intern in hele centen berekend, met 21% btw boven op het zichtbare offertetarief van € 1.950 excl. btw (€ 2.359,50 betaalbedrag). De aanbetaling en het restant zijn elk € 1.179,75. De offertetekst toont geen inclusief-btw-totaal.
 - Klantbetaalpagina vermeldt dat een klik of overboeking nog geen ontvangen betaling betekent. De klant kan een overboeking melden; alleen admin kan na bankcontrole betaling ontvangen registreren.
 - Adminlijst bevat filters voor wachten op akkoord/betaling, deelbetaling en volledig betaald. De detailpagina toont status, bedragen, referenties, betalingen, auditlog en e-mailoutbox.
@@ -31,7 +32,7 @@ Bijgewerkt: 2026-10-09. Dit is de actuele implementatie- en configuratie-index v
 ## Uit te voeren stappen voor activatie
 
 1. **Neon aanmaken via Vercel Marketplace.** Koppel de resource aan het juiste Vercel-project en controleer dat `DATABASE_URL` beschikbaar is voor de juiste omgevingen. Kosten/plan zijn niet gecontroleerd of gewijzigd.
-2. **Schema toepassen.** Voer `db/schema.sql` eenmalig uit via Neon SQL Editor of een gecontroleerde migratie. Controleer daarna de tabellen/views en voer een query uit op `quote_workflow_admin_overview`. Dit is nog niet uitgevoerd.
+2. **Schema toepassen.** Voer `db/schema.sql` uit via Neon SQL Editor of een gecontroleerde migratie. Dit schema bevat ook idempotente `ADD COLUMN IF NOT EXISTS`-updates voor e-mail-/telefoonopt-ins op bestaande metadata-installaties. Controleer daarna de tabellen/views en voer een query uit op `quote_workflow_admin_overview`. Dit is nog niet uitgevoerd.
 3. **Adminlogin kiezen.** Bevestig de huidige één-beheerder-passwordlogin of kies samen een Vercel OIDC-login. Vóór activatie moeten `QUOTE_ADMIN_PASSWORD` (minimaal 20 tekens), `QUOTE_ADMIN_SECRET` (minimaal 32 bytes) en `QUOTE_ADMIN_ID` veilig in Vercel worden gevuld. Deel wachtwoorden of geheimen niet in chat of commit.
 4. **Offertegegevens bevestigen.** Vul het echte `DIETWIEJ_QUOTE_ID` en `DIETWIEJ_CUSTOMER_EMAIL` in. Een ID of e-mailadres is niet afgeleid of verzonnen.
 5. **Voorwaarden en bewaartermijn vaststellen.** Lever goedgekeurde offertevoorwaarden met `DIETWIEJ_TERMS_VERSION` en `DIETWIEJ_TERMS_TEXT`, plus het door de eigenaar goedgekeurde aantal bewaartermijndagen in `QUOTE_EVIDENCE_RETENTION_DAYS`. Dit staat nu leeg; de app schakelt acceptatie zonder een positieve termijn uit. De dagelijkse Vercel Cron vraagt ook om `CRON_SECRET`. Laat consumentenvereisten en Nederlandse B2B-voorwaarden juridisch toetsen.

@@ -23,7 +23,14 @@ export async function POST(
       { status: 503 },
     );
 
-  let input: { confirmations?: unknown; name?: unknown };
+  let input: {
+    confirmations?: unknown;
+    name?: unknown;
+    email?: unknown;
+    phone?: unknown;
+    emailOptIn?: unknown;
+    phoneOptIn?: unknown;
+  };
   try {
     input = await request.json();
   } catch {
@@ -42,6 +49,23 @@ export async function POST(
       { status: 400 },
     );
   }
+  const emailOptIn = input.emailOptIn === true;
+  const phoneOptIn = input.phoneOptIn === true;
+  const email = typeof input.email === "string" ? input.email.trim() : "";
+  const phone = typeof input.phone === "string" ? input.phone.trim() : "";
+  if (
+    (emailOptIn &&
+      (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))) ||
+    (phoneOptIn && (phone.length > 32 || phone.replace(/\D/g, "").length < 8))
+  ) {
+    return NextResponse.json(
+      {
+        error:
+          "Vul een geldig e-mailadres en/of telefoonnummer in voor je gekozen contactvoorkeur.",
+      },
+      { status: 400 },
+    );
+  }
 
   try {
     const quote = await ensureQuote(token);
@@ -56,6 +80,10 @@ export async function POST(
     const accepted = await acceptQuote(String(quote.id), {
       acceptedAt: new Date().toISOString(),
       name: (input.name as string).trim(),
+      email: emailOptIn ? email : null,
+      phone: phoneOptIn ? phone : null,
+      emailOptIn,
+      phoneOptIn,
       ip,
       userAgent: request.headers.get("user-agent")?.slice(0, 300) ?? null,
       confirmations: [

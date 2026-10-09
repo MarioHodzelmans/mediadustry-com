@@ -605,6 +605,29 @@
   display: grid;
   gap: 13px;
 }
+.contactOptIns {
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 13px;
+  margin: 4px 0;
+  min-width: 0;
+  padding: 18px;
+}
+.contactOptIns legend {
+  font-size: 15px;
+  font-weight: 650;
+  padding: 0 7px;
+}
+.optInChoice {
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  line-height: 1.45;
+}
+.optInChoice input {
+  flex: 0 0 auto;
+  margin: 4px 0 0;
+}
 .acceptanceForm label {
   align-items: start;
   display: flex;
@@ -1463,7 +1486,9 @@
   flex-direction: column;
   gap: 10px;
 }
-.acceptanceForm input[type="text"] {
+.acceptanceForm input[type="text"],
+.acceptanceForm input[type="email"],
+.acceptanceForm input[type="tel"] {
   width: 100%;
   height: auto;
   padding: 14px 16px;

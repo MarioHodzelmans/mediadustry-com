@@ -104,6 +104,10 @@ export async function acceptQuote(
   evidence: {
     acceptedAt: string;
     name: string;
+    email: string | null;
+    phone: string | null;
+    emailOptIn: boolean;
+    phoneOptIn: boolean;
     ip: string | null;
     userAgent: string | null;
     confirmations: string[];
@@ -124,7 +128,16 @@ export async function acceptQuote(
       update quote_workflow_quotes
       set status = 'awaiting_down_payment', accepted_at = ${evidence.acceptedAt},
         accepted_amount_cents = amount_total_cents,
-        acceptance_evidence = ${JSON.stringify({ name: evidence.name, confirmations: evidence.confirmations })}::jsonb,
+        acceptance_evidence = ${JSON.stringify({
+          name: evidence.name,
+          confirmations: evidence.confirmations,
+          contactPreferences: {
+            version: "project-contact-v1",
+            acceptedAt: evidence.acceptedAt,
+            emailOptIn: evidence.emailOptIn,
+            phoneOptIn: evidence.phoneOptIn,
+          },
+        })}::jsonb,
         updated_at = ${evidence.acceptedAt}
       where id = ${quoteId} and status = 'awaiting_acceptance'
         and terms_version is not null and terms_text is not null and customer_email is not null
@@ -141,11 +154,22 @@ export async function acceptQuote(
         jsonb_build_object('accepted_amount_cents', a.accepted_amount_cents, 'quote_version', a.quote_version,
           'terms_version', a.terms_version, 'quote_snapshot_sha256', a.quote_snapshot_sha256,
           'terms_sha256', a.terms_sha256, 'payment_id', p.id,
-          'accepted_by', ${evidence.name}, 'confirmations', ${JSON.stringify(evidence.confirmations)}::jsonb)
+          'accepted_by', ${evidence.name}, 'confirmations', ${JSON.stringify(evidence.confirmations)}::jsonb,
+          'contact_preferences', ${JSON.stringify({
+            version: "project-contact-v1",
+            acceptedAt: evidence.acceptedAt,
+            emailOptIn: evidence.emailOptIn,
+            phoneOptIn: evidence.phoneOptIn,
+          })}::jsonb)
       from accepted a cross join payment p returning id
     ), metadata as (
-      insert into quote_workflow_acceptance_metadata(quote_id, ip_address, user_agent, expires_at)
-      select id, ${evidence.ip}, ${evidence.userAgent}, ${evidence.acceptedAt}::timestamptz + make_interval(days => ${retentionDays})
+      insert into quote_workflow_acceptance_metadata(
+        quote_id, ip_address, user_agent, contact_email, email_opt_in,
+        contact_phone, phone_opt_in, expires_at
+      )
+      select id, ${evidence.ip}, ${evidence.userAgent}, ${evidence.email}, ${evidence.emailOptIn},
+        ${evidence.phone}, ${evidence.phoneOptIn},
+        ${evidence.acceptedAt}::timestamptz + make_interval(days => ${retentionDays})
       from accepted returning quote_id
     ), email as (
       insert into quote_workflow_email_outbox(id, quote_id, event_type, recipient, payload)
@@ -192,16 +216,29 @@ export async function getAdminQuotes() {
 
 export async function getAdminQuote(quoteId: string) {
   const db = getDb();
-  const [quotes, payments, events, emails] = await Promise.all([
-    db`select * from quote_workflow_admin_overview where id = ${quoteId}`,
+  const [quotes, payments, events, emails, contact] = await Promise.all([
+    db`select overview.*, quote.acceptance_evidence
+      from quote_workflow_admin_overview overview
+      join quote_workflow_quotes quote on quote.id = overview.id
+      where overview.id = ${quoteId}`,
     db`select id, kind, amount_cents, payment_reference, status, requested_at, verified_at, verified_by, bank_transaction_reference
       from quote_workflow_payments where quote_id = ${quoteId} order by created_at`,
     db`select id, event_type, actor_type, actor_id, occurred_at, data from quote_workflow_audit_events
       where quote_id = ${quoteId} order by occurred_at desc`,
     db`select event_type, recipient, status, attempts, last_error, created_at, sent_at
       from quote_workflow_email_outbox where quote_id = ${quoteId} order by created_at desc`,
+    db`select contact_email, email_opt_in, contact_phone, phone_opt_in, expires_at
+      from quote_workflow_acceptance_metadata where quote_id = ${quoteId}`,
   ]);
-  return quotes[0] ? { quote: quotes[0], payments, events, emails } : null;
+  return quotes[0]
+    ? {
+        quote: quotes[0],
+        payments,
+        events,
+        emails,
+        contact: contact[0] ?? null,
+      }
+    : null;
 }
 
 export async function verifyPayment(input: {

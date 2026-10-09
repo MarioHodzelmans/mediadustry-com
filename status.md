@@ -2,7 +2,13 @@
 
 Bijgewerkt: 2026-10-09.
 
-**Huidige opdracht:** verwijder op verzoek de knop ‘Download offerte als PDF’ uit de persoonlijke offerte.
+**Huidige opdracht:** e-mail- en telefoonopt-ins voor vrijwillige projectupdates integreren in de offerteacceptatie.
+
+**Lokaal geïmplementeerd:** de akkoordgever kan e-mail en telefoon onafhankelijk invullen en vrijwillig aanvinken. Alleen gekozen contactgegevens worden opgeslagen; ze worden getoond in het beveiligde offertedossier en verlopen met de bestaande acceptatiemetadata. Acceptatie-/betaalberichten blijven naar het ingestelde offerteadres gaan; er worden geen projectupdates, sms-berichten of marketingmails automatisch verstuurd.
+
+**Werkelijk gecontroleerd:** TypeScript, Prettier, `npm run build` en `git diff --check` geslaagd. De lokale browserpreview toont de twee standaard-uitgeschakelde keuzes. Geen acceptatie, databasewijziging, e-mail of betaling uitgevoerd.
+
+**Nog nodig vóór actief gebruik:** `db/schema.sql` toepassen op Neon, contactretentie-/voorwaardeninstellingen en overige eerder genoemde acceptatie-instellingen afronden. Geen Neon-integratietest uitgevoerd. Nog niet gecommit of gepubliceerd.
 
 **Geïmplementeerd en gepubliceerd:** de PDF-knop, component en alleen daarvoor gebruikte CSS zijn verwijderd. Akkoordfunctionaliteit blijft staan. Commit `eae559d` staat op GitHub `main`; Vercel-productiondeployment `dpl_Dyma8Vs2FCrsQr3cxPVTGzjF5zMR` is READY.
 

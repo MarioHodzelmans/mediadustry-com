@@ -21,6 +21,10 @@ export function Acceptance({
     confirmations.map(() => false),
   );
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [emailOptIn, setEmailOptIn] = useState(false);
+  const [phoneOptIn, setPhoneOptIn] = useState(false);
   const [today, setToday] = useState("");
   useEffect(() => {
     setToday(
@@ -32,7 +36,13 @@ export function Acceptance({
   }, []);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
-  const done = checked.every(Boolean) && name.trim().length >= 2;
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const phoneValid = phone.replace(/\D/g, "").length >= 8;
+  const done =
+    checked.every(Boolean) &&
+    name.trim().length >= 2 &&
+    (!emailOptIn || emailValid) &&
+    (!phoneOptIn || phoneValid);
 
   async function submit() {
     if (!done || busy || !ready) return;
@@ -47,6 +57,10 @@ export function Acceptance({
           body: JSON.stringify({
             confirmations: [true, true, true, true],
             name: name.trim(),
+            email: emailOptIn ? email.trim() : "",
+            phone: phoneOptIn ? phone.trim() : "",
+            emailOptIn,
+            phoneOptIn,
           }),
         },
       );
@@ -94,6 +108,64 @@ export function Acceptance({
             required
           />
         </label>
+        <fieldset className={styles.contactOptIns}>
+          <legend>Contact over deze offerte en uitvoering (optioneel)</legend>
+          <label className={styles.nameField} htmlFor="acceptance-email">
+            <span>E-mailadres voor projectupdates</span>
+            <input
+              id="acceptance-email"
+              type="email"
+              autoComplete="email"
+              maxLength={254}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="naam@bedrijf.nl"
+              aria-describedby="acceptance-email-consent"
+            />
+          </label>
+          <label className={styles.optInChoice}>
+            <input
+              type="checkbox"
+              checked={emailOptIn}
+              onChange={(event) => setEmailOptIn(event.target.checked)}
+            />
+            <span id="acceptance-email-consent">
+              Ik wil projectupdates en vragen over deze offerte en de uitvoering
+              per e-mail ontvangen.
+            </span>
+          </label>
+          <label className={styles.nameField} htmlFor="acceptance-phone">
+            <span>Telefoonnummer</span>
+            <input
+              id="acceptance-phone"
+              type="tel"
+              autoComplete="tel"
+              maxLength={32}
+              value={phone}
+              onChange={(event) => setPhone(event.target.value)}
+              placeholder="06 12345678"
+              aria-describedby="acceptance-phone-consent"
+            />
+          </label>
+          <label className={styles.optInChoice}>
+            <input
+              type="checkbox"
+              checked={phoneOptIn}
+              onChange={(event) => setPhoneOptIn(event.target.checked)}
+            />
+            <span id="acceptance-phone-consent">
+              Ik wil projectupdates en vragen over deze offerte en de uitvoering
+              telefonisch ontvangen.
+            </span>
+          </label>
+          <p className={styles.acceptanceHint}>
+            Deze keuzes zijn vrijwillig en staan los van het accepteren van de
+            offerte. Zonder aangevinkte keuze worden de ingevulde
+            contactgegevens niet bij de acceptatie opgeslagen. Acceptatie- en
+            betaalberichten blijven via het voor deze offerte ingestelde
+            e-mailadres lopen.
+          </p>
+        </fieldset>
         <p className={styles.acceptanceHint}>
           Vandaag: {today || "…"}. De datum en het tijdstip worden bij
           acceptatie automatisch vastgelegd.

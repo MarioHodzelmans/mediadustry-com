@@ -2,6 +2,8 @@
 
 Bijgewerkt: 2026-10-09.
 
+**Huidige opdracht — persoonlijke Die Twie-offertelink:** op uitdrukkelijk akkoord van de eigenaar is de verborgen `DIETWIEJ_ACCESS_TOKEN`-waarde in Vercel Production vervangen. De vorige persoonlijke link is ongeldig. De nieuwe token is alleen in de Vercel Production-omgeving opgeslagen en wordt niet in Git, status of log bewaard. Een GitHub-triggerdeployment om de gewijzigde environment value te laden loopt nog; daarna volgt HTTP-controle van de nieuwe route. De volledige link wordt alleen rechtstreeks aan de eigenaar verstrekt.
+
 **Huidige opdracht — offertebevestiging, akkoordtekst en headerlogo:** klantmail gebruikt alleen de voornaam, benoemt een lange samenwerking en vertrouwen in het rendement. De e-mailbody en “Met vriendelijke groet” delen dezelfde Arial-maatvoering. De klantweergave noemt het onderdeel “Akkoord” en de knop “Akkoord en doorgaan naar betaling”. Beeldmerk en woordmerk zijn verkleind op desktop en mobiel in beide gedeelde headerimplementaties; homepage-inhoud bleef ongemoeid. Commit `3d36d6c` staat op GitHub `main`; Vercel Production-deployment `dpl_Gow6pLmLAR8Z4x9MPUV3sRmnpVsx` is READY.
 
 **Werkelijk gecontroleerd:** Prettier, `npx tsc --noEmit`, `npm run build` inclusief header-pariteitscontrole en `git diff --check` geslaagd. Geen e-mail verzonden of offerte geaccepteerd.

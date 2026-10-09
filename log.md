@@ -431,3 +431,8 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - De e-mailbody en “Met vriendelijke groet” gebruiken dezelfde Arial-fontfamilie, 15 px tekstmaat en 24 px regelhoogte; naam en offertetotaal blijven visueel benadrukt. De knop/sectie in de offerte gebruikt nu “Akkoord” in plaats van “Digitaal akkoord”.
 - Controles: Prettier, `npx tsc --noEmit`, `npm run build` inclusief header-pariteitscontrole en `git diff --check` geslaagd. Geen acceptatie, e-mail of betaling uitgevoerd.
 - Commit `3d36d6c` is naar GitHub `main` gepusht. Vercel Production-deployment `dpl_Gow6pLmLAR8Z4x9MPUV3sRmnpVsx` voor deze commit is READY, met aliassen `www.mediadustry.com` en `mediadustry.com`. Geen directe deployment gestart.
+
+## 2026-10-09 — persoonlijke Die Twie-offertelink vernieuwd
+
+- Op akkoord van de eigenaar is `DIETWIEJ_ACCESS_TOKEN` in de Production-omgeving van Vercel geroteerd, omdat de bestaande geheime waarde niet kon worden uitgelezen. De oude link is daarmee ongeldig; nieuwe waarde staat alleen in Vercel en is niet in Git of projectdocumentatie opgenomen.
+- De GitHub-push om Vercel de bijgewerkte environment value te laten laden volgt nu. Daarna wordt de persoonlijke route gecontroleerd en de link rechtstreeks aan de eigenaar gegeven. Acceptatie blijft volgens de bestaande configuratie uitgeschakeld; geen e-mail, akkoord of betaling uitgevoerd.

@@ -619,8 +619,7 @@
   margin: 1px 0 0;
   width: 18px;
 }
-.acceptanceForm button,
-.adminButton {
+.acceptanceForm button {
   background: var(--accent);
   border: 0;
   color: #fff;
@@ -633,8 +632,7 @@
   padding: 13px 17px;
   text-align: left;
 }
-.acceptanceForm button:disabled,
-.adminButton:disabled {
+.acceptanceForm button:disabled {
   cursor: not-allowed;
   opacity: 0.48;
 }
@@ -1291,8 +1289,7 @@
   .summaryCta a {
     color: #fff;
   }
-  .acceptanceForm,
-  .adminButton {
+  .acceptanceForm {
     display: none;
   }
   .offer a {

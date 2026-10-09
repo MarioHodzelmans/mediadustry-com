@@ -334,3 +334,9 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Vercel project `mediadustry-com` bouwde GitHub-commit `fc9eced21a0ae633c19e15a2c1c9e312f6352aaf`; deployment `dpl_7qxSNjZyJbiQDxoFbn8CZtCVCiFy` is READY.
 - `https://www.mediadustry.com/` en `https://www.mediadustry.com/offerte/dietwiej` antwoorden HTTP 200. Homepagebestanden maakten geen deel uit van de commit. De anonieme toegankelijkheid van de ingebedde ChatGPT-site blijft onzeker door een eerdere HTTP 401; dit is niet opnieuw opgelost door de GitHub/Vercel-publicatie.
 - Productiebouw, Prettier en `git diff --check` waren geslaagd vóór publicatie.
+
+## 2026-10-09 — PDF-knop uit de offerte verwijderd
+
+- De knop ‘Download offerte als PDF’ en de bijbehorende `PrintOfferButton`-component zijn verwijderd uit `app/offerte/dietwiej/page.tsx`; `app/offerte/dietwiej/print-button.tsx` is verwijderd. Alleen de PDF-knop gebruikte `.adminButton`, daarom is die styling ook verwijderd uit `app/offerte/dietwiej/offerte.module.css`. Akkoordfunctionaliteit en resterende pagina-inhoud blijven staan.
+- Controles: `npm run build`, Prettier en `git diff --check` geslaagd. Lokale previewserver op poort 3012 (testtoken) antwoordt HTTP 200; gerenderde HTML bevat geen ‘Download offerte als PDF’ maar bevat de akkoord- en technische rapportsecties.
+- Homepagebestanden zijn niet gewijzigd. Deze wijziging is nog niet gepusht; Vercel-publicatie volgt via GitHub `main`.

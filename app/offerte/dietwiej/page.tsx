@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import styles from "./offerte.module.css";
 import { Acceptance } from "./acceptance";
 import { isAcceptanceReady, quoteContent } from "@/lib/quotes/config";
-import { PrintOfferButton } from "./print-button";
 import { ReservationPreview } from "./reservation-preview";
 
 export const metadata: Metadata = {
@@ -305,12 +304,7 @@ export function DietwiejOfferPage({ token }: { token?: string }) {
           </ol>
         </section>
 
-        {token && (
-          <>
-            <PrintOfferButton />
-            <Acceptance token={token} ready={isAcceptanceReady()} />
-          </>
-        )}
+        {token && <Acceptance token={token} ready={isAcceptanceReady()} />}
         <section
           className={styles.technicalDetails}
           aria-labelledby="technical-details-title"

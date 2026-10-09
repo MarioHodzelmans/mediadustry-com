@@ -339,4 +339,4 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 
 - De knop ‘Download offerte als PDF’ en de bijbehorende `PrintOfferButton`-component zijn verwijderd uit `app/offerte/dietwiej/page.tsx`; `app/offerte/dietwiej/print-button.tsx` is verwijderd. Alleen de PDF-knop gebruikte `.adminButton`, daarom is die styling ook verwijderd uit `app/offerte/dietwiej/offerte.module.css`. Akkoordfunctionaliteit en resterende pagina-inhoud blijven staan.
 - Controles: `npm run build`, Prettier en `git diff --check` geslaagd. Lokale previewserver op poort 3012 (testtoken) antwoordt HTTP 200; gerenderde HTML bevat geen ‘Download offerte als PDF’ maar bevat de akkoord- en technische rapportsecties.
-- Homepagebestanden zijn niet gewijzigd. Deze wijziging is nog niet gepusht; Vercel-publicatie volgt via GitHub `main`.
+- Commit `eae559d` staat op GitHub `main`; Vercel-productiondeployment `dpl_Dyma8Vs2FCrsQr3cxPVTGzjF5zMR` is READY. Homepagebestanden zijn niet gewijzigd.

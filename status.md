@@ -4,13 +4,13 @@ Bijgewerkt: 2026-10-09.
 
 **Huidige opdracht:** verwijder op verzoek de knop ‘Download offerte als PDF’ uit de persoonlijke offerte.
 
-**Lokaal geïmplementeerd:** de PDF-knop, component en alleen daarvoor gebruikte CSS zijn verwijderd. Akkoordfunctionaliteit blijft staan. Productiebuild geslaagd; lokale testtokenpreview op poort 3012 geeft HTTP 200 en de knop ontbreekt. GitHub/Vercel-publicatie van deze wijziging is de volgende stap.
+**Geïmplementeerd en gepubliceerd:** de PDF-knop, component en alleen daarvoor gebruikte CSS zijn verwijderd. Akkoordfunctionaliteit blijft staan. Commit `eae559d` staat op GitHub `main`; Vercel-productiondeployment `dpl_Dyma8Vs2FCrsQr3cxPVTGzjF5zMR` is READY.
 
 **Werkelijk gecontroleerd:** `npm run build`, Prettier en `git diff --check` geslaagd. De lokale persoonlijke offerte op poort 3012 geeft HTTP 200; HTML bevat geen PDF-knoptekst maar wel de akkoord- en technische rapportsecties.
 
 **Nog nodig vóór digitale acceptatie:** Neon resource/schema; adminlogin; offerte-ID en klantmail; goedgekeurde voorwaarden en bewaartermijn; admin-/cronsecrets, Resend-afzender en ING-gegevens. Het privé offertetoegangstoken is uitsluitend in Vercel Production ingesteld. Acceptatie blijft uitgeschakeld tot de database en overige verplichte instellingen zijn ingericht. Resend gebruikt de API, geen SMTP.
 
-**Publicatie:** offertepreviewwijziging staat op GitHub `main`; Vercel heeft de productiebuild afgerond. De verwijdering van de PDF-knop is nog lokaal.
+**Publicatie:** verwijdering van de PDF-knop staat op GitHub `main` en Vercel. Productiedeployment voor commit `eae559d` is READY. Homepagebestanden zijn niet gewijzigd.
 
 **Open punt:** externe toegankelijkheid van de ingebedde conceptbron is niet bevestigd (anonieme HTTP 401). Homepagebestanden zijn niet aangepast.
 

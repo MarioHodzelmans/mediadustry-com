@@ -377,3 +377,9 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Hostingtekst en offerteworkflowplan bijgewerkt. Alleen offerte-/workflowbestanden en projectdocumentatie gewijzigd; homepage ongemoeid.
 - Controles: `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Lokale offertepreview op poort 3012 antwoordt HTTP 200; in gerenderde inhoud worden de zichtbare websiteprijs en het eenmalige totaal elk éénmaal getoond, ontbreken de oude bedragen en herhaalt de hostingtoelichting het totaal niet.
 - Alleen offertecode en projectdocumentatie zijn gewijzigd; homepagebestanden zijn niet gewijzigd. Commit `4f7aa0b` staat op GitHub `main`; gekoppelde Vercel Production-deployment `dpl_GbBEzFH4nLAoqgUUfeJS5JasWuV8` is READY. Geen directe Vercel-deployment gestart.
+
+## 2026-10-09 — logo voor e-mailhandtekening (lokaal)
+
+- Op basis van het bestaande monochrome merkbeeld zijn `public/logo.svg` en een transparante PNG `public/logo.png` gemaakt. De PNG is 424×360 px; PNG is de aanbevolen e-mailhandtekeningvariant omdat ondersteuning voor SVG in e-mailclients wisselend is. De beoogde publieke adressen zijn `https://www.mediadustry.com/logo.png` en `https://www.mediadustry.com/logo.svg`.
+- Werk op een nieuwe branch vanaf actuele `origin/main` (`codex/email-signature-logo`), omdat de bestaande lokale `main` 18 commits achterliep en ongerelateerde homepagewijzigingen bevat. Er is nog niets gepubliceerd; GitHub-push/PR en productie-URL-controle staan open.
+- Controle: PNG gegenereerd met de bestaande Sharp-installatie; dimensies 424×360 en bestandsgrootte 3129 bytes bevestigd. Externe bereikbaarheid en e-mailclientweergave nog niet geverifieerd.

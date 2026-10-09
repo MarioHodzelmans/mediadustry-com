@@ -4,15 +4,15 @@ Bijgewerkt: 2026-10-09.
 
 **Huidige opdracht:** plaats de door de eigenaar aangeleverde Gastrobar Die Twie ChatGPT Site als interactieve conceptpreview in de offerte en maak deze bron extern toegankelijk.
 
-**Lokaal geïmplementeerd:** de reserveringspreview verwijst nu naar de aangeleverde concept-URL; de host staat expliciet op de iframe-allowlist en de preview is als concept met voorlopige inhoud/reserveringen gelabeld. Productiebuild is op 9 oktober 2026 geslaagd. Homepagebronnen bleven ongewijzigd.
+**Geïmplementeerd en gepubliceerd:** de reserveringspreview verwijst naar de aangeleverde concept-URL; de host staat expliciet op de iframe-allowlist en de preview is als concept met voorlopige inhoud/reserveringen gelabeld. Commit `fc9eced` staat op GitHub `main`; Vercel-deployment `dpl_7qxSNjZyJbiQDxoFbn8CZtCVCiFy` is READY. Productiehomepage en openbare offertebasisroute antwoorden HTTP 200. Homepagebestanden zijn niet gewijzigd.
 
-**Werkelijk gecontroleerd:** `npm run build` geslaagd na de previewaanpassing. Anonieme HTTP-verzoeken naar de opgegeven bron kregen `401`; dit kan toegangsbeleid of botbescherming zijn. De ChatGPT Sites-lijst bevat deze Gastrobar-site niet, dus het deelbeleid kon vanuit dit account niet worden aangepast of bevestigd. Nog geen browsercontrole van de aangepaste productiepreview.
+**Werkelijk gecontroleerd:** `npm run build`, Prettier en `git diff --check` geslaagd. GitHub-main push bevestigd; Vercel-productiondeployment voor commit `fc9eced` READY. `https://www.mediadustry.com/` en `/offerte/dietwiej` antwoorden HTTP 200. Anoniem HTTP-verzoek naar de opgegeven conceptbron kreeg eerder `401`; dit kan toegangsbeleid of botbescherming zijn. De ChatGPT Sites-lijst bevat deze Gastrobar-site niet, dus de iframe-inhoud kon niet onafhankelijk als anonieme bezoeker worden bevestigd.
 
 **Nog nodig vóór digitale acceptatie:** Neon resource/schema; adminlogin; offerte-ID en klantmail; goedgekeurde voorwaarden en bewaartermijn; admin-/cronsecrets, Resend-afzender en ING-gegevens. Het privé offertetoegangstoken is uitsluitend in Vercel Production ingesteld. Acceptatie blijft uitgeschakeld tot de database en overige verplichte instellingen zijn ingericht. Resend gebruikt de API, geen SMTP.
 
-**Publicatie:** laatst bekende offertecommit `4b3a359` staat op GitHub `main`; gekoppelde Vercel-productiondeployment `dpl_6qBQX9kwdduzbuMVkF3rL7JPyJQw` is READY. De nieuwe externe previewwijziging is lokaal en nog niet gepusht, omdat openbare toegang tot de doelbron niet kon worden bevestigd. Homepagebron `content/homepage/index.html` en root/homepageroutes zijn niet aangepast.
+**Publicatie:** offertepreviewwijziging staat in commit `fc9eced` op GitHub `main`; gekoppelde Vercel-productiondeployment `dpl_7qxSNjZyJbiQDxoFbn8CZtCVCiFy` is READY. Homepagebron `content/homepage/index.html` en root/homepageroutes zijn niet aangepast.
 
-**Volgende stap/blokkade:** de eigenaar van de ChatGPT Site moet in de site-instellingen toegang voor bezoekers buiten de organisatie/account inschakelen en publiceren, of bevestigen dat `401` alleen botbescherming is. Daarna anonieme toegang en iframe laden controleren en de wijziging via GitHub publiceren.
+**Open punt:** anonieme toegang van de externe conceptbron is niet bevestigd; eerder HTTP 401. De offerteroute is wel via GitHub/Vercel gepubliceerd. Als externe bezoekers de bron niet laden, moet de eigenaar de publieke toegang van de ChatGPT Site controleren.
 
 ## Update 2026-10-09 — vereenvoudigde klantweergave
 

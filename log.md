@@ -327,3 +327,10 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Een zichtbare melding noemt de ingebedde website een interactief concept en zegt dat inhoud en reserveringen voorlopig zijn. Dit is nodig omdat de bron onder meer TODO-velden en een Guestplan-demo toont.
 - `npm run build` geslaagd. Git-diff bevat geen homepagebestanden. Rechtstreeks anoniem `curl` met browser User-Agent kreeg `401`; dat resultaat onderscheidt geen toegangsbeleid van botbescherming. De aangeleverde site staat niet in het ChatGPT Sites-overzicht van het actieve account, dus deelinstellingen konden niet worden gewijzigd.
 - Alleen lokaal; niet gepusht of gedeployed totdat de anonieme browsertoegang tot de bron bevestigd kan worden. Volgende stap: eigenaar schakelt publieke toegang in of bevestigt dat de `401` niet voor gewone externe browserbezoekers geldt; daarna embed/anonymous access verifiëren en publiceren via GitHub.
+
+## 2026-10-09 — offertepreview via GitHub en Vercel gepubliceerd
+
+- Op verzoek is commit `fc9eced` (`Embed Die Twie concept preview in quotation`) via de verbonden GitHub-repository naar `main` gepusht; er is geen directe Vercel-deployment gestart.
+- Vercel project `mediadustry-com` bouwde GitHub-commit `fc9eced21a0ae633c19e15a2c1c9e312f6352aaf`; deployment `dpl_7qxSNjZyJbiQDxoFbn8CZtCVCiFy` is READY.
+- `https://www.mediadustry.com/` en `https://www.mediadustry.com/offerte/dietwiej` antwoorden HTTP 200. Homepagebestanden maakten geen deel uit van de commit. De anonieme toegankelijkheid van de ingebedde ChatGPT-site blijft onzeker door een eerdere HTTP 401; dit is niet opnieuw opgelost door de GitHub/Vercel-publicatie.
+- Productiebouw, Prettier en `git diff --check` waren geslaagd vóór publicatie.

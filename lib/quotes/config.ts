@@ -6,7 +6,6 @@ export const quoteConfig = {
   version: "1.6",
   customerName: "Gastrobar Die Twie",
   organization: "Gastrobar Die Twie",
-  customerEmail: process.env.DIETWIEJ_CUSTOMER_EMAIL ?? "",
   totalCents: 235950,
   websiteCents: 185000,
   outlookCents: 10000,
@@ -179,11 +178,8 @@ export function isAcceptanceReady() {
     ibanChecksum = (ibanChecksum * 10 + Number(digit)) % 97;
   const validIban =
     /^[A-Z]{2}\d{2}[A-Z0-9]{11,30}$/.test(iban) && ibanChecksum === 1;
-  const customerEmail = quoteConfig.customerEmail;
   return Boolean(
     quoteConfig.id &&
-    customerEmail &&
-    /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(customerEmail) &&
     quoteConfig.termsVersion &&
     quoteConfig.termsText &&
     Buffer.byteLength(accessToken) >= 32 &&

@@ -29,18 +29,17 @@ export async function ensureQuote(token: string) {
   const hash = hashAccessToken(token);
   const rows = await db`
     insert into quote_workflow_quotes (
-      id, access_token_hash, customer_name, customer_email, organization,
+      id, access_token_hash, customer_name, organization,
       amount_total_cents, currency, quote_version, quote_snapshot,
       quote_snapshot_sha256, terms_version, terms_text, terms_sha256
     ) values (
-      ${quoteConfig.id}, ${hash}, ${quoteConfig.customerName}, nullif(${quoteConfig.customerEmail}, ''),
-      ${quoteConfig.organization}, ${quoteConfig.totalCents}, ${quoteConfig.currency},
+      ${quoteConfig.id}, ${hash}, ${quoteConfig.customerName}, ${quoteConfig.organization},
+      ${quoteConfig.totalCents}, ${quoteConfig.currency},
       ${quoteConfig.version}, ${quoteSnapshotJson}::jsonb, ${quoteSnapshotSha256},
       nullif(${quoteConfig.termsVersion}, ''), nullif(${quoteConfig.termsText}, ''),
       ${quoteConfig.termsText ? createHash("sha256").update(quoteConfig.termsText).digest("hex") : null}
     ) on conflict (id) do update set
       customer_name = excluded.customer_name,
-      customer_email = excluded.customer_email,
       organization = excluded.organization,
       amount_total_cents = excluded.amount_total_cents,
       currency = excluded.currency,
@@ -104,10 +103,8 @@ export async function acceptQuote(
   evidence: {
     acceptedAt: string;
     name: string;
-    email: string | null;
-    phone: string | null;
-    emailOptIn: boolean;
-    phoneOptIn: boolean;
+    email: string;
+    phone: string;
     ip: string | null;
     userAgent: string | null;
     confirmations: string[];
@@ -127,20 +124,15 @@ export async function acceptQuote(
     with accepted as (
       update quote_workflow_quotes
       set status = 'awaiting_down_payment', accepted_at = ${evidence.acceptedAt},
+        customer_email = ${evidence.email},
         accepted_amount_cents = amount_total_cents,
         acceptance_evidence = ${JSON.stringify({
           name: evidence.name,
           confirmations: evidence.confirmations,
-          contactPreferences: {
-            version: "project-contact-v1",
-            acceptedAt: evidence.acceptedAt,
-            emailOptIn: evidence.emailOptIn,
-            phoneOptIn: evidence.phoneOptIn,
-          },
         })}::jsonb,
         updated_at = ${evidence.acceptedAt}
       where id = ${quoteId} and status = 'awaiting_acceptance'
-        and terms_version is not null and terms_text is not null and customer_email is not null
+        and terms_version is not null and terms_text is not null
         and quote_snapshot_sha256 = ${quoteSnapshotSha256}
       returning id, customer_email, accepted_amount_cents, quote_version, terms_version,
         quote_snapshot_sha256, terms_sha256
@@ -154,21 +146,13 @@ export async function acceptQuote(
         jsonb_build_object('accepted_amount_cents', a.accepted_amount_cents, 'quote_version', a.quote_version,
           'terms_version', a.terms_version, 'quote_snapshot_sha256', a.quote_snapshot_sha256,
           'terms_sha256', a.terms_sha256, 'payment_id', p.id,
-          'accepted_by', ${evidence.name}, 'confirmations', ${JSON.stringify(evidence.confirmations)}::jsonb,
-          'contact_preferences', ${JSON.stringify({
-            version: "project-contact-v1",
-            acceptedAt: evidence.acceptedAt,
-            emailOptIn: evidence.emailOptIn,
-            phoneOptIn: evidence.phoneOptIn,
-          })}::jsonb)
+          'accepted_by', ${evidence.name}, 'confirmations', ${JSON.stringify(evidence.confirmations)}::jsonb)
       from accepted a cross join payment p returning id
     ), metadata as (
       insert into quote_workflow_acceptance_metadata(
-        quote_id, ip_address, user_agent, contact_email, email_opt_in,
-        contact_phone, phone_opt_in, expires_at
+        quote_id, ip_address, user_agent, contact_phone, expires_at
       )
-      select id, ${evidence.ip}, ${evidence.userAgent}, ${evidence.email}, ${evidence.emailOptIn},
-        ${evidence.phone}, ${evidence.phoneOptIn},
+      select id, ${evidence.ip}, ${evidence.userAgent}, ${evidence.phone},
         ${evidence.acceptedAt}::timestamptz + make_interval(days => ${retentionDays})
       from accepted returning quote_id
     ), email as (
@@ -227,7 +211,7 @@ export async function getAdminQuote(quoteId: string) {
       where quote_id = ${quoteId} order by occurred_at desc`,
     db`select event_type, recipient, status, attempts, last_error, created_at, sent_at
       from quote_workflow_email_outbox where quote_id = ${quoteId} order by created_at desc`,
-    db`select contact_email, email_opt_in, contact_phone, phone_opt_in, expires_at
+    db`select contact_phone, expires_at
       from quote_workflow_acceptance_metadata where quote_id = ${quoteId}`,
   ]);
   return quotes[0]

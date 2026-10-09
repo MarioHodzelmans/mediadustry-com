@@ -35,14 +35,6 @@ export default async function AdminQuoteDetail({
   const events = data.events as Record<string, unknown>[];
   const emails = data.emails as Record<string, unknown>[];
   const contact = data.contact as Record<string, unknown> | null;
-  const acceptanceEvidence = quote.acceptance_evidence as {
-    contactPreferences?: {
-      emailOptIn?: boolean;
-      phoneOptIn?: boolean;
-      acceptedAt?: string;
-    };
-  } | null;
-  const contactPreferences = acceptanceEvidence?.contactPreferences;
   return (
     <main className={styles.offer}>
       <section className={styles.adminShell}>
@@ -62,6 +54,8 @@ export default async function AdminQuoteDetail({
           <dl className={styles.paymentDetails}>
             <dt>Contact</dt>
             <dd>{String(quote.customer_email ?? "Niet ingesteld")}</dd>
+            <dt>Telefoon</dt>
+            <dd>{String(contact?.contact_phone ?? "Nog niet vastgelegd")}</dd>
             <dt>Organisatie</dt>
             <dd>{String(quote.organization)}</dd>
             <dt>Totaal</dt>
@@ -86,44 +80,6 @@ export default async function AdminQuoteDetail({
                     timeZone: "Europe/Amsterdam",
                   })
                 : "Nog niet"}
-            </dd>
-          </dl>
-        </section>
-        <section className={styles.adminCard}>
-          <h2>Contactvoorkeuren</h2>
-          <dl className={styles.paymentDetails}>
-            <dt>Projectupdates per e-mail</dt>
-            <dd>
-              {contactPreferences?.emailOptIn
-                ? contact?.email_opt_in
-                  ? String(contact.contact_email)
-                  : "Toestemming vastgelegd; adres is inmiddels verwijderd"
-                : "Geen toestemming"}
-            </dd>
-            <dt>Telefonisch projectcontact</dt>
-            <dd>
-              {contactPreferences?.phoneOptIn
-                ? contact?.phone_opt_in
-                  ? String(contact.contact_phone ?? "Nummer ontbreekt")
-                  : "Toestemming vastgelegd; nummer is inmiddels verwijderd"
-                : "Geen toestemming"}
-            </dd>
-            <dt>Vastgelegd</dt>
-            <dd>
-              {contactPreferences?.acceptedAt
-                ? new Date(contactPreferences.acceptedAt).toLocaleString(
-                    "nl-NL",
-                    { timeZone: "Europe/Amsterdam" },
-                  )
-                : "Nog niet"}
-            </dd>
-            <dt>Opt-incontactgegevens worden bewaard tot</dt>
-            <dd>
-              {contact?.expires_at
-                ? new Date(String(contact.expires_at)).toLocaleString("nl-NL", {
-                    timeZone: "Europe/Amsterdam",
-                  })
-                : "Niet van toepassing"}
             </dd>
           </dl>
         </section>

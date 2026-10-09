@@ -60,20 +60,14 @@ create table if not exists quote_workflow_acceptance_metadata (
   quote_id text primary key references quote_workflow_quotes(id),
   ip_address text,
   user_agent text,
-  contact_email text,
-  email_opt_in boolean not null default false,
   contact_phone text,
-  phone_opt_in boolean not null default false,
   expires_at timestamptz not null,
   created_at timestamptz not null default now()
 );
 
--- Keep an existing installation compatible when the contact opt-ins are added.
+-- Keep an existing installation compatible when phone capture is added.
 alter table quote_workflow_acceptance_metadata
-  add column if not exists contact_email text,
-  add column if not exists email_opt_in boolean not null default false,
-  add column if not exists contact_phone text,
-  add column if not exists phone_opt_in boolean not null default false;
+  add column if not exists contact_phone text;
 
 create table if not exists quote_workflow_email_outbox (
   id uuid primary key,

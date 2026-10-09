@@ -229,7 +229,7 @@ export function DietwiejOfferPage({ token }: { token?: string }) {
           >
             <div>
               <span>Websitevernieuwing</span>
-              <strong>€ 1.850</strong>
+              <strong>€ 2.150</strong>
             </div>
             <div>
               <span>Outlook 365-inrichting</span>
@@ -237,7 +237,7 @@ export function DietwiejOfferPage({ token }: { token?: string }) {
             </div>
             <div className={styles.oneTimeTotal}>
               <span>Totaal eenmalig</span>
-              <strong>€ 1.950</strong>
+              <strong>€ 2.250</strong>
             </div>
             <div className={styles.hostingPrice}>
               <span>Premium hosting · korting eerste jaar</span>

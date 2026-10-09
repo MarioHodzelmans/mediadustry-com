@@ -4,7 +4,11 @@ Bijgewerkt: 2026-10-09.
 
 **Laatste wijziging — Resend-ontvangers:** bij digitale acceptatie wordt een ontvangstbevestiging naar de klant en een interne acceptatiemelding naar `info@mediadustry.com` klaargezet. Alle betaalstatusmails gaan alleen naar de klant. De server-side Resend-outbox gebruikt idempotency keys. `npx tsc --noEmit`, `npm run build` en `git diff --check` zijn geslaagd; er is geen e-mail verstuurd. Commit `7e51b57` staat op GitHub `main`; de bijbehorende Vercel Production-deployment is READY. Werkelijke verzending vereist nog bevestiging dat `RESEND_API_KEY` en een geverifieerde `RESEND_FROM_EMAIL` in Vercel Production zijn ingesteld; ook overige eerder genoemde acceptatievoorwaarden/database-inrichting zijn nog open. Homepagebestanden zijn niet gewijzigd.
 
-**Huidige opdracht:** haal de opt-incheckboxes weg en maak de vooraf ingevulde naam, e-mail en telefoon verplichte akkoordgegevens.
+**Huidige stand:** offerteversie 1.7 staat lokaal op € 2.250 excl. btw (€ 2.150 websitevernieuwing + € 100 Outlook-inrichting). De interne betaalbasis is bijgewerkt; de klant ziet uitsluitend de bedragen excl. btw.
+
+**Werkelijk gecontroleerd:** `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Lokale offerte op poort 3012 antwoordt HTTP 200; daarin staan € 2.150 en € 2.250 elk eenmaal als zichtbare prijs, de oude prijzen ontbreken en de hostingtoelichting herhaalt het totaal niet. Homepagebestanden zijn niet gewijzigd. Publicatie via GitHub volgt.
+
+**Eerdere opdracht (afgerond):** haal de opt-incheckboxes weg en maak de vooraf ingevulde naam, e-mail en telefoon verplichte akkoordgegevens.
 
 **Lokaal geïmplementeerd:** het akkoordformulier heeft alleen de bestaande checkbox voor offerteakkoord. Naam, e-mailadres en telefoonnummer zijn vooraf ingevuld en aanpasbaar; alle drie zijn verplicht. Acceptatie- en betaalberichten gaan naar het ingevulde e-mailadres. Het telefoonnummer verschijnt in het beveiligde offertedossier en volgt de acceptatiemetadataretentie.
 

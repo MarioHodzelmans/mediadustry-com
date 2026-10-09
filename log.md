@@ -361,6 +361,7 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 ### Publicatiestatus
 
 - Commit `baf022b` is naar GitHub `main` gepusht. GitHub rapporteert voor de gekoppelde Vercel-build status `success` en “Deployment has completed”; geen directe Vercel-deployment gestart. De homepage is niet gewijzigd.
+
 ## 2026-10-09 — Resend-ontvangers voor offerteacceptatie
 
 - De bestaande Resend API-outbox maakt bij digitale offerteacceptatie nu een interne notificatie aan `info@mediadustry.com`, naast de ontvangstbevestiging en aanbetalingsmail aan het ingevulde klantadres. De interne melding bevat klantnaam, contactgegevens, offerte-ID en bedrag. Aanbetalings-/betaalstatusupdates blijven uitsluitend naar de klant gaan. Geen CC/BCC of andere ontvangers toegevoegd.
@@ -368,3 +369,11 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Controles: `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Productiebuild heeft geen homepagebestanden gewijzigd.
 - Commit `7e51b57` is naar GitHub `main` gepusht via de repository; gekoppelde Vercel Production-deployment `dpl_2W1eg83S1iXdM6NxbbLqCJQUTszw` staat READY en bevat de nieuwe commit. Homepagebestanden zijn niet gewijzigd.
 - Acceptatie blijft afhankelijk van database, voorwaarden en overige vereiste configuratie. Resend-productiecredentials/afzender zijn niet geverifieerd; er is geen e-mail verstuurd.
+
+## 2026-10-09 — offerteprijs teruggezet naar € 2.250
+
+- Op verzoek het zichtbare offertebedrag aangepast naar € 2.250 excl. btw: websitevernieuwing € 2.150 en Outlook-inrichting € 100. Offerteversie verhoogd van 1.6 naar 1.7 zodat een eerder opgeslagen snapshot niet stilzwijgend wordt overschreven.
+- De interne betaalbasis is aangepast naar € 2.722,50 incl. btw, verdeeld in twee termijnen van € 1.361,25. Het btw-bedrag in het immutable snapshot is bijgewerkt; de klantweergave blijft exclusief btw.
+- Hostingtekst en offerteworkflowplan bijgewerkt. Alleen offerte-/workflowbestanden en projectdocumentatie gewijzigd; homepage ongemoeid.
+- Controles: `npx tsc --noEmit`, `npm run build` en `git diff --check` geslaagd. Lokale offertepreview op poort 3012 antwoordt HTTP 200; in gerenderde inhoud worden de zichtbare websiteprijs en het eenmalige totaal elk éénmaal getoond, ontbreken de oude bedragen en herhaalt de hostingtoelichting het totaal niet.
+- Alleen offertecode en projectdocumentatie zijn gewijzigd; homepagebestanden zijn niet gewijzigd. Publicatie via GitHub volgt.

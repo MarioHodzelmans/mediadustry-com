@@ -3,11 +3,11 @@ import { calculatePaymentSplit } from "./money.mjs";
 
 export const quoteConfig = {
   id: process.env.DIETWIEJ_QUOTE_ID ?? "",
-  version: "1.6",
+  version: "1.7",
   customerName: "Gastrobar Die Twie",
   organization: "Gastrobar Die Twie",
-  totalCents: 235950,
-  websiteCents: 185000,
+  totalCents: 272250,
+  websiteCents: 215000,
   outlookCents: 10000,
   currency: "EUR",
   issuedOn: "2026-10-09",
@@ -95,7 +95,7 @@ export const quoteContent = {
   reservationScope:
     "Een reserveringssysteem, abonnement of technische koppeling is niet opgenomen in deze offerteprijs. Als Die Twie dit wil verkennen, kunnen we de passende oplossing en eventuele kosten apart bespreken.",
   hosting:
-    "De website komt op premium hosting, met aandacht voor snelheid, beschikbaarheid en een technisch goed bereikbare basis voor indexatie. Het eerste hostingjaar is inbegrepen dankzij € 300 hostingkorting. Vanaf het tweede jaar kost hosting € 300 per jaar (€ 25 per maand), exclusief btw. De eenmalige investering bedraagt € 1.950 exclusief btw.",
+    "De website komt op premium hosting, met aandacht voor snelheid, beschikbaarheid en een technisch goed bereikbare basis voor indexatie. Het eerste hostingjaar is inbegrepen dankzij € 300 hostingkorting. Vanaf het tweede jaar kost hosting € 300 per jaar (€ 25 per maand), exclusief btw.",
   outlookScope:
     "Inrichting van één extra zakelijk e-mailadres binnen Microsoft Outlook 365, bijvoorbeeld facturen@dietwie.nl.",
   outlookConditions:
@@ -148,7 +148,7 @@ export const quoteSnapshot = {
     },
   ],
   vatRatePercent: 21,
-  vatCents: 40950,
+  vatCents: 47250,
   annualExternalLicenseCents: 7500,
   annualHostingCents: 30000,
   firstYearHostingDiscountCents: 30000,

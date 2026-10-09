@@ -186,3 +186,129 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - `position: relative` toegevoegd aan `.image-story-inner`, zodat beide overlays weer bij hun eigen wereldbeeldsectie horen.
 - Controle: productiebuild en TypeScript geslaagd; ESLint en Prettier geslaagd. Desktopbrowser toont beeld links, tekstkaart rechts en notitie linksonder. Mobiele controle op 390 px toont de drie onderdelen in de bedoelde volgorde zonder horizontale overflow.
 - Commit `38e7ca9` is via GitHub `main` gepubliceerd. De gekoppelde hosting bevat de correctie; live browsercontrole bevestigt `position: relative` op de sectiecontainer, correcte onderlinge beeld-/kaartposities, geen horizontale overflow en geen browserfouten. Geen directe Vercel-deployment uitgevoerd.
+
+# 2026-10-09 — offerte Gastrobar Die Twie uitgewerkt
+
+- Uitgewerkt in `app/offerte/dietwiej/page.tsx` en `app/offerte/dietwiej/offerte.module.css`: vertrouwelijke tweedelige offerte voor websitevernieuwing en Outlook 365. Pagina 1 bevat achtergrond, werkzaamheden, telefoonreservering, Outlook-installatievoorwaarden, jaarlijkse externe licentie, fotografie- en reviewadvies, bedragen, werkwijze en ondertekenruimte. Pagina 2 bevat de zelfstandige samenvatting met dezelfde bedragen en uitsluitingen.
+- Bedragen gecontroleerd op briefing: € 2.150 + € 100 = € 2.250 excl. btw; 21% btw € 472,50; totaal € 2.722,50 incl. btw. De € 75 excl. btw per jaar is apart aangeduid als terugkerende leverancierslicentie. Fotografie en extra apparaatondersteuning zijn uitgesloten. Er is geen betaaltermijn, planningstermijn of garantie toegevoegd.
+- Offertedatum 9 oktober 2026; metadata is noindex/nofollow. Geen contactgegevens toegevoegd; akkoord gebeurt via de invulbare naam-, datum- en handtekeningruimte.
+- Controle: Prettier en gerichte ESLint geslaagd; `npm run build` geslaagd, inclusief TypeScript en statische generatie van `/offerte/dietwiej`. Lokale desktopweergave bekeken. Mobiele screenshotcontrole niet uitgevoerd.
+- Basis: actuele GitHub-branch `origin/main` bij start (`16bcbca`), geïsoleerd in worktree/branch `codex/offerte-dietwiej`. Oorspronkelijke checkout met bestaande wijzigingen behouden. Niet gepusht; geen hostingdeployment uitgevoerd.
+
+## 2026-10-09 — workflow vervolg geïndexeerd
+
+- Architectuur geïnventariseerd voor digitale acceptatie en 50%-aanbetaling. In deze GitHub-basis is de site Next.js App Router; er is geen database, admin-authenticatie, admin-dashboard of API-routehandler. Het huidige contactformulier gebruikt Web3Forms. Er is geen actieve Resend-koppeling in de applicatie.
+- Toegevoegd: `docs/offerte-workflow-plan.md` met genummerde fasen voor opslag/auth, offerte- en voorwaardenversies, acceptatiebewijs, betaling/SEPA-QR, beheer/verificatie, e-mail, juridische/privacyzaken, tests en GitHub-publicatie.
+- De helft van het huidige offertetotaal € 2.722,50 incl. btw is € 1.361,25; het resterende bedrag is € 1.361,25. Geen echte acceptatie, bankinstructie, betaling of e-mail is geactiveerd.
+- Geblokkeerd voor veilige volledige implementatie totdat database/auth, goedgekeurde voorwaarden en versie, beveiligde ING-gegevens, offerte-/klantidentificatie en Resend SMTP-configuratie bekend zijn. Zie de invoerlijst in het plan.
+- Geen code- of workflowtests uitgevoerd in deze vervolgstap. Status en log bijgewerkt; `instructions.md` ongewijzigd. Niet gepusht of gepubliceerd.
+
+## 2026-10-09 — backendkeuze onderzocht
+
+- Op basis van officiële Supabase- en Vercel-documentatie is Supabase Postgres + Supabase Auth als voorstel toegevoegd aan `docs/offerte-workflow-plan.md`: één relationele datastore met login/RLS, gekoppeld aan Vercel. De klant blijft token-gebaseerd; adminaccounts worden afgeschermd. Nog niet geconfigureerd en wacht op keuze van de eigenaar.
+- Officiële Supabase SSR/RLS-, Vercel Marketplace- en Resend SMTP-bronnen opgenomen. Resend-credentials zijn `smtp.resend.com`, poort 465, gebruikersnaam `resend` en een API-key als wachtwoord; geen sleutel uitgevraagd of verzonden.
+- Historische projectnotities melden oudere Resend/Upstash-resources, maar hun actuele beschikbaarheid is niet geverifieerd. Geen externe resource aangepast, geen e-mail verstuurd, geen code- of workflowtest uitgevoerd.
+
+## 2026-10-09 — offerteacceptatie en betaalworkflow lokaal geïmplementeerd
+
+- Uitgewerkt in `app/offerte/dietwiej/`, `app/api/offerte/dietwiej/`, `app/admin/offertes/`, `app/api/admin/offertes/`, `lib/quotes/`, `db/schema.sql`, `.env.example`, `package.json` en `docs/offerte-workflow-plan.md`.
+- Databaseontwerp: Neon Postgres server-only, vaste quote-/voorwaardenhash, append-only audit-events, betaling-ledger met dubbele-registratiebeperkingen en transactionele e-mailoutbox. SQL is voorbereid maar niet op een Neon-project uitgevoerd.
+- Klantflow: onguessable tokenroute, print-naar-PDF, vier niet vooraf aangevinkte bevestigingen, voorwaardenlink, eenmalige acceptatie en betaalpagina. De route `/offerte/dietwiej` toont geen offertedetails zonder persoonlijke token.
+- Betaalbeheer: 50%-bedragen in centen, betaalreferentie, SEPA QR voor geldige ingestelde IBAN, klantmelding zonder ontvangststatus, handmatige adminverificatie met controleur/tijdstip, projectstartactie en expliciet restantverzoek.
+- Admin heeft een Vercel-env passwordlogin met ondertekende HTTP-only cookie, 8 uur sessie en database-loginlimiet. Resend gebruikt de server-side API met idempotency keys/outbox; SMTP is niet geïmplementeerd. Geen bank- of mailgeheimen ingevuld.
+- Geen echte quote-ID, klantadres, voorwaarden, retentiebeleid, ING-gegevens, Neon-link, Resend-key of klanttoken beschikbaar; acceptatieknop blijft daardoor uitgeschakeld. Geen e-mail, acceptatie of betaling verwerkt.
+- Controles: `npm run test:quote` 3/3 geslaagd; `npx tsc --noEmit` geslaagd; `npm run lint -- --no-cache` geslaagd; `npm run build` geslaagd. Browser op mobiele viewport390px toont documentbreedte390px zonder horizontale overflow; eerste controle vond stale stylesheet, herbouwd en opnieuw gecontroleerd. Geen echte Postgres-integratietest omdat Neon ontbreekt.
+- IP-/user-agentmetadata is afzonderlijk opgeslagen met ingestelde vervaldatum; dagelijkse Vercel Cron verwijdert verlopen metadata en bewaart de niet-persoonlijke auditgebeurtenis. `QUOTE_EVIDENCE_RETENTION_DAYS` en `CRON_SECRET` blijven nog te configureren; de acceptatieknop vereist een positieve retentietermijn.
+- Publicatiestatus: lokaal in branch/worktree `codex/offerte-dietwiej`; niet gecommit, gepusht of gedeployed. Oorspronkelijke checkout niet aangepast.
+
+### Vervolg — versievaste offerte en eindcontrole
+
+- De klantgerichte offerte-inhoud is gecentraliseerd in `lib/quotes/config.ts` en wordt op de tweepagina-offerte hergebruikt. De snapshot-hash omvat deze tekst. `ensureQuote` en `findQuoteByToken` controleren hash, JSON-inhoud en voorwaarden; een opgeslagen versie die niet overeenkomt met de ingestelde versie wordt niet getoond of geaccepteerd.
+- Uitvoeringsindex en status bijgewerkt met deze versiecontrole en de werkelijk uitgevoerde eindcontroles.
+- Eindcontrole lokaal: Prettier voor de aangepaste TS-bestanden, ESLint voor die bestanden, `npx tsc --noEmit`, `npm run test:quote` (3/3), `git diff --check` en `npm run build` geslaagd.
+- Database-integratie blijft onbewezen zolang er geen Neon-database is gekoppeld. Geen mail, digitale acceptatie of betaling verstuurd/verwerkt; geen push, commit of deployment uitgevoerd.
+
+## 2026-10-09 — offerte afgestemd op MEDIADUSTRY-stijl
+
+- De gebruiker vroeg de offerte vorm te geven zoals de actuele site. Live homepage en projectbron bekeken: witte/lichtgrijze basis, donker inktblauw, helder blauw en warm oranje; Inter en JetBrains Mono.
+- In `app/offerte/dietwiej/offerte.module.css` vervangen zand/terracotta-palette door de sitekleuren, een dunne donkere bovenrand toegevoegd, bestaande Next-fontvariabelen aangehouden, focuszichtbaarheid geaccentueerd en donkere samenvattingsvlakken in nachtblauw gezet. Expliciete heading/leadkleuren voorkomen dat globale siteregels witte tekst op wit tonen.
+- Browsercontrole op desktop en 390×844 mobiel; geen horizontale overflow en titel/tekstcontrast zichtbaar. `npx prettier --write app/offerte/dietwiej/offerte.module.css`, `git diff --check` en `npm run build` geslaagd. Devserver gestopt en viewport gereset.
+- Geen acceptatie-, betaling-, e-mail- of databaseactie; geen commit, push of deployment.
+
+## 2026-10-09 — reserveringsadvies toegevoegd aan offerte
+
+- De reserveringstekst ondersteunt de persoonlijke/telefonische aanpak van een dorpszaak en adviseert een online optie alleen als mogelijke aanvulling, zodat gasten keuze hebben. Een systeem, abonnement of technische koppeling is expliciet niet opgenomen in de huidige offerteprijs.
+- De gedetailleerde pagina bevat bronlinks en nuanceert landelijke cijfers als niet-lokaal: NOS/Restaurant Monitor 79% online reserveringen in 2023; OOvB citeert een stijging boven 80% in 2024 van een niet nader genoemd reserveringsplatform; Lightspeed/Zenchef rapporteerde 77% zelf beheren en 87% grotere reserveringsneiging; een apart Lightspeed/OnePoll-onderzoek rapporteerde 72% voorkeur voor telefonisch reserveren.
+- Gecorrigeerd: de 34% in het consumentenonderzoek zoekt via culinaire websites; 22% gebruikt apps om restaurants te ontdekken. Dit is niet hetzelfde als 34% zoeken via apps.
+- Offerteversie verhoogd van 1.0 naar 1.1; alle kopij/bronverwijzingen vallen daardoor onder de nieuwe snapshot-hash.
+- Controles: `npx prettier` op aangepaste TS/CSS, gerichte ESLint, `npx tsc --noEmit`, `npm run test:quote` (3/3), `git diff --check` en `npm run build` geslaagd. Mobiele browsercontrole op 390 px bevestigt geen horizontale overflow en leesbare reserveringssectie.
+- Geen klantmail, acceptatie, betaling, databasewijziging, commit, push of deployment uitgevoerd.
+
+## 2026-10-09 — offerte bijgewerkt naar exclusief btw en Alex-conceptstijl
+
+- De offerte toont nu alleen de bedragen exclusief btw (€ 2.150, € 100 en € 2.250). De btw-regel en het inclusief-btw-totaal zijn verwijderd uit de detailofferte en samenvatting; het betalingsoverzicht toont geen totaal inclusief btw. De bevestigingsmail vermeldt geen inclusief-btw-bedrag. Interne berekening en termijnbedragen zijn behouden voor de bestaande acceptatie-/betalingsworkflow. Offerteversie verhoogd naar 1.2.
+- De offerte gebruikt de Alex-conceptachtergrond `#eeeae8`, de bijbehorende inkt-/blauwkleuren en de vaste MEDIADUSTRY-homepageheader. De offerte heeft extra ruimte onder de absolute siteheader; dubbele interne logoheaders zijn verwijderd.
+- Ingebouwde lokale Die Twie-ontwerpdemo in desktop- en mobielframe, met bediening, volledig-schermweergave en link naar de huidige openbare website. De demo gebruikt de openbare beeld- en bedrijfsinformatie; bronnotitie staat bij het voorbeeld. Demo niet bedoeld als live reserveringssysteem.
+- Controles: `npm run test:quote` (3/3), `npx tsc --noEmit`, gerichte ESLint, Prettier-check, `git diff --check` en `npm run build` geslaagd. Browsercontrole productiebuild: homepageheader zichtbaar; Alex-achtergrondkleur bevestigd; twee previewframes laden; offerte bevat geen `incl.`/`inclusief btw`-/€ 2.722,50-vermelding. 390 px mobiele viewport bevestigt documentbreedte 390 px zonder horizontale overflow. Viewport teruggezet.
+- Geen klantmail, acceptatie, betaling, databasewijziging, commit, push of deployment uitgevoerd. Lokale productiepreview draait op poort 3004; de bestaande poort 3002 was al bezet en is niet aangepast.
+
+## 2026-10-09 — website-audit samengevat in de offerte
+
+- De door de eigenaar aangeleverde audit van dietwie.nl is verwerkt in `app/offerte/dietwiej/page.tsx` en `app/offerte/dietwiej/offerte.module.css`. Direct na de hero staat een compacte top drie: reserveren (telefonisch makkelijk bereikbaar, online optioneel onderzoeken), mobiele navigatie en de menukaart ook als leesbare tekst.
+- Onderaan, vóór de footer, staat een beknopte technische aanbevelingenchecklist voor SEO/crawlbaarheid, mobiel/toegankelijkheid, actualiteit/NAP, performance/security en vervolgcontrole. De tekst maakt duidelijk dat dit audit-aanbevelingen zijn en niet automatisch inbegrepen werkzaamheden. Lighthouse/Core Web Vitals en Google Bedrijfsprofiel waren volgens de audit niet gecontroleerd.
+- De workflow-index is bijgewerkt met deze scope-afbakening. Geen wijziging aan prijs of VAT-berekening.
+- Controles: Prettier, TypeScript, gerichte ESLint, `git diff --check` en `npm run build` geslaagd. Productiepreview op desktop toont de top drie na de offertehero en technische checklist onderaan. Geen e-mail, acceptatie, betaling, databasewijziging, commit, push of deployment uitgevoerd.
+- Previewserver voor deze gewijzigde build draait lokaal op poort 3005; eerdere previewpagina op 3004 is een vorige build.
+
+## 2026-10-09 — offerte vereenvoudigd
+
+- Op verzoek van de eigenaar is de klantweergave teruggebracht tot één offertepagina en één centraal prijsoverzicht. De top drie verbeterpunten, waaronder reserveren, blijven vooraan staan.
+- De uitgebreide landelijke reserveringscijfers/bronnen zijn standaard ingeklapt onder “Waarom een online optie onderzoeken?”; de persoonlijke/telefonische benadering en de aanbeveling voor online reserveren als aanvulling blijven zichtbaar. De technische auditdetails blijven onderaan ingeklapt.
+- Offerteversie verhoogd van 1.2 naar 1.3 zodat wijzigingen in de klantweergave onder een nieuwe versie vallen. De bedragen € 2.150, € 100, € 2.250 en € 75/jaar staan elk één keer; btw wordt niet inclusief getoond.
+- Gewijzigd: `app/offerte/dietwiej/page.tsx`, `app/offerte/dietwiej/offerte.module.css`, `lib/quotes/config.ts`, `docs/offerte-workflow-plan.md`, `status.md`.
+- Controles: `npm run test:quote` (3/3), `npx tsc --noEmit`, gerichte ESLint, Prettier, `git diff --check` en `npm run build` geslaagd. Browsercontrole op desktop en mobiel 390 px; geen horizontale overflow, één offerte/prijsoverzicht, bedragen elk eenmaal en beide toelichtingssecties standaard gesloten.
+- Lokale preview op poort 3008. Geen e-mail, acceptatie, betaling, commit, push of deployment uitgevoerd.
+
+## 2026-10-09 — offerteheader, leesbaarheid en thema hersteld
+
+- De eigenaar vroeg om dezelfde logo-/menu-/themaheader als op de homepage, grotere tekst en een werkende light/dark-schakelaar. De app gebruikt `Header1`, `ThemeSwitcher` en `MenuRuntimeShell`; de homepage is standalone HTML. De app-header is op de homepage afgestemd met dezelfde mark/wordmark, afmetingen en horizontale gutters, maan-/zon-SVG, ronde knoppen en driestreepsmenu. De route-eigen offertemasthead is verwijderd. `instructions.md` legt voortaan vast dat beide headerimplementaties synchroon blijven.
+- `ThemeSwitcher` werkt nu met dezelfde maan-/zoniconen en toegankelijke omschakellabels als de homepage. De offerte heeft kleurvariabelen voor `[color-scheme="dark"]`, zodat zowel achtergrond als tekst/oppervlakken omschakelen. De compacte lopende teksten, labels en voetnoten zijn vergroot.
+- Gewijzigd: `components/headers/ThemeSwitcher.tsx`, `components/headers/NavTrigger.tsx`, `components/headers/header.module.css`, `components/brand/MediadustryMark.tsx`, `app/offerte/dietwiej/page.tsx`, `app/offerte/dietwiej/offerte.module.css`, `instructions.md`, `docs/offerte-workflow-plan.md`, `status.md`.
+- Browsercontrole: desktop 1440 px en mobiel 390 px; geen horizontale overflow. Op mobiel logo-uitlijning, ronde iconknoppen, 3-streepsmenu en tekstmaten gecontroleerd. Schakelen naar dark geeft `color-scheme=dark` en offertachtergrond `rgb(24,24,25)`; terugschakelen naar light werkt. Menu opent; Escape sluit het. Preview achtergelaten in light op poort 3008.
+- `npm run test:quote` (3/3), `npx tsc --noEmit`, gerichte ESLint, Prettier, `git diff --check` en `npm run build` geslaagd. Niets gepubliceerd of gepusht.
+
+## 2026-10-09 — automatische controle op gelijke header
+
+- `scripts/build-native-home.mjs` controleert bij iedere homepagebuild de overeenkomst tussen homepage- en app-header voor beeldmerk-SVG, maan-/zon-/menuiconen, desktop-/mobiele maten en gutters. Een afwijking stopt de build met een gerichte foutmelding.
+- De eerste controle telde ook het footerlogo mee; de selector is aangescherpt naar alleen het headerlogo. De herhaalde generator en volledige `npm run build` slaagden. Gerichte ESLint, TypeScript, `npm run test:quote` (3/3), Prettier en `git diff --check` slaagden ook.
+- Gewijzigd: `scripts/build-native-home.mjs`. Preview blijft lokaal op poort 3008; niet gepusht of gedeployed.
+
+## 2026-10-09 — twaalf browseropmerkingen offerte verwerkt
+
+- Offerte v1.4: grotere header binnen offerteselector (10 px rem-basis versus 16 px live); grotere footer; hoofdpunten vernieuwing, warmere uitstraling en actueel gebruiksgemak. Homepagebron/config niet aangepast.
+- Reserveren toegevoegd aan scopekopij en zichtbare 79%/ruim 80%/77%-statistiekkaarten. NOS, OOvB en RestaurantKrant-bronnen opnieuw gelezen; landelijke cijfers met bron/jaartal en afbakening weergegeven.
+- Hosting € 300/jaar (€ 25/maand) excl. btw als terugkerende kost toegevoegd aan klantweergave en snapshot; geen korting en niet bij het eenmalige totaal opgeteld.
+- Die Twie-preview gebruikt compacte toolbar zonder fullscreen/liveknop en zonder verwijzing naar verwijderde knop. Andere showcases behouden bediening.
+- Losse papieren handtekeningsectie verwijderd. Digitaal akkoord heeft één gecombineerd akkoord, naamveld en actuele Amsterdamse datum. Server valideert naam en vier onderliggende verklaringen en slaat de naam op in acceptatiebewijs/audit. Activatievoorwaarden blijven vereist.
+- Controles: productiebuild incl. TypeScript en generator geslaagd; gerichte ESLint, Prettier, git diff --check en geldtests 3/3 geslaagd. Browser desktop 1280 px en mobiel 390 px: breedte gelijk aan viewport, headerwoordmerk 23.04/18.4 px, footer 16 px, één checkbox; naamveld gevuld met voorbeeldtekst en daarna leeggemaakt. Geen overeenkomst geaccepteerd, mail of betaling verstuurd. Databasepad niet geïntegreerd getest.
+- Lokale preview gestart op 3012 met niet-geheim testtoken; tijdelijke server op 3011 gestopt. Geen commit/push/deployment.
+
+## 2026-10-09 — tweede browsercorrectieronde offerte
+
+- Offerte v1.5: gemarkeerde scopeparagraaf verwijderd, reserveringsvoorselectie met Guestplan/GoTable/Zenchef toegevoegd aan kopij en snapshot. Officiële bronnen gelezen: Guestplan online-reservations/product-updates, GoTable-homepage, Zenchef Reserve with Google-help. Guestplan/Zenchef directe Google-integratie bevestigd; GoTable-details nog te controleren. Geen marktaandeelclaim toegevoegd.
+- Percentages gewicht 800; prijskaart over volle inhoudsbreedte met accentkader en grotere bedragen. Hosting is op verzoek gecorrigeerd naar € 300 korting voor eerste hostingjaar (netto hosting jaar één € 0); jaarlijkse prijs vanaf tweede jaar € 300; eenmalige € 2.250 behouden. Snapshot aangepast.
+- Build incl. TypeScript en generator, gerichte ESLint en git diff --check geslaagd. Browser bevestigt verwijderde tekst, kaarten gewicht 800, prijsblok/sectiebreedte beide 1084 px en mobiel 390 px zonder overflow. Previewserver 3012 herstart en browser herladen. Geen contract-, mail-, betaal-, commit- of publicatieactie.
+
+## 2026-10-09 — typografie en uitlijning aangescherpt
+
+- Bovenruimte en hero-ritme verkleind; kleine documentlabels en de prioriteiten/audittekst vergroot. Technische details en footer hebben grotere lopende tekst. De reserveringsopties zijn gelijkmatige drie kolommen op desktop en één kolom op mobiel.
+- Prijskaart gebruikt de volledige sectiebreedte. Eenmalig totaal en eerstejaars hostingkorting hebben duidelijkere nadruk; totaal van € 2.250 excl. btw blijft ongewijzigd.
+- Controle: `npm run build` geslaagd (inclusief TypeScript en statische paginageneratie). Productiepreview op poort 3012 ververst en visueel gecontroleerd op desktop en viewport 390 × 844; mobiele tekst, metadata en prioriteiten gestapeld zonder horizontale overflow. De reserveringskaarten en het brede prijsblok zijn op desktop visueel bekeken.
+- Alleen lokaal; geen e-mail, acceptatie, betaling, commit, push of deployment uitgevoerd.
+
+## 2026-10-09 — offertebedrag en materiaalafstemming aangepast
+
+- Browseropmerkingen verwerkt in `lib/quotes/config.ts`, `app/offerte/dietwiej/page.tsx` en `app/offerte/dietwiej/offerte.module.css`.
+- Verhoogd totaalbedrag aangepast naar € 1.950 excl. btw: websitevernieuwing € 1.850 en Outlook-inrichting € 100. Offerteversie verhoogd naar 1.6; de interne betaalberekening past 21% btw toe voor de 50/50-splitsing van het betaalbedrag: € 1.179,75 per termijn. Dit inclusief-btw-totaal staat niet in de klantofferte. Een eerder opgeslagen offerteversie wordt door de bestaande versiecontrole niet stilzwijgend vervangen.
+- Hostingtoelichting heeft extra bovenruimte. Vervolgstap zegt nu dat beschikbare foto’s worden besproken en dat eventuele aanvullende fotografie plus kosten vooraf worden afgestemd; fotografie blijft uitgesloten van de vaste offerteprijs.
+- Controles: Prettier, `git diff --check`, `npx tsc --noEmit` en `npm run build` geslaagd. Productiepreview op poort 3012 vernieuwd; browser bevestigt nieuwe fotografiecopy en vervolgtekst. Pagina en acceptatieformulier geladen. Geen acceptatie-, e-mail-, betaal- of databaseactie uitgevoerd.

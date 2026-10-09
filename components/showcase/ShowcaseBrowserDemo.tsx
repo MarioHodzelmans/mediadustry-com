@@ -11,6 +11,7 @@ import ArrowIcon from "@/components/brand/ArrowIcon";
 
 type Device = "desktop" | "mobile";
 type Props = {
+  compactToolbar?: boolean;
   demoUrl: string;
   previewUrl?: string;
   externalUrl: string;
@@ -373,14 +374,16 @@ export default function ShowcaseBrowserDemo(props: Props) {
                   : "Herstart demo"}
             </button>
           )}
-          {props.allowed && (
+          {props.allowed && !props.compactToolbar && (
             <button type="button" onClick={openFullscreen}>
               Open volledig scherm <ArrowIcon />
             </button>
           )}
-          <a href={props.externalUrl} target="_blank" rel="noreferrer">
-            Bekijk live website <ArrowIcon />
-          </a>
+          {!props.compactToolbar && (
+            <a href={props.externalUrl} target="_blank" rel="noreferrer">
+              Bekijk live website <ArrowIcon />
+            </a>
+          )}
         </div>
       </div>
       <div className="showcase-preview-grid">
@@ -498,7 +501,9 @@ export default function ShowcaseBrowserDemo(props: Props) {
       </div>
       <p className="showcase-preview-note">
         {localPreview
-          ? "Ontwerpvoorbeeld: de demo pauzeert wanneer je zelf de preview bedient. Gebruik ‘Bekijk live website’ voor de actuele website."
+          ? props.compactToolbar
+            ? "Ontwerpvoorbeeld: de demo pauzeert wanneer je zelf de preview bedient."
+            : "Ontwerpvoorbeeld: de demo pauzeert wanneer je zelf de preview bedient. Gebruik ‘Bekijk live website’ voor de actuele website."
           : "Activeer een venster om de website zelf te bedienen."}
       </p>
       <dialog

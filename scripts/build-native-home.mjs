@@ -55,6 +55,69 @@ assert(
   "expected labelled primary navigation",
 );
 const homepageCss = $("style").text();
+const [brandMarkSource, themeSwitcherSource, navTriggerSource, headerCss] =
+  await Promise.all(
+    [
+      "components/brand/MediadustryMark.tsx",
+      "components/headers/ThemeSwitcher.tsx",
+      "components/headers/NavTrigger.tsx",
+      "components/headers/header.module.css",
+    ].map((path) => readFile(resolve(projectRoot, path), "utf8")),
+  );
+
+const homepageMarkPoints = $(".header .wordmark-icon polygon")
+  .toArray()
+  .map((element) => $(element).attr("points"));
+const appMarkPoints = [...brandMarkSource.matchAll(/points="([^"]+)"/g)].map(
+  (match) => match[1],
+);
+assert(
+  JSON.stringify(homepageMarkPoints) === JSON.stringify(appMarkPoints),
+  "homepage and app header brand marks have drifted",
+);
+
+const homepageMoon = $(".theme-icon--moon path").attr("d");
+const homepageSun = $(".theme-icon--sun path").attr("d");
+const homepageSunCircle = $(".theme-icon--sun circle").attr("cx");
+assert(
+  homepageMoon && themeSwitcherSource.includes(`d="${homepageMoon}"`),
+  "homepage and app header moon icons have drifted",
+);
+assert(
+  homepageSun &&
+    themeSwitcherSource.includes(`d="${homepageSun}"`) &&
+    homepageSunCircle &&
+    themeSwitcherSource.includes(`cx="${homepageSunCircle}"`),
+  "homepage and app header sun icons have drifted",
+);
+
+const homepageMenuPath = $(".header .menu-toggle path").attr("d");
+assert(
+  homepageMenuPath && navTriggerSource.includes(`d="${homepageMenuPath}"`),
+  "homepage and app header menu icons have drifted",
+);
+
+for (const [dimension, homepageValue, appValue] of [
+  [
+    "desktop gutter",
+    "padding-inline: clamp(1.25rem, 6vw, 7.5rem)",
+    "--header-gutter: clamp(1.25rem, 6vw, 7.5rem)",
+  ],
+  [
+    "desktop header height",
+    "height: clamp(78px, 7.5vw, 108px)",
+    "--header-height: clamp(78px, 7.5vw, 108px)",
+  ],
+  ["desktop icon size", "width: 3.2rem", "width: 3.2rem"],
+  ["mobile icon size", "width: 2.9rem", "width: 2.9rem"],
+  ["mobile brand mark size", "width: 1.7rem", "width: 1.7rem"],
+]) {
+  assert(
+    homepageCss.includes(homepageValue) && headerCss.includes(appValue),
+    `homepage and app header ${dimension} have drifted`,
+  );
+}
+
 for (const selector of [
   ".cover-copy {",
   ".statement-grid {",

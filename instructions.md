@@ -16,6 +16,7 @@ Leesvolgorde: AGENTS.md, [instructions.md](instructions.md), [status.md](status.
 ## Vaste voorkeuren van de eigenaar
 
 - Gebruik bij website- en UI-werk inline SVG of CSS-vormen voor decoratieve navigatiepijlen en iconen die op iOS als emoji kunnen verschijnen. Gebruik geen losse Unicode-diagonale pijlen als iconen. Geef decoratieve SVGs aria-hidden="true" en focusable="false", gebruik CSS-afmetingen en currentColor, en controleer de uitlijning op mobiel.
+- Houd de MEDIADUSTRY-header op alle routes gelijk in beeldmerk, woordmerk, licht-/donkericoon, menu-icoon, maatvoering en uitlijning. App-routes gebruiken `Header1`, `ThemeSwitcher` en `MenuRuntimeShell`; de standalone homepage in `content/homepage/index.html` blijft lichtgewicht, dus houd de equivalente HTML/CSS/SVG daar synchroon en controleer desktop én mobiel. Voeg geen route-eigen merkheader of alternatieve icons toe.
 - Publiceer website- en appwijzigingen via de verbonden GitHub-repository, zodat de hosting vanuit Git deployt. Deploy alleen rechtstreeks naar Vercel als de gebruiker dat expliciet vraagt. Controleer de bedoelde repository en bestaande publicatie-/reviewafspraken.
 - Bestaande projectspecifieke regels, fasegrenzen en goedkeuringsgates blijven gelden. Deze administratie geeft geen extra publicatie-, toegangs- of productieautorisatie.
 
@@ -29,6 +30,7 @@ Project: Next.js-website www.mediadustry.com, publicatie via GitHub `MarioHodzel
 - [docs/showcase-engine.md](docs/showcase-engine.md): conceptvoorstellen, lokale ontwerpvoorbeelden, afzonderlijke Proposal-renderer en bediening.
 - [docs/contact-funnel.md](docs/contact-funnel.md): historisch archief van de verwijderde opt-infunnel; geen actuele websitekoppeling.
 - [docs/resend-dns.md](docs/resend-dns.md): bewaarde DNS-informatie voor eerder ingerichte externe e-mailresources.
+- [docs/offerte-workflow-plan.md](docs/offerte-workflow-plan.md): implementatie-index, activatie-instellingen en open punten voor de Die Twie-offerteworkflow.
 
 ## Beschikbare projectcommando’s
 

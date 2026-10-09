@@ -1,13 +1,49 @@
 # MEDIADUSTRY — status
 
-Bijgewerkt: 2026-10-06.
+Bijgewerkt: 2026-10-09.
 
-**Huidige opdracht:** herstel de foutieve plaatsing van de sectie “Direct contact maakt het verschil”.
+**Huidige opdracht:** een heldere, eenvoudige klantofferte op de MEDIADUSTRY-site, met sitebrede gedeelde header, goed leesbare tekst en werkende licht-/donkerstand.
 
-**Lokaal uitgevoerd:** `.image-story-inner` is weer het positioneringsanker voor de absoluut geplaatste tekstkaart en blauwe notitie. Daardoor staat de persoonlijke-aanpaksectie bij haar eigen wereldbeeld in plaats van boven in de homepage.
+**Lokaal geïmplementeerd:** persoonlijke tokenroute en offerteworkflow. Klantofferte v1.6 gebruikt één pagina en één prijsoverzicht; top drie verbeterpunten staan bovenaan. De reserveringscijfers zijn direct zichtbaar; het technische rapport blijft inklapbaar. App-header hergebruikt de gedeelde headercomponenten en stemt merk-/menu-/thema-iconen en afmetingen af op de standalone homepage. De offertekleuren reageren nu op de gedeelde themaschakelaar. De klantofferte toont uitsluitend bedragen exclusief btw. Eenmalig totaal is € 1.950 excl. btw; 50%-betalingen zijn intern op het juiste bedrag berekend. Uitvoerings- en activatie-index: [docs/offerte-workflow-plan.md](docs/offerte-workflow-plan.md).
 
-**Gecontroleerd:** productiebuild, TypeScript, ESLint en Prettier geslaagd. Lokale productiebrowser op desktop toont de kaart rechts over het wereldbeeld en de blauwe notitie linksonder. Op 390 px volgen beeld, tekstkaart en notitie elkaar zonder horizontale overflow.
+**Werkelijk gecontroleerd:** `npm run test:quote` (3 geslaagd), `npx tsc --noEmit`, gerichte ESLint, `git diff --check` en `npm run build` geslaagd. Browsercontrole desktop 1440 px en mobiel 390 px zonder overflow; grotere tekstmaten; dark-toggle wijzigt kleurenschema/achtergrond en is teruggezet naar light; mobiel menu opent en sluit met Escape. Eén prijsoverzicht en ingeklapte lange toelichtingen bevestigd. Laatste productiebuild en typecontrole: 9 oktober 2026, offerte v1.6.
 
-**Publicatie:** commit `38e7ca9` is via GitHub `main` gepubliceerd en door de gekoppelde hosting uitgerold. De live CSS en browserlayout bevestigen dat de aanpaksectie nu haar eigen positioneringsanker gebruikt; geen directe Vercel-deployment uitgevoerd.
+**Nog nodig vóór productieacceptatie:** Neon resource/schema; adminlogin-keuze; offerte-ID en klantmail; goedgekeurde voorwaarden en bewaartermijn; secrets voor token, admin, Resend, ING en dagelijkse retentie-cron. Acceptatieknop is conditioneel uitgeschakeld tot verplichte settings bestaan. Resend is via API gebouwd; er is nog geen SMTP-transport ingericht.
 
-**Open:** de vier footerpagina’s blijven noindex-concepten zolang formele bedrijfs- en verwerkingsgegevens ontbreken. Bestaande losse wijzigingen aan Next-homepagefoto en de `sites/`-map zijn behouden.
+**Publicatie:** alleen lokaal in worktree/branch `codex/offerte-dietwiej`; niet gecommit, gepusht of gedeployed. Oorspronkelijke checkout behouden.
+
+## Update 2026-10-09 — vereenvoudigde klantweergave
+
+De offerte is versie 1.3. De klantweergave is één pagina met één prijsoverzicht; de website-audit staat als drie prioriteiten bovenaan en de technische aanbevelingen onderaan achter een disclosure. De toelichting met reserveringsbronnen is eveneens inklapbaar, terwijl de reserveringsaanbeveling zelf zichtbaar blijft. Elke eenmalige prijs en jaarlijkse licentieprijs wordt één keer getoond. Alle klantbedragen zijn exclusief btw; de interne betaalworkflow blijft behouden.
+
+De pagina gebruikt de Alex Kamsma-conceptachtergrond en MEDIADUSTRY-homepageheader. Een lokale, responsive Die Twie-websitepreview staat ingebouwd met desktop- en mobiele simulatie, interactieve bediening en link naar de live site. Bij deze vereenvoudiging: productiebuild opnieuw geslaagd; browsercontrole op desktop en 390 px mobiel, mobiele documentbreedte exact 390 px, één offerte, één prijsoverzicht en bedragen elk één keer; reserveringsbronnen en technische checklist zijn standaard gesloten. `npm run test:quote` 3/3, TypeScript, gerichte ESLint, Prettier en `git diff --check` geslaagd.
+
+Preview: `http://localhost:3008/offerte/dietwiej/local-visual-test-token-0000000000000000000000000000`. Publicatie naar GitHub/de hosting nog niet uitgevoerd; er zijn geen e-mails of betalingen verstuurd.
+
+## Aanvulling 2026-10-09 — sitebrede header en thema
+
+De gedeelde app-header heeft hetzelfde MEDIADUSTRY-beeldmerk en woordmerk, maan-/zonicoon, rond menu en driestreepsymbool als de standalone homepage. De eigen offertemasthead is verwijderd. De offerte volgt `color-scheme` met een aparte donkere kleurset. Kleine tekst is verhoogd (lopende tekst minimaal 14–16 px op desktop en de intro 18 px op mobiel). Desktop-/mobielbrowsercontrole en toggle-/menuactie geslaagd; details en bestandswijzigingen staan in log.md.
+
+## Controle op gelijke header — 2026-10-09
+
+De homepagegenerator vergelijkt de header-SVG’s en gedeelde iconmaten/gutters tussen de standalone homepage en appcomponenten. Een afwijking laat de build falen. De gecorrigeerde controle is meegenomen in de geslaagde eindbuild.
+
+## 2026-10-09 — browseropmerkingen verwerkt
+
+Offerte v1.4: hoofdpunten vernieuwing, warmere uitstraling en actueel gebruiksgemak; zichtbare reserveringsstatistieken met bron/jaar; premium hosting € 300/jaar (€ 25/maand) excl. btw, apart van de eenmalige investering. Alleen op de offerte is de header naar de live schaal vergroot; footer 16 px. Previewknoppen fullscreen/live verwijderd. Eén akkoordcheckbox, invulbare naam en datum van vandaag; naam wordt server-side gevalideerd en in acceptatiebewijs/audit opgeslagen. Losse handtekeningruimte verwijderd.
+
+Build, gerichte ESLint, geldtests (3/3) en diff-controle geslaagd. Browser: desktop en 390 px mobiel, geen horizontale overflow; naamveld invulbaar en één checkbox bevestigd. Geen echte databaseacceptatie uitgevoerd. Nieuwe zichtbare preview op http://localhost:3012/offerte/dietwiej/local-visual-test-token-0000000000000000000000000000. Alleen lokaal; niets gepusht.
+
+## 2026-10-09 — hostingkorting en reserveringsvoorselectie
+
+v1.5: gemarkeerde reserveringstoelichting verwijderd; Guestplan als eerste voorkeursoptie, GoTable en Zenchef als alternatieven toegevoegd. Direct Reserve with Google bevestigd in officiële Guestplan- en Zenchef-informatie; GoTable vermeldt Google, precieze koppeling nog te controleren. Statistiekgewichten 800. Prijsblok volle inhoudsbreedte en duidelijker omlijnd. Hostingcorrectie: eerste jaar € 300 korting, eerste hostingjaar inbegrepen; vanaf jaar twee € 300/jaar. Eenmalige investering blijft € 2.250 excl. btw. Snapshot legt jaarlijkse hosting en eerstejaarskorting vast.
+
+Build/TypeScript, gerichte ESLint en diff-controle geslaagd. Browser: prijsblok en sectie beide 1084 px breed; percentages gewicht 800; verwijderde tekst afwezig; mobiel documentbreedte 390 px. Preview op 3012 vernieuwd. Alleen lokaal.
+
+## Aanvulling 2026-10-09 — typografie en uitlijning
+
+De bovenruimte en het verticale ritme van de offerte zijn aangescherpt. Labels, auditregels, technische toelichting en footer zijn vergroot; online reserveringsopties staan in drie gelijkwaardige desktopkaarten en stapelen op mobiel. Het prijsblok gebruikt de volledige inhoudsbreedte en geeft het eenmalige totaal en de eerstejaarskorting meer visueel gewicht. Browsercontrole op desktop en 390 px mobiel bevestigt leesbare hiërarchie en geen horizontale overflow. Productiebuild geslaagd. Preview lokaal op 3012; niet gepubliceerd.
+
+## Aanvulling 2026-10-09 — offertebedrag en materialen
+
+Offerte v1.6: eenmalig totaal € 1.950 excl. btw (€ 1.850 websitevernieuwing + € 100 Outlook-inrichting). De interne 50/50-betaalsplitsing wordt berekend op basis van het tarief inclusief wettelijke btw: € 1.179,75 per termijn. Workflowtekst verduidelijkt dat beschikbare foto’s worden geïnventariseerd en eventuele extra fotografie met kosten vooraf wordt besproken. Hostingtoelichting heeft meer afstand tot de kortingsregel. Build en typecontrole geslaagd; desktoppreview vernieuwd op poort 3012. Lokaal, niet gepubliceerd.

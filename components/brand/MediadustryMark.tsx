@@ -7,8 +7,8 @@ export default function MediadustryMark({ className }: MediadustryMarkProps) {
     <svg
       className={className}
       viewBox="0 0 277.27 274.73"
-      role="img"
-      aria-label="MEDIADUSTRY beeldmerk"
+      aria-hidden="true"
+      focusable="false"
     >
       <polygon
         fill="currentColor"

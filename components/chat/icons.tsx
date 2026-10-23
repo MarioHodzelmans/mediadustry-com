@@ -19,8 +19,19 @@ export function ChatIcon() {
   return (
     <Icon>
       <path
+        className="md-chat-mark-bubble"
         fill="currentColor"
-        d="M5 5.5A2.5 2.5 0 0 1 7.5 3h9A2.5 2.5 0 0 1 19 5.5v7A2.5 2.5 0 0 1 16.5 15H12l-3.6 3.2c-.7.6-1.8.1-1.8-.8V15H7.5A2.5 2.5 0 0 1 5 12.5v-7Z"
+        d="M4.2 6.4A2.2 2.2 0 0 1 6.4 4.2h8.1a2.2 2.2 0 0 1 2.2 2.2v5.4a2.2 2.2 0 0 1-2.2 2.2h-3.1L9.2 16.6c-.62.52-1.6.08-1.6-.72v-1.6H6.4a2.2 2.2 0 0 1-2.2-2.2V6.4Z"
+      />
+      <path
+        className="md-chat-mark-spark"
+        fill="currentColor"
+        d="M18.7 2.2l.48 1.22 1.22.48-1.22.48-.48 1.22-.48-1.22-1.22-.48 1.22-.48.48-1.22Z"
+      />
+      <path
+        className="md-chat-mark-spark"
+        fill="currentColor"
+        d="M16.15 5.05l.28.7.7.28-.7.28-.28.7-.28-.7-.7-.28.7-.28.28-.7Z"
       />
     </Icon>
   );
@@ -91,4 +102,4 @@ export function StopIcon() {
   );
 }
 
-export const CHAT_ICON_MARKUP = `<svg class="md-chat-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M5 5.5A2.5 2.5 0 0 1 7.5 3h9A2.5 2.5 0 0 1 19 5.5v7A2.5 2.5 0 0 1 16.5 15H12l-3.6 3.2c-.7.6-1.8.1-1.8-.8V15H7.5A2.5 2.5 0 0 1 5 12.5v-7Z"/></svg>`;
+export const CHAT_ICON_MARKUP = `<svg class="md-chat-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="md-chat-mark-bubble" fill="currentColor" d="M4.2 6.4A2.2 2.2 0 0 1 6.4 4.2h8.1a2.2 2.2 0 0 1 2.2 2.2v5.4a2.2 2.2 0 0 1-2.2 2.2h-3.1L9.2 16.6c-.62.52-1.6.08-1.6-.72v-1.6H6.4a2.2 2.2 0 0 1-2.2-2.2V6.4Z"/><path class="md-chat-mark-spark" fill="currentColor" d="M18.7 2.2l.48 1.22 1.22.48-1.22.48-.48 1.22-.48-1.22-1.22-.48 1.22-.48.48-1.22Z"/><path class="md-chat-mark-spark" fill="currentColor" d="M16.15 5.05l.28.7.7.28-.7.28-.28.7-.28-.7-.7-.28.7-.28.28-.7Z"/></svg>`;

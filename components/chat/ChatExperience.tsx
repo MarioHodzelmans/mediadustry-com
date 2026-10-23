@@ -9,6 +9,8 @@ import {
 } from "react";
 import { ChatBubble } from "./ChatBubble";
 
+const TEASER_DELAY_MS = 3200;
+
 type PanelProps = {
   open: boolean;
   onClose: () => void;
@@ -25,10 +27,22 @@ export function ChatExperience({
 }: ChatExperienceProps) {
   const [open, setOpen] = useState(initialOpen);
   const [activated, setActivated] = useState(initialOpen);
+  const [engaged, setEngaged] = useState(initialOpen);
+  const [teaserReady, setTeaserReady] = useState(false);
+  const [teaserDismissed, setTeaserDismissed] = useState(false);
   const launcherRef = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(initialOpen);
 
   const close = useCallback(() => setOpen(false), []);
+
+  useEffect(() => {
+    if (engaged) return;
+    const timer = window.setTimeout(
+      () => setTeaserReady(true),
+      TEASER_DELAY_MS,
+    );
+    return () => window.clearTimeout(timer);
+  }, [engaged]);
 
   useEffect(() => {
     launcherRef.current
@@ -78,8 +92,12 @@ export function ChatExperience({
       {activated ? <Panel open={open} onClose={close} /> : null}
       <ChatBubble
         open={open}
+        idle={!engaged}
+        showTeaser={teaserReady && !teaserDismissed && !engaged && !open}
         buttonRef={launcherRef}
+        onDismissTeaser={() => setTeaserDismissed(true)}
         onClick={() => {
+          setEngaged(true);
           setActivated(true);
           setOpen((value) => !value);
         }}

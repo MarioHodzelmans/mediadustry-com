@@ -16,10 +16,29 @@ type ChatPanelProps = {
 };
 
 const SUGGESTIONS = [
-  "Een nieuwe website",
-  "SEO en vindbaarheid",
-  "Kennismaken",
+  "Wat doen jullie?",
+  "Ik wil een nieuwe website",
+  "Kennismaken plannen",
 ];
+
+const CLOSE_MS = 280;
+
+function leadNote(part: { state: string; output?: unknown }): string {
+  if (
+    part.state === "output-available" &&
+    part.output &&
+    typeof part.output === "object" &&
+    "visitorMessage" in part.output &&
+    typeof part.output.visitorMessage === "string" &&
+    part.output.visitorMessage.trim()
+  ) {
+    return part.output.visitorMessage;
+  }
+  if (part.state === "output-available" || part.state === "output-error") {
+    return "Niet automatisch doorgegeven. Mail info@mediadustry.com.";
+  }
+  return "Gegevens worden doorgegeven…";
+}
 
 function messageText(message: UIMessage): string {
   return message.parts
@@ -54,6 +73,14 @@ export default function ChatPanel({ open, onClose }: ChatPanelProps) {
   const spokenId = useRef<string | null>(null);
   const wasBusy = useRef(false);
   const [speakReplies, setSpeakReplies] = useState(false);
+  const [phase, setPhase] = useState<"closed" | "open" | "closing">(
+    open ? "open" : "closed",
+  );
+  const [openSnapshot, setOpenSnapshot] = useState(open);
+  if (open !== openSnapshot) {
+    setOpenSnapshot(open);
+    setPhase(open ? "open" : phase === "closed" ? "closed" : "closing");
+  }
   const speechOut = useSpeechOutput();
   const busy = status === "submitted" || status === "streaming";
 
@@ -77,6 +104,29 @@ export default function ChatPanel({ open, onClose }: ChatPanelProps) {
     },
   });
   const stopListening = speechIn.stop;
+
+  useEffect(() => {
+    if (phase !== "closing") return;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const timer = window.setTimeout(
+      () => setPhase("closed"),
+      reduce ? 0 : CLOSE_MS,
+    );
+    return () => window.clearTimeout(timer);
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase === "closed") return;
+    const narrow = window.matchMedia("(max-width: 719px)").matches;
+    if (!narrow) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [phase]);
 
   useEffect(() => {
     if (!open) {
@@ -111,14 +161,17 @@ export default function ChatPanel({ open, onClose }: ChatPanelProps) {
 
   const interim = speechIn.listening ? speechIn.interim : "";
 
+  if (phase === "closed") return null;
+
   return (
     <section
       id="md-chat-panel"
-      className="md-chat-panel"
+      className={`md-chat-panel${phase === "open" ? " is-open" : " is-closing"}`}
       role="dialog"
       aria-modal="false"
       aria-labelledby="md-chat-title"
-      hidden={!open}
+      aria-hidden={phase !== "open"}
+      inert={phase !== "open"}
     >
       <header className="md-chat-head">
         <div>
@@ -143,40 +196,44 @@ export default function ChatPanel({ open, onClose }: ChatPanelProps) {
             kennismakingsgesprek. Een teamlid volgt op wat ik niet zeker weet.
           </p>
         </article>
-        {messages.map((message) => (
-          <article
-            key={message.id}
-            className={`md-chat-message${message.role === "user" ? " is-user" : " is-assistant"}`}
-          >
-            {message.parts.map((part, index) => {
-              if (part.type === "text") {
-                return <p key={`${message.id}-${index}`}>{part.text}</p>;
-              }
-              if (part.type === "tool-submitLead") {
-                const done =
-                  part.state === "output-available" ||
-                  part.state === "output-error";
-                const succeeded =
-                  part.state === "output-available" &&
-                  part.output &&
-                  typeof part.output === "object" &&
-                  "ok" in part.output &&
-                  part.output.ok === true;
-                return (
-                  <p key={`${message.id}-${index}`} className="md-chat-note">
-                    {done
-                      ? succeeded
-                        ? "Doorgegeven aan het team."
-                        : "Niet automatisch doorgegeven."
-                      : "Gegevens worden doorgegeven…"}
-                  </p>
-                );
-              }
-              return null;
-            })}
-          </article>
-        ))}
-        {busy ? <p className="md-chat-note">Even nadenken…</p> : null}
+        {messages.map((message) => {
+          const visible = message.parts.some((part) => {
+            if (part.type === "text") return part.text.trim().length > 0;
+            return part.type === "tool-submitLead";
+          });
+          if (!visible) return null;
+          return (
+            <article
+              key={message.id}
+              className={`md-chat-message${message.role === "user" ? " is-user" : " is-assistant"}`}
+            >
+              {message.parts.map((part, index) => {
+                if (part.type === "text") {
+                  if (!part.text.trim()) return null;
+                  return <p key={`${message.id}-${index}`}>{part.text}</p>;
+                }
+                if (part.type === "tool-submitLead") {
+                  return (
+                    <p key={`${message.id}-${index}`} className="md-chat-note">
+                      {leadNote(part)}
+                    </p>
+                  );
+                }
+                return null;
+              })}
+            </article>
+          );
+        })}
+        {busy ? (
+          <div className="md-chat-typing" role="status">
+            <span className="md-chat-typing-dots" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+            <span className="md-chat-sr">Even nadenken…</span>
+          </div>
+        ) : null}
         {error ? (
           <div className="md-chat-error" role="alert">
             <p>{errorCopy(error)}</p>
@@ -221,94 +278,104 @@ export default function ChatPanel({ open, onClose }: ChatPanelProps) {
         <label className="md-chat-sr" htmlFor="md-chat-input">
           Je bericht
         </label>
-        <textarea
-          id="md-chat-input"
-          ref={inputRef}
-          rows={2}
-          maxLength={MAX_USER_CHARS}
-          placeholder={speechIn.listening ? "Luisteren…" : "Typ je vraag"}
-          defaultValue=""
-          disabled={speechIn.listening}
-          onChange={() => {
-            speechOut.stop();
-            speechIn.clearNotice();
-          }}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" && !event.shiftKey) {
-              event.preventDefault();
-              send(inputRef.current?.value ?? "");
-            }
-          }}
-        />
-        {interim ? <p className="md-chat-interim">{interim}</p> : null}
-        <div className="md-chat-actions">
-          <button
-            type="button"
-            className={`md-chat-icon-button${speechIn.listening ? " is-listening" : ""}`}
-            aria-pressed={speechIn.listening}
-            aria-disabled={speechIn.supportKnown && !speechIn.supported}
-            aria-describedby={
-              !speechIn.supported && speechIn.supportKnown
-                ? "md-chat-mic-tip"
-                : undefined
-            }
-            title={
-              speechIn.supportKnown && !speechIn.supported
-                ? "Spraakinvoer wordt in deze browser niet ondersteund"
-                : "Spreek je vraag in"
-            }
-            onClick={() => {
-              if (speechIn.supportKnown && !speechIn.supported) return;
-              if (speechIn.listening) speechIn.stop();
-              else speechIn.start(inputRef.current?.value ?? "");
+        <div className="md-chat-composer">
+          <textarea
+            id="md-chat-input"
+            ref={inputRef}
+            rows={2}
+            maxLength={MAX_USER_CHARS}
+            placeholder={speechIn.listening ? "Luisteren…" : "Typ je vraag"}
+            defaultValue=""
+            disabled={speechIn.listening}
+            onChange={() => {
+              speechOut.stop();
+              speechIn.clearNotice();
             }}
-          >
-            <MicIcon />
-            <span className="md-chat-sr">
-              {speechIn.listening ? "Stop met luisteren" : "Spreek je vraag in"}
-            </span>
-          </button>
-          {speechOut.supported ? (
+            onKeyDown={(event) => {
+              if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault();
+                send(inputRef.current?.value ?? "");
+              }
+            }}
+          />
+          {interim ? <p className="md-chat-interim">{interim}</p> : null}
+          <div className="md-chat-actions">
             <button
               type="button"
-              className={`md-chat-icon-button${speakReplies ? " is-on" : ""}`}
-              aria-pressed={speakReplies}
+              className={`md-chat-icon-button${speechIn.listening ? " is-listening" : ""}`}
+              aria-pressed={speechIn.listening}
+              aria-disabled={speechIn.supportKnown && !speechIn.supported}
+              aria-describedby={
+                !speechIn.supported && speechIn.supportKnown
+                  ? "md-chat-mic-tip"
+                  : undefined
+              }
+              title={
+                speechIn.supportKnown && !speechIn.supported
+                  ? "Spraakinvoer wordt in deze browser niet ondersteund"
+                  : "Spreek je vraag in"
+              }
               onClick={() => {
-                setSpeakReplies((value) => {
-                  if (value) speechOut.stop();
-                  return !value;
-                });
+                if (speechIn.supportKnown && !speechIn.supported) return;
+                if (speechIn.listening) speechIn.stop();
+                else speechIn.start(inputRef.current?.value ?? "");
               }}
             >
-              <SpeakerIcon />
+              <span className="md-chat-wave" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+                <span />
+              </span>
+              <MicIcon />
               <span className="md-chat-sr">
-                {speakReplies ? "Zet voorlezen uit" : "Lees antwoorden voor"}
+                {speechIn.listening
+                  ? "Stop met luisteren"
+                  : "Spreek je vraag in"}
               </span>
             </button>
-          ) : null}
-          {speechOut.speaking ? (
-            <button
-              type="button"
-              className="md-chat-icon-button"
-              onClick={speechOut.stop}
-            >
-              <StopIcon />
-              <span className="md-chat-sr">Stop met voorlezen</span>
-            </button>
-          ) : null}
-          {busy ? (
-            <button
-              type="button"
-              className="md-chat-send"
-              onClick={() => stop()}
-            >
-              Stop
-            </button>
-          ) : (
-            <button type="submit" className="md-chat-send">
-              Verstuur
-            </button>
-          )}
+            {speechOut.supported ? (
+              <button
+                type="button"
+                className={`md-chat-icon-button${speakReplies ? " is-on" : ""}`}
+                aria-pressed={speakReplies}
+                onClick={() => {
+                  setSpeakReplies((value) => {
+                    if (value) speechOut.stop();
+                    return !value;
+                  });
+                }}
+              >
+                <SpeakerIcon />
+                <span className="md-chat-sr">
+                  {speakReplies ? "Zet voorlezen uit" : "Lees antwoorden voor"}
+                </span>
+              </button>
+            ) : null}
+            {speechOut.speaking ? (
+              <button
+                type="button"
+                className="md-chat-icon-button"
+                onClick={speechOut.stop}
+              >
+                <StopIcon />
+                <span className="md-chat-sr">Stop met voorlezen</span>
+              </button>
+            ) : null}
+            {busy ? (
+              <button
+                type="button"
+                className="md-chat-send"
+                onClick={() => stop()}
+              >
+                Stop
+              </button>
+            ) : (
+              <button type="submit" className="md-chat-send">
+                Verstuur
+              </button>
+            )}
+          </div>
         </div>
         <p id="md-chat-mic-tip" className="md-chat-fine" role="status">
           {speechIn.listening

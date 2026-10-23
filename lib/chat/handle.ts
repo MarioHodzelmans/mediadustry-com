@@ -19,8 +19,10 @@ import {
   CHAT_RATE_WINDOW_MS,
 } from "./limits";
 import { clientIp, createRateLimiter } from "./rate-limit";
+import { classifyChatFailure, logChatFailure, visitorMessage } from "./failure";
+import { DEFAULT_CHAT_MODEL, gatewayFallbackModels } from "./models";
 
-export const DEFAULT_CHAT_MODEL = "spacexai/grok-4.20-non-reasoning";
+export { DEFAULT_CHAT_MODEL } from "./models";
 
 const chatLimiter = createRateLimiter({
   limit: CHAT_RATE_LIMIT,
@@ -117,25 +119,22 @@ export async function handleChatRequest(request: Request): Promise<Response> {
   const ip = clientIp(request);
   const rate = chatLimiter.check(ip);
   if (!rate.ok) {
-    return textResponse(
-      429,
-      "Je hebt in korte tijd veel berichten gestuurd. Probeer het zo opnieuw, of mail info@mediadustry.com.",
-      {
-        "Retry-After": String(rate.retryAfterSeconds),
-      },
-    );
+    return textResponse(429, visitorMessage("rate_limit"), {
+      "Retry-After": String(rate.retryAfterSeconds),
+    });
   }
 
   if (!mockEnabled() && !hasGatewayCredentials()) {
-    return textResponse(
-      503,
-      "De chat kan nu geen antwoord geven. Mail info@mediadustry.com of ga naar de contactpagina. Een teamlid helpt je verder.",
-    );
+    return textResponse(503, visitorMessage("unavailable"));
   }
 
+  let modelId = process.env.CHAT_MODEL?.trim() || DEFAULT_CHAT_MODEL;
   try {
     const model = await resolveModel();
+    modelId = typeof model === "string" ? model : "mock";
     const messages: UIMessage[] = sanitized.messages;
+    const fallbacks =
+      typeof model === "string" ? gatewayFallbackModels(modelId) : [];
     const result = streamText({
       model,
       instructions: chatInstructions,
@@ -143,6 +142,9 @@ export async function handleChatRequest(request: Request): Promise<Response> {
       maxOutputTokens: MAX_OUTPUT_TOKENS,
       temperature: 0.3,
       stopWhen: isStepCount(MAX_TOOL_STEPS),
+      ...(fallbacks.length > 0
+        ? { providerOptions: { gateway: { models: fallbacks } } }
+        : {}),
       tools: {
         submitLead: tool({
           description:
@@ -157,12 +159,23 @@ export async function handleChatRequest(request: Request): Promise<Response> {
     });
 
     return createUIMessageStreamResponse({
-      stream: toUIMessageStream({ stream: result.stream }),
+      stream: toUIMessageStream({
+        stream: result.stream,
+        sendReasoning: false,
+        onError: (error) => {
+          const kind = classifyChatFailure(error);
+          logChatFailure(error, { model: modelId, kind });
+          return visitorMessage(kind);
+        },
+      }),
     });
-  } catch {
+  } catch (error) {
+    const kind = classifyChatFailure(error);
+    logChatFailure(error, { model: modelId, kind });
     return textResponse(
-      503,
-      "De chat kan nu geen antwoord geven. Mail info@mediadustry.com of ga naar de contactpagina. Een teamlid helpt je verder.",
+      kind === "rate_limit" ? 429 : 503,
+      visitorMessage(kind),
+      kind === "rate_limit" ? { "Retry-After": "30" } : undefined,
     );
   }
 }

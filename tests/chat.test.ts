@@ -12,6 +12,12 @@ import { createRateLimiter } from "../lib/chat/rate-limit";
 import { recognitionLanguage, toSpeakable } from "../lib/chat/speech-text";
 import { chatInstructions } from "../lib/chat/system-prompt";
 import { handleChatRequest } from "../lib/chat/handle";
+import { classifyChatFailure, visitorMessage } from "../lib/chat/failure";
+import {
+  DEFAULT_CHAT_MODEL,
+  FREE_TIER_CHAT_MODELS,
+  gatewayFallbackModels,
+} from "../lib/chat/models";
 
 test("chat stays on unless the flag is exactly false", () => {
   assert.equal(isChatEnabled(undefined), true);
@@ -242,8 +248,52 @@ test("launcher assets keep the bubble fixed and labelled", () => {
   assert.match(css, /safe-area-inset-bottom/);
   assert.match(css, /z-index:\s*45/);
   assert.match(css, /showcase-floating-accept/);
+  assert.match(css, /md-chat-teaser/);
+  assert.match(css, /md-chat-typing/);
+  assert.match(css, /md-chat-wave/);
+  assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(boot, /Chat met MEDIADUSTRY/);
-  assert.match(boot, /Sluit chat|aria-expanded/);
+  assert.match(boot, /Vraag het onze AI-assistent/);
+  assert.match(boot, /md-chat-mark-spark/);
+  assert.match(boot, /aria-expanded/);
+});
+
+test("default chat model is free-tier and falls back inside that set", () => {
+  assert.equal(DEFAULT_CHAT_MODEL, "reflection/beam-free");
+  assert.deepEqual(FREE_TIER_CHAT_MODELS, [
+    "reflection/beam-free",
+    "poolside/laguna-s-2.1-free",
+  ]);
+  assert.deepEqual(gatewayFallbackModels(DEFAULT_CHAT_MODEL), [
+    "poolside/laguna-s-2.1-free",
+  ]);
+  assert.deepEqual(gatewayFallbackModels("spacexai/grok-4.20-non-reasoning"), [
+    ...FREE_TIER_CHAT_MODELS,
+  ]);
+});
+
+test("visitor copy distinguishes a rate limit from a blocked model", () => {
+  assert.equal(
+    classifyChatFailure({ statusCode: 429, message: "rate limit" }),
+    "rate_limit",
+  );
+  const blocked = new Error("Free tier users do not have access to this model");
+  blocked.name = "GatewayInternalServerError";
+  Object.assign(blocked, {
+    statusCode: 403,
+    cause: new Error("RestrictedModelsError"),
+  });
+  assert.equal(classifyChatFailure(blocked), "model_unavailable");
+  assert.equal(classifyChatFailure(new Error("socket hang up")), "unavailable");
+  assert.match(
+    visitorMessage("model_unavailable"),
+    /tijdelijk niet beschikbaar/,
+  );
+  assert.match(visitorMessage("rate_limit"), /veel berichten/);
+  assert.doesNotMatch(
+    visitorMessage("model_unavailable"),
+    /gateway|error|token|stack|key/i,
+  );
 });
 
 const env = process.env as Record<string, string | undefined>;

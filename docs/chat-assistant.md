@@ -25,14 +25,18 @@ De knop is een witte schijf met een dunne oranje rand (`#ff6438`), een donker ch
 
 ## Antwoorden
 
-`POST /api/chat` gebruikt de Vercel AI SDK en AI Gateway. Standaardmodel: `reflection/beam-free`. Valt dat model uit, dan probeert de gateway `poolside/laguna-s-2.1-free` (`providerOptions.gateway.models`). `CHAT_MODEL` vervangt het primaire model; de twee gratis modellen blijven de terugval, minus het model dat al primair is.
+`POST /api/chat` gebruikt de Vercel AI SDK en AI Gateway. Standaardvolgorde: eerst `poolside/laguna-s-2.1-free`, daarna `reflection/beam-free`. `CHAT_MODEL` wordt het eerste model; de andere gratis modellen volgen, zonder dubbele id. Elk model krijgt één poging (`maxRetries: 0`). Een 5xx of een 403 voor een geblokkeerd model probeert het volgende id voordat er een antwoordchunk naar de bezoeker gaat. Een 429 blijft bij dat model. De server logt `[chat] model attempt`, `[chat] model request failed` en `[chat] model answered` met het model-id.
+
+De preview van PR #4 (deployment `dpl_8WxpAMr4WR1C4r27SfwPKchaPUF2`, commit `9c32f67`) eindigde op 23 oktober 2026 om 08:35 en 08:37 Europe/Amsterdam met `AI_RetryError: Failed after 3 attempts` en als laatste fout `GatewayInternalServerError: Service temporarily unavailable` (503, retryable) voor `reflection/beam-free`. Drie pogingen is de SDK-standaard (`maxRetries` 2 plus de eerste call). `providerOptions.gateway.models` zit in diezelfde aanroep; de fout noemde Laguna niet. Daarom kiest de app zelf het volgende model, in plaats van te wachten tot de SDK hetzelfde model opnieuw probeert.
+
+Gratis modellen kunnen alsnog uitvallen. Een betrouwbare productiechat met Grok vraagt betaalde AI Gateway-credits. Zonder die credits blijft een Grok-id de 403 geven.
 
 Bewijs, catalogus van 23 oktober 2026, `GET https://ai-gateway.vercel.sh/v1/models` zonder authenticatie (484 modellen). Queryparameters zoals `freeTier` filteren die lijst niet. De publieke pagina `https://vercel.com/ai-gateway/models?freeTier=true` toonde ook `spacexai/grok-4.20-non-reasoning` en is daarom geen bewijs van de gratis laag. Modellen met de tag `free`:
 
 - `convaiinnovations/laya` en `convaiinnovations/laya-free`: type evaluation, geen chatmodel.
-- `poolside/laguna-s-2.1-free`: language, tool-use, prijs input en output `0`.
-- `reflection/beam`: language en tool-use, prijs `0`, maar `varies_by_provider: true`. Niet als standaard gebruikt.
-- `reflection/beam-free`: language, tool-use, structured-output, prijs `0` zonder providerafhankelijke prijs. Naam in de catalogus: “Beam 1.0 (Free)”. Dit is het standaardmodel.
+- `reflection/beam`: language en tool-use, prijs `0`, maar `varies_by_provider: true`. Niet gebruikt.
+- `poolside/laguna-s-2.1-free`: language, tool-use, prijs `0`. Dit is het eerste model, omdat Beam op de preview 503 gaf. Dat bewijst niet dat Laguna antwoordt.
+- `reflection/beam-free`: language, tool-use, structured-output, prijs `0` zonder providerafhankelijke prijs. Naam in de catalogus: “Beam 1.0 (Free)”. Tweede poging.
 
 Geen `spacexai`-, Grok- of xAI-model heeft de tag `free`. Productie wees `spacexai/grok-4.20-non-reasoning` af met `GatewayInternalServerError` / `RestrictedModelsError` 403: “Free tier users do not have access to this model”. De Vercel-FAQ zegt dat die 403 betekent dat het model buiten de gratis subset valt; credits kopen zet het team op de betaalde laag.
 

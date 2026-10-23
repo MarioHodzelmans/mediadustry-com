@@ -17,12 +17,20 @@ const MODEL_UNAVAILABLE =
 
 function chain(error: unknown): unknown[] {
   const seen: unknown[] = [];
-  let current = error;
-  for (let depth = 0; depth < 6 && current != null; depth += 1) {
-    if (seen.includes(current)) break;
+  const pending: unknown[] = [error];
+  while (pending.length > 0 && seen.length < 12) {
+    const current = pending.shift();
+    if (current == null || seen.includes(current)) continue;
     seen.push(current);
-    if (typeof current !== "object" || !("cause" in current)) break;
-    current = (current as { cause?: unknown }).cause;
+    if (typeof current !== "object") continue;
+    const record = current as {
+      cause?: unknown;
+      lastError?: unknown;
+      errors?: unknown;
+    };
+    if ("cause" in record) pending.push(record.cause);
+    if ("lastError" in record) pending.push(record.lastError);
+    if (Array.isArray(record.errors)) pending.push(...record.errors);
   }
   return seen;
 }
@@ -60,6 +68,18 @@ export function classifyChatFailure(error: unknown): ChatFailureKind {
     return "model_unavailable";
   }
   return "unavailable";
+}
+
+/** Try another model after a provider 5xx or a restricted-model 403. */
+export function shouldTryNextModel(error: unknown): boolean {
+  const kind = classifyChatFailure(error);
+  if (kind === "rate_limit") return false;
+  if (kind === "model_unavailable") return true;
+  const status = statusCodeOf(error);
+  if (status != null && status >= 500 && status < 600) return true;
+  return /GatewayInternalServerError|Service temporarily unavailable/i.test(
+    describe(error),
+  );
 }
 
 export function visitorMessage(kind: ChatFailureKind): string {

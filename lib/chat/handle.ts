@@ -20,7 +20,8 @@ import {
 } from "./limits";
 import { clientIp, createRateLimiter } from "./rate-limit";
 import { classifyChatFailure, logChatFailure, visitorMessage } from "./failure";
-import { DEFAULT_CHAT_MODEL, gatewayFallbackModels } from "./models";
+import { selectChatModelStream } from "./model-attempt";
+import { chatModelOrder, DEFAULT_CHAT_MODEL } from "./models";
 
 export { DEFAULT_CHAT_MODEL } from "./models";
 
@@ -128,50 +129,82 @@ export async function handleChatRequest(request: Request): Promise<Response> {
     return textResponse(503, visitorMessage("unavailable"));
   }
 
-  let modelId = process.env.CHAT_MODEL?.trim() || DEFAULT_CHAT_MODEL;
+  const requestedModel = process.env.CHAT_MODEL?.trim() || DEFAULT_CHAT_MODEL;
   try {
     const model = await resolveModel();
-    modelId = typeof model === "string" ? model : "mock";
     const messages: UIMessage[] = sanitized.messages;
-    const fallbacks =
-      typeof model === "string" ? gatewayFallbackModels(modelId) : [];
-    const result = streamText({
-      model,
-      instructions: chatInstructions,
-      messages: await convertToModelMessages(messages),
-      maxOutputTokens: MAX_OUTPUT_TOKENS,
-      temperature: 0.3,
-      stopWhen: isStepCount(MAX_TOOL_STEPS),
-      ...(fallbacks.length > 0
-        ? { providerOptions: { gateway: { models: fallbacks } } }
-        : {}),
-      tools: {
-        submitLead: tool({
-          description:
-            "Geef een websitelead door aan MEDIADUSTRY. Roep dit alleen aan als de bezoeker zelf een naam, een e-mail of telefoon, en de vraag heeft gegeven. Verzin geen velden.",
-          inputSchema: leadInputSchema,
-          execute: async (
-            input,
-          ): Promise<Awaited<ReturnType<typeof deliverLead>>> =>
-            deliverLead(input as LeadInput, { ip }),
-        }),
-      },
-    });
+    const modelMessages = await convertToModelMessages(messages);
+    const tools = {
+      submitLead: tool({
+        description:
+          "Geef een websitelead door aan MEDIADUSTRY. Roep dit alleen aan als de bezoeker zelf een naam, een e-mail of telefoon, en de vraag heeft gegeven. Verzin geen velden.",
+        inputSchema: leadInputSchema,
+        execute: async (
+          input,
+        ): Promise<Awaited<ReturnType<typeof deliverLead>>> =>
+          deliverLead(input as LeadInput, { ip }),
+      }),
+    };
+    const selected =
+      typeof model === "string"
+        ? await selectChatModelStream({
+            models: chatModelOrder(model),
+            onAttempt: (modelId) => {
+              console.info("[chat] model attempt", { model: modelId });
+            },
+            onFailure: (modelId, error) => {
+              logChatFailure(error, {
+                model: modelId,
+                kind: classifyChatFailure(error),
+              });
+            },
+            onAnswer: (modelId) => {
+              console.info("[chat] model answered", { model: modelId });
+            },
+            open: (modelId) =>
+              streamText({
+                model: modelId,
+                maxRetries: 0,
+                instructions: chatInstructions,
+                messages: modelMessages,
+                maxOutputTokens: MAX_OUTPUT_TOKENS,
+                temperature: 0.3,
+                stopWhen: isStepCount(MAX_TOOL_STEPS),
+                tools,
+              }).stream,
+          })
+        : await selectChatModelStream({
+            models: ["mock"],
+            onAnswer: () => {
+              console.info("[chat] model answered", { model: "mock" });
+            },
+            open: () =>
+              streamText({
+                model,
+                maxRetries: 0,
+                instructions: chatInstructions,
+                messages: modelMessages,
+                maxOutputTokens: MAX_OUTPUT_TOKENS,
+                temperature: 0.3,
+                stopWhen: isStepCount(MAX_TOOL_STEPS),
+                tools,
+              }).stream,
+          });
 
     return createUIMessageStreamResponse({
       stream: toUIMessageStream({
-        stream: result.stream,
+        stream: selected.stream,
         sendReasoning: false,
         onError: (error) => {
           const kind = classifyChatFailure(error);
-          logChatFailure(error, { model: modelId, kind });
+          logChatFailure(error, { model: selected.modelId, kind });
           return visitorMessage(kind);
         },
       }),
     });
   } catch (error) {
     const kind = classifyChatFailure(error);
-    logChatFailure(error, { model: modelId, kind });
+    logChatFailure(error, { model: requestedModel, kind });
     return textResponse(
       kind === "rate_limit" ? 429 : 503,
       visitorMessage(kind),

@@ -172,6 +172,13 @@ $("script:not([type='application/ld+json'])").each((_index, element) => {
   if (script.attr("src")) script.remove();
 });
 
+if (process.env.NEXT_PUBLIC_CHAT_ENABLED !== "false") {
+  $("head").append('<link rel="stylesheet" href="/chat/chat.css" />');
+  $("body").append(
+    '<script src="/chat/config.js"></script><script src="/chat/boot.js"></script>',
+  );
+}
+
 const output = $.html();
 assert(
   !output.includes("__next_f") && !output.includes("$RC("),

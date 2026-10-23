@@ -17,6 +17,8 @@
 /.next/
 /out/
 /public/native-home.html
+/public/chat/widget.js
+/public/chat/config.js
 /artifacts/pagespeed/
 
 # production

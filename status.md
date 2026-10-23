@@ -1,5 +1,15 @@
 # MEDIADUSTRY — status
 
+Bijgewerkt: 2026-10-23.
+
+**Huidige opdracht — chatassistent:** een zwevende chatbubbel rechtsonder op de publieke site, standaard aan, uit alleen met `NEXT_PUBLIC_CHAT_ENABLED=false`. Antwoorden via Vercel AI Gateway, stem in de browser, leads via het bestaande Web3Forms-contactkanaal. Geen verzonnen prijzen. Geen merge en geen wijziging aan Vercel-productie-instellingen. Branch `cursor/ai-sales-chat-8729`.
+
+**Volgende stap:** productiebuild, browsercontrole van de bubbel op desktop en mobiel, daarna de PR bijwerken met schermafbeeldingen. Publicatie is die PR, niet een directe deployment.
+
+**Open voor Mario:** of leads op Web3Forms mogen blijven; of er een boekingslink komt; welk gatewaymodel de kosten mogen bepalen; of server-spraak later nodig is; juridische nalezing van de concept-privacytekst; of offerte en admin de bubbel houden.
+
+Onderstaande blokken zijn de eerdere stand tot 2026-10-09 en blijven staan.
+
 Bijgewerkt: 2026-10-09.
 
 **Huidige opdracht — persoonlijke Die Twie-offertelink:** op uitdrukkelijk akkoord van de eigenaar is de verborgen `DIETWIEJ_ACCESS_TOKEN`-waarde in Vercel Production vervangen. De vorige persoonlijke link is ongeldig. De nieuwe token is alleen in de Vercel Production-omgeving opgeslagen en wordt niet in Git, status of log bewaard. Een GitHub-triggerdeployment om de gewijzigde environment value te laden loopt nog; daarna volgt HTTP-controle van de nieuwe route. De volledige link wordt alleen rechtstreeks aan de eigenaar verstrekt.

@@ -436,3 +436,11 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 
 - Op akkoord van de eigenaar is `DIETWIEJ_ACCESS_TOKEN` in de Production-omgeving van Vercel geroteerd, omdat de bestaande geheime waarde niet kon worden uitgelezen. De oude link is daarmee ongeldig; nieuwe waarde staat alleen in Vercel en is niet in Git of projectdocumentatie opgenomen.
 - De GitHub-push om Vercel de bijgewerkte environment value te laten laden volgt nu. Daarna wordt de persoonlijke route gecontroleerd en de link rechtstreeks aan de eigenaar gegeven. Acceptatie blijft volgens de bestaande configuratie uitgeschakeld; geen e-mail, akkoord of betaling uitgevoerd.
+
+## 2026-10-23 — chatbubbel voor de verkoopassistent
+
+- Opdracht: zwevende chat rechtsonder op elke pagina van mediadustry.com, standaard aan, kill switch `NEXT_PUBLIC_CHAT_ENABLED=false`. Stem via de browser, geen verzonnen prijzen, leads via het contactformulierkanaal. Geen merge en geen Vercel-productiewijziging.
+- Gebouwd: `lib/chat`, `app/api/chat/route.ts`, React-widget in `components/chat`, statische `public/chat/boot.js` plus CSS, voorbereidingsscript, homepage-injectie na het strippen van script-src, en een snippet op de vier juridische HTML-pagina’s. Concepttekst over chat toegevoegd aan privacy en cookieverklaring (23 oktober 2026).
+- Besluit: standaardmodel `spacexai/grok-4.20-non-reasoning` omdat `xai/grok-4-fast` niet in de gatewaycatalogus staat. Server-spraak niet aangesloten. Leads gaan naar Web3Forms; zonder sleutel wordt niets bewaard. De bubbel blijft onder de zwevende akkoordknop (`z-index` 45 tegen 80) en schuift omhoog zolang die knop er is.
+- Controle tot nu: `npm run test:chat` 10/10. Gerichte ESLint op de chatbestanden schoon. Chatgerelateerde `tsc`-fouten afwezig; bestaande `PageProps`/`RouteContext`-meldingen in offertroutes blijven buiten deze wijziging. Productiebuild en browsercontrole volgen nog.
+- Publicatie: nog niet. Geen geheimen of leadgegevens in git of dit log.

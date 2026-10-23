@@ -3,6 +3,8 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import Header1 from "@/components/headers/Header1";
 import TemplateRuntimeProvider from "@/components/common/TemplateRuntimeProvider";
 import MenuRuntimeShell from "@/components/headers/MenuRuntimeShell";
+import { ChatWidget } from "@/components/chat/ChatWidget";
+import { isChatEnabled } from "@/lib/chat/enabled";
 import { Metadata } from "next";
 
 const inter = Inter({
@@ -119,6 +121,7 @@ export default function RootLayout({
             {children}
           </div>
         </TemplateRuntimeProvider>
+        {isChatEnabled() ? <ChatWidget /> : null}
       </body>
     </html>
   );

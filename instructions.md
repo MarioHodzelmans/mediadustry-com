@@ -31,11 +31,12 @@ Project: Next.js-website www.mediadustry.com, publicatie via GitHub `MarioHodzel
 - [docs/contact-funnel.md](docs/contact-funnel.md): historisch archief van de verwijderde opt-infunnel; geen actuele websitekoppeling.
 - [docs/resend-dns.md](docs/resend-dns.md): bewaarde DNS-informatie voor eerder ingerichte externe e-mailresources.
 - [docs/offerte-workflow-plan.md](docs/offerte-workflow-plan.md): implementatie-index, activatie-instellingen en open punten voor de Die Twie-offerteworkflow.
+- [docs/chat-assistant.md](docs/chat-assistant.md): chatbubbel, AI Gateway, stem, leads en de kill switch `NEXT_PUBLIC_CHAT_ENABLED=false`.
 
 ## Beschikbare projectcommando’s
 
 Bron: [package.json](package.json). Aanwezige lockfiles: `package-lock.json`. Kies de package-manager volgens README en lockfile; bij meerdere lockfiles eerst de bedoelde werkwijze vaststellen.
 
-Gedefinieerde scriptnamen: `dev`, `build`, `start`, `lint`, `format`, `format:check`, `optimize:images`. `build` genereert eerst de gefilterde CSS, bouwt Next.js en exporteert de native homepage; `optimize:images` regenereert AVIF-beelden. Fontsubsets zijn ingecheckt en gebruiken alleen bij hergeneratie het optionele Python-script in docs/font-subsets.md.
+Gedefinieerde scriptnamen: `dev`, `build`, `start`, `lint`, `test:quote`, `test:chat`, `format`, `format:check`, `optimize:images`. `build` genereert eerst de gefilterde CSS, bereidt de chatwidget voor, bouwt Next.js en exporteert de native homepage; `optimize:images` regenereert AVIF-beelden. Fontsubsets zijn ingecheckt en gebruiken alleen bij hergeneratie het optionele Python-script in docs/font-subsets.md.
 
 Voer scripts uit via de vastgestelde package-manager. Beschikbaarheid is geen bewijs dat ze werken. Lees de implementatie vóór build-, migratie-, import- of publicatiecommando’s; die kunnen neveneffecten hebben. Raadpleeg status.md en log.md voor werkelijk uitgevoerde controles.

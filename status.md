@@ -1,5 +1,17 @@
 # MEDIADUSTRY — status
 
+Bijgewerkt: 2026-10-23.
+
+**Huidige opdracht — chatassistent:** een zwevende chatbubbel rechtsonder op de publieke site, standaard aan, uit alleen met `NEXT_PUBLIC_CHAT_ENABLED=false`. Antwoorden via Vercel AI Gateway, stem in de browser, leads per e-mail naar `CONTACT_TO_EMAIL` via Resend. Geen verzonnen prijzen. Geen merge en geen wijziging aan Vercel-productie-instellingen. Branch `cursor/ai-sales-chat-8729`.
+
+**Leadpad (2026-10-23):** productiecommit `3bffff8` heeft geen `/api/contact` (live HTTP 404). De contactpagina in die commit post naar Web3Forms; `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` ontbreekt in Vercel. Chatleads gebruiken daarom de eigenaarsmail uit de verwijderde contactservice: Resend vanaf `CONTACT_FROM_EMAIL` naar `CONTACT_TO_EMAIL`. Zonder die afzender of bij een mislukte verzending wordt niets bewaard.
+
+**Werkelijk gecontroleerd (2026-10-23):** `npm run test:chat` 10/10, gerichte ESLint schoon, `npm run build` geslaagd inclusief headerpariteit en native homepage. Lokale productieserver: bubbel 64×64 px desktop en 56×56 px mobiel, 20 px van rechts en onder, `position: fixed`, `z-index: 45`, één knop op `/`, `/contact` en `/privacy-policy.html`. Klik opent het paneel met microfoon en luidspreker; Escape sluit en herstelt het label. Op `/concept/alex-kamsma-parket` schuift de bubbel omhoog zodra de akkoordknop zichtbaar is, zonder overlap. Zonder gatewaygegevens toont de chat de Nederlandse contactmelding; er is geen live modelantwoord gegeven. Publicatie is PR #3, niet een directe deployment.
+
+**Open voor Mario:** of de zichtbare contactpagina ook van Web3Forms af moet (die pagina levert in productie nu niets af); of er een boekingslink komt; welk gatewaymodel de kosten mogen bepalen; of server-spraak later nodig is; juridische nalezing van de concept-privacytekst; of offerte en admin de bubbel houden.
+
+Onderstaande blokken zijn de eerdere stand tot 2026-10-09 en blijven staan.
+
 Bijgewerkt: 2026-10-09.
 
 **Huidige opdracht — persoonlijke Die Twie-offertelink:** op uitdrukkelijk akkoord van de eigenaar is de verborgen `DIETWIEJ_ACCESS_TOKEN`-waarde in Vercel Production vervangen. De vorige persoonlijke link is ongeldig. De nieuwe token is alleen in de Vercel Production-omgeving opgeslagen en wordt niet in Git, status of log bewaard. Een GitHub-triggerdeployment om de gewijzigde environment value te laden loopt nog; daarna volgt HTTP-controle van de nieuwe route. De volledige link wordt alleen rechtstreeks aan de eigenaar verstrekt.

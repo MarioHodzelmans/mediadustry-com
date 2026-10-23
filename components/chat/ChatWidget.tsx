@@ -7,7 +7,7 @@ import { ChatExperience } from "./ChatExperience";
 const ChatPanel = dynamic(() => import("./ChatPanel"), {
   ssr: false,
   loading: () => (
-    <div className="md-chat-panel" role="status">
+    <div className="md-chat-panel is-open" role="status">
       <p className="md-chat-note">De chat wordt geladen…</p>
     </div>
   ),

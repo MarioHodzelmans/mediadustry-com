@@ -12,6 +12,17 @@ import { createRateLimiter } from "../lib/chat/rate-limit";
 import { recognitionLanguage, toSpeakable } from "../lib/chat/speech-text";
 import { chatInstructions } from "../lib/chat/system-prompt";
 import { handleChatRequest } from "../lib/chat/handle";
+import {
+  classifyChatFailure,
+  shouldTryNextModel,
+  visitorMessage,
+} from "../lib/chat/failure";
+import { selectChatModelStream } from "../lib/chat/model-attempt";
+import {
+  chatModelOrder,
+  DEFAULT_CHAT_MODEL,
+  FREE_TIER_CHAT_MODELS,
+} from "../lib/chat/models";
 
 test("chat stays on unless the flag is exactly false", () => {
   assert.equal(isChatEnabled(undefined), true);
@@ -242,8 +253,144 @@ test("launcher assets keep the bubble fixed and labelled", () => {
   assert.match(css, /safe-area-inset-bottom/);
   assert.match(css, /z-index:\s*45/);
   assert.match(css, /showcase-floating-accept/);
+  assert.match(css, /md-chat-teaser/);
+  assert.match(css, /md-chat-typing/);
+  assert.match(css, /md-chat-wave/);
+  assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(boot, /Chat met MEDIADUSTRY/);
-  assert.match(boot, /Sluit chat|aria-expanded/);
+  assert.match(boot, /Vraag het onze AI-assistent/);
+  assert.match(boot, /md-chat-mark-spark/);
+  assert.match(boot, /aria-expanded/);
+});
+
+test("default chat model tries Laguna before Beam", () => {
+  assert.equal(DEFAULT_CHAT_MODEL, "poolside/laguna-s-2.1-free");
+  assert.deepEqual(FREE_TIER_CHAT_MODELS, [
+    "poolside/laguna-s-2.1-free",
+    "reflection/beam-free",
+  ]);
+  assert.deepEqual(chatModelOrder(), [...FREE_TIER_CHAT_MODELS]);
+  assert.deepEqual(chatModelOrder("spacexai/grok-4.20-non-reasoning"), [
+    "spacexai/grok-4.20-non-reasoning",
+    ...FREE_TIER_CHAT_MODELS,
+  ]);
+  assert.deepEqual(chatModelOrder("reflection/beam-free"), [
+    "reflection/beam-free",
+    "poolside/laguna-s-2.1-free",
+  ]);
+});
+
+test("a provider 503 tries the next model and a rate limit does not", async () => {
+  const retry = Object.assign(
+    new Error(
+      "Failed after 3 attempts. Last error: GatewayInternalServerError: Service temporarily unavailable",
+    ),
+    {
+      name: "AI_RetryError",
+      lastError: Object.assign(new Error("Service temporarily unavailable"), {
+        name: "GatewayInternalServerError",
+        statusCode: 503,
+      }),
+    },
+  );
+  assert.equal(shouldTryNextModel(retry), true);
+  assert.equal(classifyChatFailure(retry), "unavailable");
+  const blocked = new Error("Free tier users do not have access to this model");
+  blocked.name = "GatewayInternalServerError";
+  Object.assign(blocked, { statusCode: 403 });
+  assert.equal(shouldTryNextModel(blocked), true);
+  assert.equal(
+    shouldTryNextModel(
+      Object.assign(new Error("rate limit"), { statusCode: 429 }),
+    ),
+    false,
+  );
+
+  const opened: string[] = [];
+  const selected = await selectChatModelStream({
+    models: ["reflection/beam-free", "poolside/laguna-s-2.1-free"],
+    open: (modelId) => {
+      opened.push(modelId);
+      if (modelId === "reflection/beam-free") {
+        return new ReadableStream({
+          start(controller) {
+            controller.enqueue({ type: "start" });
+            controller.enqueue({ type: "error", error: retry });
+            controller.close();
+          },
+        });
+      }
+      return new ReadableStream({
+        start(controller) {
+          controller.enqueue({ type: "start" });
+          controller.enqueue({
+            type: "text-delta",
+            id: "text-1",
+            delta: "Hallo van Laguna",
+          });
+          controller.close();
+        },
+      });
+    },
+  });
+  assert.deepEqual(opened, [
+    "reflection/beam-free",
+    "poolside/laguna-s-2.1-free",
+  ]);
+  assert.equal(selected.modelId, "poolside/laguna-s-2.1-free");
+  const reader = selected.stream.getReader();
+  let text = "";
+  while (true) {
+    const next = await reader.read();
+    if (next.done) break;
+    if (next.value.type === "text-delta" && "delta" in next.value) {
+      text += String(next.value.delta);
+    }
+  }
+  assert.equal(text, "Hallo van Laguna");
+
+  const rateOpened: string[] = [];
+  const limited = await selectChatModelStream({
+    models: ["poolside/laguna-s-2.1-free", "reflection/beam-free"],
+    open: (modelId) => {
+      rateOpened.push(modelId);
+      return new ReadableStream({
+        start(controller) {
+          controller.enqueue({
+            type: "error",
+            error: Object.assign(new Error("rate limit"), { statusCode: 429 }),
+          });
+          controller.close();
+        },
+      });
+    },
+  });
+  assert.deepEqual(rateOpened, ["poolside/laguna-s-2.1-free"]);
+  assert.equal(limited.modelId, "poolside/laguna-s-2.1-free");
+});
+
+test("visitor copy distinguishes a rate limit from a blocked model", () => {
+  assert.equal(
+    classifyChatFailure({ statusCode: 429, message: "rate limit" }),
+    "rate_limit",
+  );
+  const blocked = new Error("Free tier users do not have access to this model");
+  blocked.name = "GatewayInternalServerError";
+  Object.assign(blocked, {
+    statusCode: 403,
+    cause: new Error("RestrictedModelsError"),
+  });
+  assert.equal(classifyChatFailure(blocked), "model_unavailable");
+  assert.equal(classifyChatFailure(new Error("socket hang up")), "unavailable");
+  assert.match(
+    visitorMessage("model_unavailable"),
+    /tijdelijk niet beschikbaar/,
+  );
+  assert.match(visitorMessage("rate_limit"), /veel berichten/);
+  assert.doesNotMatch(
+    visitorMessage("model_unavailable"),
+    /gateway|error|token|stack|key/i,
+  );
 });
 
 const env = process.env as Record<string, string | undefined>;

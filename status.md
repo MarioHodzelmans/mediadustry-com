@@ -2,7 +2,13 @@
 
 Bijgewerkt: 2026-10-23.
 
-**Huidige opdracht — chatassistent:** een zwevende chatbubbel rechtsonder op de publieke site, standaard aan, uit alleen met `NEXT_PUBLIC_CHAT_ENABLED=false`. Antwoorden via Vercel AI Gateway, stem in de browser, leads per e-mail naar `CONTACT_TO_EMAIL` via Resend. Geen verzonnen prijzen. Geen merge en geen wijziging aan Vercel-productie-instellingen. Branch `cursor/ai-sales-chat-8729`.
+**Huidige opdracht — modelvolgorde na preview-503:** PR #4, branch `cursor/chat-free-tier-8729`. Niet mergen. Geen Vercel-instellingen wijzigen. De preview `dpl_8WxpAMr4WR1C4r27SfwPKchaPUF2` (commit `9c32f67`) gaf om 08:35 en 08:37 Europe/Amsterdam `AI_RetryError` na 3 pogingen op `reflection/beam-free` (503, retryable). De app probeert nu zelf elk model één keer: eerst `poolside/laguna-s-2.1-free`, dan `reflection/beam-free`. Een 5xx of een geblokkeerde 403 gaat naar het volgende id. Het antwoordende model-id wordt gelogd. Gratis modellen kunnen nog steeds uitvallen; Grok via betaalde credits is de betrouwbare productieoptie.
+
+**Werkelijk gecontroleerd (2026-10-23):** `npm run test:chat` 13/13, gerichte ESLint schoon, `npm run build` geslaagd inclusief native homepage. De test bootst een 503 op Beam na en controleert dat Laguna daarna wordt geopend; een 429 opent het tweede model niet. Geen live gateway-antwoord in deze omgeving.
+
+**Open voor Mario:** AI Gateway-credits kopen voor een betrouwbare Grok-chat, en daarna `CHAT_MODEL` zetten. Na deze deploy in de logs kijken of `[chat] model answered` een id noemt. De eerdere open punten over de contactpagina, boekingslink, privacytekst en offerte/admin blijven staan.
+
+**Vorige opdracht — chatassistent:** een zwevende chatbubbel rechtsonder op de publieke site, standaard aan, uit alleen met `NEXT_PUBLIC_CHAT_ENABLED=false`. Antwoorden via Vercel AI Gateway, stem in de browser, leads per e-mail naar `CONTACT_TO_EMAIL` via Resend. Geen verzonnen prijzen. Geen merge en geen wijziging aan Vercel-productie-instellingen. Branch `cursor/ai-sales-chat-8729`, gemerged als `c566bc9`.
 
 **Leadpad (2026-10-23):** productiecommit `3bffff8` heeft geen `/api/contact` (live HTTP 404). De contactpagina in die commit post naar Web3Forms; `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` ontbreekt in Vercel. Chatleads gebruiken daarom de eigenaarsmail uit de verwijderde contactservice: Resend vanaf `CONTACT_FROM_EMAIL` naar `CONTACT_TO_EMAIL`. Zonder die afzender of bij een mislukte verzending wordt niets bewaard.
 

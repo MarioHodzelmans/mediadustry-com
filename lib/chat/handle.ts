@@ -19,8 +19,11 @@ import {
   CHAT_RATE_WINDOW_MS,
 } from "./limits";
 import { clientIp, createRateLimiter } from "./rate-limit";
+import { classifyChatFailure, logChatFailure, visitorMessage } from "./failure";
+import { selectChatModelStream } from "./model-attempt";
+import { chatModelOrder, DEFAULT_CHAT_MODEL } from "./models";
 
-export const DEFAULT_CHAT_MODEL = "spacexai/grok-4.20-non-reasoning";
+export { DEFAULT_CHAT_MODEL } from "./models";
 
 const chatLimiter = createRateLimiter({
   limit: CHAT_RATE_LIMIT,
@@ -117,52 +120,95 @@ export async function handleChatRequest(request: Request): Promise<Response> {
   const ip = clientIp(request);
   const rate = chatLimiter.check(ip);
   if (!rate.ok) {
-    return textResponse(
-      429,
-      "Je hebt in korte tijd veel berichten gestuurd. Probeer het zo opnieuw, of mail info@mediadustry.com.",
-      {
-        "Retry-After": String(rate.retryAfterSeconds),
-      },
-    );
+    return textResponse(429, visitorMessage("rate_limit"), {
+      "Retry-After": String(rate.retryAfterSeconds),
+    });
   }
 
   if (!mockEnabled() && !hasGatewayCredentials()) {
-    return textResponse(
-      503,
-      "De chat kan nu geen antwoord geven. Mail info@mediadustry.com of ga naar de contactpagina. Een teamlid helpt je verder.",
-    );
+    return textResponse(503, visitorMessage("unavailable"));
   }
 
+  const requestedModel = process.env.CHAT_MODEL?.trim() || DEFAULT_CHAT_MODEL;
   try {
     const model = await resolveModel();
     const messages: UIMessage[] = sanitized.messages;
-    const result = streamText({
-      model,
-      instructions: chatInstructions,
-      messages: await convertToModelMessages(messages),
-      maxOutputTokens: MAX_OUTPUT_TOKENS,
-      temperature: 0.3,
-      stopWhen: isStepCount(MAX_TOOL_STEPS),
-      tools: {
-        submitLead: tool({
-          description:
-            "Geef een websitelead door aan MEDIADUSTRY. Roep dit alleen aan als de bezoeker zelf een naam, een e-mail of telefoon, en de vraag heeft gegeven. Verzin geen velden.",
-          inputSchema: leadInputSchema,
-          execute: async (
-            input,
-          ): Promise<Awaited<ReturnType<typeof deliverLead>>> =>
-            deliverLead(input as LeadInput, { ip }),
-        }),
-      },
-    });
+    const modelMessages = await convertToModelMessages(messages);
+    const tools = {
+      submitLead: tool({
+        description:
+          "Geef een websitelead door aan MEDIADUSTRY. Roep dit alleen aan als de bezoeker zelf een naam, een e-mail of telefoon, en de vraag heeft gegeven. Verzin geen velden.",
+        inputSchema: leadInputSchema,
+        execute: async (
+          input,
+        ): Promise<Awaited<ReturnType<typeof deliverLead>>> =>
+          deliverLead(input as LeadInput, { ip }),
+      }),
+    };
+    const selected =
+      typeof model === "string"
+        ? await selectChatModelStream({
+            models: chatModelOrder(model),
+            onAttempt: (modelId) => {
+              console.info("[chat] model attempt", { model: modelId });
+            },
+            onFailure: (modelId, error) => {
+              logChatFailure(error, {
+                model: modelId,
+                kind: classifyChatFailure(error),
+              });
+            },
+            onAnswer: (modelId) => {
+              console.info("[chat] model answered", { model: modelId });
+            },
+            open: (modelId) =>
+              streamText({
+                model: modelId,
+                maxRetries: 0,
+                instructions: chatInstructions,
+                messages: modelMessages,
+                maxOutputTokens: MAX_OUTPUT_TOKENS,
+                temperature: 0.3,
+                stopWhen: isStepCount(MAX_TOOL_STEPS),
+                tools,
+              }).stream,
+          })
+        : await selectChatModelStream({
+            models: ["mock"],
+            onAnswer: () => {
+              console.info("[chat] model answered", { model: "mock" });
+            },
+            open: () =>
+              streamText({
+                model,
+                maxRetries: 0,
+                instructions: chatInstructions,
+                messages: modelMessages,
+                maxOutputTokens: MAX_OUTPUT_TOKENS,
+                temperature: 0.3,
+                stopWhen: isStepCount(MAX_TOOL_STEPS),
+                tools,
+              }).stream,
+          });
 
     return createUIMessageStreamResponse({
-      stream: toUIMessageStream({ stream: result.stream }),
+      stream: toUIMessageStream({
+        stream: selected.stream,
+        sendReasoning: false,
+        onError: (error) => {
+          const kind = classifyChatFailure(error);
+          logChatFailure(error, { model: selected.modelId, kind });
+          return visitorMessage(kind);
+        },
+      }),
     });
-  } catch {
+  } catch (error) {
+    const kind = classifyChatFailure(error);
+    logChatFailure(error, { model: requestedModel, kind });
     return textResponse(
-      503,
-      "De chat kan nu geen antwoord geven. Mail info@mediadustry.com of ga naar de contactpagina. Een teamlid helpt je verder.",
+      kind === "rate_limit" ? 429 : 503,
+      visitorMessage(kind),
+      kind === "rate_limit" ? { "Retry-After": "30" } : undefined,
     );
   }
 }

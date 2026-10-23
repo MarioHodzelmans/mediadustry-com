@@ -4,7 +4,7 @@ Bijgewerkt: 2026-10-23.
 
 **Huidige opdracht — chatassistent:** een zwevende chatbubbel rechtsonder op de publieke site, standaard aan, uit alleen met `NEXT_PUBLIC_CHAT_ENABLED=false`. Antwoorden via Vercel AI Gateway, stem in de browser, leads via het bestaande Web3Forms-contactkanaal. Geen verzonnen prijzen. Geen merge en geen wijziging aan Vercel-productie-instellingen. Branch `cursor/ai-sales-chat-8729`.
 
-**Volgende stap:** productiebuild, browsercontrole van de bubbel op desktop en mobiel, daarna de PR bijwerken met schermafbeeldingen. Publicatie is die PR, niet een directe deployment.
+**Werkelijk gecontroleerd (2026-10-23):** `npm run test:chat` 10/10, gerichte ESLint schoon, `npm run build` geslaagd inclusief headerpariteit en native homepage. Lokale productieserver: bubbel 64×64 px desktop en 56×56 px mobiel, 20 px van rechts en onder, `position: fixed`, `z-index: 45`, één knop op `/`, `/contact` en `/privacy-policy.html`. Klik opent het paneel met microfoon en luidspreker; Escape sluit en herstelt het label. Op `/concept/alex-kamsma-parket` schuift de bubbel omhoog zodra de akkoordknop zichtbaar is, zonder overlap. Zonder gatewaygegevens toont de chat de Nederlandse contactmelding; er is geen live modelantwoord gegeven. Publicatie is PR #3, niet een directe deployment.
 
 **Open voor Mario:** of leads op Web3Forms mogen blijven; of er een boekingslink komt; welk gatewaymodel de kosten mogen bepalen; of server-spraak later nodig is; juridische nalezing van de concept-privacytekst; of offerte en admin de bubbel houden.
 

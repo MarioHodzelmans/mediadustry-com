@@ -442,5 +442,11 @@ Eerdere context en geschiedenis: [README.md](README.md). Deze entry vervangt die
 - Opdracht: zwevende chat rechtsonder op elke pagina van mediadustry.com, standaard aan, kill switch `NEXT_PUBLIC_CHAT_ENABLED=false`. Stem via de browser, geen verzonnen prijzen, leads via het contactformulierkanaal. Geen merge en geen Vercel-productiewijziging.
 - Gebouwd: `lib/chat`, `app/api/chat/route.ts`, React-widget in `components/chat`, statische `public/chat/boot.js` plus CSS, voorbereidingsscript, homepage-injectie na het strippen van script-src, en een snippet op de vier juridische HTML-pagina’s. Concepttekst over chat toegevoegd aan privacy en cookieverklaring (23 oktober 2026).
 - Besluit: standaardmodel `spacexai/grok-4.20-non-reasoning` omdat `xai/grok-4-fast` niet in de gatewaycatalogus staat. Server-spraak niet aangesloten. Leads gaan naar Web3Forms; zonder sleutel wordt niets bewaard. De bubbel blijft onder de zwevende akkoordknop (`z-index` 45 tegen 80) en schuift omhoog zolang die knop er is.
-- Controle tot nu: `npm run test:chat` 10/10. Gerichte ESLint op de chatbestanden schoon. Chatgerelateerde `tsc`-fouten afwezig; bestaande `PageProps`/`RouteContext`-meldingen in offertroutes blijven buiten deze wijziging. Productiebuild en browsercontrole volgen nog.
-- Publicatie: nog niet. Geen geheimen of leadgegevens in git of dit log.
+- Controle tot nu: `npm run test:chat` 10/10. Gerichte ESLint op de chatbestanden schoon. Chatgerelateerde `tsc`-fouten afwezig; de productiebuild typecheckt het hele project.
+- Publicatie: branch `cursor/ai-sales-chat-8729`, PR #3. Geen merge, geen Vercel-wijziging, geen geheimen of leadgegevens in git of dit log.
+
+## 2026-10-23 — bubbel gemeten op de productieserver
+
+- De chatmaten hangen niet meer aan de root-`rem`. Andere pagina’s zetten `html` op 10 px; daardoor was de knop daar 40 px. `--md-chat-unit: 16px` houdt de knop op 64 px desktop en 56 px mobiel.
+- `npm run build` geslaagd. Daarna `next start` op poort 3000. Playwright met systeem-Chrome: homepage desktop 1440×900 en mobiel 390×844, bubbel rechtsonder met 20 px inset, vast, `z-index` 45, label “Chat met MEDIADUSTRY”. Open paneel toont microfoon, luidspreker en privacyzin; het label wordt “Sluit chat”. Escape sluit. Eén knop op `/contact` en `/privacy-policy.html`. Conceptpagina: bij zichtbare akkoordknop staat de bubbel 140 px van de onderkant en overlapt die knop niet. Footerlinks op de homepage vallen niet onder de knop.
+- Geen `AI_GATEWAY_API_KEY` in deze omgeving. Een verzonden bericht toont de Nederlandse contactmelding en breekt de pagina niet. Geen live modelantwoord. `CHAT_MOCK` doet in productie niets.

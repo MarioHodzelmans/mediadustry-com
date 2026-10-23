@@ -21,7 +21,7 @@ Dezelfde controle zit op drie plekken:
 
 `position: fixed`, rechts en onder met `safe-area`-insets, `z-index: 45`. Dat ligt boven de homepageheader (4) en het menu (10) en onder de zwevende akkoordknop van conceptpagina’s (80). Bestaat `.showcase-floating-accept`, dan schuift de bubbel 7.5rem omhoog. Zodra de preview in beeld is en die knop verbergt, zakt de bubbel terug. De homepagefooter krijgt extra onderpadding zodat de juridische links niet onder de knop vallen.
 
-De knop is een witte schijf met oranje rand (`#ff6438`) en een donker icoon, 64 px op desktop en 56 px op smalle schermen. Het label is “Chat met MEDIADUSTRY”. Open is het een sluiticoon met label “Sluit chat”.
+De knop is een witte schijf met oranje rand (`#ff6438`) en een donker icoon, 64 px op desktop en 56 px op smalle schermen. Maten staan vast op 16 px, omdat andere pagina’s `html` op 10 px zetten. Het label is “Chat met MEDIADUSTRY”. Open is het een sluiticoon met label “Sluit chat”.
 
 ## Antwoorden
 

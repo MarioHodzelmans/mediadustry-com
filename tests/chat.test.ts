@@ -57,17 +57,17 @@ test("rate limit blocks the next call inside the window", () => {
   assert.equal(limiter.check("1.1.1.1", 2000).ok, true);
 });
 
-test("lead delivery stores nothing without the contact-form key", async () => {
+test("lead delivery stores nothing without the contact mail config", async () => {
   resetLeadDeliveryForTests();
   let called = false;
   const result = await deliverLead(
     { name: "Ada", email: "ada@example.com", need: "Een website" },
     {
       ip: "203.0.113.10",
-      accessKey: null,
+      mail: null,
       fetchImpl: async () => {
         called = true;
-        return new Response(JSON.stringify({ success: true }));
+        return new Response(JSON.stringify({ id: "email_1" }));
       },
     },
   );
@@ -76,29 +76,63 @@ test("lead delivery stores nothing without the contact-form key", async () => {
   assert.match(result.visitorMessage, /info@mediadustry.com/);
 });
 
-test("lead delivery uses Web3Forms and ignores a duplicate", async () => {
+test("lead delivery uses the Resend contact inbox and ignores a duplicate", async () => {
   resetLeadDeliveryForTests();
-  const bodies: string[] = [];
-  const fetchImpl: typeof fetch = async (_url, init) => {
-    bodies.push(String(init?.body));
-    return new Response(JSON.stringify({ success: true }), { status: 200 });
+  const calls: { url: string; body: string; auth: string; key: string }[] = [];
+  const fetchImpl: typeof fetch = async (url, init) => {
+    const headers = new Headers(init?.headers);
+    calls.push({
+      url: String(url),
+      body: String(init?.body),
+      auth: headers.get("authorization") ?? "",
+      key: headers.get("idempotency-key") ?? "",
+    });
+    return new Response(JSON.stringify({ id: "email_1" }), { status: 200 });
+  };
+  const mail = {
+    apiKey: "test-resend-key",
+    from: "MEDIADUSTRY <website@example.com>",
+    to: "inbox@mediadustry.com",
   };
   const input = { name: "Sam", phone: "06 12345678", need: "SEO" };
   const first = await deliverLead(input, {
     ip: "203.0.113.11",
-    accessKey: "public-test-key",
+    mail,
     fetchImpl,
   });
   const second = await deliverLead(input, {
     ip: "203.0.113.11",
-    accessKey: "public-test-key",
+    mail,
     fetchImpl,
   });
   assert.equal(first.delivered, true);
   assert.equal(second.duplicate, true);
-  assert.equal(bodies.length, 1);
-  assert.match(bodies[0], /public-test-key/);
-  assert.match(bodies[0], /06 12345678/);
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].url, "https://api.resend.com/emails");
+  assert.equal(calls[0].auth, "Bearer test-resend-key");
+  assert.match(calls[0].key, /^chat-lead-/);
+  const payload = JSON.parse(calls[0].body) as {
+    from: string;
+    to: string[];
+    reply_to?: string;
+    text: string;
+  };
+  assert.equal(payload.from, mail.from);
+  assert.deepEqual(payload.to, [mail.to]);
+  assert.equal(payload.reply_to, undefined);
+  assert.match(payload.text, /06 12345678/);
+  assert.doesNotMatch(payload.text, /access_key/);
+
+  const failed = await deliverLead(
+    { name: "Sam", email: "sam@example.com", need: "Een andere vraag" },
+    {
+      ip: "203.0.113.12",
+      mail,
+      fetchImpl: async () => new Response("no", { status: 502 }),
+    },
+  );
+  assert.equal(failed.delivered, false);
+  assert.match(failed.visitorMessage, /info@mediadustry.com/);
   const invalid = normalizeLead({ name: " ", need: "x" });
   assert.equal("ok" in invalid && invalid.ok, false);
 });

@@ -1,3 +1,9 @@
+import { createHash } from "node:crypto";
+import {
+  readContactMailConfig,
+  sendContactNotice,
+  type ContactMailConfig,
+} from "../contact-mail";
 import { createRateLimiter } from "./rate-limit";
 import { LEAD_RATE_LIMIT, LEAD_RATE_WINDOW_MS } from "./limits";
 import { siteFacts } from "./site-facts";
@@ -106,7 +112,7 @@ export async function deliverLead(
     ip?: string;
     now?: number;
     fetchImpl?: typeof fetch;
-    accessKey?: string | null;
+    mail?: ContactMailConfig | null;
   } = {},
 ): Promise<LeadResult> {
   const normalized = normalizeLead(input);
@@ -146,16 +152,9 @@ export async function deliverLead(
     };
   }
 
-  const accessKey =
-    options.accessKey === undefined
-      ? process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
-      : options.accessKey;
-  if (!accessKey) {
-    // TODO(mario): het contactformulier levert aan via Web3Forms met
-    // NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY. Zonder die sleutel slaan we niets op.
-    // Zet de sleutel in Vercel, of kies later een andere server-side inbox.
-    // Resend staat al in het project voor offertes, maar die afzender is een
-    // aparte configuratie en is hier bewust niet aangesloten.
+  const mail =
+    options.mail === undefined ? readContactMailConfig() : options.mail;
+  if (!mail) {
     return { ok: false, delivered: false, visitorMessage: MAIL_FALLBACK };
   }
 
@@ -175,29 +174,18 @@ export async function deliverLead(
     );
   }
 
-  const fetchImpl = options.fetchImpl ?? fetch;
-  try {
-    const response = await fetchImpl("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        access_key: accessKey,
-        subject: "Nieuwe chatlead via mediadustry.com",
-        from_name: "MEDIADUSTRY websitechat",
-        name: lead.name,
-        email: lead.email || siteFacts.email,
-        message: lines.join("\n"),
-      }),
-      signal: AbortSignal.timeout(8000),
-    });
-    const data = (await response.json()) as { success?: boolean };
-    if (!response.ok || data.success !== true) {
-      return { ok: false, delivered: false, visitorMessage: MAIL_FALLBACK };
-    }
-  } catch {
+  const sent = await sendContactNotice(
+    mail,
+    {
+      subject: "Nieuwe chatlead via mediadustry.com",
+      paragraphs: lines,
+      replyTo: lead.email,
+      source: "chat",
+      idempotencyKey: `chat-lead-${createHash("sha256").update(key).digest("hex").slice(0, 40)}`,
+    },
+    options.fetchImpl ?? fetch,
+  );
+  if (!sent) {
     return { ok: false, delivered: false, visitorMessage: MAIL_FALLBACK };
   }
 

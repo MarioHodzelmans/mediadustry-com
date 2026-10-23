@@ -1,6 +1,6 @@
 # Chatassistent op mediadustry.com
 
-De site toont rechtsonder een chatbubbel. Een bezoeker kan daar vragen stellen over wat MEDIADUSTRY op de website publiceert. De assistent verzint geen prijzen, levertijden, garanties of cases, en geeft een lead door via hetzelfde Web3Forms-kanaal als het contactformulier.
+De site toont rechtsonder een chatbubbel. Een bezoeker kan daar vragen stellen over wat MEDIADUSTRY op de website publiceert. De assistent verzint geen prijzen, levertijden, garanties of cases, en geeft een lead door als e-mail naar `CONTACT_TO_EMAIL`.
 
 ## Zichtbaarheid
 
@@ -35,7 +35,7 @@ De instructie staat in `lib/chat/system-prompt.ts` en gebruikt alleen `lib/chat/
 
 ## Leads
 
-Het hulpmiddel `submitLead` vraagt naam, e-mail of telefoon, en een vraag. Het verstuurt JSON naar `https://api.web3forms.com/submit` met `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`. Zonder sleutel wordt niets opgeslagen; de bezoeker krijgt het e-mailadres en de contactpagina. Een dubbele lead binnen 30 minuten gaat niet nog eens weg. Resend is bewust niet gekoppeld.
+Het hulpmiddel `submitLead` vraagt naam, e-mail of telefoon, en een vraag. De server stuurt die gegevens via Resend (`POST https://api.resend.com/emails`) vanaf `CONTACT_FROM_EMAIL` naar `CONTACT_TO_EMAIL`. Dat is dezelfde eigenaarsmail als de vroegere `/api/contact`-service. De live contactpagina post nog naar Web3Forms; die route bestaat in productie niet meer en `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` staat niet in Vercel. Zonder `RESEND_API_KEY` of `CONTACT_FROM_EMAIL`, of als Resend de mail weigert, wordt niets opgeslagen en krijgt de bezoeker het e-mailadres en de contactpagina. Een dubbele lead binnen 30 minuten gaat niet nog eens weg.
 
 ## Spraak
 
